@@ -4,4 +4,5 @@
 *.gch
 
 bin/
+build/
 ignore/
