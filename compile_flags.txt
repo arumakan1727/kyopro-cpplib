@@ -1,0 +1,10 @@
+-std=c++17
+-Wall
+-Wextra
+-Wshadow
+-Wconversion
+-Wno-char-subscripts
+-Og
+-g
+-fsanitize=address,undefined
+-ftrapv
