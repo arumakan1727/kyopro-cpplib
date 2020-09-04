@@ -1,7 +1,9 @@
 #pragma once
 
 /**
- * @brief 半開区間内に含まれているかのチェック
+ * @brief within() (半開区間内に含まれているかの判定)
  */
-template <class Value, class BeginValue, class EndValue>
-inline bool within(const Value &v, const BeginValue &begin, const EndValue &end) { return begin <= v && v < end; }
+template <class Value, class ValueBegin, class ValueEnd>
+inline bool within(const Value& v, const ValueBegin& begin, const ValueEnd& end) {
+    return begin <= v && v < end;
+}

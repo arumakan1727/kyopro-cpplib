@@ -7,19 +7,22 @@
  * @brief Union-Find (素集合データ構造)
  * @note path-compression + union-by-size
  */
-struct UnionFind {
+class UnionFind {
+private:
     mutable std::vector<int> p;
 
+public:
     UnionFind() = default;
-    explicit UnionFind(size_t n) : p(n, -1) {}
 
-    bool unite(int x, int y) {
+    explicit UnionFind(size_t n)
+        : p(n, -1) {}
+
+    void unite(int x, int y) {
         x = root(x), y = root(y);
-        if (x == y) return false;
+        if (x == y) return;
         if (p[y] < p[x]) std::swap(x, y);
         p[x] += p[y];
         p[y] = x;
-        return true;
     }
 
     int root(int x) const {

@@ -3,33 +3,32 @@ using namespace std;
 
 #pragma region  // {{{
 
-// @include "./all-macro.hpp"
-// @include "./rep-macro.hpp"
+#include "./all-macro.hpp"
+#include "./rep-macro.hpp"
 
-// @include "./io-setup.hpp"
+#include "./type-alias.hpp"
 
-// @include "./var-declaration-with-input.hpp"
+#include "./io-setup.hpp"
 
-// @include "./println.hpp"
+#include "./var-declaration-with-input.hpp"
 
-// @include "./container-io.hpp"
+#include "./println.hpp"
 
-// @include "./join-into-ostream.hpp"
+#include "./container-io.hpp"
 
-// @include "./tuple-print.hpp"
+#include "./join-into-ostream.hpp"
 
-// @include "./makeVec.hpp"
+#include "./tuple-print.hpp"
 
-// @include "./type-alias.hpp"
+#include "./makeVec.hpp"
 
-// @include "./bye.hpp"
-// @include "./chminmax.hpp"
-// @include "./is-within-range.hpp"
+#include "./bye.hpp"
 
-// @include "./div-ceil.hpp"
-// @include "./div-floor.hpp"
+#include "./chminmax.hpp"
 
-// @include "./constant.hpp"
+#include "./is-within-range.hpp"
+
+#include "./constant.hpp"
 
 #pragma endregion  // }}}
 

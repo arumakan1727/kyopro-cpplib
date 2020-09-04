@@ -3,7 +3,7 @@
 #include <iostream>
 
 /**
- * @brief iostream の高速化
+ * @brief ioSetup() (iostreamの高速化と実数出力の設定)
  */
 void ioSetup() {
     std::cin.tie(nullptr);

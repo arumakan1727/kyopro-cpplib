@@ -1,6 +1,25 @@
-BasedOnStyle: Google
-IndentWidth: 4
+BasedOnStyle: Chromium
+ColumnLimit: 160
+Language: Cpp
+Standard: c++17
+
 TabWidth: 4
+IndentWidth: 4
 AccessModifierOffset: -4
+UseCRLF: false
 UseTab: Never
-ColumnLimit: 0
+
+AlignEscapedNewlines: Left
+
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: WithoutElse
+AllowShortLambdasOnASingleLine: All
+AllowShortLoopsOnASingleLine: true
+
+AlwaysBreakTemplateDeclarations: Yes
+
+BreakConstructorInitializers: BeforeComma
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+
+IncludeBlocks: Preserve
+SortIncludes: false
