@@ -63,7 +63,7 @@ layout: default
 * :warning: <a href="library/include/template-parts/join-into-ostream.hpp.html">join() (要素を区切り文字で結合して出力) <small>(include/template-parts/join-into-ostream.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/makeVec.hpp.html">makeVec() (多次元std::vectorの生成) <small>(include/template-parts/makeVec.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/println.hpp.html">println() (可変個の値を空白区切りで出力して改行する) <small>(include/template-parts/println.hpp)</small></a>
-* :heavy_check_mark: <a href="library/include/template-parts/rep-macro.hpp.html">rep()マクロ <small>(include/template-parts/rep-macro.hpp)</small></a>
+* :warning: <a href="library/include/template-parts/rep-macro.hpp.html">rep()マクロ <small>(include/template-parts/rep-macro.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/template.cpp.html">include/template-parts/template.cpp</a>
 * :warning: <a href="library/include/template-parts/tuple-print.hpp.html">tupleの出力 <small>(include/template-parts/tuple-print.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/type-alias.hpp.html">型エイリアス <small>(include/template-parts/type-alias.hpp)</small></a>

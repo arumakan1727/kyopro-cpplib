@@ -48,7 +48,7 @@ layout: default
 * :warning: <a href="join-into-ostream.hpp.html">join() (要素を区切り文字で結合して出力) <small>(include/template-parts/join-into-ostream.hpp)</small></a>
 * :warning: <a href="makeVec.hpp.html">makeVec() (多次元std::vectorの生成) <small>(include/template-parts/makeVec.hpp)</small></a>
 * :warning: <a href="println.hpp.html">println() (可変個の値を空白区切りで出力して改行する) <small>(include/template-parts/println.hpp)</small></a>
-* :heavy_check_mark: <a href="rep-macro.hpp.html">rep()マクロ <small>(include/template-parts/rep-macro.hpp)</small></a>
+* :warning: <a href="rep-macro.hpp.html">rep()マクロ <small>(include/template-parts/rep-macro.hpp)</small></a>
 * :warning: <a href="tuple-print.hpp.html">tupleの出力 <small>(include/template-parts/tuple-print.hpp)</small></a>
 * :warning: <a href="type-alias.hpp.html">型エイリアス <small>(include/template-parts/type-alias.hpp)</small></a>
 * :warning: <a href="var-declaration-with-input.hpp.html">複数変数宣言をして同時に入力もするやつ <small>(include/template-parts/var-declaration-with-input.hpp)</small></a>

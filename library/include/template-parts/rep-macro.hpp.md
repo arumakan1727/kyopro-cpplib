@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: rep()マクロ <small>(include/template-parts/rep-macro.hpp)</small>
+# :warning: rep()マクロ <small>(include/template-parts/rep-macro.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
@@ -39,11 +39,6 @@ layout: default
 ## Required by
 
 * :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
-
-
-## Verified with
-
-* :heavy_check_mark: <a href="../../../verify/test/DSL_1_A.test.cpp.html">test/DSL_1_A.test.cpp</a>
 
 
 ## Code
