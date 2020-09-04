@@ -3,7 +3,6 @@
 
 #include "../include/data-structure/union-find.hpp"
 #include "../include/template-parts/io-setup.hpp"
-#include "../include/template-parts/rep-macro.hpp"
 using namespace std;
 
 int main() {
