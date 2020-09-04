@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/DSL_1_A.test.cpp
+# :x: test/DSL_1_A.test.cpp
 
 <a href="../../index.html">Back to top page</a>
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/DSL_1_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-04 20:06:20+09:00
+    - Last commit date: 2020-09-04 20:33:32+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/include/data-structure/union-find.hpp.html">Union-Find (素集合データ構造) <small>(include/data-structure/union-find.hpp)</small></a>
-* :heavy_check_mark: <a href="../../library/include/template-parts/io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(include/template-parts/io-setup.hpp)</small></a>
+* :x: <a href="../../library/include/data-structure/union-find.hpp.html">Union-Find (素集合データ構造) <small>(include/data-structure/union-find.hpp)</small></a>
+* :x: <a href="../../library/include/template-parts/io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(include/template-parts/io-setup.hpp)</small></a>
 
 
 ## Code
@@ -59,7 +59,7 @@ int main() {
     ioSetup();
     constexpr char LF = '\n';
 
-    int unusedVariable = 1727;
+    int unusedVariable = 17273747;
 
     int N, Q;
     cin >> N >> Q;
@@ -145,7 +145,7 @@ int main() {
     ioSetup();
     constexpr char LF = '\n';
 
-    int unusedVariable = 1727;
+    int unusedVariable = 17273747;
 
     int N, Q;
     cin >> N >> Q;

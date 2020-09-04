@@ -43,7 +43,7 @@ layout: default
 * :warning: <a href="chminmax.hpp.html">chmin(), chmax() <small>(include/template-parts/chminmax.hpp)</small></a>
 * :warning: <a href="constant.hpp.html">よく使う定数 <small>(include/template-parts/constant.hpp)</small></a>
 * :warning: <a href="container-io.hpp.html">コンテナの入出力 <small>(include/template-parts/container-io.hpp)</small></a>
-* :heavy_check_mark: <a href="io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(include/template-parts/io-setup.hpp)</small></a>
+* :x: <a href="io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(include/template-parts/io-setup.hpp)</small></a>
 * :warning: <a href="is-within-range.hpp.html">within() (半開区間内に含まれているかの判定) <small>(include/template-parts/is-within-range.hpp)</small></a>
 * :warning: <a href="join-into-ostream.hpp.html">join() (要素を区切り文字で結合して出力) <small>(include/template-parts/join-into-ostream.hpp)</small></a>
 * :warning: <a href="makeVec.hpp.html">makeVec() (多次元std::vectorの生成) <small>(include/template-parts/makeVec.hpp)</small></a>
