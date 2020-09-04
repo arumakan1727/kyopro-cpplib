@@ -6,6 +6,7 @@
 
 /**
  * @brief tupleの出力
+ * @see https://qiita.com/_EnumHack/items/677363eec054d70b298d#index-tuple-idiom-the-indices-trick
  */
 template <class Tuple, size_t... I>
 std::array<int, sizeof...(I)> tuple_print_impl(std::ostream& os, Tuple&& t, std::index_sequence<I...>) {
