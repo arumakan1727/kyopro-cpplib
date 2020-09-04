@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#b2507468f95156358fa490fd543ad2f0">export</a>
 * <a href="{{ site.github.repository_url }}/blob/master/export/template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 22:37:08+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
 
@@ -48,9 +48,21 @@ using namespace std;
 
 #define all(x) std::begin(x), std::end(x)
 #define rall(x) std::rbegin(x), std::rend(x)
-#define rep(i, s, t) for (common_type_t<decltype(s), decltype(t)> i = (s); i < (t); ++i)
-#define repc(i, s, t) for (common_type_t<decltype(s), decltype(t)> i = (s); i <= (t); ++i)
-#define repr(i, t, s) for (i64 i = i64(t); i >= i64(s); --i)
+#define rep2(i, n) for (size_t i = 0; i < (n); ++i)
+#define rep3(i, s, e) for (int64_t i = int64_t(s); i < int64_t(e); ++i)
+#define GET_4TH_ARG(dummy1, dummy2, dummy3, NAME, ...) NAME
+#define rep(...) GET_4TH_ARG(__VA_ARGS__, rep3, rep2)(__VA_ARGS__)
+#define repc(i, s, t) for (int64_t i = int64_t(s); i <= int64_t(t); ++i)
+#define repr(i, s, t) for (int64_t i = int64_t(s); i >= int64_t(t); --i)
+
+#define let const auto
+using i64 = int64_t;
+using u64 = uint64_t;
+using usize = size_t;
+template <class T>
+using MaxHeap = std::priority_queue<T, std::vector<T>>;
+template <class T>
+using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
 void ioSetup() {
     std::cin.tie(nullptr);
@@ -61,85 +73,85 @@ void ioSetup() {
 }
 
 template <class T>
-std::istream &operator,(std::istream &is, T &rhs) { return is >> rhs; }
+std::istream& operator,(std::istream& is, T& rhs) {
+    return is >> rhs;
+}
 
 #define var(type, ...) \
     type __VA_ARGS__;  \
-    cin >> __VA_ARGS__
+    std::cin >> __VA_ARGS__
 
-inline void println() { std::cout << '\n'; }
-
+inline void println() {
+    std::cout << '\n';
+}
 template <class Head, class... Tail>
-inline void println(Head &&head, Tail &&... tail) {
+inline void println(Head&& head, Tail&&... tail) {
     std::cout << head << " " + (!sizeof...(tail));
     println(std::forward<Tail>(tail)...);
 }
 
-template <class Container, class Value = typename Container::value_type,
+template <class Container,
+          class Value = typename Container::value_type,
           std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
-std::istream &operator>>(std::istream &is, Container &v) {
-    for (auto &e : v) is >> e;
+std::istream& operator>>(std::istream& is, Container& v) {
+    for (auto& e : v) is >> e;
     return is;
 }
 
-template <class Container, class Value = typename Container::value_type,
+template <class Container,
+          class Value = typename Container::value_type,
           std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
-std::ostream &operator<<(std::ostream &os, const Container &v) {
+std::ostream& operator<<(std::ostream& os, const Container& v) {
     for (auto it = begin(v); it != end(v); ++it) os << " " + (it == begin(v)) << *it;
     return os;
 }
 
 template <class InputItr>
-void join(std::ostream &os, InputItr begin, InputItr end, const char *delim = " ", const char *last = "\n") {
-    const char *tmp[] = {delim, ""};
+void join(std::ostream& os, InputItr begin, InputItr end, const char* delim = " ", const char* last = "\n") {
+    const char* tmp[] = {delim, ""};
     for (auto it = begin; it != end; ++it) os << tmp[it == begin] << *it;
     os << last;
 }
 
 template <class Tuple, size_t... I>
-std::array<int, sizeof...(I)> tuple_print_impl(std::ostream &os, Tuple &&t, std::index_sequence<I...>) {
+std::array<int, sizeof...(I)> tuple_print_impl(std::ostream& os, Tuple&& t, std::index_sequence<I...>) {
     return {{(void(os << (I == 0 ? "" : ", ") << std::get<I>(t)), 0)...}};
 }
-
 template <class Tuple, class Value = typename std::tuple_element_t<0, Tuple>>
-std::ostream &operator<<(std::ostream &os, Tuple &&t) {
+std::ostream& operator<<(std::ostream& os, Tuple&& t) {
     os << '{';
     tuple_print_impl(os, std::forward<Tuple>(t), std::make_index_sequence<std::tuple_size<std::decay_t<Tuple>>::value>{});
     return os << '}';
 }
 
 template <class T>
-inline std::vector<T> makeVec(const T &initValue, size_t sz) {
+inline std::vector<T> makeVec(const T& initValue, size_t sz) {
     return std::vector<T>(sz, initValue);
 }
-
 template <class T, class... Args>
-inline auto makeVec(const T &initValue, size_t sz, Args... args) {
+inline auto makeVec(const T& initValue, size_t sz, Args... args) {
     return std::vector<decltype(makeVec<T>(initValue, args...))>(sz, makeVec<T>(initValue, args...));
 }
 
-using i64 = int64_t;
-using u64 = uint64_t;
-using usize = size_t;
-using ld = long double;
 template <class T>
-using MaxHeap = std::priority_queue<T, std::vector<T>>;
-template <class T>
-using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+inline void bye(const T& x) {
+    std::cout << x << '\n', exit(0);
+}
 
-template <class T>
-inline void bye(const T &x) { std::cout << x << '\n', exit(0); }
 template <class T, class U>
-inline bool chmin(T &a, const U &b) { return b < a && (a = b, true); }
-template <class T, class U>
-inline bool chmax(T &a, const U &b) { return b > a && (a = b, true); }
-template <class Value, class BeginValue, class EndValue>
-inline bool within(const Value &v, const BeginValue &begin, const EndValue &end) { return begin <= v && v < end; }
+inline bool chmin(T& a, const U& b) {
+    return b < a && (a = b, true);
+}
 
-// a / b 以上の最小の整数 (正の方向に丸める)
-inline int64_t divceil(int64_t a, int64_t b) { return (a > 0) == (b > 0) ? (abs(a) + abs(b) - 1) / abs(b) : -(abs(a) / abs(b)); }
-// a / b 以下の最大の整数 (負の方向に丸める)
-inline int64_t divfloor(int64_t a, int64_t b) { return (a > 0) == (b > 0) ? a / b : -((abs(a) + abs(b) - 1) / abs(b)); }
+template <class T, class U>
+inline bool chmax(T& a, const U& b) {
+    return b > a && (a = b, true);
+}
+
+template <class Value, class ValueBegin, class ValueEnd>
+inline bool within(const Value& v, const ValueBegin& begin, const ValueEnd& end) {
+    return begin <= v && v < end;
+}
 
 constexpr int32_t INF = 0x3f3f3f3f;
 constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
@@ -168,9 +180,21 @@ using namespace std;
 
 #define all(x) std::begin(x), std::end(x)
 #define rall(x) std::rbegin(x), std::rend(x)
-#define rep(i, s, t) for (common_type_t<decltype(s), decltype(t)> i = (s); i < (t); ++i)
-#define repc(i, s, t) for (common_type_t<decltype(s), decltype(t)> i = (s); i <= (t); ++i)
-#define repr(i, t, s) for (i64 i = i64(t); i >= i64(s); --i)
+#define rep2(i, n) for (size_t i = 0; i < (n); ++i)
+#define rep3(i, s, e) for (int64_t i = int64_t(s); i < int64_t(e); ++i)
+#define GET_4TH_ARG(dummy1, dummy2, dummy3, NAME, ...) NAME
+#define rep(...) GET_4TH_ARG(__VA_ARGS__, rep3, rep2)(__VA_ARGS__)
+#define repc(i, s, t) for (int64_t i = int64_t(s); i <= int64_t(t); ++i)
+#define repr(i, s, t) for (int64_t i = int64_t(s); i >= int64_t(t); --i)
+
+#define let const auto
+using i64 = int64_t;
+using u64 = uint64_t;
+using usize = size_t;
+template <class T>
+using MaxHeap = std::priority_queue<T, std::vector<T>>;
+template <class T>
+using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 
 void ioSetup() {
     std::cin.tie(nullptr);
@@ -181,85 +205,85 @@ void ioSetup() {
 }
 
 template <class T>
-std::istream &operator,(std::istream &is, T &rhs) { return is >> rhs; }
+std::istream& operator,(std::istream& is, T& rhs) {
+    return is >> rhs;
+}
 
 #define var(type, ...) \
     type __VA_ARGS__;  \
-    cin >> __VA_ARGS__
+    std::cin >> __VA_ARGS__
 
-inline void println() { std::cout << '\n'; }
-
+inline void println() {
+    std::cout << '\n';
+}
 template <class Head, class... Tail>
-inline void println(Head &&head, Tail &&... tail) {
+inline void println(Head&& head, Tail&&... tail) {
     std::cout << head << " " + (!sizeof...(tail));
     println(std::forward<Tail>(tail)...);
 }
 
-template <class Container, class Value = typename Container::value_type,
+template <class Container,
+          class Value = typename Container::value_type,
           std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
-std::istream &operator>>(std::istream &is, Container &v) {
-    for (auto &e : v) is >> e;
+std::istream& operator>>(std::istream& is, Container& v) {
+    for (auto& e : v) is >> e;
     return is;
 }
 
-template <class Container, class Value = typename Container::value_type,
+template <class Container,
+          class Value = typename Container::value_type,
           std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
-std::ostream &operator<<(std::ostream &os, const Container &v) {
+std::ostream& operator<<(std::ostream& os, const Container& v) {
     for (auto it = begin(v); it != end(v); ++it) os << " " + (it == begin(v)) << *it;
     return os;
 }
 
 template <class InputItr>
-void join(std::ostream &os, InputItr begin, InputItr end, const char *delim = " ", const char *last = "\n") {
-    const char *tmp[] = {delim, ""};
+void join(std::ostream& os, InputItr begin, InputItr end, const char* delim = " ", const char* last = "\n") {
+    const char* tmp[] = {delim, ""};
     for (auto it = begin; it != end; ++it) os << tmp[it == begin] << *it;
     os << last;
 }
 
 template <class Tuple, size_t... I>
-std::array<int, sizeof...(I)> tuple_print_impl(std::ostream &os, Tuple &&t, std::index_sequence<I...>) {
+std::array<int, sizeof...(I)> tuple_print_impl(std::ostream& os, Tuple&& t, std::index_sequence<I...>) {
     return {{(void(os << (I == 0 ? "" : ", ") << std::get<I>(t)), 0)...}};
 }
-
 template <class Tuple, class Value = typename std::tuple_element_t<0, Tuple>>
-std::ostream &operator<<(std::ostream &os, Tuple &&t) {
+std::ostream& operator<<(std::ostream& os, Tuple&& t) {
     os << '{';
     tuple_print_impl(os, std::forward<Tuple>(t), std::make_index_sequence<std::tuple_size<std::decay_t<Tuple>>::value>{});
     return os << '}';
 }
 
 template <class T>
-inline std::vector<T> makeVec(const T &initValue, size_t sz) {
+inline std::vector<T> makeVec(const T& initValue, size_t sz) {
     return std::vector<T>(sz, initValue);
 }
-
 template <class T, class... Args>
-inline auto makeVec(const T &initValue, size_t sz, Args... args) {
+inline auto makeVec(const T& initValue, size_t sz, Args... args) {
     return std::vector<decltype(makeVec<T>(initValue, args...))>(sz, makeVec<T>(initValue, args...));
 }
 
-using i64 = int64_t;
-using u64 = uint64_t;
-using usize = size_t;
-using ld = long double;
 template <class T>
-using MaxHeap = std::priority_queue<T, std::vector<T>>;
-template <class T>
-using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+inline void bye(const T& x) {
+    std::cout << x << '\n', exit(0);
+}
 
-template <class T>
-inline void bye(const T &x) { std::cout << x << '\n', exit(0); }
 template <class T, class U>
-inline bool chmin(T &a, const U &b) { return b < a && (a = b, true); }
-template <class T, class U>
-inline bool chmax(T &a, const U &b) { return b > a && (a = b, true); }
-template <class Value, class BeginValue, class EndValue>
-inline bool within(const Value &v, const BeginValue &begin, const EndValue &end) { return begin <= v && v < end; }
+inline bool chmin(T& a, const U& b) {
+    return b < a && (a = b, true);
+}
 
-// a / b 以上の最小の整数 (正の方向に丸める)
-inline int64_t divceil(int64_t a, int64_t b) { return (a > 0) == (b > 0) ? (abs(a) + abs(b) - 1) / abs(b) : -(abs(a) / abs(b)); }
-// a / b 以下の最大の整数 (負の方向に丸める)
-inline int64_t divfloor(int64_t a, int64_t b) { return (a > 0) == (b > 0) ? a / b : -((abs(a) + abs(b) - 1) / abs(b)); }
+template <class T, class U>
+inline bool chmax(T& a, const U& b) {
+    return b > a && (a = b, true);
+}
+
+template <class Value, class ValueBegin, class ValueEnd>
+inline bool within(const Value& v, const ValueBegin& begin, const ValueEnd& end) {
+    return begin <= v && v < end;
+}
 
 constexpr int32_t INF = 0x3f3f3f3f;
 constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;

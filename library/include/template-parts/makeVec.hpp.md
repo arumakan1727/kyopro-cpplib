@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: 多次元 vector の生成 <small>(include/template-parts/makeVec.hpp)</small>
+# :warning: makeVec() (多次元std::vectorの生成) <small>(include/template-parts/makeVec.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/makeVec.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 11:03:08+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
+
+
+## Required by
+
+* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
 
 
 ## Code
@@ -45,15 +50,14 @@ layout: default
 #include <vector>
 
 /**
- * @brief 多次元 vector の生成
+ * @brief makeVec() (多次元std::vectorの生成)
  */
 template <class T>
-inline std::vector<T> makeVec(const T &initValue, size_t sz) {
+inline std::vector<T> makeVec(const T& initValue, size_t sz) {
     return std::vector<T>(sz, initValue);
 }
-
 template <class T, class... Args>
-inline auto makeVec(const T &initValue, size_t sz, Args... args) {
+inline auto makeVec(const T& initValue, size_t sz, Args... args) {
     return std::vector<decltype(makeVec<T>(initValue, args...))>(sz, makeVec<T>(initValue, args...));
 }
 
@@ -67,15 +71,14 @@ inline auto makeVec(const T &initValue, size_t sz, Args... args) {
 #include <vector>
 
 /**
- * @brief 多次元 vector の生成
+ * @brief makeVec() (多次元std::vectorの生成)
  */
 template <class T>
-inline std::vector<T> makeVec(const T &initValue, size_t sz) {
+inline std::vector<T> makeVec(const T& initValue, size_t sz) {
     return std::vector<T>(sz, initValue);
 }
-
 template <class T, class... Args>
-inline auto makeVec(const T &initValue, size_t sz, Args... args) {
+inline auto makeVec(const T& initValue, size_t sz, Args... args) {
     return std::vector<decltype(makeVec<T>(initValue, args...))>(sz, makeVec<T>(initValue, args...));
 }
 

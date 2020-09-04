@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: 複数変数宣言をして同時に入力もする <small>(include/template-parts/var-declaration-with-input.hpp)</small>
+# :warning: 複数変数宣言をして同時に入力もするやつ <small>(include/template-parts/var-declaration-with-input.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/var-declaration-with-input.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 11:03:08+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
+
+
+## Required by
+
+* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
 
 
 ## Code
@@ -45,14 +50,16 @@ layout: default
 #include <iostream>
 
 /**
- * @brief 複数変数宣言をして同時に入力もする
+ * @brief 複数変数宣言をして同時に入力もするやつ
  */
 template <class T>
-std::istream &operator,(std::istream &is, T &rhs) { return is >> rhs; }
+std::istream& operator,(std::istream& is, T& rhs) {
+    return is >> rhs;
+}
 
 #define var(type, ...) \
     type __VA_ARGS__;  \
-    cin >> __VA_ARGS__
+    std::cin >> __VA_ARGS__
 
 ```
 {% endraw %}
@@ -64,14 +71,16 @@ std::istream &operator,(std::istream &is, T &rhs) { return is >> rhs; }
 #include <iostream>
 
 /**
- * @brief 複数変数宣言をして同時に入力もする
+ * @brief 複数変数宣言をして同時に入力もするやつ
  */
 template <class T>
-std::istream &operator,(std::istream &is, T &rhs) { return is >> rhs; }
+std::istream& operator,(std::istream& is, T& rhs) {
+    return is >> rhs;
+}
 
 #define var(type, ...) \
     type __VA_ARGS__;  \
-    cin >> __VA_ARGS__
+    std::cin >> __VA_ARGS__
 
 ```
 {% endraw %}

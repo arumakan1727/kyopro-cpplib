@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: 可変個の値を空白区切りで出力して改行する <small>(include/template-parts/println.hpp)</small>
+# :warning: println() (可変個の値を空白区切りで出力して改行する) <small>(include/template-parts/println.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/println.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 11:03:08+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
+
+
+## Required by
+
+* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
 
 
 ## Code
@@ -46,12 +51,13 @@ layout: default
 #include <utility>
 
 /**
- * @brief 可変個の値を空白区切りで出力して改行する
+ * @brief println() (可変個の値を空白区切りで出力して改行する)
  */
-inline void println() { std::cout << '\n'; }
-
+inline void println() {
+    std::cout << '\n';
+}
 template <class Head, class... Tail>
-inline void println(Head &&head, Tail &&... tail) {
+inline void println(Head&& head, Tail&&... tail) {
     std::cout << head << " " + (!sizeof...(tail));
     println(std::forward<Tail>(tail)...);
 }
@@ -67,12 +73,13 @@ inline void println(Head &&head, Tail &&... tail) {
 #include <utility>
 
 /**
- * @brief 可変個の値を空白区切りで出力して改行する
+ * @brief println() (可変個の値を空白区切りで出力して改行する)
  */
-inline void println() { std::cout << '\n'; }
-
+inline void println() {
+    std::cout << '\n';
+}
 template <class Head, class... Tail>
-inline void println(Head &&head, Tail &&... tail) {
+inline void println(Head&& head, Tail&&... tail) {
     std::cout << head << " " + (!sizeof...(tail));
     println(std::forward<Tail>(tail)...);
 }

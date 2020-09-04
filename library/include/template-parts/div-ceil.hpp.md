@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: 切り上げ除算 <small>(include/template-parts/div-ceil.hpp)</small>
+# :warning: divceil() (切り上げ除算) <small>(include/template-parts/div-ceil.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/div-ceil.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 11:03:08+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
 
@@ -43,13 +43,13 @@ layout: default
 ```cpp
 #pragma once
 #include <cstdint>
-#include <cstdlib>
 
 /**
- * @brief 切り上げ除算
+ * @brief divceil() (切り上げ除算)
  */
-// a / b 以上の最小の整数 (正の方向に丸める)
-inline int64_t divceil(int64_t a, int64_t b) { return (a > 0) == (b > 0) ? (abs(a) + abs(b) - 1) / abs(b) : -(abs(a) / abs(b)); }
+inline uint64_t divceil(uint64_t a, uint64_t b) {
+    return (a + b - 1) / b;
+}
 
 ```
 {% endraw %}
@@ -59,13 +59,13 @@ inline int64_t divceil(int64_t a, int64_t b) { return (a > 0) == (b > 0) ? (abs(
 ```cpp
 #line 2 "include/template-parts/div-ceil.hpp"
 #include <cstdint>
-#include <cstdlib>
 
 /**
- * @brief 切り上げ除算
+ * @brief divceil() (切り上げ除算)
  */
-// a / b 以上の最小の整数 (正の方向に丸める)
-inline int64_t divceil(int64_t a, int64_t b) { return (a > 0) == (b > 0) ? (abs(a) + abs(b) - 1) / abs(b) : -(abs(a) / abs(b)); }
+inline uint64_t divceil(uint64_t a, uint64_t b) {
+    return (a + b - 1) / b;
+}
 
 ```
 {% endraw %}

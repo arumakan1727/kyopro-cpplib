@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#9db7d97a5d6bc6230f80aab8020b7e44">include/data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/data-structure/union-find.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-03 10:58:01+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
 
@@ -55,19 +55,22 @@ layout: default
  * @brief Union-Find (素集合データ構造)
  * @note path-compression + union-by-size
  */
-struct UnionFind {
+class UnionFind {
+private:
     mutable std::vector<int> p;
 
+public:
     UnionFind() = default;
-    explicit UnionFind(size_t n) : p(n, -1) {}
 
-    bool unite(int x, int y) {
+    explicit UnionFind(size_t n)
+        : p(n, -1) {}
+
+    void unite(int x, int y) {
         x = root(x), y = root(y);
-        if (x == y) return false;
+        if (x == y) return;
         if (p[y] < p[x]) std::swap(x, y);
         p[x] += p[y];
         p[y] = x;
-        return true;
     }
 
     int root(int x) const {
@@ -99,19 +102,22 @@ struct UnionFind {
  * @brief Union-Find (素集合データ構造)
  * @note path-compression + union-by-size
  */
-struct UnionFind {
+class UnionFind {
+private:
     mutable std::vector<int> p;
 
+public:
     UnionFind() = default;
-    explicit UnionFind(size_t n) : p(n, -1) {}
 
-    bool unite(int x, int y) {
+    explicit UnionFind(size_t n)
+        : p(n, -1) {}
+
+    void unite(int x, int y) {
         x = root(x), y = root(y);
-        if (x == y) return false;
+        if (x == y) return;
         if (p[y] < p[x]) std::swap(x, y);
         p[x] += p[y];
         p[y] = x;
-        return true;
     }
 
     int root(int x) const {

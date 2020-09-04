@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: iostream の高速化 <small>(include/template-parts/io-setup.hpp)</small>
+# :heavy_check_mark: ioSetup() (iostreamの高速化と実数出力の設定) <small>(include/template-parts/io-setup.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/io-setup.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 11:03:08+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
+
+
+## Required by
+
+* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
 
 
 ## Verified with
@@ -51,7 +56,7 @@ layout: default
 #include <iostream>
 
 /**
- * @brief iostream の高速化
+ * @brief ioSetup() (iostreamの高速化と実数出力の設定)
  */
 void ioSetup() {
     std::cin.tie(nullptr);
@@ -72,7 +77,7 @@ void ioSetup() {
 #include <iostream>
 
 /**
- * @brief iostream の高速化
+ * @brief ioSetup() (iostreamの高速化と実数出力の設定)
  */
 void ioSetup() {
     std::cin.tie(nullptr);

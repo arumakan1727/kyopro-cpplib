@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: all() マクロ <small>(include/template-parts/all-macro.hpp)</small>
+# :warning: all()マクロ <small>(include/template-parts/all-macro.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/all-macro.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 11:03:08+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
+
+
+## Required by
+
+* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
 
 
 ## Code
@@ -44,7 +49,7 @@ layout: default
 #pragma once
 
 /**
- * @brief all() マクロ
+ * @brief all()マクロ
  */
 #define all(x) std::begin(x), std::end(x)
 #define rall(x) std::rbegin(x), std::rend(x)
@@ -58,7 +63,7 @@ layout: default
 #line 2 "include/template-parts/all-macro.hpp"
 
 /**
- * @brief all() マクロ
+ * @brief all()マクロ
  */
 #define all(x) std::begin(x), std::end(x)
 #define rall(x) std::rbegin(x), std::rend(x)

@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: tuple の出力 <small>(include/template-parts/tuple-print.hpp)</small>
+# :warning: tupleの出力 <small>(include/template-parts/tuple-print.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/tuple-print.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 11:03:08+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
+
+
+## Required by
+
+* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
 
 
 ## Code
@@ -48,15 +53,14 @@ layout: default
 #include <utility>
 
 /**
- * @brief tuple の出力
+ * @brief tupleの出力
  */
 template <class Tuple, size_t... I>
-std::array<int, sizeof...(I)> tuple_print_impl(std::ostream &os, Tuple &&t, std::index_sequence<I...>) {
+std::array<int, sizeof...(I)> tuple_print_impl(std::ostream& os, Tuple&& t, std::index_sequence<I...>) {
     return {{(void(os << (I == 0 ? "" : ", ") << std::get<I>(t)), 0)...}};
 }
-
 template <class Tuple, class Value = typename std::tuple_element_t<0, Tuple>>
-std::ostream &operator<<(std::ostream &os, Tuple &&t) {
+std::ostream& operator<<(std::ostream& os, Tuple&& t) {
     os << '{';
     tuple_print_impl(os, std::forward<Tuple>(t), std::make_index_sequence<std::tuple_size<std::decay_t<Tuple>>::value>{});
     return os << '}';
@@ -75,15 +79,14 @@ std::ostream &operator<<(std::ostream &os, Tuple &&t) {
 #include <utility>
 
 /**
- * @brief tuple の出力
+ * @brief tupleの出力
  */
 template <class Tuple, size_t... I>
-std::array<int, sizeof...(I)> tuple_print_impl(std::ostream &os, Tuple &&t, std::index_sequence<I...>) {
+std::array<int, sizeof...(I)> tuple_print_impl(std::ostream& os, Tuple&& t, std::index_sequence<I...>) {
     return {{(void(os << (I == 0 ? "" : ", ") << std::get<I>(t)), 0)...}};
 }
-
 template <class Tuple, class Value = typename std::tuple_element_t<0, Tuple>>
-std::ostream &operator<<(std::ostream &os, Tuple &&t) {
+std::ostream& operator<<(std::ostream& os, Tuple&& t) {
     os << '{';
     tuple_print_impl(os, std::forward<Tuple>(t), std::make_index_sequence<std::tuple_size<std::decay_t<Tuple>>::value>{});
     return os << '}';

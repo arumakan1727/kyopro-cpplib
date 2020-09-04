@@ -31,9 +31,14 @@ layout: default
 
 * category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/type-alias.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 11:03:08+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
+
+
+## Required by
+
+* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
 
 
 ## Code
@@ -44,17 +49,16 @@ layout: default
 #pragma once
 #include <cstdint>
 #include <functional>
-#include <limits>
 #include <queue>
 #include <vector>
 
 /**
  * @brief 型エイリアス
  */
+#define let const auto
 using i64 = int64_t;
 using u64 = uint64_t;
 using usize = size_t;
-using ld = long double;
 template <class T>
 using MaxHeap = std::priority_queue<T, std::vector<T>>;
 template <class T>
@@ -69,17 +73,16 @@ using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
 #line 2 "include/template-parts/type-alias.hpp"
 #include <cstdint>
 #include <functional>
-#include <limits>
 #include <queue>
 #include <vector>
 
 /**
  * @brief 型エイリアス
  */
+#define let const auto
 using i64 = int64_t;
 using u64 = uint64_t;
 using usize = size_t;
-using ld = long double;
 template <class T>
 using MaxHeap = std::priority_queue<T, std::vector<T>>;
 template <class T>

@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: コンテナの operator>>, << <small>(include/template-parts/container-io.hpp)</small>
+# :warning: コンテナの入出力 <small>(include/template-parts/container-io.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/container-io.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 11:03:08+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
+
+
+## Required by
+
+* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
 
 
 ## Code
@@ -43,21 +48,22 @@ layout: default
 ```cpp
 #pragma once
 #include <iostream>
-#include <string>
 
 /**
- * @brief コンテナの operator>>, <<
+ * @brief コンテナの入出力
  */
-template <class Container, class Value = typename Container::value_type,
+template <class Container,
+          class Value = typename Container::value_type,
           std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
-std::istream &operator>>(std::istream &is, Container &v) {
-    for (auto &e : v) is >> e;
+std::istream& operator>>(std::istream& is, Container& v) {
+    for (auto& e : v) is >> e;
     return is;
 }
 
-template <class Container, class Value = typename Container::value_type,
+template <class Container,
+          class Value = typename Container::value_type,
           std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
-std::ostream &operator<<(std::ostream &os, const Container &v) {
+std::ostream& operator<<(std::ostream& os, const Container& v) {
     for (auto it = begin(v); it != end(v); ++it) os << " " + (it == begin(v)) << *it;
     return os;
 }
@@ -70,21 +76,22 @@ std::ostream &operator<<(std::ostream &os, const Container &v) {
 ```cpp
 #line 2 "include/template-parts/container-io.hpp"
 #include <iostream>
-#include <string>
 
 /**
- * @brief コンテナの operator>>, <<
+ * @brief コンテナの入出力
  */
-template <class Container, class Value = typename Container::value_type,
+template <class Container,
+          class Value = typename Container::value_type,
           std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
-std::istream &operator>>(std::istream &is, Container &v) {
-    for (auto &e : v) is >> e;
+std::istream& operator>>(std::istream& is, Container& v) {
+    for (auto& e : v) is >> e;
     return is;
 }
 
-template <class Container, class Value = typename Container::value_type,
+template <class Container,
+          class Value = typename Container::value_type,
           std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
-std::ostream &operator<<(std::ostream &os, const Container &v) {
+std::ostream& operator<<(std::ostream& os, const Container& v) {
     for (auto it = begin(v); it != end(v); ++it) os << " " + (it == begin(v)) << *it;
     return os;
 }

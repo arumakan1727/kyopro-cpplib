@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/DSL_1_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-03 10:58:01+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A</a>
@@ -40,8 +40,8 @@ layout: default
 ## Depends on
 
 * :heavy_check_mark: <a href="../../library/include/data-structure/union-find.hpp.html">Union-Find (素集合データ構造) <small>(include/data-structure/union-find.hpp)</small></a>
-* :heavy_check_mark: <a href="../../library/include/template-parts/io-setup.hpp.html">iostream の高速化 <small>(include/template-parts/io-setup.hpp)</small></a>
-* :heavy_check_mark: <a href="../../library/include/template-parts/rep-macro.hpp.html">repマクロ <small>(include/template-parts/rep-macro.hpp)</small></a>
+* :heavy_check_mark: <a href="../../library/include/template-parts/io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(include/template-parts/io-setup.hpp)</small></a>
+* :heavy_check_mark: <a href="../../library/include/template-parts/rep-macro.hpp.html">rep()マクロ <small>(include/template-parts/rep-macro.hpp)</small></a>
 
 
 ## Code
@@ -95,19 +95,22 @@ int main() {
  * @brief Union-Find (素集合データ構造)
  * @note path-compression + union-by-size
  */
-struct UnionFind {
+class UnionFind {
+private:
     mutable std::vector<int> p;
 
+public:
     UnionFind() = default;
-    explicit UnionFind(size_t n) : p(n, -1) {}
 
-    bool unite(int x, int y) {
+    explicit UnionFind(size_t n)
+        : p(n, -1) {}
+
+    void unite(int x, int y) {
         x = root(x), y = root(y);
-        if (x == y) return false;
+        if (x == y) return;
         if (p[y] < p[x]) std::swap(x, y);
         p[x] += p[y];
         p[y] = x;
-        return true;
     }
 
     int root(int x) const {
@@ -126,7 +129,7 @@ struct UnionFind {
 #line 4 "include/template-parts/io-setup.hpp"
 
 /**
- * @brief iostream の高速化
+ * @brief ioSetup() (iostreamの高速化と実数出力の設定)
  */
 void ioSetup() {
     std::cin.tie(nullptr);
@@ -138,11 +141,14 @@ void ioSetup() {
 #line 2 "include/template-parts/rep-macro.hpp"
 
 /**
- * @brief repマクロ
+ * @brief rep()マクロ
  */
-#define rep(i, s, t) for (common_type_t<decltype(s), decltype(t)> i = (s); i < (t); ++i)
-#define repc(i, s, t) for (common_type_t<decltype(s), decltype(t)> i = (s); i <= (t); ++i)
-#define repr(i, t, s) for (i64 i = i64(t); i >= i64(s); --i)
+#define rep2(i, n) for (size_t i = 0; i < (n); ++i)
+#define rep3(i, s, e) for (int64_t i = int64_t(s); i < int64_t(e); ++i)
+#define GET_4TH_ARG(dummy1, dummy2, dummy3, NAME, ...) NAME
+#define rep(...) GET_4TH_ARG(__VA_ARGS__, rep3, rep2)(__VA_ARGS__)
+#define repc(i, s, t) for (int64_t i = int64_t(s); i <= int64_t(t); ++i)
+#define repr(i, s, t) for (int64_t i = int64_t(s); i >= int64_t(t); --i)
 #line 7 "test/DSL_1_A.test.cpp"
 using namespace std;
 

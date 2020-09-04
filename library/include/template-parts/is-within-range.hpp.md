@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: 半開区間内に含まれているかのチェック <small>(include/template-parts/is-within-range.hpp)</small>
+# :warning: within() (半開区間内に含まれているかの判定) <small>(include/template-parts/is-within-range.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/is-within-range.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 11:03:08+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
+
+
+## Required by
+
+* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
 
 
 ## Code
@@ -44,10 +49,12 @@ layout: default
 #pragma once
 
 /**
- * @brief 半開区間内に含まれているかのチェック
+ * @brief within() (半開区間内に含まれているかの判定)
  */
-template <class Value, class BeginValue, class EndValue>
-inline bool within(const Value &v, const BeginValue &begin, const EndValue &end) { return begin <= v && v < end; }
+template <class Value, class ValueBegin, class ValueEnd>
+inline bool within(const Value& v, const ValueBegin& begin, const ValueEnd& end) {
+    return begin <= v && v < end;
+}
 
 ```
 {% endraw %}
@@ -58,10 +65,12 @@ inline bool within(const Value &v, const BeginValue &begin, const EndValue &end)
 #line 2 "include/template-parts/is-within-range.hpp"
 
 /**
- * @brief 半開区間内に含まれているかのチェック
+ * @brief within() (半開区間内に含まれているかの判定)
  */
-template <class Value, class BeginValue, class EndValue>
-inline bool within(const Value &v, const BeginValue &begin, const EndValue &end) { return begin <= v && v < end; }
+template <class Value, class ValueBegin, class ValueEnd>
+inline bool within(const Value& v, const ValueBegin& begin, const ValueEnd& end) {
+    return begin <= v && v < end;
+}
 
 ```
 {% endraw %}

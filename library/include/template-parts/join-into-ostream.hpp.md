@@ -25,15 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: 要素を結合して出力 <small>(include/template-parts/join-into-ostream.hpp)</small>
+# :warning: join() (要素を区切り文字で結合して出力) <small>(include/template-parts/join-into-ostream.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/join-into-ostream.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 11:03:08+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
+
+
+## Required by
+
+* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
 
 
 ## Code
@@ -45,11 +50,11 @@ layout: default
 #include <iostream>
 
 /**
- * @brief 要素を結合して出力
+ * @brief join() (要素を区切り文字で結合して出力)
  */
 template <class InputItr>
-void join(std::ostream &os, InputItr begin, InputItr end, const char *delim = " ", const char *last = "\n") {
-    const char *tmp[] = {delim, ""};
+void join(std::ostream& os, InputItr begin, InputItr end, const char* delim = " ", const char* last = "\n") {
+    const char* tmp[] = {delim, ""};
     for (auto it = begin; it != end; ++it) os << tmp[it == begin] << *it;
     os << last;
 }
@@ -64,11 +69,11 @@ void join(std::ostream &os, InputItr begin, InputItr end, const char *delim = " 
 #include <iostream>
 
 /**
- * @brief 要素を結合して出力
+ * @brief join() (要素を区切り文字で結合して出力)
  */
 template <class InputItr>
-void join(std::ostream &os, InputItr begin, InputItr end, const char *delim = " ", const char *last = "\n") {
-    const char *tmp[] = {delim, ""};
+void join(std::ostream& os, InputItr begin, InputItr end, const char* delim = " ", const char* last = "\n") {
+    const char* tmp[] = {delim, ""};
     for (auto it = begin; it != end; ++it) os << tmp[it == begin] << *it;
     os << last;
 }

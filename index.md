@@ -52,28 +52,26 @@ layout: default
 
 ### include/template-parts
 
-* :warning: <a href="library/include/template-parts/all-macro.hpp.html">all() マクロ <small>(include/template-parts/all-macro.hpp)</small></a>
-* :warning: <a href="library/include/template-parts/bye.hpp.html">出力して exit(0) <small>(include/template-parts/bye.hpp)</small></a>
+* :warning: <a href="library/include/template-parts/all-macro.hpp.html">all()マクロ <small>(include/template-parts/all-macro.hpp)</small></a>
+* :warning: <a href="library/include/template-parts/bye.hpp.html">bye() (出力してexit(0)) <small>(include/template-parts/bye.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/chminmax.hpp.html">chmin(), chmax() <small>(include/template-parts/chminmax.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/constant.hpp.html">よく使う定数 <small>(include/template-parts/constant.hpp)</small></a>
-* :warning: <a href="library/include/template-parts/container-io.hpp.html">コンテナの operator>>, << <small>(include/template-parts/container-io.hpp)</small></a>
-* :warning: <a href="library/include/template-parts/div-ceil.hpp.html">切り上げ除算 <small>(include/template-parts/div-ceil.hpp)</small></a>
-* :warning: <a href="library/include/template-parts/div-floor.hpp.html">切り捨て除算 <small>(include/template-parts/div-floor.hpp)</small></a>
-* :heavy_check_mark: <a href="library/include/template-parts/io-setup.hpp.html">iostream の高速化 <small>(include/template-parts/io-setup.hpp)</small></a>
-* :warning: <a href="library/include/template-parts/is-within-range.hpp.html">半開区間内に含まれているかのチェック <small>(include/template-parts/is-within-range.hpp)</small></a>
-* :warning: <a href="library/include/template-parts/join-into-ostream.hpp.html">要素を結合して出力 <small>(include/template-parts/join-into-ostream.hpp)</small></a>
-* :warning: <a href="library/include/template-parts/makeVec.hpp.html">多次元 vector の生成 <small>(include/template-parts/makeVec.hpp)</small></a>
-* :warning: <a href="library/include/template-parts/println.hpp.html">可変個の値を空白区切りで出力して改行する <small>(include/template-parts/println.hpp)</small></a>
-* :heavy_check_mark: <a href="library/include/template-parts/rep-macro.hpp.html">repマクロ <small>(include/template-parts/rep-macro.hpp)</small></a>
+* :warning: <a href="library/include/template-parts/container-io.hpp.html">コンテナの入出力 <small>(include/template-parts/container-io.hpp)</small></a>
+* :warning: <a href="library/include/template-parts/div-ceil.hpp.html">divceil() (切り上げ除算) <small>(include/template-parts/div-ceil.hpp)</small></a>
+* :heavy_check_mark: <a href="library/include/template-parts/io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(include/template-parts/io-setup.hpp)</small></a>
+* :warning: <a href="library/include/template-parts/is-within-range.hpp.html">within() (半開区間内に含まれているかの判定) <small>(include/template-parts/is-within-range.hpp)</small></a>
+* :warning: <a href="library/include/template-parts/join-into-ostream.hpp.html">join() (要素を区切り文字で結合して出力) <small>(include/template-parts/join-into-ostream.hpp)</small></a>
+* :warning: <a href="library/include/template-parts/makeVec.hpp.html">makeVec() (多次元std::vectorの生成) <small>(include/template-parts/makeVec.hpp)</small></a>
+* :warning: <a href="library/include/template-parts/println.hpp.html">println() (可変個の値を空白区切りで出力して改行する) <small>(include/template-parts/println.hpp)</small></a>
+* :heavy_check_mark: <a href="library/include/template-parts/rep-macro.hpp.html">rep()マクロ <small>(include/template-parts/rep-macro.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/template.cpp.html">include/template-parts/template.cpp</a>
-* :warning: <a href="library/include/template-parts/tuple-print.hpp.html">tuple の出力 <small>(include/template-parts/tuple-print.hpp)</small></a>
+* :warning: <a href="library/include/template-parts/tuple-print.hpp.html">tupleの出力 <small>(include/template-parts/tuple-print.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/type-alias.hpp.html">型エイリアス <small>(include/template-parts/type-alias.hpp)</small></a>
-* :warning: <a href="library/include/template-parts/var-declaration-with-input.hpp.html">複数変数宣言をして同時に入力もする <small>(include/template-parts/var-declaration-with-input.hpp)</small></a>
+* :warning: <a href="library/include/template-parts/var-declaration-with-input.hpp.html">複数変数宣言をして同時に入力もするやつ <small>(include/template-parts/var-declaration-with-input.hpp)</small></a>
 
 
 ## Verify Files
 
 * :heavy_check_mark: <a href="verify/test/DSL_1_A.test.cpp.html">test/DSL_1_A.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/example.test.cpp.html">test/example.test.cpp</a>
 
 

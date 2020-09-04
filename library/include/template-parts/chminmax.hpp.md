@@ -31,9 +31,14 @@ layout: default
 
 * category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/chminmax.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-02 11:03:08+09:00
+    - Last commit date: 2020-09-04 19:19:20+09:00
 
 
+
+
+## Required by
+
+* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
 
 
 ## Code
@@ -47,9 +52,14 @@ layout: default
  * @brief chmin(), chmax()
  */
 template <class T, class U>
-inline bool chmin(T &a, const U &b) { return b < a && (a = b, true); }
+inline bool chmin(T& a, const U& b) {
+    return b < a && (a = b, true);
+}
+
 template <class T, class U>
-inline bool chmax(T &a, const U &b) { return b > a && (a = b, true); }
+inline bool chmax(T& a, const U& b) {
+    return b > a && (a = b, true);
+}
 
 ```
 {% endraw %}
@@ -63,9 +73,14 @@ inline bool chmax(T &a, const U &b) { return b > a && (a = b, true); }
  * @brief chmin(), chmax()
  */
 template <class T, class U>
-inline bool chmin(T &a, const U &b) { return b < a && (a = b, true); }
+inline bool chmin(T& a, const U& b) {
+    return b < a && (a = b, true);
+}
+
 template <class T, class U>
-inline bool chmax(T &a, const U &b) { return b > a && (a = b, true); }
+inline bool chmax(T& a, const U& b) {
+    return b > a && (a = b, true);
+}
 
 ```
 {% endraw %}
