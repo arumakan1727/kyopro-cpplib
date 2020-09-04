@@ -1,6 +1,6 @@
-template_base_file := ./include/template-parts/template.cpp
+template_base_file := ../include/template-parts/template.cpp
 template_base_file_dir := $(dir ${template_base_file})
-template_export_file := ./export/template.cpp
+template_export_file := ./template.cpp
 template_base_file_dependencies := $(addprefix ${template_base_file_dir}, $(shell grep -e '//\s*@\s*include' ${template_base_file} | sed -r 's|//\s*@\s*include\s*"(.+)"|\1|'))
 
 .PHONY:	all debug
