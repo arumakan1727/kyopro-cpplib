@@ -1,8 +1,8 @@
 ## 競プロ用C++ライブラリ
 
-Gcc の `-std=c++17` のみで Verify しています。
+GCC の `-std=c++17` のみで Verify しています。
 
-- `include/`: ライブラリ本体。
+- `include/`: ライブラリ本体です。
 - `export/template.cpp`: 競プロ用のテンプレート(初期ファイル)。`include/template-parts/template.cpp` から生成されたやつです。
 
 [![Actions Status](https://github.com/arumakan1727/Kyopro-Cpplib/workflows/verify/badge.svg)](https://github.com/arumakan1727/Kyopro-Cpplib/actions)
