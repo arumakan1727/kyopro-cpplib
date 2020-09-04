@@ -9,6 +9,8 @@ int main() {
     ioSetup();
     constexpr char LF = '\n';
 
+    int unusedVariable = 1727;
+
     int N, Q;
     cin >> N >> Q;
 
