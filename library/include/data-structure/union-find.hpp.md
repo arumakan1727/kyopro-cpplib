@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: Union-Find (素集合データ構造) <small>(include/data-structure/union-find.hpp)</small>
+# :heavy_check_mark: Union-Find (素集合データ構造) <small>(include/data-structure/union-find.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
@@ -38,7 +38,7 @@ layout: default
 
 ## Verified with
 
-* :x: <a href="../../../verify/test/DSL_1_A.test.cpp.html">test/DSL_1_A.test.cpp</a>
+* :heavy_check_mark: <a href="../../../verify/test/DSL_1_A.test.cpp.html">test/DSL_1_A.test.cpp</a>
 
 
 ## Code

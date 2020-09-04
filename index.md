@@ -45,7 +45,7 @@ layout: default
 
 ### include/data-structure
 
-* :x: <a href="library/include/data-structure/union-find.hpp.html">Union-Find (素集合データ構造) <small>(include/data-structure/union-find.hpp)</small></a>
+* :heavy_check_mark: <a href="library/include/data-structure/union-find.hpp.html">Union-Find (素集合データ構造) <small>(include/data-structure/union-find.hpp)</small></a>
 
 
 <div id="d5567e78d3674558c180d2f4feaa863b"></div>
@@ -58,7 +58,7 @@ layout: default
 * :warning: <a href="library/include/template-parts/constant.hpp.html">よく使う定数 <small>(include/template-parts/constant.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/container-io.hpp.html">コンテナの入出力 <small>(include/template-parts/container-io.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/div-ceil.hpp.html">divceil() (切り上げ除算) <small>(include/template-parts/div-ceil.hpp)</small></a>
-* :x: <a href="library/include/template-parts/io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(include/template-parts/io-setup.hpp)</small></a>
+* :heavy_check_mark: <a href="library/include/template-parts/io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(include/template-parts/io-setup.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/is-within-range.hpp.html">within() (半開区間内に含まれているかの判定) <small>(include/template-parts/is-within-range.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/join-into-ostream.hpp.html">join() (要素を区切り文字で結合して出力) <small>(include/template-parts/join-into-ostream.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/makeVec.hpp.html">makeVec() (多次元std::vectorの生成) <small>(include/template-parts/makeVec.hpp)</small></a>
@@ -72,6 +72,6 @@ layout: default
 
 ## Verify Files
 
-* :x: <a href="verify/test/DSL_1_A.test.cpp.html">test/DSL_1_A.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/DSL_1_A.test.cpp.html">test/DSL_1_A.test.cpp</a>
 
 
