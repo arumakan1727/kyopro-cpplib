@@ -4,7 +4,6 @@
 -Wshadow
 -Wconversion
 -Wno-char-subscripts
--Og
 -g
 -fsanitize=address,undefined
 -ftrapv
