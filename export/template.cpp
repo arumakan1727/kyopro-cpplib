@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#pragma region  // {{{
+#if 1  // {{{
 
 #define all(x) std::begin(x), std::end(x)
 #define rall(x) std::rbegin(x), std::rend(x)
@@ -17,6 +17,11 @@ template <class T>
 using MaxHeap = std::priority_queue<T, std::vector<T>>;
 template <class T>
 using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+
+constexpr int32_t INF = 0x3f3f3f3f;
+constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
+// constexpr int32_t MOD = int32_t(1e9) + 7;
+// constexpr int32_t MOD = 998244353;
 
 void ioSetup() {
     std::cin.tie(nullptr);
@@ -91,16 +96,11 @@ inline bool chmax(T& a, const U& b) {
     return b > a && (a = b, true);
 }
 
-inline uint64_t divceil(uint64_t a, uint64_t b) {
+inline int64_t divceil(int64_t a, int64_t b) {
     return (a + b - 1) / b;
 }
 
-constexpr int32_t INF = 0x3f3f3f3f;
-constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
-// constexpr int32_t MOD = int32_t(1e9) + 7;
-// constexpr int32_t MOD = 998244353;
-
-#pragma endregion  // }}}
+#endif  // }}}
 
 signed main() {
     ioSetup();

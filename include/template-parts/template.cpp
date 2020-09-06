@@ -1,12 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#pragma region  // {{{
+#if 1  // {{{
 
 #include "./all-macro.hpp"
 #include "./rep-macro.hpp"
 
 #include "./type-alias.hpp"
+
+#include "./constant.hpp"
 
 #include "./io-setup.hpp"
 
@@ -26,9 +28,7 @@ using namespace std;
 
 #include "./div-ceil.hpp"
 
-#include "./constant.hpp"
-
-#pragma endregion  // }}}
+#endif  // }}}
 
 signed main() {
     ioSetup();

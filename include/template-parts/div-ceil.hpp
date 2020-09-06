@@ -4,6 +4,6 @@
 /**
  * @brief divceil() (切り上げ除算)
  */
-inline uint64_t divceil(uint64_t a, uint64_t b) {
+inline int64_t divceil(int64_t a, int64_t b) {
     return (a + b - 1) / b;
 }
