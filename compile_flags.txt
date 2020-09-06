@@ -8,3 +8,4 @@
 -g
 -fsanitize=address,undefined
 -ftrapv
+-D LOCAL_DEBUG
