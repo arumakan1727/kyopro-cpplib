@@ -7,11 +7,13 @@ template_base_file_dependencies := $(addprefix ${template_base_file_dir}, \
 snip_file := snippet.vscode.json
 snip_root_dirs := ../include
 snip_ignore_dirs := template-parts
-snip_ignore_find_opts := $(patsubst %,-type d -name % -prune -o, ${snip_ignore_dirs})
+snip_ignore_find_opts := $(patsubst %, -type d -name % -prune -o, ${snip_ignore_dirs})
+snip_glob := '*.hpp'
 snip_dependencies := $(shell find ${snip_root_dirs} ${snip_ignore_find_opts} -type f -name ${snip_glob} -print)
 
 short_snip_file := short-snippet.vscode.json
 short_snip_root_dir := ../short-snip-src
+short_snip_glob := '*.cpp'
 short_snip_dependencies := $(shell find ${short_snip_root_dir} -type f -name ${short_snip_glob})
 
 
@@ -28,11 +30,11 @@ ${template_export_file}: ${template_base_file} ${template_base_file_dependencies
 
 
 ${snip_file}:	${snip_dependencies}
-	gen-snippet -glob '*.hpp' $(patsubst %, -ignore %, ${snip_ignore_dirs}) ${snip_root_dirs} > $@
+	gen-snippet -glob ${snip_glob} $(patsubst %, -ignore %, ${snip_ignore_dirs}) ${snip_root_dirs} > $@
 
 
 ${short_snip_file}:	${short_snip_dependencies}
-	gen-snippet -glob '*.cpp' -snippet-all-lines ${short_snip_root_dir} > $@
+	gen-snippet -glob ${short_snip_glob} -snippet-all-lines ${short_snip_root_dir} > $@
 
 
 define dump_var
