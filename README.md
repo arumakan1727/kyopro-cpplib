@@ -10,8 +10,8 @@ GCC の `-std=c++17` のみで Verify しています。
 
 MIT ライセンスです。このライブラリを利用したことで何か問題が起きても作者は責任を負いません。
 
-- `include/`: ライブラリ本体です。
-- `export/template.cpp`: 競プロ用のテンプレートです。`include/template-parts/template.cpp` から生成されました。
+- `[A-Z].*/`: ライブラリ本体です。
+- `export/template.cpp`: 競プロ用のテンプレートです。`export/template-prototype.cpp` から生成されました。
 - `export/short-snippet.vscode.json`: プレースホルダーを含み得る短めのスニペットです。
 - `export/snippet.vscode.json`: `include/` 以下のソースファイルを纏めたスニペットです。
 
