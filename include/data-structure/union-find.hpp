@@ -30,11 +30,7 @@ public:
         return p[x] = root(p[x]);
     }
 
-    bool same(int x, int y) const {
-        return root(x) == root(y);
-    }
+    bool same(int x, int y) const { return root(x) == root(y); }
 
-    int size(int x) const {
-        return -p[root(x)];
-    }
+    int size(int x) const { return -p[root(x)]; }
 };
