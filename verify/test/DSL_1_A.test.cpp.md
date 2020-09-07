@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/DSL_1_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 12:47:29+09:00
+    - Last commit date: 2020-09-08 04:00:43+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/include/data-structure/union-find.hpp.html">Union-Find (素集合データ構造) <small>(include/data-structure/union-find.hpp)</small></a>
-* :heavy_check_mark: <a href="../../library/include/template-parts/io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(include/template-parts/io-setup.hpp)</small></a>
+* :heavy_check_mark: <a href="../../library/Data-Structure/Disjoint-Set/union-find.hpp.html">Union-Find (素集合データ構造) <small>(Data-Structure/Disjoint-Set/union-find.hpp)</small></a>
+* :heavy_check_mark: <a href="../../library/Util/IO/io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(Util/IO/io-setup.hpp)</small></a>
 
 
 ## Code
@@ -51,8 +51,8 @@ layout: default
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
 #include <bits/stdc++.h>
 
-#include "../include/data-structure/union-find.hpp"
-#include "../include/template-parts/io-setup.hpp"
+#include "../Data-Structure/Disjoint-Set/union-find.hpp"
+#include "../Util/IO/io-setup.hpp"
 using namespace std;
 
 int main() {
@@ -87,7 +87,7 @@ int main() {
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
 #include <bits/stdc++.h>
 
-#line 5 "include/data-structure/union-find.hpp"
+#line 5 "Data-Structure/Disjoint-Set/union-find.hpp"
 
 /**
  * @brief Union-Find (素集合データ構造)
@@ -120,7 +120,7 @@ public:
 
     int size(int x) const { return -p[root(x)]; }
 };
-#line 4 "include/template-parts/io-setup.hpp"
+#line 4 "Util/IO/io-setup.hpp"
 
 /**
  * @brief ioSetup() (iostreamの高速化と実数出力の設定)

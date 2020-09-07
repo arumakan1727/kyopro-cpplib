@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Union-Find (素集合データ構造) <small>(include/data-structure/union-find.hpp)</small>
+# :heavy_check_mark: Union-Find (素集合データ構造) <small>(Data-Structure/Disjoint-Set/union-find.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#9db7d97a5d6bc6230f80aab8020b7e44">include/data-structure</a>
-* <a href="{{ site.github.repository_url }}/blob/master/include/data-structure/union-find.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 12:47:29+09:00
+* category: <a href="../../../index.html#510221fd93ed01153e9d07e085298835">Data-Structure/Disjoint-Set</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Data-Structure/Disjoint-Set/union-find.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-08 04:00:43+09:00
 
 
 
@@ -89,7 +89,7 @@ public:
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "include/data-structure/union-find.hpp"
+#line 2 "Data-Structure/Disjoint-Set/union-find.hpp"
 #include <cstdint>
 #include <utility>
 #include <vector>

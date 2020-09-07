@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: ModInt (コンパイル時modと実行時mod両対応) <small>(include/math/mod-int.hpp)</small>
+# :heavy_check_mark: ModInt (コンパイル時modと実行時mod両対応) <small>(Math/Modulo/mod-int.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#b9ef8917edb15b1d9148383038c25f58">include/math</a>
-* <a href="{{ site.github.repository_url }}/blob/master/include/math/mod-int.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 12:59:37+09:00
+* category: <a href="../../../index.html#ee048ce79e556b7fa2b3b7d2fb796245">Math/Modulo</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Math/Modulo/mod-int.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-08 04:00:43+09:00
 
 
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../template-parts/type-alias.hpp.html">型エイリアス <small>(include/template-parts/type-alias.hpp)</small></a>
+* :heavy_check_mark: <a href="../../Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
 
 
 ## Verified with
@@ -54,7 +54,7 @@ layout: default
 #pragma once
 #include <cassert>
 #include <iostream>
-#include "../template-parts/type-alias.hpp"
+#include "../../Util/int-alias.hpp"
 
 /**
  * @brief ModInt (コンパイル時modと実行時mod両対応)
@@ -69,7 +69,7 @@ private:
 
 public:
     constexpr ModInt()
-        : value() {}
+        : value(0) {}
     constexpr ModInt(i64 v)
         : value(ModInt::normalized(v)) {}
 
@@ -131,33 +131,26 @@ private:
         return u;
     }
 };
+
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "include/math/mod-int.hpp"
+#line 2 "Math/Modulo/mod-int.hpp"
 #include <cassert>
 #include <iostream>
-#line 2 "include/template-parts/type-alias.hpp"
+#line 2 "Util/int-alias.hpp"
 #include <cstdint>
-#include <functional>
-#include <queue>
-#include <vector>
 
 /**
- * @brief 型エイリアス
+ * @brief int-alias (整数型のエイリアス)
  */
-#define let const auto
-using i64 = int64_t;
-using u64 = uint64_t;
-using usize = size_t;
-template <class T>
-using MaxHeap = std::priority_queue<T, std::vector<T>>;
-template <class T>
-using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
-#line 5 "include/math/mod-int.hpp"
+using i64 = std::int64_t;
+using u64 = std::uint64_t;
+using usize = std::size_t;
+#line 5 "Math/Modulo/mod-int.hpp"
 
 /**
  * @brief ModInt (コンパイル時modと実行時mod両対応)
@@ -172,7 +165,7 @@ private:
 
 public:
     constexpr ModInt()
-        : value() {}
+        : value(0) {}
     constexpr ModInt(i64 v)
         : value(ModInt::normalized(v)) {}
 

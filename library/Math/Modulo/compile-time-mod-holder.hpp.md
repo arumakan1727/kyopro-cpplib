@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: println() (可変個の値を空白区切りで出力して改行する) <small>(include/template-parts/println.hpp)</small>
+# :heavy_check_mark: Compile-Time-Mod-Holder (コンパイル時modを保持する型) <small>(Math/Modulo/compile-time-mod-holder.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
-* <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/println.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-04 19:19:20+09:00
+* category: <a href="../../../index.html#ee048ce79e556b7fa2b3b7d2fb796245">Math/Modulo</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Math/Modulo/compile-time-mod-holder.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-08 04:00:43+09:00
 
 
 
 
-## Required by
+## Depends on
 
-* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
+* :heavy_check_mark: <a href="../../Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
 
 
 ## Verified with
@@ -52,20 +52,17 @@ layout: default
 {% raw %}
 ```cpp
 #pragma once
-#include <iostream>
-#include <utility>
+#include "../../Util/int-alias.hpp"
 
 /**
- * @brief println() (可変個の値を空白区切りで出力して改行する)
+ * @brief Compile-Time-Mod-Holder (コンパイル時modを保持する型)
+ *
+ * ModInt のテンプレートパラメータに渡して使う。
  */
-inline void println() {
-    std::cout << '\n';
-}
-template <class Head, class... Tail>
-inline void println(Head&& head, Tail&&... tail) {
-    std::cout << head << " " + (!sizeof...(tail));
-    println(std::forward<Tail>(tail)...);
-}
+template <i64 Mod>
+struct CompileTimeModHolder {
+    static constexpr i64 mod = Mod;
+};
 
 ```
 {% endraw %}
@@ -73,21 +70,26 @@ inline void println(Head&& head, Tail&&... tail) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "include/template-parts/println.hpp"
-#include <iostream>
-#include <utility>
+#line 2 "Util/int-alias.hpp"
+#include <cstdint>
 
 /**
- * @brief println() (可変個の値を空白区切りで出力して改行する)
+ * @brief int-alias (整数型のエイリアス)
  */
-inline void println() {
-    std::cout << '\n';
-}
-template <class Head, class... Tail>
-inline void println(Head&& head, Tail&&... tail) {
-    std::cout << head << " " + (!sizeof...(tail));
-    println(std::forward<Tail>(tail)...);
-}
+using i64 = std::int64_t;
+using u64 = std::uint64_t;
+using usize = std::size_t;
+#line 3 "Math/Modulo/compile-time-mod-holder.hpp"
+
+/**
+ * @brief Compile-Time-Mod-Holder (コンパイル時modを保持する型)
+ *
+ * ModInt のテンプレートパラメータに渡して使う。
+ */
+template <i64 Mod>
+struct CompileTimeModHolder {
+    static constexpr i64 mod = Mod;
+};
 
 ```
 {% endraw %}

@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: tupleの出力 <small>(include/utility/tuple-print.hpp)</small>
+# :warning: tupleの出力 <small>(Util/IO/tuple-print.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#ce9b21bbcd79b0c5e05b6d6a43e6fbc8">include/utility</a>
-* <a href="{{ site.github.repository_url }}/blob/master/include/utility/tuple-print.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-05 23:29:30+09:00
+* category: <a href="../../../index.html#9a8d3eea1c7cba0485906562328c7d47">Util/IO</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Util/IO/tuple-print.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-08 04:00:43+09:00
 
 
 * see: <a href="https://qiita.com/_EnumHack/items/677363eec054d70b298d#index-tuple-idiom-the-indices-trick">https://qiita.com/_EnumHack/items/677363eec054d70b298d#index-tuple-idiom-the-indices-trick</a>
@@ -69,7 +69,7 @@ std::ostream& operator<<(std::ostream& os, Tuple&& t) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "include/utility/tuple-print.hpp"
+#line 2 "Util/IO/tuple-print.hpp"
 #include <array>
 #include <iostream>
 #include <tuple>

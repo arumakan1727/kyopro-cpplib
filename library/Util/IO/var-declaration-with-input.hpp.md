@@ -25,20 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: rep()マクロ <small>(include/template-parts/rep-macro.hpp)</small>
+# :warning: 複数変数宣言をして同時に入力もするやつ <small>(Util/IO/var-declaration-with-input.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
-* <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/rep-macro.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-05 17:52:39+09:00
+* category: <a href="../../../index.html#9a8d3eea1c7cba0485906562328c7d47">Util/IO</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Util/IO/var-declaration-with-input.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-08 04:00:43+09:00
 
 
 
 
 ## Required by
 
-* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
+* :warning: <a href="../../export/template-prototype.cpp.html">export/template-prototype.cpp</a>
 
 
 ## Code
@@ -47,13 +47,19 @@ layout: default
 {% raw %}
 ```cpp
 #pragma once
+#include <iostream>
 
 /**
- * @brief rep()マクロ
+ * @brief 複数変数宣言をして同時に入力もするやつ
  */
-#define rep(i, begin, end) for (int64_t i{begin}, i##_end{end}; i < i##_end; ++i)
-#define repc(i, begin, last) for (int64_t i{begin}, i##_last{last}; i <= i##_last; ++i)
-#define repr(i, begin, last) for (int64_t i{begin}, i##_last{last}; i >= i##_last; --i)
+template <class T>
+std::istream& operator,(std::istream& is, T& rhs) {
+    return is >> rhs;
+}
+
+#define var(type, ...) \
+    type __VA_ARGS__;  \
+    std::cin >> __VA_ARGS__
 
 ```
 {% endraw %}
@@ -61,14 +67,20 @@ layout: default
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "include/template-parts/rep-macro.hpp"
+#line 2 "Util/IO/var-declaration-with-input.hpp"
+#include <iostream>
 
 /**
- * @brief rep()マクロ
+ * @brief 複数変数宣言をして同時に入力もするやつ
  */
-#define rep(i, begin, end) for (int64_t i{begin}, i##_end{end}; i < i##_end; ++i)
-#define repc(i, begin, last) for (int64_t i{begin}, i##_last{last}; i <= i##_last; ++i)
-#define repr(i, begin, last) for (int64_t i{begin}, i##_last{last}; i >= i##_last; --i)
+template <class T>
+std::istream& operator,(std::istream& is, T& rhs) {
+    return is >> rhs;
+}
+
+#define var(type, ...) \
+    type __VA_ARGS__;  \
+    std::cin >> __VA_ARGS__
 
 ```
 {% endraw %}

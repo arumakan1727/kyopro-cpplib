@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/DPL_5_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-07 12:59:37+09:00
+    - Last commit date: 2020-09-08 04:00:43+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_5_A&lang=ja">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_5_A&lang=ja</a>
@@ -39,11 +39,11 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/include/math/mod-int.hpp.html">ModInt (コンパイル時modと実行時mod両対応) <small>(include/math/mod-int.hpp)</small></a>
-* :heavy_check_mark: <a href="../../library/include/math/pow-doubling.hpp.html">pow() (繰り返し二乗法) <small>(include/math/pow-doubling.hpp)</small></a>
-* :heavy_check_mark: <a href="../../library/include/template-parts/println.hpp.html">println() (可変個の値を空白区切りで出力して改行する) <small>(include/template-parts/println.hpp)</small></a>
-* :heavy_check_mark: <a href="../../library/include/template-parts/type-alias.hpp.html">型エイリアス <small>(include/template-parts/type-alias.hpp)</small></a>
-* :heavy_check_mark: <a href="../../library/include/utility/compiletime-mod-holder.hpp.html">Compiletime Mod Holder (コンパイル時modを保持する型) <small>(include/utility/compiletime-mod-holder.hpp)</small></a>
+* :heavy_check_mark: <a href="../../library/Algorithm/pow-doubling.hpp.html">pow() (繰り返し二乗法) <small>(Algorithm/pow-doubling.hpp)</small></a>
+* :heavy_check_mark: <a href="../../library/Math/Modulo/compile-time-mod-holder.hpp.html">Compile-Time-Mod-Holder (コンパイル時modを保持する型) <small>(Math/Modulo/compile-time-mod-holder.hpp)</small></a>
+* :heavy_check_mark: <a href="../../library/Math/Modulo/mod-int.hpp.html">ModInt (コンパイル時modと実行時mod両対応) <small>(Math/Modulo/mod-int.hpp)</small></a>
+* :heavy_check_mark: <a href="../../library/Util/IO/println.hpp.html">println() (可変個の値を空白区切りで出力して改行する) <small>(Util/IO/println.hpp)</small></a>
+* :heavy_check_mark: <a href="../../library/Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
 
 
 ## Code
@@ -56,13 +56,13 @@ layout: default
 #include <iostream>
 #include <type_traits>
 
-#include "../include/math/mod-int.hpp"
-#include "../include/math/pow-doubling.hpp"
-#include "../include/utility/compiletime-mod-holder.hpp"
-#include "../include/template-parts/println.hpp"
+#include "../Math/Modulo/mod-int.hpp"
+#include "../Math/Modulo/compile-time-mod-holder.hpp"
+#include "../Algorithm/pow-doubling.hpp"
+#include "../Util/IO/println.hpp"
 
 int main() {
-    using Mint = ModInt<CompiletimeModHolder<int(1e9) + 7>>;
+    using Mint = ModInt<CompileTimeModHolder<int(1e9) + 7>>;
 
     int n;
     std::cin >> n;
@@ -90,26 +90,18 @@ int main() {
 #include <iostream>
 #include <type_traits>
 
-#line 2 "include/math/mod-int.hpp"
+#line 2 "Math/Modulo/mod-int.hpp"
 #include <cassert>
-#line 2 "include/template-parts/type-alias.hpp"
+#line 2 "Util/int-alias.hpp"
 #include <cstdint>
-#include <functional>
-#include <queue>
-#include <vector>
 
 /**
- * @brief 型エイリアス
+ * @brief int-alias (整数型のエイリアス)
  */
-#define let const auto
-using i64 = int64_t;
-using u64 = uint64_t;
-using usize = size_t;
-template <class T>
-using MaxHeap = std::priority_queue<T, std::vector<T>>;
-template <class T>
-using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
-#line 5 "include/math/mod-int.hpp"
+using i64 = std::int64_t;
+using u64 = std::uint64_t;
+using usize = std::size_t;
+#line 5 "Math/Modulo/mod-int.hpp"
 
 /**
  * @brief ModInt (コンパイル時modと実行時mod両対応)
@@ -124,7 +116,7 @@ private:
 
 public:
     constexpr ModInt()
-        : value() {}
+        : value(0) {}
     constexpr ModInt(i64 v)
         : value(ModInt::normalized(v)) {}
 
@@ -186,34 +178,34 @@ private:
         return u;
     }
 };
-#line 2 "include/math/pow-doubling.hpp"
+#line 3 "Math/Modulo/compile-time-mod-holder.hpp"
+
+/**
+ * @brief Compile-Time-Mod-Holder (コンパイル時modを保持する型)
+ *
+ * ModInt のテンプレートパラメータに渡して使う。
+ */
+template <i64 Mod>
+struct CompileTimeModHolder {
+    static constexpr i64 mod = Mod;
+};
+#line 2 "Algorithm/pow-doubling.hpp"
 #include <cmath>
-#line 4 "include/math/pow-doubling.hpp"
+#line 4 "Algorithm/pow-doubling.hpp"
 
 /**
  * @brief pow() (繰り返し二乗法)
  */
 template <class Integer>
-Integer pow(const Integer& n, const i64 exp) {
+Integer pow(const Integer& n, const i64 expv) {
     Integer ret = 1, square = n;
-    for (u64 p = std::abs(exp); p; p >>= 1) {
+    for (u64 p = std::abs(expv); p; p >>= 1) {
         if (p & 1) ret *= square;
         square *= square;
     }
-    return (exp < 0) ? (1 / ret) : ret;
+    return (expv < 0) ? (1 / ret) : ret;
 }
-#line 3 "include/utility/compiletime-mod-holder.hpp"
-
-/**
- * @brief Compiletime Mod Holder (コンパイル時modを保持する型)
- *
- * ModInt のテンプレートパラメータに渡して使う。
- */
-template <i64 Mod>
-struct CompiletimeModHolder {
-    static constexpr i64 mod = Mod;
-};
-#line 3 "include/template-parts/println.hpp"
+#line 3 "Util/IO/println.hpp"
 #include <utility>
 
 /**
@@ -230,7 +222,7 @@ inline void println(Head&& head, Tail&&... tail) {
 #line 10 "test/DPL_5_A.test.cpp"
 
 int main() {
-    using Mint = ModInt<CompiletimeModHolder<int(1e9) + 7>>;
+    using Mint = ModInt<CompileTimeModHolder<int(1e9) + 7>>;
 
     int n;
     std::cin >> n;

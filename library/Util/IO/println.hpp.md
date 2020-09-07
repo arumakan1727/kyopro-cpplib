@@ -25,20 +25,25 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: 複数変数宣言をして同時に入力もするやつ <small>(include/template-parts/var-declaration-with-input.hpp)</small>
+# :heavy_check_mark: println() (可変個の値を空白区切りで出力して改行する) <small>(Util/IO/println.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
-* <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/var-declaration-with-input.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-04 19:19:20+09:00
+* category: <a href="../../../index.html#9a8d3eea1c7cba0485906562328c7d47">Util/IO</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Util/IO/println.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-08 04:00:43+09:00
 
 
 
 
 ## Required by
 
-* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
+* :warning: <a href="../../export/template-prototype.cpp.html">export/template-prototype.cpp</a>
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../../verify/test/DPL_5_A.test.cpp.html">test/DPL_5_A.test.cpp</a>
 
 
 ## Code
@@ -48,18 +53,19 @@ layout: default
 ```cpp
 #pragma once
 #include <iostream>
+#include <utility>
 
 /**
- * @brief 複数変数宣言をして同時に入力もするやつ
+ * @brief println() (可変個の値を空白区切りで出力して改行する)
  */
-template <class T>
-std::istream& operator,(std::istream& is, T& rhs) {
-    return is >> rhs;
+inline void println() {
+    std::cout << '\n';
 }
-
-#define var(type, ...) \
-    type __VA_ARGS__;  \
-    std::cin >> __VA_ARGS__
+template <class Head, class... Tail>
+inline void println(Head&& head, Tail&&... tail) {
+    std::cout << head << " " + (!sizeof...(tail));
+    println(std::forward<Tail>(tail)...);
+}
 
 ```
 {% endraw %}
@@ -67,20 +73,21 @@ std::istream& operator,(std::istream& is, T& rhs) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "include/template-parts/var-declaration-with-input.hpp"
+#line 2 "Util/IO/println.hpp"
 #include <iostream>
+#include <utility>
 
 /**
- * @brief 複数変数宣言をして同時に入力もするやつ
+ * @brief println() (可変個の値を空白区切りで出力して改行する)
  */
-template <class T>
-std::istream& operator,(std::istream& is, T& rhs) {
-    return is >> rhs;
+inline void println() {
+    std::cout << '\n';
 }
-
-#define var(type, ...) \
-    type __VA_ARGS__;  \
-    std::cin >> __VA_ARGS__
+template <class Head, class... Tail>
+inline void println(Head&& head, Tail&&... tail) {
+    std::cout << head << " " + (!sizeof...(tail));
+    println(std::forward<Tail>(tail)...);
+}
 
 ```
 {% endraw %}

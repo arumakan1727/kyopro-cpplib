@@ -21,24 +21,24 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../assets/css/copy-button.css" />
 
 
-# :warning: divceil() (切り上げ除算) <small>(include/template-parts/div-ceil.hpp)</small>
+# :warning: divceil() (切り上げ除算) <small>(Util/div-ceil.hpp)</small>
 
-<a href="../../../index.html">Back to top page</a>
+<a href="../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
-* <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/div-ceil.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-06 20:45:32+09:00
+* category: <a href="../../index.html#23e8a4b4f7cc1898ef12b4e6e48852bb">Util</a>
+* <a href="{{ site.github.repository_url }}/blob/master/Util/div-ceil.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-08 04:00:43+09:00
 
 
 
 
 ## Required by
 
-* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
+* :warning: <a href="../export/template-prototype.cpp.html">export/template-prototype.cpp</a>
 
 
 ## Code
@@ -62,7 +62,7 @@ inline int64_t divceil(int64_t a, int64_t b) {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "include/template-parts/div-ceil.hpp"
+#line 2 "Util/div-ceil.hpp"
 #include <cstdint>
 
 /**
@@ -75,5 +75,5 @@ inline int64_t divceil(int64_t a, int64_t b) {
 ```
 {% endraw %}
 
-<a href="../../../index.html">Back to top page</a>
+<a href="../../index.html">Back to top page</a>
 
