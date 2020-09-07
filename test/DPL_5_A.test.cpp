@@ -3,13 +3,13 @@
 #include <iostream>
 #include <type_traits>
 
-#include "../include/math/mod-int.hpp"
-#include "../include/math/pow-doubling.hpp"
-#include "../include/utility/compiletime-mod-holder.hpp"
-#include "../include/template-parts/println.hpp"
+#include "../Math/Modulo/mod-int.hpp"
+#include "../Math/Modulo/compile-time-mod-holder.hpp"
+#include "../Algorithm/pow-doubling.hpp"
+#include "../Util/IO/println.hpp"
 
 int main() {
-    using Mint = ModInt<CompiletimeModHolder<int(1e9) + 7>>;
+    using Mint = ModInt<CompileTimeModHolder<int(1e9) + 7>>;
 
     int n;
     std::cin >> n;

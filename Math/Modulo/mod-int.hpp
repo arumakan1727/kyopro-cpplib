@@ -1,7 +1,7 @@
 #pragma once
 #include <cassert>
 #include <iostream>
-#include "../template-parts/type-alias.hpp"
+#include "../../Util/int-alias.hpp"
 
 /**
  * @brief ModInt (コンパイル時modと実行時mod両対応)
@@ -16,7 +16,7 @@ private:
 
 public:
     constexpr ModInt()
-        : value() {}
+        : value(0) {}
     constexpr ModInt(i64 v)
         : value(ModInt::normalized(v)) {}
 

@@ -1,12 +1,12 @@
-template_base_file := ../include/template-parts/template.cpp
+template_base_file := template-prototype.cpp
 template_base_file_dir := $(dir ${template_base_file})
 template_export_file := template.cpp
 template_base_file_dependencies := $(addprefix ${template_base_file_dir}, \
 	$(shell egrep -e '#\s*include\s*".+"' ${template_base_file} | sed -r 's|#\s*include\s*"(.+)"|\1|'))
 
 snip_file := snippet.vscode.json
-snip_root_dirs := ../include
-snip_ignore_dirs := template-parts
+snip_root_dirs := ../Algorithm ../Data-Structure ../Graph ../Math ../String ../Util
+snip_ignore_dirs := 
 snip_ignore_find_opts := $(patsubst %, -type d -name % -prune -o, ${snip_ignore_dirs})
 snip_glob := '*.hpp'
 snip_dependencies := $(shell find ${snip_root_dirs} ${snip_ignore_find_opts} -type f -name ${snip_glob} -print)
