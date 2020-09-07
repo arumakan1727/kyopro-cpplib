@@ -25,23 +25,20 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: 型エイリアス <small>(include/template-parts/type-alias.hpp)</small>
+# :heavy_check_mark: pow() (繰り返し二乗法) <small>(include/math/pow-doubling.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
-* <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/type-alias.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-04 19:19:20+09:00
+* category: <a href="../../../index.html#b9ef8917edb15b1d9148383038c25f58">include/math</a>
+* <a href="{{ site.github.repository_url }}/blob/master/include/math/pow-doubling.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-07 12:59:37+09:00
 
 
 
 
-## Required by
+## Depends on
 
-* :heavy_check_mark: <a href="../math/mod-int.hpp.html">ModInt (コンパイル時modと実行時mod両対応) <small>(include/math/mod-int.hpp)</small></a>
-* :heavy_check_mark: <a href="../math/pow-doubling.hpp.html">pow() (繰り返し二乗法) <small>(include/math/pow-doubling.hpp)</small></a>
-* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
-* :heavy_check_mark: <a href="../utility/compiletime-mod-holder.hpp.html">Compiletime Mod Holder (コンパイル時modを保持する型) <small>(include/utility/compiletime-mod-holder.hpp)</small></a>
+* :heavy_check_mark: <a href="../template-parts/type-alias.hpp.html">型エイリアス <small>(include/template-parts/type-alias.hpp)</small></a>
 
 
 ## Verified with
@@ -55,29 +52,29 @@ layout: default
 {% raw %}
 ```cpp
 #pragma once
-#include <cstdint>
-#include <functional>
-#include <queue>
-#include <vector>
+#include <cmath>
+#include "../template-parts/type-alias.hpp"
 
 /**
- * @brief 型エイリアス
+ * @brief pow() (繰り返し二乗法)
  */
-#define let const auto
-using i64 = int64_t;
-using u64 = uint64_t;
-using usize = size_t;
-template <class T>
-using MaxHeap = std::priority_queue<T, std::vector<T>>;
-template <class T>
-using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
-
+template <class Integer>
+Integer pow(const Integer& n, const i64 exp) {
+    Integer ret = 1, square = n;
+    for (u64 p = std::abs(exp); p; p >>= 1) {
+        if (p & 1) ret *= square;
+        square *= square;
+    }
+    return (exp < 0) ? (1 / ret) : ret;
+}
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
+#line 2 "include/math/pow-doubling.hpp"
+#include <cmath>
 #line 2 "include/template-parts/type-alias.hpp"
 #include <cstdint>
 #include <functional>
@@ -95,6 +92,20 @@ template <class T>
 using MaxHeap = std::priority_queue<T, std::vector<T>>;
 template <class T>
 using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+#line 4 "include/math/pow-doubling.hpp"
+
+/**
+ * @brief pow() (繰り返し二乗法)
+ */
+template <class Integer>
+Integer pow(const Integer& n, const i64 exp) {
+    Integer ret = 1, square = n;
+    for (u64 p = std::abs(exp); p; p >>= 1) {
+        if (p & 1) ret *= square;
+        square *= square;
+    }
+    return (exp < 0) ? (1 / ret) : ret;
+}
 
 ```
 {% endraw %}

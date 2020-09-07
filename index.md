@@ -48,6 +48,14 @@ layout: default
 * :heavy_check_mark: <a href="library/include/data-structure/union-find.hpp.html">Union-Find (素集合データ構造) <small>(include/data-structure/union-find.hpp)</small></a>
 
 
+<div id="b9ef8917edb15b1d9148383038c25f58"></div>
+
+### include/math
+
+* :heavy_check_mark: <a href="library/include/math/mod-int.hpp.html">ModInt (コンパイル時modと実行時mod両対応) <small>(include/math/mod-int.hpp)</small></a>
+* :heavy_check_mark: <a href="library/include/math/pow-doubling.hpp.html">pow() (繰り返し二乗法) <small>(include/math/pow-doubling.hpp)</small></a>
+
+
 <div id="d5567e78d3674558c180d2f4feaa863b"></div>
 
 ### include/template-parts
@@ -61,10 +69,10 @@ layout: default
 * :heavy_check_mark: <a href="library/include/template-parts/io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(include/template-parts/io-setup.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/join-into-ostream.hpp.html">join() (要素を区切り文字で結合して出力) <small>(include/template-parts/join-into-ostream.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/makeVec.hpp.html">makeVec() (多次元std::vectorの生成) <small>(include/template-parts/makeVec.hpp)</small></a>
-* :warning: <a href="library/include/template-parts/println.hpp.html">println() (可変個の値を空白区切りで出力して改行する) <small>(include/template-parts/println.hpp)</small></a>
+* :heavy_check_mark: <a href="library/include/template-parts/println.hpp.html">println() (可変個の値を空白区切りで出力して改行する) <small>(include/template-parts/println.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/rep-macro.hpp.html">rep()マクロ <small>(include/template-parts/rep-macro.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/template.cpp.html">include/template-parts/template.cpp</a>
-* :warning: <a href="library/include/template-parts/type-alias.hpp.html">型エイリアス <small>(include/template-parts/type-alias.hpp)</small></a>
+* :heavy_check_mark: <a href="library/include/template-parts/type-alias.hpp.html">型エイリアス <small>(include/template-parts/type-alias.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/var-declaration-with-input.hpp.html">複数変数宣言をして同時に入力もするやつ <small>(include/template-parts/var-declaration-with-input.hpp)</small></a>
 
 
@@ -72,12 +80,14 @@ layout: default
 
 ### include/utility
 
+* :heavy_check_mark: <a href="library/include/utility/compiletime-mod-holder.hpp.html">Compiletime Mod Holder (コンパイル時modを保持する型) <small>(include/utility/compiletime-mod-holder.hpp)</small></a>
 * :warning: <a href="library/include/utility/is-within-range.hpp.html">within() (半開区間内に含まれているかの判定) <small>(include/utility/is-within-range.hpp)</small></a>
 * :warning: <a href="library/include/utility/tuple-print.hpp.html">tupleの出力 <small>(include/utility/tuple-print.hpp)</small></a>
 
 
 ## Verify Files
 
+* :heavy_check_mark: <a href="verify/test/DPL_5_A.test.cpp.html">test/DPL_5_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/DSL_1_A.test.cpp.html">test/DSL_1_A.test.cpp</a>
 
 

@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: println() (可変個の値を空白区切りで出力して改行する) <small>(include/template-parts/println.hpp)</small>
+# :heavy_check_mark: println() (可変個の値を空白区切りで出力して改行する) <small>(include/template-parts/println.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
@@ -39,6 +39,11 @@ layout: default
 ## Required by
 
 * :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../../verify/test/DPL_5_A.test.cpp.html">test/DPL_5_A.test.cpp</a>
 
 
 ## Code
