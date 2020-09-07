@@ -2,6 +2,7 @@
 *.out
 *.bin
 *.gch
+tmp.*
 
 bin/
 build/
