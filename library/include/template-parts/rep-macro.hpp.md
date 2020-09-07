@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/rep-macro.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-04 19:19:20+09:00
+    - Last commit date: 2020-09-05 17:52:39+09:00
 
 
 
@@ -51,12 +51,9 @@ layout: default
 /**
  * @brief rep()マクロ
  */
-#define rep2(i, n) for (size_t i = 0; i < (n); ++i)
-#define rep3(i, s, e) for (int64_t i = int64_t(s); i < int64_t(e); ++i)
-#define GET_4TH_ARG(dummy1, dummy2, dummy3, NAME, ...) NAME
-#define rep(...) GET_4TH_ARG(__VA_ARGS__, rep3, rep2)(__VA_ARGS__)
-#define repc(i, s, t) for (int64_t i = int64_t(s); i <= int64_t(t); ++i)
-#define repr(i, s, t) for (int64_t i = int64_t(s); i >= int64_t(t); --i)
+#define rep(i, begin, end) for (int64_t i{begin}, i##_end{end}; i < i##_end; ++i)
+#define repc(i, begin, last) for (int64_t i{begin}, i##_last{last}; i <= i##_last; ++i)
+#define repr(i, begin, last) for (int64_t i{begin}, i##_last{last}; i >= i##_last; --i)
 
 ```
 {% endraw %}
@@ -69,12 +66,9 @@ layout: default
 /**
  * @brief rep()マクロ
  */
-#define rep2(i, n) for (size_t i = 0; i < (n); ++i)
-#define rep3(i, s, e) for (int64_t i = int64_t(s); i < int64_t(e); ++i)
-#define GET_4TH_ARG(dummy1, dummy2, dummy3, NAME, ...) NAME
-#define rep(...) GET_4TH_ARG(__VA_ARGS__, rep3, rep2)(__VA_ARGS__)
-#define repc(i, s, t) for (int64_t i = int64_t(s); i <= int64_t(t); ++i)
-#define repr(i, s, t) for (int64_t i = int64_t(s); i >= int64_t(t); --i)
+#define rep(i, begin, end) for (int64_t i{begin}, i##_end{end}; i < i##_end; ++i)
+#define repc(i, begin, last) for (int64_t i{begin}, i##_last{last}; i <= i##_last; ++i)
+#define repr(i, begin, last) for (int64_t i{begin}, i##_last{last}; i >= i##_last; --i)
 
 ```
 {% endraw %}

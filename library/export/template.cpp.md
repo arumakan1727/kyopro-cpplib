@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#b2507468f95156358fa490fd543ad2f0">export</a>
 * <a href="{{ site.github.repository_url }}/blob/master/export/template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-04 19:19:20+09:00
+    - Last commit date: 2020-09-06 20:45:32+09:00
 
 
 
@@ -44,16 +44,13 @@ layout: default
 #include <bits/stdc++.h>
 using namespace std;
 
-#pragma region  // {{{
+#if 1  // {{{
 
 #define all(x) std::begin(x), std::end(x)
 #define rall(x) std::rbegin(x), std::rend(x)
-#define rep2(i, n) for (size_t i = 0; i < (n); ++i)
-#define rep3(i, s, e) for (int64_t i = int64_t(s); i < int64_t(e); ++i)
-#define GET_4TH_ARG(dummy1, dummy2, dummy3, NAME, ...) NAME
-#define rep(...) GET_4TH_ARG(__VA_ARGS__, rep3, rep2)(__VA_ARGS__)
-#define repc(i, s, t) for (int64_t i = int64_t(s); i <= int64_t(t); ++i)
-#define repr(i, s, t) for (int64_t i = int64_t(s); i >= int64_t(t); --i)
+#define rep(i, begin, end) for (int64_t i{begin}, i##_end{end}; i < i##_end; ++i)
+#define repc(i, begin, last) for (int64_t i{begin}, i##_last{last}; i <= i##_last; ++i)
+#define repr(i, begin, last) for (int64_t i{begin}, i##_last{last}; i >= i##_last; --i)
 
 #define let const auto
 using i64 = int64_t;
@@ -63,6 +60,11 @@ template <class T>
 using MaxHeap = std::priority_queue<T, std::vector<T>>;
 template <class T>
 using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+
+constexpr int32_t INF = 0x3f3f3f3f;
+constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
+// constexpr int32_t MOD = int32_t(1e9) + 7;
+// constexpr int32_t MOD = 998244353;
 
 void ioSetup() {
     std::cin.tie(nullptr);
@@ -102,26 +104,15 @@ template <class Container,
           class Value = typename Container::value_type,
           std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
 std::ostream& operator<<(std::ostream& os, const Container& v) {
-    for (auto it = begin(v); it != end(v); ++it) os << " " + (it == begin(v)) << *it;
+    for (auto it = std::begin(v); it != std::end(v); ++it) os << " " + (it == std::begin(v)) << *it;
     return os;
 }
 
 template <class InputItr>
-void join(std::ostream& os, InputItr begin, InputItr end, const char* delim = " ", const char* last = "\n") {
+void join(std::ostream& os, InputItr begin, InputItr end, const char* delim, const char* last = "\n") {
     const char* tmp[] = {delim, ""};
     for (auto it = begin; it != end; ++it) os << tmp[it == begin] << *it;
     os << last;
-}
-
-template <class Tuple, size_t... I>
-std::array<int, sizeof...(I)> tuple_print_impl(std::ostream& os, Tuple&& t, std::index_sequence<I...>) {
-    return {{(void(os << (I == 0 ? "" : ", ") << std::get<I>(t)), 0)...}};
-}
-template <class Tuple, class Value = typename std::tuple_element_t<0, Tuple>>
-std::ostream& operator<<(std::ostream& os, Tuple&& t) {
-    os << '{';
-    tuple_print_impl(os, std::forward<Tuple>(t), std::make_index_sequence<std::tuple_size<std::decay_t<Tuple>>::value>{});
-    return os << '}';
 }
 
 template <class T>
@@ -148,17 +139,11 @@ inline bool chmax(T& a, const U& b) {
     return b > a && (a = b, true);
 }
 
-template <class Value, class ValueBegin, class ValueEnd>
-inline bool within(const Value& v, const ValueBegin& begin, const ValueEnd& end) {
-    return begin <= v && v < end;
+inline int64_t divceil(int64_t a, int64_t b) {
+    return (a + b - 1) / b;
 }
 
-constexpr int32_t INF = 0x3f3f3f3f;
-constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
-// constexpr int32_t MOD = int32_t(1e9) + 7;
-// constexpr int32_t MOD = 998244353;
-
-#pragma endregion  // }}}
+#endif  // }}}
 
 signed main() {
     ioSetup();
@@ -176,16 +161,13 @@ signed main() {
 #include <bits/stdc++.h>
 using namespace std;
 
-#pragma region  // {{{
+#if 1  // {{{
 
 #define all(x) std::begin(x), std::end(x)
 #define rall(x) std::rbegin(x), std::rend(x)
-#define rep2(i, n) for (size_t i = 0; i < (n); ++i)
-#define rep3(i, s, e) for (int64_t i = int64_t(s); i < int64_t(e); ++i)
-#define GET_4TH_ARG(dummy1, dummy2, dummy3, NAME, ...) NAME
-#define rep(...) GET_4TH_ARG(__VA_ARGS__, rep3, rep2)(__VA_ARGS__)
-#define repc(i, s, t) for (int64_t i = int64_t(s); i <= int64_t(t); ++i)
-#define repr(i, s, t) for (int64_t i = int64_t(s); i >= int64_t(t); --i)
+#define rep(i, begin, end) for (int64_t i{begin}, i##_end{end}; i < i##_end; ++i)
+#define repc(i, begin, last) for (int64_t i{begin}, i##_last{last}; i <= i##_last; ++i)
+#define repr(i, begin, last) for (int64_t i{begin}, i##_last{last}; i >= i##_last; --i)
 
 #define let const auto
 using i64 = int64_t;
@@ -195,6 +177,11 @@ template <class T>
 using MaxHeap = std::priority_queue<T, std::vector<T>>;
 template <class T>
 using MinHeap = std::priority_queue<T, std::vector<T>, std::greater<T>>;
+
+constexpr int32_t INF = 0x3f3f3f3f;
+constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
+// constexpr int32_t MOD = int32_t(1e9) + 7;
+// constexpr int32_t MOD = 998244353;
 
 void ioSetup() {
     std::cin.tie(nullptr);
@@ -234,26 +221,15 @@ template <class Container,
           class Value = typename Container::value_type,
           std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
 std::ostream& operator<<(std::ostream& os, const Container& v) {
-    for (auto it = begin(v); it != end(v); ++it) os << " " + (it == begin(v)) << *it;
+    for (auto it = std::begin(v); it != std::end(v); ++it) os << " " + (it == std::begin(v)) << *it;
     return os;
 }
 
 template <class InputItr>
-void join(std::ostream& os, InputItr begin, InputItr end, const char* delim = " ", const char* last = "\n") {
+void join(std::ostream& os, InputItr begin, InputItr end, const char* delim, const char* last = "\n") {
     const char* tmp[] = {delim, ""};
     for (auto it = begin; it != end; ++it) os << tmp[it == begin] << *it;
     os << last;
-}
-
-template <class Tuple, size_t... I>
-std::array<int, sizeof...(I)> tuple_print_impl(std::ostream& os, Tuple&& t, std::index_sequence<I...>) {
-    return {{(void(os << (I == 0 ? "" : ", ") << std::get<I>(t)), 0)...}};
-}
-template <class Tuple, class Value = typename std::tuple_element_t<0, Tuple>>
-std::ostream& operator<<(std::ostream& os, Tuple&& t) {
-    os << '{';
-    tuple_print_impl(os, std::forward<Tuple>(t), std::make_index_sequence<std::tuple_size<std::decay_t<Tuple>>::value>{});
-    return os << '}';
 }
 
 template <class T>
@@ -280,17 +256,11 @@ inline bool chmax(T& a, const U& b) {
     return b > a && (a = b, true);
 }
 
-template <class Value, class ValueBegin, class ValueEnd>
-inline bool within(const Value& v, const ValueBegin& begin, const ValueEnd& end) {
-    return begin <= v && v < end;
+inline int64_t divceil(int64_t a, int64_t b) {
+    return (a + b - 1) / b;
 }
 
-constexpr int32_t INF = 0x3f3f3f3f;
-constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
-// constexpr int32_t MOD = int32_t(1e9) + 7;
-// constexpr int32_t MOD = 998244353;
-
-#pragma endregion  // }}}
+#endif  // }}}
 
 signed main() {
     ioSetup();

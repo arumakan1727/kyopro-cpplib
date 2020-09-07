@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/DSL_1_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-04 20:42:26+09:00
+    - Last commit date: 2020-09-07 12:47:29+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A</a>
@@ -116,13 +116,9 @@ public:
         return p[x] = root(p[x]);
     }
 
-    bool same(int x, int y) const {
-        return root(x) == root(y);
-    }
+    bool same(int x, int y) const { return root(x) == root(y); }
 
-    int size(int x) const {
-        return -p[root(x)];
-    }
+    int size(int x) const { return -p[root(x)]; }
 };
 #line 4 "include/template-parts/io-setup.hpp"
 

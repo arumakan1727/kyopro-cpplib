@@ -25,20 +25,15 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: within() (半開区間内に含まれているかの判定) <small>(include/template-parts/is-within-range.hpp)</small>
+# :warning: within() (半開区間内に含まれているかの判定) <small>(include/utility/is-within-range.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
-* <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/is-within-range.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-04 19:19:20+09:00
+* category: <a href="../../../index.html#ce9b21bbcd79b0c5e05b6d6a43e6fbc8">include/utility</a>
+* <a href="{{ site.github.repository_url }}/blob/master/include/utility/is-within-range.hpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-05 23:29:30+09:00
 
 
-
-
-## Required by
-
-* :warning: <a href="template.cpp.html">include/template-parts/template.cpp</a>
 
 
 ## Code
@@ -62,7 +57,7 @@ inline bool within(const Value& v, const ValueBegin& begin, const ValueEnd& end)
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "include/template-parts/is-within-range.hpp"
+#line 2 "include/utility/is-within-range.hpp"
 
 /**
  * @brief within() (半開区間内に含まれているかの判定)

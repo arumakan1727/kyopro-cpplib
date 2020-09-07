@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#9db7d97a5d6bc6230f80aab8020b7e44">include/data-structure</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/data-structure/union-find.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-04 19:19:20+09:00
+    - Last commit date: 2020-09-07 12:47:29+09:00
 
 
 
@@ -78,13 +78,9 @@ public:
         return p[x] = root(p[x]);
     }
 
-    bool same(int x, int y) const {
-        return root(x) == root(y);
-    }
+    bool same(int x, int y) const { return root(x) == root(y); }
 
-    int size(int x) const {
-        return -p[root(x)];
-    }
+    int size(int x) const { return -p[root(x)]; }
 };
 
 ```
@@ -125,13 +121,9 @@ public:
         return p[x] = root(p[x]);
     }
 
-    bool same(int x, int y) const {
-        return root(x) == root(y);
-    }
+    bool same(int x, int y) const { return root(x) == root(y); }
 
-    int size(int x) const {
-        return -p[root(x)];
-    }
+    int size(int x) const { return -p[root(x)]; }
 };
 
 ```

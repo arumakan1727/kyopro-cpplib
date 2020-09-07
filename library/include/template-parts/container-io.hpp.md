@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#d5567e78d3674558c180d2f4feaa863b">include/template-parts</a>
 * <a href="{{ site.github.repository_url }}/blob/master/include/template-parts/container-io.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-04 19:19:20+09:00
+    - Last commit date: 2020-09-05 17:52:39+09:00
 
 
 
@@ -64,7 +64,7 @@ template <class Container,
           class Value = typename Container::value_type,
           std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
 std::ostream& operator<<(std::ostream& os, const Container& v) {
-    for (auto it = begin(v); it != end(v); ++it) os << " " + (it == begin(v)) << *it;
+    for (auto it = std::begin(v); it != std::end(v); ++it) os << " " + (it == std::begin(v)) << *it;
     return os;
 }
 
@@ -92,7 +92,7 @@ template <class Container,
           class Value = typename Container::value_type,
           std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
 std::ostream& operator<<(std::ostream& os, const Container& v) {
-    for (auto it = begin(v); it != end(v); ++it) os << " " + (it == begin(v)) << *it;
+    for (auto it = std::begin(v); it != std::end(v); ++it) os << " " + (it == std::begin(v)) << *it;
     return os;
 }
 

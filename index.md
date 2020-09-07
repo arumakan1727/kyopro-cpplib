@@ -59,15 +59,21 @@ layout: default
 * :warning: <a href="library/include/template-parts/container-io.hpp.html">コンテナの入出力 <small>(include/template-parts/container-io.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/div-ceil.hpp.html">divceil() (切り上げ除算) <small>(include/template-parts/div-ceil.hpp)</small></a>
 * :heavy_check_mark: <a href="library/include/template-parts/io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(include/template-parts/io-setup.hpp)</small></a>
-* :warning: <a href="library/include/template-parts/is-within-range.hpp.html">within() (半開区間内に含まれているかの判定) <small>(include/template-parts/is-within-range.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/join-into-ostream.hpp.html">join() (要素を区切り文字で結合して出力) <small>(include/template-parts/join-into-ostream.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/makeVec.hpp.html">makeVec() (多次元std::vectorの生成) <small>(include/template-parts/makeVec.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/println.hpp.html">println() (可変個の値を空白区切りで出力して改行する) <small>(include/template-parts/println.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/rep-macro.hpp.html">rep()マクロ <small>(include/template-parts/rep-macro.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/template.cpp.html">include/template-parts/template.cpp</a>
-* :warning: <a href="library/include/template-parts/tuple-print.hpp.html">tupleの出力 <small>(include/template-parts/tuple-print.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/type-alias.hpp.html">型エイリアス <small>(include/template-parts/type-alias.hpp)</small></a>
 * :warning: <a href="library/include/template-parts/var-declaration-with-input.hpp.html">複数変数宣言をして同時に入力もするやつ <small>(include/template-parts/var-declaration-with-input.hpp)</small></a>
+
+
+<div id="ce9b21bbcd79b0c5e05b6d6a43e6fbc8"></div>
+
+### include/utility
+
+* :warning: <a href="library/include/utility/is-within-range.hpp.html">within() (半開区間内に含まれているかの判定) <small>(include/utility/is-within-range.hpp)</small></a>
+* :warning: <a href="library/include/utility/tuple-print.hpp.html">tupleの出力 <small>(include/utility/tuple-print.hpp)</small></a>
 
 
 ## Verify Files
