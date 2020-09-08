@@ -1,0 +1,33 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@import
+  "minima/skins/{{ site.minima.skin | default: 'classic' }}",
+  "minima/initialize";
+
+@media screen and (min-width: 800px) {
+  .wrapper {
+    max-width: 880px;
+  }
+}
+
+body {
+  background-color: #fcf6e6;
+  color: #6c7777;
+}
+
+pre, code {
+  // font-family: source-code-pro;
+  background-color: #fdf9ec !important;
+  border: 1px solid #777;
+}
+
+.site-header {
+  border-bottom: 1px solid #777;
+}
+
+h3 {
+  margin-top: 1.8em;
+  border-bottom: 1px solid #999;
+}
