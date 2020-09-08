@@ -5,6 +5,7 @@
 -Wconversion
 -Wno-char-subscripts
 -g
+-ggdb
 -fsanitize=address,undefined
 -ftrapv
 -D LOCAL_DEBUG
