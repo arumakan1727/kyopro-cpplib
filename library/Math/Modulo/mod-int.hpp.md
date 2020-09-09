@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :question: Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small>
+# :heavy_check_mark: Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
@@ -38,12 +38,12 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
+* :heavy_check_mark: <a href="../../Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
 
 
 ## Verified with
 
-* :x: <a href="../../../verify/test/AOJ/0264-Finite-Field-Calculator.test.cpp.html">test/AOJ/0264-Finite-Field-Calculator.test.cpp</a>
+* :heavy_check_mark: <a href="../../../verify/test/AOJ/0264-Finite-Field-Calculator.test.cpp.html">test/AOJ/0264-Finite-Field-Calculator.test.cpp</a>
 * :heavy_check_mark: <a href="../../../verify/test/AOJ/DPL_5_A.test.cpp.html">test/AOJ/DPL_5_A.test.cpp</a>
 
 

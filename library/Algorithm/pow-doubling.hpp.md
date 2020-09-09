@@ -38,7 +38,7 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
+* :heavy_check_mark: <a href="../Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
 
 
 ## Verified with

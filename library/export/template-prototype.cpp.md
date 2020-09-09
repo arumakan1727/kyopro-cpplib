@@ -47,7 +47,7 @@ layout: default
 * :warning: <a href="../Util/bye.hpp.html">bye() (出力してexit(0)) <small>(Util/bye.hpp)</small></a>
 * :warning: <a href="../Util/chminmax.hpp.html">chmin(), chmax() <small>(Util/chminmax.hpp)</small></a>
 * :warning: <a href="../Util/div-ceil.hpp.html">divceil() (切り上げ除算) <small>(Util/div-ceil.hpp)</small></a>
-* :question: <a href="../Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
+* :heavy_check_mark: <a href="../Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
 * :warning: <a href="../Util/int-infinity.hpp.html">int-infinity (整数のデカイ値) <small>(Util/int-infinity.hpp)</small></a>
 * :warning: <a href="../Util/rep-macro.hpp.html">rep()マクロ <small>(Util/rep-macro.hpp)</small></a>
 

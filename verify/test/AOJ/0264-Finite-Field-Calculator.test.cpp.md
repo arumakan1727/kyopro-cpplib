@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :x: test/AOJ/0264-Finite-Field-Calculator.test.cpp
+# :heavy_check_mark: test/AOJ/0264-Finite-Field-Calculator.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#dada0dcc232b029913f2cd4354c73c4b">test/AOJ</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/AOJ/0264-Finite-Field-Calculator.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 23:42:30+09:00
+    - Last commit date: 2020-09-09 23:55:20+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0264&lang=ja#">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0264&lang=ja#</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :question: <a href="../../../library/Math/Modulo/mod-int.hpp.html">Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small></a>
-* :question: <a href="../../../library/Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
+* :heavy_check_mark: <a href="../../../library/Math/Modulo/mod-int.hpp.html">Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small></a>
+* :heavy_check_mark: <a href="../../../library/Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
 
 
 ## Code
@@ -56,6 +56,7 @@ layout: default
 #include <vector>
 #include <sstream>
 #include <stdexcept>
+
 #include "../../Math/Modulo/mod-int.hpp"
 
 using namespace std;
@@ -160,6 +161,7 @@ int main() {
 #include <vector>
 #include <sstream>
 #include <stdexcept>
+
 #line 3 "Math/Modulo/mod-int.hpp"
 #include <iostream>
 #include <limits>
@@ -285,7 +287,7 @@ using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
 
 template <auto ID>
 using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
-#line 10 "test/AOJ/0264-Finite-Field-Calculator.test.cpp"
+#line 11 "test/AOJ/0264-Finite-Field-Calculator.test.cpp"
 
 using namespace std;
 using Mint = DynamicModInt<0>;
