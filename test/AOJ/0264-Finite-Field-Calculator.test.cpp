@@ -1,3 +1,4 @@
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0264&lang=ja#"
 #include <cassert>
 #include <cctype>
 #include <cstdio>
