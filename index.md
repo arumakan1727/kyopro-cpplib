@@ -52,9 +52,7 @@ layout: default
 
 ### Math/Modulo
 
-* :heavy_check_mark: <a href="library/Math/Modulo/compile-time-mod-holder.hpp.html">Compile-Time-Mod-Holder (コンパイル時modを保持する型) <small>(Math/Modulo/compile-time-mod-holder.hpp)</small></a>
-* :heavy_check_mark: <a href="library/Math/Modulo/mod-int.hpp.html">ModInt (コンパイル時modと実行時mod両対応) <small>(Math/Modulo/mod-int.hpp)</small></a>
-* :warning: <a href="library/Math/Modulo/runtime-mod-holder.hpp.html">Runtime-Mod-Holder (実行時modを保持する型) <small>(Math/Modulo/runtime-mod-holder.hpp)</small></a>
+* :heavy_check_mark: <a href="library/Math/Modulo/mod-int.hpp.html">Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small></a>
 
 
 <div id="23e8a4b4f7cc1898ef12b4e6e48852bb"></div>

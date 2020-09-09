@@ -39,8 +39,7 @@ layout: default
 ## Required by
 
 * :heavy_check_mark: <a href="../Algorithm/pow-doubling.hpp.html">pow() (繰り返し二乗法) <small>(Algorithm/pow-doubling.hpp)</small></a>
-* :heavy_check_mark: <a href="../Math/Modulo/compile-time-mod-holder.hpp.html">Compile-Time-Mod-Holder (コンパイル時modを保持する型) <small>(Math/Modulo/compile-time-mod-holder.hpp)</small></a>
-* :heavy_check_mark: <a href="../Math/Modulo/mod-int.hpp.html">ModInt (コンパイル時modと実行時mod両対応) <small>(Math/Modulo/mod-int.hpp)</small></a>
+* :heavy_check_mark: <a href="../Math/Modulo/mod-int.hpp.html">Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small></a>
 * :warning: <a href="../export/template-prototype.cpp.html">export/template-prototype.cpp</a>
 
 
