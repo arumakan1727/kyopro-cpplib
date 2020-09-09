@@ -1,3 +1,14 @@
 [[languages.cpp.environments]]
 CXX = 'g++'
-CXXFLAGS = ['-std=c++17', '-O2', '-Wall', '-Wextra', '-Wno-char-subscripts', '-Wshadow', '-Werror', '-fsanitize=undefined,address', '-ftrapv']
+CXXFLAGS = [
+  '-std=c++17',
+  '-O2',
+  '-Wall',
+  '-Wextra',
+  '-Wshadow',
+  '-Werror',
+  '-Wno-char-subscripts',
+  '-Wno-unused-result',
+  '-fsanitize=undefined,address',
+  '-ftrapv',
+]
