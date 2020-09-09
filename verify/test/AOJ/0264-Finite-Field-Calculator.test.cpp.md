@@ -31,9 +31,10 @@ layout: default
 
 * category: <a href="../../../index.html#dada0dcc232b029913f2cd4354c73c4b">test/AOJ</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/AOJ/0264-Finite-Field-Calculator.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 23:38:47+09:00
+    - Last commit date: 2020-09-09 23:42:30+09:00
 
 
+* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0264&lang=ja#">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0264&lang=ja#</a>
 
 
 ## Depends on
@@ -47,6 +48,7 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0264&lang=ja#"
 #include <cassert>
 #include <cctype>
 #include <cstdio>
@@ -150,6 +152,7 @@ int main() {
 {% raw %}
 ```cpp
 #line 1 "test/AOJ/0264-Finite-Field-Calculator.test.cpp"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=0264&lang=ja#"
 #include <cassert>
 #include <cctype>
 #include <cstdio>
@@ -282,7 +285,7 @@ using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
 
 template <auto ID>
 using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
-#line 9 "test/AOJ/0264-Finite-Field-Calculator.test.cpp"
+#line 10 "test/AOJ/0264-Finite-Field-Calculator.test.cpp"
 
 using namespace std;
 using Mint = DynamicModInt<0>;
