@@ -1,8 +1,8 @@
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
 #include <bits/stdc++.h>
 
-#include "../Data-Structure/Disjoint-Set/union-find.hpp"
-#include "../Util/IO/io-setup.hpp"
+#include "../../Data-Structure/Disjoint-Set/union-find.hpp"
+#include "../../Util/IO/io-setup.hpp"
 using namespace std;
 
 int main() {

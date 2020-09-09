@@ -3,9 +3,9 @@
 #include <iostream>
 #include <type_traits>
 
-#include "../Math/Modulo/mod-int.hpp"
-#include "../Algorithm/pow-doubling.hpp"
-#include "../Util/IO/println.hpp"
+#include "../../Math/Modulo/mod-int.hpp"
+#include "../../Algorithm/pow-doubling.hpp"
+#include "../../Util/IO/println.hpp"
 
 int main() {
     using Mint = StaticModInt<int(1e9) + 7>;
