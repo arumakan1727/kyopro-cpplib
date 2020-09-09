@@ -1,14 +1,14 @@
 #pragma once
 #include <cassert>
 #include <iostream>
+#include <limits>
 #include "../../Util/int-alias.hpp"
 
 /**
- * @brief ModInt (コンパイル時modと実行時mod両対応)
- *
- * テンプレートパラメータの ModHolder は static フィールド `mod` を有する必要がある。
- * この `ModHolder::mod` が modulo 演算の法として用いられる。
+ * @brief Mod-Int (コンパイル時mod型と実行時mod型)
  */
+namespace impl {
+
 template <class ModHolder>
 class ModInt {
 private:
@@ -20,7 +20,19 @@ public:
     constexpr ModInt(i64 v)
         : value(ModInt::normalized(v)) {}
 
+    static constexpr ModInt raw(i64 v) {
+        ModInt ret;
+        ret.value = v;
+        return ret;
+    }
+
+    static constexpr ModInt nullopt = ModInt::raw(std::numeric_limits<i64>::min());
+
+    constexpr bool isNull() const { return *this == ModInt::nullopt; }
+
     static constexpr i64 mod() { return ModHolder::mod; }
+
+    static i64 setMod(i64 m) { return ModHolder::mod = m; }
 
     template <class T>
     constexpr explicit operator T() const {
@@ -42,17 +54,22 @@ public:
 
     constexpr const ModInt inv() const { return ModInt(ModInt::inverse(value, mod())); }
 
+    constexpr const ModInt operator+() const { return *this; }
     constexpr const ModInt operator-() const { return ModInt(-value); }
 
-    constexpr bool operator==(const ModInt& rhs) const { return value == rhs.value; }
-    constexpr bool operator!=(const ModInt& rhs) const { return !(*this == rhs); }
-
+    friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) { return lhs.value == rhs.value; }
+    friend constexpr bool operator!=(const ModInt& lhs, const ModInt& rhs) { return lhs.value != rhs.value; }
     friend constexpr const ModInt operator+(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) += rhs; }
     friend constexpr const ModInt operator-(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) -= rhs; }
     friend constexpr const ModInt operator*(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) *= rhs; }
     friend constexpr const ModInt operator/(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) /= rhs; }
 
-    friend std::ostream& operator<<(std::ostream& os, const ModInt& x) { return os << x.value; }
+    friend std::ostream& operator<<(std::ostream& os, const ModInt& x) {
+#ifdef LOCAL_DEBUG
+        if (x.isNull()) return os << "{nullopt}";
+#endif
+        return os << x.value;
+    }
 
     friend std::istream& operator>>(std::istream& is, ModInt& x) {
         is >> x.value;
@@ -78,3 +95,23 @@ private:
         return u;
     }
 };
+
+template <i64 Mod>
+struct StaticModHolder {
+    static constexpr i64 mod = Mod;
+};
+
+template <auto ID>
+struct DynamicModHolder {
+    static i64 mod;
+};
+template <auto ID>
+i64 DynamicModHolder<ID>::mod;
+
+}  // namespace impl
+
+template <i64 Mod>
+using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
+
+template <auto ID>
+using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;

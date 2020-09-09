@@ -4,12 +4,11 @@
 #include <type_traits>
 
 #include "../Math/Modulo/mod-int.hpp"
-#include "../Math/Modulo/compile-time-mod-holder.hpp"
 #include "../Algorithm/pow-doubling.hpp"
 #include "../Util/IO/println.hpp"
 
 int main() {
-    using Mint = ModInt<CompileTimeModHolder<int(1e9) + 7>>;
+    using Mint = StaticModInt<int(1e9) + 7>;
 
     int n;
     std::cin >> n;
