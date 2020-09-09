@@ -52,7 +52,7 @@ layout: default
 
 ### Math/Modulo
 
-* :heavy_check_mark: <a href="library/Math/Modulo/mod-int.hpp.html">Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small></a>
+* :question: <a href="library/Math/Modulo/mod-int.hpp.html">Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small></a>
 
 
 <div id="23e8a4b4f7cc1898ef12b4e6e48852bb"></div>
@@ -63,7 +63,7 @@ layout: default
 * :warning: <a href="library/Util/bye.hpp.html">bye() (出力してexit(0)) <small>(Util/bye.hpp)</small></a>
 * :warning: <a href="library/Util/chminmax.hpp.html">chmin(), chmax() <small>(Util/chminmax.hpp)</small></a>
 * :warning: <a href="library/Util/div-ceil.hpp.html">divceil() (切り上げ除算) <small>(Util/div-ceil.hpp)</small></a>
-* :heavy_check_mark: <a href="library/Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
+* :question: <a href="library/Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
 * :warning: <a href="library/Util/int-infinity.hpp.html">int-infinity (整数のデカイ値) <small>(Util/int-infinity.hpp)</small></a>
 * :warning: <a href="library/Util/is-within-range.hpp.html">within() (半開区間内に含まれているかの判定) <small>(Util/is-within-range.hpp)</small></a>
 * :warning: <a href="library/Util/makeVec.hpp.html">makeVec() (多次元std::vectorの生成) <small>(Util/makeVec.hpp)</small></a>
@@ -92,7 +92,8 @@ layout: default
 
 ## Verify Files
 
-* :heavy_check_mark: <a href="verify/test/DPL_5_A.test.cpp.html">test/DPL_5_A.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/DSL_1_A.test.cpp.html">test/DSL_1_A.test.cpp</a>
+* :x: <a href="verify/test/AOJ/0264-Finite-Field-Calculator.test.cpp.html">test/AOJ/0264-Finite-Field-Calculator.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/AOJ/DPL_5_A.test.cpp.html">test/AOJ/DPL_5_A.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/AOJ/DSL_1_A.test.cpp.html">test/AOJ/DSL_1_A.test.cpp</a>
 
 

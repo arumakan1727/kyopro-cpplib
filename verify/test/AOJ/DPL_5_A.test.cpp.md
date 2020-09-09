@@ -21,17 +21,17 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/DPL_5_A.test.cpp
+# :heavy_check_mark: test/AOJ/DPL_5_A.test.cpp
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/DPL_5_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 18:09:09+09:00
+* category: <a href="../../../index.html#dada0dcc232b029913f2cd4354c73c4b">test/AOJ</a>
+* <a href="{{ site.github.repository_url }}/blob/master/test/AOJ/DPL_5_A.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-09 23:38:47+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_5_A&lang=ja">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_5_A&lang=ja</a>
@@ -39,10 +39,10 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/Algorithm/pow-doubling.hpp.html">pow() (繰り返し二乗法) <small>(Algorithm/pow-doubling.hpp)</small></a>
-* :heavy_check_mark: <a href="../../library/Math/Modulo/mod-int.hpp.html">Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small></a>
-* :heavy_check_mark: <a href="../../library/Util/IO/println.hpp.html">println() (可変個の値を空白区切りで出力して改行する) <small>(Util/IO/println.hpp)</small></a>
-* :heavy_check_mark: <a href="../../library/Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
+* :heavy_check_mark: <a href="../../../library/Algorithm/pow-doubling.hpp.html">pow() (繰り返し二乗法) <small>(Algorithm/pow-doubling.hpp)</small></a>
+* :question: <a href="../../../library/Math/Modulo/mod-int.hpp.html">Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small></a>
+* :heavy_check_mark: <a href="../../../library/Util/IO/println.hpp.html">println() (可変個の値を空白区切りで出力して改行する) <small>(Util/IO/println.hpp)</small></a>
+* :question: <a href="../../../library/Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
 
 
 ## Code
@@ -55,9 +55,9 @@ layout: default
 #include <iostream>
 #include <type_traits>
 
-#include "../Math/Modulo/mod-int.hpp"
-#include "../Algorithm/pow-doubling.hpp"
-#include "../Util/IO/println.hpp"
+#include "../../Math/Modulo/mod-int.hpp"
+#include "../../Algorithm/pow-doubling.hpp"
+#include "../../Util/IO/println.hpp"
 
 int main() {
     using Mint = StaticModInt<int(1e9) + 7>;
@@ -82,7 +82,7 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/DPL_5_A.test.cpp"
+#line 1 "test/AOJ/DPL_5_A.test.cpp"
 #define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_5_A&lang=ja"
 
 #include <iostream>
@@ -244,7 +244,7 @@ inline void println(Head&& head, Tail&&... tail) {
     std::cout << head << " " + (!sizeof...(tail));
     println(std::forward<Tail>(tail)...);
 }
-#line 9 "test/DPL_5_A.test.cpp"
+#line 9 "test/AOJ/DPL_5_A.test.cpp"
 
 int main() {
     using Mint = StaticModInt<int(1e9) + 7>;
@@ -266,5 +266,5 @@ int main() {
 ```
 {% endraw %}
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 

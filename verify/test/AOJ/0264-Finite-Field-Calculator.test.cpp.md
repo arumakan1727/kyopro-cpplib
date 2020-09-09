@@ -25,26 +25,21 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :question: Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small>
+# :x: test/AOJ/0264-Finite-Field-Calculator.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#ee048ce79e556b7fa2b3b7d2fb796245">Math/Modulo</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Math/Modulo/mod-int.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 18:09:09+09:00
+* category: <a href="../../../index.html#dada0dcc232b029913f2cd4354c73c4b">test/AOJ</a>
+* <a href="{{ site.github.repository_url }}/blob/master/test/AOJ/0264-Finite-Field-Calculator.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-09 23:38:47+09:00
 
 
 
 
 ## Depends on
 
-* :question: <a href="../../Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
-
-
-## Verified with
-
-* :x: <a href="../../../verify/test/AOJ/0264-Finite-Field-Calculator.test.cpp.html">test/AOJ/0264-Finite-Field-Calculator.test.cpp</a>
-* :heavy_check_mark: <a href="../../../verify/test/AOJ/DPL_5_A.test.cpp.html">test/AOJ/DPL_5_A.test.cpp</a>
+* :question: <a href="../../../library/Math/Modulo/mod-int.hpp.html">Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small></a>
+* :question: <a href="../../../library/Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
 
 
 ## Code
@@ -52,131 +47,117 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#pragma once
 #include <cassert>
-#include <iostream>
-#include <limits>
-#include "../../Util/int-alias.hpp"
+#include <cctype>
+#include <cstdio>
+#include <string>
+#include <vector>
+#include <sstream>
+#include <stdexcept>
+#include "../../Math/Modulo/mod-int.hpp"
 
-/**
- * @brief Mod-Int (コンパイル時mod型と実行時mod型)
- */
-namespace impl {
+using namespace std;
+using Mint = DynamicModInt<0>;
+using Itr = string::const_iterator;
 
-template <class ModHolder>
-class ModInt {
-private:
-    i64 value;
+Mint expr(Itr&);
+Mint term(Itr&);
+Mint factor(Itr&);
+Mint number(Itr&);
 
-public:
-    constexpr ModInt()
-        : value(0) {}
-    constexpr ModInt(i64 v)
-        : value(ModInt::normalized(v)) {}
-
-    static constexpr ModInt raw(i64 v) {
-        ModInt ret;
-        ret.value = v;
-        return ret;
-    }
-
-    static constexpr ModInt nullopt = ModInt::raw(std::numeric_limits<i64>::min());
-
-    constexpr bool isNull() const { return *this == ModInt::nullopt; }
-
-    static constexpr i64 mod() { return ModHolder::mod; }
-
-    static i64 setMod(i64 m) { return ModHolder::mod = m; }
-
-    template <class T>
-    constexpr explicit operator T() const {
-        return static_cast<T>(value);
-    }
-    constexpr ModInt& operator+=(const ModInt& rhs) {
-        if ((value += rhs.value) >= mod()) value -= mod();
-        return *this;
-    }
-    constexpr ModInt& operator-=(const ModInt& rhs) {
-        if ((value -= rhs.value) < 0) value += mod();
-        return *this;
-    }
-    constexpr ModInt& operator*=(const ModInt& rhs) {
-        (value *= rhs.value) %= mod();
-        return *this;
-    }
-    constexpr ModInt& operator/=(const ModInt& rhs) { return *this *= rhs.inv(); }
-
-    constexpr const ModInt inv() const { return ModInt(ModInt::inverse(value, mod())); }
-
-    constexpr const ModInt operator+() const { return *this; }
-    constexpr const ModInt operator-() const { return ModInt(-value); }
-
-    friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) { return lhs.value == rhs.value; }
-    friend constexpr bool operator!=(const ModInt& lhs, const ModInt& rhs) { return lhs.value != rhs.value; }
-    friend constexpr const ModInt operator+(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) += rhs; }
-    friend constexpr const ModInt operator-(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) -= rhs; }
-    friend constexpr const ModInt operator*(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) *= rhs; }
-    friend constexpr const ModInt operator/(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) /= rhs; }
-
-    friend std::ostream& operator<<(std::ostream& os, const ModInt& x) {
-#ifdef LOCAL_DEBUG
-        if (x.isNull()) return os << "{nullopt}";
-#endif
-        return os << x.value;
-    }
-
-    friend std::istream& operator>>(std::istream& is, ModInt& x) {
-        is >> x.value;
-        x.value = ModInt::normalized(x.value);
-        return is;
-    }
-
-private:
-    static constexpr i64 normalized(i64 n) {
-        n = (-mod() <= n && n < mod() ? n : n % mod());
-        if (n < 0) n += mod();
-        return n;
-    }
-
-    static constexpr i64 inverse(i64 a, i64 m) {
-        i64 u = 0, v = 1;
-        while (a != 0) {
-            const auto t = m / a;
-            m -= t * a, std::swap(m, a);
-            u -= t * v, std::swap(u, v);
+Mint expr(Itr& p) {
+    Mint res = term(p);
+    while (*p == '+' || *p == '-') {
+        if (*p == '+') {
+            res += term(++p);
+        } else {
+            res -= term(++p);
         }
-        assert(m == 1);
-        return u;
     }
-};
+    return res;
+}
 
-template <i64 Mod>
-struct StaticModHolder {
-    static constexpr i64 mod = Mod;
-};
+Mint term(Itr& p) {
+    Mint res = factor(p);
+    while (*p == '*' || *p == '/') {
+        if (*p == '*') {
+            res *= factor(++p);
+        } else {
+            const auto v = factor(++p);
+            if (v == 0) throw std::runtime_error("Divide by zero");
+            res /= v;
+        }
+    }
+    return res;
+}
 
-template <auto ID>
-struct DynamicModHolder {
-    static i64 mod;
-};
-template <auto ID>
-i64 DynamicModHolder<ID>::mod;
+Mint factor(Itr& p) {
+    if (*p == '(') {
+        const auto res = expr(++p);
+        assert(*p == ')');
+        ++p;
+        return res;
+    }
+    assert(isdigit(*p));
+    return number(p);
+}
 
-}  // namespace impl
+Mint number(Itr& p) {
+    int res = 0;
+    while (isdigit(*p)) {
+        res = res * 10 + (*p - '0');
+        ++p;
+    }
+    return Mint::raw(res);
+}
 
-template <i64 Mod>
-using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
+string removeSpace(const char* s) {
+    string res;
+    res.reserve(100010);
 
-template <auto ID>
-using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
+    istringstream iss(s);
+    string part;
+    while (iss >> part) res += move(part);
+
+    return res;
+}
+
+int main() {
+    static char line[100100];
+
+    int p;
+    while (scanf(" %d :", &p), p) {
+        Mint::setMod(p);
+
+        fgets(line, sizeof(line), stdin);
+        const string s = removeSpace(line);
+
+        try {
+            Itr itr = s.cbegin();
+            auto ans = expr(itr);
+            printf("%s = %d (mod %ld)\n", s.c_str(), int(ans), Mint::mod());
+        } catch (const std::runtime_error& e) {
+            puts("NG");
+        }
+    }
+
+    return 0;
+}
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 2 "Math/Modulo/mod-int.hpp"
+#line 1 "test/AOJ/0264-Finite-Field-Calculator.test.cpp"
 #include <cassert>
+#include <cctype>
+#include <cstdio>
+#include <string>
+#include <vector>
+#include <sstream>
+#include <stdexcept>
+#line 3 "Math/Modulo/mod-int.hpp"
 #include <iostream>
 #include <limits>
 #line 2 "Util/int-alias.hpp"
@@ -301,6 +282,95 @@ using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
 
 template <auto ID>
 using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
+#line 9 "test/AOJ/0264-Finite-Field-Calculator.test.cpp"
+
+using namespace std;
+using Mint = DynamicModInt<0>;
+using Itr = string::const_iterator;
+
+Mint expr(Itr&);
+Mint term(Itr&);
+Mint factor(Itr&);
+Mint number(Itr&);
+
+Mint expr(Itr& p) {
+    Mint res = term(p);
+    while (*p == '+' || *p == '-') {
+        if (*p == '+') {
+            res += term(++p);
+        } else {
+            res -= term(++p);
+        }
+    }
+    return res;
+}
+
+Mint term(Itr& p) {
+    Mint res = factor(p);
+    while (*p == '*' || *p == '/') {
+        if (*p == '*') {
+            res *= factor(++p);
+        } else {
+            const auto v = factor(++p);
+            if (v == 0) throw std::runtime_error("Divide by zero");
+            res /= v;
+        }
+    }
+    return res;
+}
+
+Mint factor(Itr& p) {
+    if (*p == '(') {
+        const auto res = expr(++p);
+        assert(*p == ')');
+        ++p;
+        return res;
+    }
+    assert(isdigit(*p));
+    return number(p);
+}
+
+Mint number(Itr& p) {
+    int res = 0;
+    while (isdigit(*p)) {
+        res = res * 10 + (*p - '0');
+        ++p;
+    }
+    return Mint::raw(res);
+}
+
+string removeSpace(const char* s) {
+    string res;
+    res.reserve(100010);
+
+    istringstream iss(s);
+    string part;
+    while (iss >> part) res += move(part);
+
+    return res;
+}
+
+int main() {
+    static char line[100100];
+
+    int p;
+    while (scanf(" %d :", &p), p) {
+        Mint::setMod(p);
+
+        fgets(line, sizeof(line), stdin);
+        const string s = removeSpace(line);
+
+        try {
+            Itr itr = s.cbegin();
+            auto ans = expr(itr);
+            printf("%s = %d (mod %ld)\n", s.c_str(), int(ans), Mint::mod());
+        } catch (const std::runtime_error& e) {
+            puts("NG");
+        }
+    }
+
+    return 0;
+}
 
 ```
 {% endraw %}

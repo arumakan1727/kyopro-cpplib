@@ -21,17 +21,17 @@ layout: default
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="../../assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="../../assets/css/copy-button.css" />
+<script type="text/javascript" src="../../../assets/js/copy-button.js"></script>
+<link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: test/DSL_1_A.test.cpp
+# :heavy_check_mark: test/AOJ/DSL_1_A.test.cpp
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../index.html#098f6bcd4621d373cade4e832627b4f6">test</a>
-* <a href="{{ site.github.repository_url }}/blob/master/test/DSL_1_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 04:00:43+09:00
+* category: <a href="../../../index.html#dada0dcc232b029913f2cd4354c73c4b">test/AOJ</a>
+* <a href="{{ site.github.repository_url }}/blob/master/test/AOJ/DSL_1_A.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-09 23:38:47+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A</a>
@@ -39,8 +39,8 @@ layout: default
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../library/Data-Structure/Disjoint-Set/union-find.hpp.html">Union-Find (素集合データ構造) <small>(Data-Structure/Disjoint-Set/union-find.hpp)</small></a>
-* :heavy_check_mark: <a href="../../library/Util/IO/io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(Util/IO/io-setup.hpp)</small></a>
+* :heavy_check_mark: <a href="../../../library/Data-Structure/Disjoint-Set/union-find.hpp.html">Union-Find (素集合データ構造) <small>(Data-Structure/Disjoint-Set/union-find.hpp)</small></a>
+* :heavy_check_mark: <a href="../../../library/Util/IO/io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(Util/IO/io-setup.hpp)</small></a>
 
 
 ## Code
@@ -51,8 +51,8 @@ layout: default
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
 #include <bits/stdc++.h>
 
-#include "../Data-Structure/Disjoint-Set/union-find.hpp"
-#include "../Util/IO/io-setup.hpp"
+#include "../../Data-Structure/Disjoint-Set/union-find.hpp"
+#include "../../Util/IO/io-setup.hpp"
 using namespace std;
 
 int main() {
@@ -83,7 +83,7 @@ int main() {
 <a id="bundled"></a>
 {% raw %}
 ```cpp
-#line 1 "test/DSL_1_A.test.cpp"
+#line 1 "test/AOJ/DSL_1_A.test.cpp"
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
 #include <bits/stdc++.h>
 
@@ -132,7 +132,7 @@ void ioSetup() {
     std::cerr << std::fixed << std::setprecision(11);
     std::clog << std::fixed << std::setprecision(11);
 }
-#line 6 "test/DSL_1_A.test.cpp"
+#line 6 "test/AOJ/DSL_1_A.test.cpp"
 using namespace std;
 
 int main() {
@@ -160,5 +160,5 @@ int main() {
 ```
 {% endraw %}
 
-<a href="../../index.html">Back to top page</a>
+<a href="../../../index.html">Back to top page</a>
 
