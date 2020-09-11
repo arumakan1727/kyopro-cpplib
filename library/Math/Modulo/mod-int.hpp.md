@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#ee048ce79e556b7fa2b3b7d2fb796245">Math/Modulo</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Math/Modulo/mod-int.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 18:09:09+09:00
+    - Last commit date: 2020-09-11 10:57:57+09:00
 
 
 
@@ -86,7 +86,10 @@ public:
 
     static constexpr i64 mod() { return ModHolder::mod; }
 
-    static i64 setMod(i64 m) { return ModHolder::mod = m; }
+    static i64 setMod(i64 m) {
+        assert(m >= 1);
+        return ModHolder::mod = m;
+    }
 
     template <class T>
     constexpr explicit operator T() const {
@@ -185,6 +188,8 @@ using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
 /**
  * @brief int-alias (整数型のエイリアス)
  */
+using i32 = std::int32_t;
+using u32 = std::uint32_t;
 using i64 = std::int64_t;
 using u64 = std::uint64_t;
 using usize = std::size_t;
@@ -218,7 +223,10 @@ public:
 
     static constexpr i64 mod() { return ModHolder::mod; }
 
-    static i64 setMod(i64 m) { return ModHolder::mod = m; }
+    static i64 setMod(i64 m) {
+        assert(m >= 1);
+        return ModHolder::mod = m;
+    }
 
     template <class T>
     constexpr explicit operator T() const {

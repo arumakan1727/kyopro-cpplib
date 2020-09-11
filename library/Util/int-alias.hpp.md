@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#23e8a4b4f7cc1898ef12b4e6e48852bb">Util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Util/int-alias.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 04:00:43+09:00
+    - Last commit date: 2020-09-11 10:56:20+09:00
 
 
 
@@ -60,6 +60,8 @@ layout: default
 /**
  * @brief int-alias (整数型のエイリアス)
  */
+using i32 = std::int32_t;
+using u32 = std::uint32_t;
 using i64 = std::int64_t;
 using u64 = std::uint64_t;
 using usize = std::size_t;
@@ -76,6 +78,8 @@ using usize = std::size_t;
 /**
  * @brief int-alias (整数型のエイリアス)
  */
+using i32 = std::int32_t;
+using u32 = std::uint32_t;
 using i64 = std::int64_t;
 using u64 = std::uint64_t;
 using usize = std::size_t;

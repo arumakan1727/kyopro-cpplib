@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#dada0dcc232b029913f2cd4354c73c4b">test/AOJ</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/AOJ/DPL_5_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 23:38:47+09:00
+    - Last commit date: 2020-09-11 10:57:57+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_5_A&lang=ja">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_5_A&lang=ja</a>
@@ -98,6 +98,8 @@ int main() {
 /**
  * @brief int-alias (整数型のエイリアス)
  */
+using i32 = std::int32_t;
+using u32 = std::uint32_t;
 using i64 = std::int64_t;
 using u64 = std::uint64_t;
 using usize = std::size_t;
@@ -131,7 +133,10 @@ public:
 
     static constexpr i64 mod() { return ModHolder::mod; }
 
-    static i64 setMod(i64 m) { return ModHolder::mod = m; }
+    static i64 setMod(i64 m) {
+        assert(m >= 1);
+        return ModHolder::mod = m;
+    }
 
     template <class T>
     constexpr explicit operator T() const {

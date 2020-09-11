@@ -31,13 +31,14 @@ layout: default
 
 * category: <a href="../../index.html#23e8a4b4f7cc1898ef12b4e6e48852bb">Util</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Util/int-infinity.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 04:00:43+09:00
+    - Last commit date: 2020-09-11 10:56:20+09:00
 
 
 
 
 ## Required by
 
+* :warning: <a href="Debug/debug.hpp.html">Debug <small>(Util/Debug/debug.hpp)</small></a>
 * :warning: <a href="../export/template-prototype.cpp.html">export/template-prototype.cpp</a>
 
 
@@ -48,6 +49,8 @@ layout: default
 ```cpp
 #pragma once
 #include <cstdint>
+#include <limits>
+#include <type_traits>
 
 /**
  * @brief int-infinity (整数のデカイ値)
@@ -55,6 +58,16 @@ layout: default
  */
 constexpr int32_t INF = 0x3f3f3f3f;
 constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
+
+template <class T, std::enable_if_t<std::is_integral_v<T> && sizeof(T) == 4, std::nullptr_t> = nullptr>
+constexpr T infinity() {
+    return INF;
+}
+
+template <class T, std::enable_if_t<std::is_integral_v<T> && sizeof(T) == 8, std::nullptr_t> = nullptr>
+constexpr T infinity() {
+    return LINF;
+}
 
 ```
 {% endraw %}
@@ -64,6 +77,8 @@ constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
 ```cpp
 #line 2 "Util/int-infinity.hpp"
 #include <cstdint>
+#include <limits>
+#include <type_traits>
 
 /**
  * @brief int-infinity (整数のデカイ値)
@@ -71,6 +86,16 @@ constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
  */
 constexpr int32_t INF = 0x3f3f3f3f;
 constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
+
+template <class T, std::enable_if_t<std::is_integral_v<T> && sizeof(T) == 4, std::nullptr_t> = nullptr>
+constexpr T infinity() {
+    return INF;
+}
+
+template <class T, std::enable_if_t<std::is_integral_v<T> && sizeof(T) == 8, std::nullptr_t> = nullptr>
+constexpr T infinity() {
+    return LINF;
+}
 
 ```
 {% endraw %}

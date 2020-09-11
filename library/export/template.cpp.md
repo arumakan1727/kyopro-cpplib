@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#b2507468f95156358fa490fd543ad2f0">export</a>
 * <a href="{{ site.github.repository_url }}/blob/master/export/template.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 04:00:43+09:00
+    - Last commit date: 2020-09-11 10:56:20+09:00
 
 
 
@@ -53,12 +53,24 @@ using namespace std;
 #define repr(i, begin, last) for (int64_t i{begin}, i##_last{last}; i >= i##_last; --i)
 
 #define let const auto
+using i32 = std::int32_t;
+using u32 = std::uint32_t;
 using i64 = std::int64_t;
 using u64 = std::uint64_t;
 using usize = std::size_t;
 
 constexpr int32_t INF = 0x3f3f3f3f;
 constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
+
+template <class T, std::enable_if_t<std::is_integral_v<T> && sizeof(T) == 4, std::nullptr_t> = nullptr>
+constexpr T infinity() {
+    return INF;
+}
+
+template <class T, std::enable_if_t<std::is_integral_v<T> && sizeof(T) == 8, std::nullptr_t> = nullptr>
+constexpr T infinity() {
+    return LINF;
+}
 
 void ioSetup() {
     std::cin.tie(nullptr);
@@ -86,17 +98,13 @@ inline void println(Head&& head, Tail&&... tail) {
     println(std::forward<Tail>(tail)...);
 }
 
-template <class Container,
-          class Value = typename Container::value_type,
-          std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
+template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container, std::string>, std::nullptr_t> = nullptr>
 std::istream& operator>>(std::istream& is, Container& v) {
     for (auto& e : v) is >> e;
     return is;
 }
 
-template <class Container,
-          class Value = typename Container::value_type,
-          std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
+template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container, std::string>, std::nullptr_t> = nullptr>
 std::ostream& operator<<(std::ostream& os, const Container& v) {
     for (auto it = std::begin(v); it != std::end(v); ++it) os << " " + (it == std::begin(v)) << *it;
     return os;
@@ -158,12 +166,24 @@ using namespace std;
 #define repr(i, begin, last) for (int64_t i{begin}, i##_last{last}; i >= i##_last; --i)
 
 #define let const auto
+using i32 = std::int32_t;
+using u32 = std::uint32_t;
 using i64 = std::int64_t;
 using u64 = std::uint64_t;
 using usize = std::size_t;
 
 constexpr int32_t INF = 0x3f3f3f3f;
 constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
+
+template <class T, std::enable_if_t<std::is_integral_v<T> && sizeof(T) == 4, std::nullptr_t> = nullptr>
+constexpr T infinity() {
+    return INF;
+}
+
+template <class T, std::enable_if_t<std::is_integral_v<T> && sizeof(T) == 8, std::nullptr_t> = nullptr>
+constexpr T infinity() {
+    return LINF;
+}
 
 void ioSetup() {
     std::cin.tie(nullptr);
@@ -191,17 +211,13 @@ inline void println(Head&& head, Tail&&... tail) {
     println(std::forward<Tail>(tail)...);
 }
 
-template <class Container,
-          class Value = typename Container::value_type,
-          std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
+template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container, std::string>, std::nullptr_t> = nullptr>
 std::istream& operator>>(std::istream& is, Container& v) {
     for (auto& e : v) is >> e;
     return is;
 }
 
-template <class Container,
-          class Value = typename Container::value_type,
-          std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
+template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container, std::string>, std::nullptr_t> = nullptr>
 std::ostream& operator<<(std::ostream& os, const Container& v) {
     for (auto it = std::begin(v); it != std::end(v); ++it) os << " " + (it == std::begin(v)) << *it;
     return os;

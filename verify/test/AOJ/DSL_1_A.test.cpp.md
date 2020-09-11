@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#dada0dcc232b029913f2cd4354c73c4b">test/AOJ</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/AOJ/DSL_1_A.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-09 23:38:47+09:00
+    - Last commit date: 2020-09-11 10:57:57+09:00
 
 
 * see: <a href="https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A">https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A</a>
@@ -87,7 +87,7 @@ int main() {
 #define PROBLEM "https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A"
 #include <bits/stdc++.h>
 
-#line 5 "Data-Structure/Disjoint-Set/union-find.hpp"
+#line 7 "Data-Structure/Disjoint-Set/union-find.hpp"
 
 /**
  * @brief Union-Find (素集合データ構造)
@@ -95,30 +95,54 @@ int main() {
  */
 class UnionFind {
 private:
+    int n;
     mutable std::vector<int> p;
 
 public:
     UnionFind() = default;
 
-    explicit UnionFind(size_t n)
-        : p(n, -1) {}
+    explicit UnionFind(int n_)
+        : n(n_)
+        , p(n_, -1) {}
 
-    void unite(int x, int y) {
-        x = root(x), y = root(y);
-        if (x == y) return;
+    int unite(int x, int y) {
+        assert(0 <= x && x < n);
+        assert(0 <= y && y < n);
+        x = leader(x), y = leader(y);
+        if (x == y) return x;
         if (p[y] < p[x]) std::swap(x, y);
         p[x] += p[y];
         p[y] = x;
+        return x;
     }
 
-    int root(int x) const {
+    int leader(int x) const {
+        assert(0 <= x && x < n);
         if (p[x] < 0) return x;
-        return p[x] = root(p[x]);
+        return p[x] = leader(p[x]);
     }
 
-    bool same(int x, int y) const { return root(x) == root(y); }
+    bool same(int x, int y) const {
+        assert(0 <= x && x < n);
+        assert(0 <= y && y < n);
+        return leader(x) == leader(y);
+    }
 
-    int size(int x) const { return -p[root(x)]; }
+    int size(int x) const {
+        assert(0 <= x && x < n);
+        return -p[leader(x)];
+    }
+
+    std::vector<std::vector<int>> groups() const {
+        std::vector<int> leaderBuf(n), groupSize(n);
+        for (int i = 0; i < n; i++) ++groupSize[leaderBuf[i] = leader(i)];
+
+        std::vector<std::vector<int>> result(n);
+        for (int i = 0; i < n; i++) result[i].reserve(groupSize[i]);
+        for (int i = 0; i < n; i++) result[leaderBuf[i]].push_back(i);
+        result.erase(std::remove_if(result.begin(), result.end(), [&](const std::vector<int>& v) { return v.empty(); }), result.end());
+        return result;
+    }
 };
 #line 4 "Util/IO/io-setup.hpp"
 

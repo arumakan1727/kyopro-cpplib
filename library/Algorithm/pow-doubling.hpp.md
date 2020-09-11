@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../index.html#4afa80e77a07f7488ce4d1bdd8c4977a">Algorithm</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Algorithm/pow-doubling.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-08 04:00:43+09:00
+    - Last commit date: 2020-09-11 10:56:20+09:00
 
 
 
@@ -82,6 +82,8 @@ Integer pow(const Integer& n, const i64 expv) {
 /**
  * @brief int-alias (整数型のエイリアス)
  */
+using i32 = std::int32_t;
+using u32 = std::uint32_t;
 using i64 = std::int64_t;
 using u64 = std::uint64_t;
 using usize = std::size_t;

@@ -70,6 +70,13 @@ layout: default
 * :warning: <a href="library/Util/rep-macro.hpp.html">rep()マクロ <small>(Util/rep-macro.hpp)</small></a>
 
 
+<div id="9b72678fcee7fc825926f536e5c04d88"></div>
+
+### Util/Debug
+
+* :warning: <a href="library/Util/Debug/debug.hpp.html">Debug <small>(Util/Debug/debug.hpp)</small></a>
+
+
 <div id="9a8d3eea1c7cba0485906562328c7d47"></div>
 
 ### Util/IO
@@ -78,7 +85,6 @@ layout: default
 * :heavy_check_mark: <a href="library/Util/IO/io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(Util/IO/io-setup.hpp)</small></a>
 * :warning: <a href="library/Util/IO/join-into-ostream.hpp.html">join() (要素を区切り文字で結合して出力) <small>(Util/IO/join-into-ostream.hpp)</small></a>
 * :heavy_check_mark: <a href="library/Util/IO/println.hpp.html">println() (可変個の値を空白区切りで出力して改行する) <small>(Util/IO/println.hpp)</small></a>
-* :warning: <a href="library/Util/IO/tuple-print.hpp.html">tupleの出力 <small>(Util/IO/tuple-print.hpp)</small></a>
 * :warning: <a href="library/Util/IO/var-declaration-with-input.hpp.html">複数変数宣言をして同時に入力もするやつ <small>(Util/IO/var-declaration-with-input.hpp)</small></a>
 
 
