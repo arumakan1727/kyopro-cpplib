@@ -32,7 +32,10 @@ public:
 
     static constexpr i64 mod() { return ModHolder::mod; }
 
-    static i64 setMod(i64 m) { return ModHolder::mod = m; }
+    static i64 setMod(i64 m) {
+        assert(m >= 1);
+        return ModHolder::mod = m;
+    }
 
     template <class T>
     constexpr explicit operator T() const {
