@@ -1,5 +1,9 @@
 {
 "test/AOJ/0264-Finite-Field-Calculator.test.cpp": "2020-09-11 10:57:57 +0900",
 "test/AOJ/DPL_5_A.test.cpp": "2020-09-11 10:57:57 +0900",
-"test/AOJ/DSL_1_A.test.cpp": "2020-09-11 10:57:57 +0900"
+"test/AOJ/DSL_1_A.test.cpp": "2020-09-11 10:57:57 +0900",
+"test/AOJ/NTL_1_A-Prime-Factorize.test.cpp": "2020-09-13 11:30:43 +0900",
+"test/AOJ/NTL_1_B-Power.test.cpp": "2020-09-13 11:30:43 +0900",
+"test/AOJ/NTL_1_D-Eulers-Phi-Function.test.cpp": "2020-09-13 11:30:43 +0900",
+"test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp": "2020-09-13 11:30:43 +0900"
 }
