@@ -1,8 +1,8 @@
 #pragma once
+#include <cstdint>
 #include <cassert>
 #include <iostream>
 #include <limits>
-#include "../../Util/int-alias.hpp"
 
 /**
  * @brief Mod-Int (コンパイル時mod型と実行時mod型)
@@ -12,27 +12,27 @@ namespace impl {
 template <class ModHolder>
 class ModInt {
 private:
-    i64 value;
+    int64_t value;
 
 public:
     constexpr ModInt()
         : value(0) {}
-    constexpr ModInt(i64 v)
+    constexpr ModInt(int64_t v)
         : value(ModInt::normalized(v)) {}
 
-    static constexpr ModInt raw(i64 v) {
+    static constexpr ModInt raw(int64_t v) {
         ModInt ret;
         ret.value = v;
         return ret;
     }
 
-    static constexpr ModInt nullopt = ModInt::raw(std::numeric_limits<i64>::min());
+    static constexpr ModInt nullopt = ModInt::raw(std::numeric_limits<int64_t>::min());
 
     constexpr bool isNull() const { return *this == ModInt::nullopt; }
 
-    static constexpr i64 mod() { return ModHolder::mod; }
+    static constexpr int64_t mod() { return ModHolder::mod; }
 
-    static i64 setMod(i64 m) {
+    static int64_t setMod(int64_t m) {
         assert(m >= 1);
         return ModHolder::mod = m;
     }
@@ -81,14 +81,14 @@ public:
     }
 
 private:
-    static constexpr i64 normalized(i64 n) {
+    static constexpr int64_t normalized(int64_t n) {
         n = (-mod() <= n && n < mod() ? n : n % mod());
         if (n < 0) n += mod();
         return n;
     }
 
-    static constexpr i64 inverse(i64 a, i64 m) {
-        i64 u = 0, v = 1;
+    static constexpr int64_t inverse(int64_t a, int64_t m) {
+        int64_t u = 0, v = 1;
         while (a != 0) {
             const auto t = m / a;
             m -= t * a, std::swap(m, a);
@@ -99,21 +99,21 @@ private:
     }
 };
 
-template <i64 Mod>
+template <int64_t Mod>
 struct StaticModHolder {
-    static constexpr i64 mod = Mod;
+    static constexpr int64_t mod = Mod;
 };
 
 template <auto ID>
 struct DynamicModHolder {
-    static i64 mod;
+    static int64_t mod;
 };
 template <auto ID>
-i64 DynamicModHolder<ID>::mod;
+int64_t DynamicModHolder<ID>::mod;
 
 }  // namespace impl
 
-template <i64 Mod>
+template <int64_t Mod>
 using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
 
 template <auto ID>

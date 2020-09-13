@@ -22,7 +22,6 @@ public:
         , p(n_, -1) {}
 
     int unite(int x, int y) {
-        assert(0 <= x && x < n), assert(0 <= y && y < n);
         x = leader(x), y = leader(y);
         if (x == y) return x;
         if (p[y] < p[x]) std::swap(x, y);
@@ -31,21 +30,11 @@ public:
         return x;
     }
 
-    int leader(int x) const {
-        assert(0 <= x && x < n);
-        if (p[x] < 0) return x;
-        return p[x] = leader(p[x]);
-    }
+    int leader(int x) const { return p[x] < 0 ? x : p[x] = leader(p[x]); }
 
-    bool same(int x, int y) const {
-        assert(0 <= x && x < n), assert(0 <= y && y < n);
-        return leader(x) == leader(y);
-    }
+    bool same(int x, int y) const { return leader(x) == leader(y); }
 
-    int size(int x) const {
-        assert(0 <= x && x < n);
-        return -p[leader(x)];
-    }
+    int size(int x) const { return -p[leader(x)]; }
 
     std::vector<std::vector<int>> groups() const {
         std::vector<int> leaderBuf(n), groupSize(n);
