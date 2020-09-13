@@ -43,6 +43,7 @@ layout: default
 
 ## Verified with
 
+* :heavy_check_mark: <a href="../../../verify/test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp.html">test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp</a>
 * :heavy_check_mark: <a href="../../../verify/test/AOJ/DSL_1_A.test.cpp.html">test/AOJ/DSL_1_A.test.cpp</a>
 
 

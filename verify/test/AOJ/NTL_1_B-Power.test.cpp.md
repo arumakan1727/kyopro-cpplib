@@ -31,7 +31,7 @@ layout: default
 
 * category: <a href="../../../index.html#dada0dcc232b029913f2cd4354c73c4b">test/AOJ</a>
 * <a href="{{ site.github.repository_url }}/blob/master/test/AOJ/NTL_1_B-Power.test.cpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 11:30:43+09:00
+    - Last commit date: 2020-09-13 19:39:29+09:00
 
 
 * see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B</a>
@@ -78,21 +78,10 @@ int main() {
 #include <iostream>
 
 #line 2 "Math/Modulo/mod-int.hpp"
-#include <cassert>
-#line 4 "Math/Modulo/mod-int.hpp"
-#include <limits>
-#line 2 "Util/int-alias.hpp"
 #include <cstdint>
-
-/**
- * @brief int-alias (整数型のエイリアス)
- */
-using i32 = std::int32_t;
-using u32 = std::uint32_t;
-using i64 = std::int64_t;
-using u64 = std::uint64_t;
-using usize = std::size_t;
-#line 6 "Math/Modulo/mod-int.hpp"
+#include <cassert>
+#line 5 "Math/Modulo/mod-int.hpp"
+#include <limits>
 
 /**
  * @brief Mod-Int (コンパイル時mod型と実行時mod型)
@@ -102,27 +91,27 @@ namespace impl {
 template <class ModHolder>
 class ModInt {
 private:
-    i64 value;
+    int64_t value;
 
 public:
     constexpr ModInt()
         : value(0) {}
-    constexpr ModInt(i64 v)
+    constexpr ModInt(int64_t v)
         : value(ModInt::normalized(v)) {}
 
-    static constexpr ModInt raw(i64 v) {
+    static constexpr ModInt raw(int64_t v) {
         ModInt ret;
         ret.value = v;
         return ret;
     }
 
-    static constexpr ModInt nullopt = ModInt::raw(std::numeric_limits<i64>::min());
+    static constexpr ModInt nullopt = ModInt::raw(std::numeric_limits<int64_t>::min());
 
     constexpr bool isNull() const { return *this == ModInt::nullopt; }
 
-    static constexpr i64 mod() { return ModHolder::mod; }
+    static constexpr int64_t mod() { return ModHolder::mod; }
 
-    static i64 setMod(i64 m) {
+    static int64_t setMod(int64_t m) {
         assert(m >= 1);
         return ModHolder::mod = m;
     }
@@ -171,14 +160,14 @@ public:
     }
 
 private:
-    static constexpr i64 normalized(i64 n) {
+    static constexpr int64_t normalized(int64_t n) {
         n = (-mod() <= n && n < mod() ? n : n % mod());
         if (n < 0) n += mod();
         return n;
     }
 
-    static constexpr i64 inverse(i64 a, i64 m) {
-        i64 u = 0, v = 1;
+    static constexpr int64_t inverse(int64_t a, int64_t m) {
+        int64_t u = 0, v = 1;
         while (a != 0) {
             const auto t = m / a;
             m -= t * a, std::swap(m, a);
@@ -189,27 +178,37 @@ private:
     }
 };
 
-template <i64 Mod>
+template <int64_t Mod>
 struct StaticModHolder {
-    static constexpr i64 mod = Mod;
+    static constexpr int64_t mod = Mod;
 };
 
 template <auto ID>
 struct DynamicModHolder {
-    static i64 mod;
+    static int64_t mod;
 };
 template <auto ID>
-i64 DynamicModHolder<ID>::mod;
+int64_t DynamicModHolder<ID>::mod;
 
 }  // namespace impl
 
-template <i64 Mod>
+template <int64_t Mod>
 using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
 
 template <auto ID>
 using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
 #line 2 "Algorithm/pow-doubling.hpp"
 #include <cmath>
+#line 3 "Util/int-alias.hpp"
+
+/**
+ * @brief int-alias (整数型のエイリアス)
+ */
+using i32 = std::int32_t;
+using u32 = std::uint32_t;
+using i64 = std::int64_t;
+using u64 = std::uint64_t;
+using usize = std::size_t;
 #line 4 "Algorithm/pow-doubling.hpp"
 
 /**

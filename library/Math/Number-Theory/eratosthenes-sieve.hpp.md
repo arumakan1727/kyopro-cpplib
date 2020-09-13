@@ -25,13 +25,13 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: Eratosthenes-Sieve (エラトスてネスの篩) <small>(Math/Number-Theory/eratosthenes-sieve.hpp)</small>
+# :warning: Eratosthenes-Sieve (エラトステネスの篩) <small>(Math/Number-Theory/eratosthenes-sieve.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
 * category: <a href="../../../index.html#4def0f0d6848bdd7ffa44d10031ae87a">Math/Number-Theory</a>
 * <a href="{{ site.github.repository_url }}/blob/master/Math/Number-Theory/eratosthenes-sieve.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-13 11:30:43+09:00
+    - Last commit date: 2020-09-13 12:07:30+09:00
 
 
 
@@ -47,7 +47,7 @@ layout: default
 #include <numeric>
 
 /**
- * @brief Eratosthenes-Sieve (エラトスてネスの篩)
+ * @brief Eratosthenes-Sieve (エラトステネスの篩)
  */
 class EratosthenesSieve {
 private:
@@ -81,6 +81,7 @@ public:
         return minFactor_[x];
     }
 };
+
 ```
 {% endraw %}
 
@@ -93,7 +94,7 @@ public:
 #include <numeric>
 
 /**
- * @brief Eratosthenes-Sieve (エラトスてネスの篩)
+ * @brief Eratosthenes-Sieve (エラトステネスの篩)
  */
 class EratosthenesSieve {
 private:

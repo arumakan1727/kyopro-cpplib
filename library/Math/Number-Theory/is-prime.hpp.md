@@ -25,7 +25,7 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :warning: isPrime() (素数判定 $O(\sqrt n)$) <small>(Math/Number-Theory/is-prime.hpp)</small>
+# :heavy_check_mark: isPrime() (素数判定 $O(\sqrt n)$) <small>(Math/Number-Theory/is-prime.hpp)</small>
 
 <a href="../../../index.html">Back to top page</a>
 
@@ -34,6 +34,11 @@ layout: default
     - Last commit date: 2020-09-13 11:30:43+09:00
 
 
+
+
+## Verified with
+
+* :heavy_check_mark: <a href="../../../verify/test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp.html">test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp</a>
 
 
 ## Code
