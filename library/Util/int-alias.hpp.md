@@ -47,6 +47,8 @@ layout: default
 
 * :heavy_check_mark: <a href="../../verify/test/AOJ/0264-Finite-Field-Calculator.test.cpp.html">test/AOJ/0264-Finite-Field-Calculator.test.cpp</a>
 * :heavy_check_mark: <a href="../../verify/test/AOJ/DPL_5_A.test.cpp.html">test/AOJ/DPL_5_A.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/AOJ/NTL_1_B-Power.test.cpp.html">test/AOJ/NTL_1_B-Power.test.cpp</a>
+* :heavy_check_mark: <a href="../../verify/test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp.html">test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp</a>
 
 
 ## Code

@@ -55,6 +55,18 @@ layout: default
 * :heavy_check_mark: <a href="library/Math/Modulo/mod-int.hpp.html">Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small></a>
 
 
+<div id="4def0f0d6848bdd7ffa44d10031ae87a"></div>
+
+### Math/Number-Theory
+
+* :warning: <a href="library/Math/Number-Theory/enumerate-divisors.hpp.html">enumerateDivisors() (約数列挙) <small>(Math/Number-Theory/enumerate-divisors.hpp)</small></a>
+* :warning: <a href="library/Math/Number-Theory/eratosthenes-sieve.hpp.html">Eratosthenes-Sieve (エラトスてネスの篩) <small>(Math/Number-Theory/eratosthenes-sieve.hpp)</small></a>
+* :heavy_check_mark: <a href="library/Math/Number-Theory/extgcd.hpp.html">extgcd() (拡張ユークリッドの互除法) <small>(Math/Number-Theory/extgcd.hpp)</small></a>
+* :warning: <a href="library/Math/Number-Theory/is-prime.hpp.html">isPrime() (素数判定 $O(\sqrt n)$) <small>(Math/Number-Theory/is-prime.hpp)</small></a>
+* :heavy_check_mark: <a href="library/Math/Number-Theory/prime-factorize.hpp.html">primeFactorize() (素因数分解 $O(\sqrt n)$) <small>(Math/Number-Theory/prime-factorize.hpp)</small></a>
+* :heavy_check_mark: <a href="library/Math/Number-Theory/totient-func.hpp.html">totient() (オイラーのトーシェント関数) <small>(Math/Number-Theory/totient-func.hpp)</small></a>
+
+
 <div id="23e8a4b4f7cc1898ef12b4e6e48852bb"></div>
 
 ### Util
@@ -101,5 +113,9 @@ layout: default
 * :heavy_check_mark: <a href="verify/test/AOJ/0264-Finite-Field-Calculator.test.cpp.html">test/AOJ/0264-Finite-Field-Calculator.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/AOJ/DPL_5_A.test.cpp.html">test/AOJ/DPL_5_A.test.cpp</a>
 * :heavy_check_mark: <a href="verify/test/AOJ/DSL_1_A.test.cpp.html">test/AOJ/DSL_1_A.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/AOJ/NTL_1_A-Prime-Factorize.test.cpp.html">test/AOJ/NTL_1_A-Prime-Factorize.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/AOJ/NTL_1_B-Power.test.cpp.html">test/AOJ/NTL_1_B-Power.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/AOJ/NTL_1_D-Eulers-Phi-Function.test.cpp.html">test/AOJ/NTL_1_D-Eulers-Phi-Function.test.cpp</a>
+* :heavy_check_mark: <a href="verify/test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp.html">test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp</a>
 
 

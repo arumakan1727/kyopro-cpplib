@@ -25,27 +25,23 @@ layout: default
 <link rel="stylesheet" href="../../../assets/css/copy-button.css" />
 
 
-# :heavy_check_mark: Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small>
+# :heavy_check_mark: test/AOJ/NTL_1_B-Power.test.cpp
 
 <a href="../../../index.html">Back to top page</a>
 
-* category: <a href="../../../index.html#ee048ce79e556b7fa2b3b7d2fb796245">Math/Modulo</a>
-* <a href="{{ site.github.repository_url }}/blob/master/Math/Modulo/mod-int.hpp">View this file on GitHub</a>
-    - Last commit date: 2020-09-11 10:57:57+09:00
+* category: <a href="../../../index.html#dada0dcc232b029913f2cd4354c73c4b">test/AOJ</a>
+* <a href="{{ site.github.repository_url }}/blob/master/test/AOJ/NTL_1_B-Power.test.cpp">View this file on GitHub</a>
+    - Last commit date: 2020-09-13 11:30:43+09:00
 
 
+* see: <a href="http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B">http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B</a>
 
 
 ## Depends on
 
-* :heavy_check_mark: <a href="../../Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
-
-
-## Verified with
-
-* :heavy_check_mark: <a href="../../../verify/test/AOJ/0264-Finite-Field-Calculator.test.cpp.html">test/AOJ/0264-Finite-Field-Calculator.test.cpp</a>
-* :heavy_check_mark: <a href="../../../verify/test/AOJ/DPL_5_A.test.cpp.html">test/AOJ/DPL_5_A.test.cpp</a>
-* :heavy_check_mark: <a href="../../../verify/test/AOJ/NTL_1_B-Power.test.cpp.html">test/AOJ/NTL_1_B-Power.test.cpp</a>
+* :heavy_check_mark: <a href="../../../library/Algorithm/pow-doubling.hpp.html">pow() (繰り返し二乗法) <small>(Algorithm/pow-doubling.hpp)</small></a>
+* :heavy_check_mark: <a href="../../../library/Math/Modulo/mod-int.hpp.html">Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small></a>
+* :heavy_check_mark: <a href="../../../library/Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
 
 
 ## Code
@@ -53,135 +49,37 @@ layout: default
 <a id="unbundled"></a>
 {% raw %}
 ```cpp
-#pragma once
-#include <cassert>
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B"
+
 #include <iostream>
-#include <limits>
-#include "../../Util/int-alias.hpp"
 
-/**
- * @brief Mod-Int (コンパイル時mod型と実行時mod型)
- */
-namespace impl {
+#include "../../Math/Modulo/mod-int.hpp"
+#include "../../Algorithm/pow-doubling.hpp"
 
-template <class ModHolder>
-class ModInt {
-private:
-    i64 value;
+int main() {
+    using Mint = StaticModInt<int(1e9) + 7>;
 
-public:
-    constexpr ModInt()
-        : value(0) {}
-    constexpr ModInt(i64 v)
-        : value(ModInt::normalized(v)) {}
+    Mint m;
+    int n;
+    std::cin >> m >> n;
+    std::cout << pow(m, n) << std::endl;
 
-    static constexpr ModInt raw(i64 v) {
-        ModInt ret;
-        ret.value = v;
-        return ret;
-    }
-
-    static constexpr ModInt nullopt = ModInt::raw(std::numeric_limits<i64>::min());
-
-    constexpr bool isNull() const { return *this == ModInt::nullopt; }
-
-    static constexpr i64 mod() { return ModHolder::mod; }
-
-    static i64 setMod(i64 m) {
-        assert(m >= 1);
-        return ModHolder::mod = m;
-    }
-
-    template <class T>
-    constexpr explicit operator T() const {
-        return static_cast<T>(value);
-    }
-    constexpr ModInt& operator+=(const ModInt& rhs) {
-        if ((value += rhs.value) >= mod()) value -= mod();
-        return *this;
-    }
-    constexpr ModInt& operator-=(const ModInt& rhs) {
-        if ((value -= rhs.value) < 0) value += mod();
-        return *this;
-    }
-    constexpr ModInt& operator*=(const ModInt& rhs) {
-        (value *= rhs.value) %= mod();
-        return *this;
-    }
-    constexpr ModInt& operator/=(const ModInt& rhs) { return *this *= rhs.inv(); }
-
-    constexpr const ModInt inv() const { return ModInt(ModInt::inverse(value, mod())); }
-
-    constexpr const ModInt operator+() const { return *this; }
-    constexpr const ModInt operator-() const { return ModInt(-value); }
-
-    friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) { return lhs.value == rhs.value; }
-    friend constexpr bool operator!=(const ModInt& lhs, const ModInt& rhs) { return lhs.value != rhs.value; }
-    friend constexpr const ModInt operator+(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) += rhs; }
-    friend constexpr const ModInt operator-(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) -= rhs; }
-    friend constexpr const ModInt operator*(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) *= rhs; }
-    friend constexpr const ModInt operator/(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) /= rhs; }
-
-    friend std::ostream& operator<<(std::ostream& os, const ModInt& x) {
-#ifdef LOCAL_DEBUG
-        if (x.isNull()) return os << "{nullopt}";
-#endif
-        return os << x.value;
-    }
-
-    friend std::istream& operator>>(std::istream& is, ModInt& x) {
-        is >> x.value;
-        x.value = ModInt::normalized(x.value);
-        return is;
-    }
-
-private:
-    static constexpr i64 normalized(i64 n) {
-        n = (-mod() <= n && n < mod() ? n : n % mod());
-        if (n < 0) n += mod();
-        return n;
-    }
-
-    static constexpr i64 inverse(i64 a, i64 m) {
-        i64 u = 0, v = 1;
-        while (a != 0) {
-            const auto t = m / a;
-            m -= t * a, std::swap(m, a);
-            u -= t * v, std::swap(u, v);
-        }
-        assert(m == 1);
-        return u;
-    }
-};
-
-template <i64 Mod>
-struct StaticModHolder {
-    static constexpr i64 mod = Mod;
-};
-
-template <auto ID>
-struct DynamicModHolder {
-    static i64 mod;
-};
-template <auto ID>
-i64 DynamicModHolder<ID>::mod;
-
-}  // namespace impl
-
-template <i64 Mod>
-using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
-
-template <auto ID>
-using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
+    return 0;
+}
 ```
 {% endraw %}
 
 <a id="bundled"></a>
 {% raw %}
 ```cpp
+#line 1 "test/AOJ/NTL_1_B-Power.test.cpp"
+#define PROBLEM "http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_B"
+
+#include <iostream>
+
 #line 2 "Math/Modulo/mod-int.hpp"
 #include <cassert>
-#include <iostream>
+#line 4 "Math/Modulo/mod-int.hpp"
 #include <limits>
 #line 2 "Util/int-alias.hpp"
 #include <cstdint>
@@ -310,6 +208,34 @@ using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
 
 template <auto ID>
 using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
+#line 2 "Algorithm/pow-doubling.hpp"
+#include <cmath>
+#line 4 "Algorithm/pow-doubling.hpp"
+
+/**
+ * @brief pow() (繰り返し二乗法)
+ */
+template <class Integer>
+Integer pow(const Integer& n, const i64 expv) {
+    Integer ret = 1, square = n;
+    for (u64 p = std::abs(expv); p; p >>= 1) {
+        if (p & 1) ret *= square;
+        square *= square;
+    }
+    return (expv < 0) ? (1 / ret) : ret;
+}
+#line 7 "test/AOJ/NTL_1_B-Power.test.cpp"
+
+int main() {
+    using Mint = StaticModInt<int(1e9) + 7>;
+
+    Mint m;
+    int n;
+    std::cin >> m >> n;
+    std::cout << pow(m, n) << std::endl;
+
+    return 0;
+}
 
 ```
 {% endraw %}
