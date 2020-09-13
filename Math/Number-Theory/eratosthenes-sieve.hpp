@@ -4,7 +4,7 @@
 #include <numeric>
 
 /**
- * @brief Eratosthenes-Sieve (エラトスてネスの篩)
+ * @brief Eratosthenes-Sieve (エラトステネスの篩)
  */
 class EratosthenesSieve {
 private:

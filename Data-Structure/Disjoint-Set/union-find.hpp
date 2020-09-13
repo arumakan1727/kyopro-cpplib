@@ -22,8 +22,7 @@ public:
         , p(n_, -1) {}
 
     int unite(int x, int y) {
-        assert(0 <= x && x < n);
-        assert(0 <= y && y < n);
+        assert(0 <= x && x < n), assert(0 <= y && y < n);
         x = leader(x), y = leader(y);
         if (x == y) return x;
         if (p[y] < p[x]) std::swap(x, y);
@@ -39,8 +38,7 @@ public:
     }
 
     bool same(int x, int y) const {
-        assert(0 <= x && x < n);
-        assert(0 <= y && y < n);
+        assert(0 <= x && x < n), assert(0 <= y && y < n);
         return leader(x) == leader(y);
     }
 
@@ -56,7 +54,7 @@ public:
         std::vector<std::vector<int>> result(n);
         for (int i = 0; i < n; i++) result[i].reserve(groupSize[i]);
         for (int i = 0; i < n; i++) result[leaderBuf[i]].push_back(i);
-        result.erase(std::remove_if(result.begin(), result.end(), [&](const std::vector<int>& v) { return v.empty(); }), result.end());
+        result.erase(std::remove_if(result.begin(), result.end(), [](const std::vector<int>& v) { return v.empty(); }), result.end());
         return result;
     }
 };
