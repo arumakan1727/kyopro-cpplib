@@ -11,9 +11,3 @@ GCC の `-std=c++17` のみで Verify しています。
 MIT ライセンスです。このライブラリを利用したことで何か問題が起きても作者は責任を負いません。
 
 - `[A-Z]*/`: ライブラリ本体です。
-- `export/template.cpp`: 競プロ用のテンプレートです。`export/template-prototype.cpp` から生成されました。
-- `export/short-snippet.vscode.json`: プレースホルダーを含み得る短めのスニペットです。
-- `export/snippet.vscode.json`: `[A-Z]*/` 以下のソースファイルを纏めたスニペットです。
-
-スニペットファイルは vscode の Project snippet 用です。
-vscode プロジェクトの `.vscode/` 内に `.code-snippets` の拡張子のシンボリックリンクを作成し、そこからこのライブラリの JSON ファイルを参照して使うことを想定しています (もっと良い方法があるかもしれません)。
