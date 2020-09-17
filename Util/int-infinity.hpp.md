@@ -5,12 +5,15 @@ data:
   - icon: ':warning:'
     path: export/template-prototype.cpp
     title: export/template-prototype.cpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Util/Debug/debug.hpp
     title: Debug
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/1501-Grid.test.cpp
+    title: test/AOJ/1501-Grid.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "int-infinity (\u6574\u6570\u306E\u30C7\u30AB\u30A4\u5024)"
@@ -32,8 +35,9 @@ data:
   - export/template-prototype.cpp
   - Util/Debug/debug.hpp
   timestamp: '2020-09-17 10:59:30+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/AOJ/1501-Grid.test.cpp
 documentation_of: Util/int-infinity.hpp
 layout: document
 redirect_from:

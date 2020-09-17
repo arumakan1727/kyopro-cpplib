@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: Util/int-alias.hpp
     title: "int-alias (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Util/int-infinity.hpp
     title: "int-infinity (\u6574\u6570\u306E\u30C7\u30AB\u30A4\u5024)"
   - icon: ':warning:'
     path: Util/IO/container-io.hpp
     title: "\u30B3\u30F3\u30C6\u30CA\u306E\u5165\u51FA\u529B"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Util/IO/var-declaration-with-input.hpp
     title: "\u8907\u6570\u5909\u6570\u5BA3\u8A00\u3092\u3057\u3066\u540C\u6642\u306B\
       \u5165\u529B\u3082\u3059\u308B\u3084\u3064"
@@ -24,7 +24,7 @@ data:
     path: Util/IO/println.hpp
     title: "println() (\u53EF\u5909\u500B\u306E\u5024\u3092\u7A7A\u767D\u533A\u5207\
       \u308A\u3067\u51FA\u529B\u3057\u3066\u6539\u884C\u3059\u308B)"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Util/chminmax.hpp
     title: chmin(), chmax()
   _extendedRequiredBy: []

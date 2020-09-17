@@ -13,7 +13,17 @@ data:
       title: "Union-Find (\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020)"
   - name: Math/Combinatorics
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: Math/Combinatorics/binomial-O(K).cpp
+      title: "binomial() (\u4E8C\u9805\u4FC2\u6570 $O(K)$)"
+    - icon: ':heavy_check_mark:'
+      path: Math/Combinatorics/binomial-table-O(NN).cpp
+      title: "binomialTable() (\u4E8C\u9805\u4FC2\u6570\u30C6\u30FC\u30D6\u30EB $O(N^2)$)"
+    - icon: ':heavy_check_mark:'
+      path: Math/Combinatorics/binomial-table-const-N.cpp
+      title: "binomialTable_constN() (\u4E8C\u9805\u4FC2\u6570\u30C6\u30FC\u30D6\u30EB\
+        \ $O(K)$)"
+    - icon: ':heavy_check_mark:'
       path: Math/Combinatorics/factorials.hpp
       title: "factorials (\u968E\u4E57, \u968E\u4E57\u306E\u9006\u5143, nCr, nPr)"
   - name: Math/Modulo
@@ -47,7 +57,7 @@ data:
         \u30C8\u95A2\u6570)"
   - name: Util/Debug
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Util/Debug/debug.hpp
       title: Debug
   - name: Util/IO
@@ -63,7 +73,7 @@ data:
       path: Util/IO/println.hpp
       title: "println() (\u53EF\u5909\u500B\u306E\u5024\u3092\u7A7A\u767D\u533A\u5207\
         \u308A\u3067\u51FA\u529B\u3057\u3066\u6539\u884C\u3059\u308B)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Util/IO/var-declaration-with-input.hpp
       title: "\u8907\u6570\u5909\u6570\u5BA3\u8A00\u3092\u3057\u3066\u540C\u6642\u306B\
         \u5165\u529B\u3082\u3059\u308B\u3084\u3064"
@@ -72,13 +82,13 @@ data:
     - icon: ':warning:'
       path: Util/all-macro.hpp
       title: "all()\u30DE\u30AF\u30ED"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Util/chminmax.hpp
       title: chmin(), chmax()
     - icon: ':heavy_check_mark:'
       path: Util/int-alias.hpp
       title: "int-alias (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Util/int-infinity.hpp
       title: "int-infinity (\u6574\u6570\u306E\u30C7\u30AB\u30A4\u5024)"
     - icon: ':warning:'
@@ -148,6 +158,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/AOJ/0264-Finite-Field-Calculator.test.cpp
       title: test/AOJ/0264-Finite-Field-Calculator.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/AOJ/1501-Grid.test.cpp
+      title: test/AOJ/1501-Grid.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp
       title: test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp

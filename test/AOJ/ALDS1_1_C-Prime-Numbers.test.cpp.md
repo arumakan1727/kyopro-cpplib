@@ -16,10 +16,10 @@ data:
   bundledCode: "#line 1 \"test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp\"\n#define PROBLEM\
     \ \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_1_C\"\n\n#include\
     \ <iostream>\n\n#line 2 \"Math/Number-Theory/is-prime.hpp\"\n#include <cstdint>\n\
-    \n/**\n * @brief isPrime() (\u7D20\u6570\u5224\u5B9A $O(\\sqrt n)$)\n */\nbool\
-    \ isPrime(int64_t n) {\n    if (n == 2) return true;\n    if (n <= 1 || n % 2\
-    \ == 0) return false;\n    for (int64_t i = 3; i * i <= n; i += 2) {\n       \
-    \ if (n % i == 0) return false;\n    }\n    return true;\n}\n#line 6 \"test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp\"\
+    \n/**\n * @brief isPrime() (\u7D20\u6570\u5224\u5B9A $O(\\sqrt n)$)\n */\nconstexpr\
+    \ bool isPrime(int64_t n) {\n    if (n == 2) return true;\n    if (n <= 1 || n\
+    \ % 2 == 0) return false;\n    for (int64_t i = 3; i * i <= n; i += 2) {\n   \
+    \     if (n % i == 0) return false;\n    }\n    return true;\n}\n#line 6 \"test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp\"\
     \n\nint main() {\n    std::cin.tie(nullptr);\n    std::ios_base::sync_with_stdio(false);\n\
     \n    int N;\n    std::cin >> N;\n\n    int ans = 0;\n    while (N--) {\n    \
     \    int x;\n        std::cin >> x;\n        if (isPrime(x)) ++ans;\n    }\n\n\
@@ -35,7 +35,7 @@ data:
   isVerificationFile: true
   path: test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp
   requiredBy: []
-  timestamp: '2020-09-17 10:59:30+09:00'
+  timestamp: '2020-09-17 22:43:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp

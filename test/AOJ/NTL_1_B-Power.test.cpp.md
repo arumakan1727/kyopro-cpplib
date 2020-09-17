@@ -27,10 +27,9 @@ data:
     mod\u578B\u3068\u5B9F\u884C\u6642mod\u578B)\n */\nnamespace impl {\n\ntemplate\
     \ <class ModHolder>\nclass ModInt {\nprivate:\n    int64_t value;\n\npublic:\n\
     \    constexpr ModInt()\n        : value(0) {}\n    constexpr ModInt(int64_t v)\n\
-    \        : value(ModInt::normalized(v)) {}\n\n    constexpr ModInt(const ModInt&\
-    \ v) = default;\n\n    static constexpr ModInt raw(int64_t v) {\n        ModInt\
-    \ ret;\n        ret.value = v;\n        return ret;\n    }\n\n    static constexpr\
-    \ ModInt nullopt() { return ModInt::raw(std::numeric_limits<int64_t>::min());\
+    \        : value(ModInt::normalized(v)) {}\n\n    static constexpr ModInt raw(int64_t\
+    \ v) {\n        ModInt ret;\n        ret.value = v;\n        return ret;\n   \
+    \ }\n\n    static constexpr ModInt nullopt() { return ModInt::raw(std::numeric_limits<int64_t>::min());\
     \ }\n\n    constexpr bool isNull() const { return *this == ModInt::nullopt();\
     \ }\n\n    static constexpr int64_t mod() { return ModHolder::mod; }\n\n    static\
     \ int64_t setMod(int64_t m) {\n        assert(m >= 1);\n        return ModHolder::mod\
@@ -66,12 +65,13 @@ data:
     \ <= n && n < mod() ? n : n % mod());\n        if (n < 0) n += mod();\n      \
     \  return n;\n    }\n\n    static constexpr int64_t inverse(int64_t a, int64_t\
     \ m) {\n        int64_t u = 0, v = 1;\n        while (a != 0) {\n            const\
-    \ auto t = m / a;\n            m -= t * a, std::swap(m, a);\n            u -=\
-    \ t * v, std::swap(u, v);\n        }\n        assert(m == 1);\n        return\
-    \ u;\n    }\n};\n\ntemplate <int64_t Mod>\nstruct StaticModHolder {\n    static\
-    \ constexpr int64_t mod = Mod;\n};\n\ntemplate <auto ID>\nstruct DynamicModHolder\
-    \ {\n    static int64_t mod;\n};\ntemplate <auto ID>\nint64_t DynamicModHolder<ID>::mod;\n\
-    \n}  // namespace impl\n\ntemplate <int64_t Mod>\nusing StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;\n\
+    \ auto t = m / a;\n            static_cast<void>(m -= t * a), std::swap(m, a);\n\
+    \            static_cast<void>(u -= t * v), std::swap(u, v);\n        }\n    \
+    \    assert(m == 1);\n        return u;\n    }\n};\n\ntemplate <int64_t Mod>\n\
+    struct StaticModHolder {\n    static constexpr int64_t mod = Mod;\n};\n\ntemplate\
+    \ <auto ID>\nstruct DynamicModHolder {\n    static int64_t mod;\n};\ntemplate\
+    \ <auto ID>\nint64_t DynamicModHolder<ID>::mod;\n\n}  // namespace impl\n\ntemplate\
+    \ <int64_t Mod>\nusing StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;\n\
     \nusing ModInt1000000007 = StaticModInt<int(1e9) + 7>;\nusing ModInt998244353\
     \ = StaticModInt<998244353>;\n\ntemplate <auto ID>\nusing DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;\n\
     #line 2 \"Algorithm/doubling-pow.hpp\"\n#include <cmath>\n#line 3 \"Util/int-alias.hpp\"\
@@ -101,7 +101,7 @@ data:
   isVerificationFile: true
   path: test/AOJ/NTL_1_B-Power.test.cpp
   requiredBy: []
-  timestamp: '2020-09-17 10:59:30+09:00'
+  timestamp: '2020-09-17 22:44:48+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/AOJ/NTL_1_B-Power.test.cpp
