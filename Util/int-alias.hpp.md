@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: export/template-prototype.cpp
+    title: export/template-prototype.cpp
   - icon: ':heavy_check_mark:'
     path: Algorithm/doubling-pow.hpp
     title: "doubling-pow() (\u7E70\u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5)"
@@ -32,6 +35,7 @@ data:
   isVerificationFile: false
   path: Util/int-alias.hpp
   requiredBy:
+  - export/template-prototype.cpp
   - Algorithm/doubling-pow.hpp
   timestamp: '2020-09-17 10:59:30+09:00'
   verificationStatus: LIBRARY_ALL_AC

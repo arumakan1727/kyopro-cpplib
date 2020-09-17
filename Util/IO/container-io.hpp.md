@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: export/template-prototype.cpp
+    title: export/template-prototype.cpp
   _extendedVerifiedWith: []
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
@@ -30,7 +33,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Util/IO/container-io.hpp
-  requiredBy: []
+  requiredBy:
+  - export/template-prototype.cpp
   timestamp: '2020-09-17 10:59:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: export/template-prototype.cpp
+    title: export/template-prototype.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/DPL_5_A.test.cpp
@@ -29,7 +32,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Util/IO/println.hpp
-  requiredBy: []
+  requiredBy:
+  - export/template-prototype.cpp
   timestamp: '2020-09-17 10:59:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -73,14 +73,8 @@ data:
       path: Util/all-macro.hpp
       title: "all()\u30DE\u30AF\u30ED"
     - icon: ':warning:'
-      path: Util/bye.hpp
-      title: "bye() (\u51FA\u529B\u3057\u3066exit(0))"
-    - icon: ':warning:'
       path: Util/chminmax.hpp
       title: chmin(), chmax()
-    - icon: ':warning:'
-      path: Util/div-ceil.hpp
-      title: "divceil() (\u5207\u308A\u4E0A\u3052\u9664\u7B97)"
     - icon: ':heavy_check_mark:'
       path: Util/int-alias.hpp
       title: "int-alias (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)"
@@ -105,6 +99,49 @@ data:
     - icon: ':warning:'
       path: export/template.cpp
       title: export/template.cpp
+  - name: short-snip
+    pages:
+    - icon: ':warning:'
+      path: short-snip/bye.cpp
+      title: short-snip/bye.cpp
+    - icon: ':warning:'
+      path: short-snip/div-ceil.cpp
+      title: short-snip/div-ceil.cpp
+    - icon: ':warning:'
+      path: short-snip/io-setup.cpp
+      title: short-snip/io-setup.cpp
+    - icon: ':warning:'
+      path: short-snip/mod1.cpp
+      title: short-snip/mod1.cpp
+    - icon: ':warning:'
+      path: short-snip/mod2.cpp
+      title: short-snip/mod2.cpp
+    - icon: ':warning:'
+      path: short-snip/possible.cpp
+      title: short-snip/possible.cpp
+    - icon: ':warning:'
+      path: short-snip/precision.cpp
+      title: short-snip/precision.cpp
+    - icon: ':warning:'
+      path: short-snip/uniq.cpp
+      title: short-snip/uniq.cpp
+    - icon: ':warning:'
+      path: short-snip/yay.cpp
+      title: short-snip/yay.cpp
+    - icon: ':warning:'
+      path: short-snip/yesno.cpp
+      title: short-snip/yesno.cpp
+  - name: tool
+    pages:
+    - icon: ':warning:'
+      path: tool/gen-snippet.py
+      title: tool/gen-snippet.py
+    - icon: ':warning:'
+      path: tool/gen-template.py
+      title: tool/gen-template.py
+    - icon: ':warning:'
+      path: tool/progReader.py
+      title: tool/progReader.py
   verificationCategories:
   - name: test/AOJ
     pages:

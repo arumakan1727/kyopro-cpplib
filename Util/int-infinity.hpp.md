@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: export/template-prototype.cpp
+    title: export/template-prototype.cpp
+  - icon: ':warning:'
     path: Util/Debug/debug.hpp
     title: Debug
   _extendedVerifiedWith: []
@@ -26,6 +29,7 @@ data:
   isVerificationFile: false
   path: Util/int-infinity.hpp
   requiredBy:
+  - export/template-prototype.cpp
   - Util/Debug/debug.hpp
   timestamp: '2020-09-17 10:59:30+09:00'
   verificationStatus: LIBRARY_NO_TESTS
