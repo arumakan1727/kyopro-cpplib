@@ -20,9 +20,9 @@ constexpr int MOD = 998244353;
 endsnippet
 
 snippet possible "short-snip/possible.cpp"
-const auto possible = [](bool cond) { std::cout << (cond ? "possible" : "impossible") << '\n'; };
-const auto Possible = [](bool cond) { std::cout << (cond ? "Possible" : "Impossible") << '\n'; };
-const auto POSSIBLE = [](bool cond) { std::cout << (cond ? "POSSIBLE" : "IMPOSSIBLE") << '\n'; };
+[[maybe_unused]] const auto possible = [](bool cond) { std::cout << (cond ? "possible" : "impossible") << '\n'; };
+[[maybe_unused]] const auto Possible = [](bool cond) { std::cout << (cond ? "Possible" : "Impossible") << '\n'; };
+[[maybe_unused]] const auto POSSIBLE = [](bool cond) { std::cout << (cond ? "POSSIBLE" : "IMPOSSIBLE") << '\n'; };
 endsnippet
 
 snippet precision "short-snip/precision.cpp"
@@ -36,13 +36,13 @@ $0
 endsnippet
 
 snippet yay "short-snip/yay.cpp"
-const auto yay = [](bool cond) { std::cout << (cond ? "yay!" : ":(") << '\n'; };
-const auto Yay = [](bool cond) { std::cout << (cond ? "Yay!" : ":(") << '\n'; };
+[[maybe_unused]] const auto yay = [](bool cond) { std::cout << (cond ? "yay!" : ":(") << '\n'; };
+[[maybe_unused]] const auto Yay = [](bool cond) { std::cout << (cond ? "Yay!" : ":(") << '\n'; };
 endsnippet
 
 snippet yesno "short-snip/yesno.cpp"
-const auto yesno = [](bool cond) { std::cout << (cond ? "yes" : "no") << '\n'; };
-const auto YesNo = [](bool cond) { std::cout << (cond ? "Yes" : "No") << '\n'; };
-const auto YESNO = [](bool cond) { std::cout << (cond ? "YES" : "NO") << '\n'; };
+[[maybe_unused]] const auto yesno = [](bool cond) { std::cout << (cond ? "yes" : "no") << '\n'; };
+[[maybe_unused]] const auto YesNo = [](bool cond) { std::cout << (cond ? "Yes" : "No") << '\n'; };
+[[maybe_unused]] const auto YESNO = [](bool cond) { std::cout << (cond ? "YES" : "NO") << '\n'; };
 endsnippet
 
