@@ -3,10 +3,10 @@
 #include <iostream>
 
 #include "../../Math/Number-Theory/is-prime.hpp"
-#include "../../Util/IO/io-setup.hpp"
 
 int main() {
-    ioSetup();
+    std::cin.tie(nullptr);
+    std::ios_base::sync_with_stdio(false);
 
     int N;
     std::cin >> N;

@@ -20,15 +20,17 @@ public:
     constexpr ModInt(int64_t v)
         : value(ModInt::normalized(v)) {}
 
+    constexpr ModInt(const ModInt& v) = default;
+
     static constexpr ModInt raw(int64_t v) {
         ModInt ret;
         ret.value = v;
         return ret;
     }
 
-    static constexpr ModInt nullopt = ModInt::raw(std::numeric_limits<int64_t>::min());
+    static constexpr ModInt nullopt() { return ModInt::raw(std::numeric_limits<int64_t>::min()); }
 
-    constexpr bool isNull() const { return *this == ModInt::nullopt; }
+    constexpr bool isNull() const { return *this == ModInt::nullopt(); }
 
     static constexpr int64_t mod() { return ModHolder::mod; }
 
@@ -54,11 +56,18 @@ public:
         return *this;
     }
     constexpr ModInt& operator/=(const ModInt& rhs) { return *this *= rhs.inv(); }
-
     constexpr const ModInt inv() const { return ModInt(ModInt::inverse(value, mod())); }
-
     constexpr const ModInt operator+() const { return *this; }
     constexpr const ModInt operator-() const { return ModInt(-value); }
+
+    constexpr const ModInt pow(int64_t expv) const {
+        int64_t ret = 1, square = value;
+        for (uint64_t p = std::abs(expv); p; p >>= 1) {
+            if (p & 1) (ret *= square) %= mod();
+            (square *= square) %= mod();
+        }
+        return (expv < 0) ? (ModInt::raw(1) / ModInt::raw(ret)) : ModInt::raw(ret);
+    }
 
     friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) { return lhs.value == rhs.value; }
     friend constexpr bool operator!=(const ModInt& lhs, const ModInt& rhs) { return lhs.value != rhs.value; }
@@ -115,6 +124,9 @@ int64_t DynamicModHolder<ID>::mod;
 
 template <int64_t Mod>
 using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
+
+using ModInt1000000007 = StaticModInt<int(1e9) + 7>;
+using ModInt998244353 = StaticModInt<998244353>;
 
 template <auto ID>
 using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;

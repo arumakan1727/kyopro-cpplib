@@ -8,7 +8,6 @@
 /**
  * @brief Debug
  */
-
 template <class A, class B>
 std::ostream& operator<<(std::ostream& os, const std::pair<A, B>& t) {
     return os << '{' << std::get<0>(t) << ", " << std::get<1>(t) << '}';
@@ -18,7 +17,17 @@ std::ostream& operator<<(std::ostream& os, const std::tuple<A, B, C>& t) {
     return os << '{' << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << '}';
 }
 
-#ifdef LOCAL_DEBUG  // {{{
+template <class T, std::enable_if_t<std::is_integral_v<T> && sizeof(T) == 4, std::nullptr_t> = nullptr>
+constexpr T infinity() {
+    return INF;
+}
+
+template <class T, std::enable_if_t<std::is_integral_v<T> && sizeof(T) == 8, std::nullptr_t> = nullptr>
+constexpr T infinity() {
+    return LINF;
+}
+
+#ifdef LOCAL_DEBUG
 
 class Debug {
 private:
@@ -92,7 +101,7 @@ private:
         if constexpr (std::is_same_v<T, char>) {
             os << '\'' << x << '\'';
         } else if constexpr (std::is_same_v<T, bool>) {
-            os << std::setw(w_) << (x ? "true" : "false");
+            os << std::setw(w_) << (x ? "1" : "0");
         } else if constexpr (std::is_integral_v<T>) {
             os << std::setw(w_) << convert(x);
         } else if constexpr (std::is_convertible_v<T, std::string_view>) {
@@ -141,6 +150,6 @@ struct Debug {
 #undef DEF_FUNC
 #define dump(...) ((void)0)
 
-#endif  // }}}
+#endif
 
 Debug debug;

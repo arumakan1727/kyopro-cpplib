@@ -2,11 +2,12 @@
 #include <bits/stdc++.h>
 
 #include "../../Data-Structure/Disjoint-Set/union-find.hpp"
-#include "../../Util/IO/io-setup.hpp"
 using namespace std;
 
 int main() {
-    ioSetup();
+    std::cin.tie(nullptr);
+    std::ios_base::sync_with_stdio(false);
+
     constexpr char LF = '\n';
 
     int N, Q;

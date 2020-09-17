@@ -10,6 +10,6 @@ inline void println() {
 }
 template <class Head, class... Tail>
 inline void println(Head&& head, Tail&&... tail) {
-    std::cout << head << " " + (!sizeof...(tail));
+    std::cout << head << &" "[!sizeof...(tail)];
     println(std::forward<Tail>(tail)...);
 }
