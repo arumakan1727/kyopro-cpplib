@@ -4,7 +4,7 @@
  * @brief totient() (オイラーのトーシェント関数)
  */
 template <class Integer>
-Integer totient(Integer n) {
+constexpr Integer totient(Integer n) {
     Integer ret = n;
     for (Integer i = 2; i * i <= n; ++i) {
         if (n % i == 0) {
