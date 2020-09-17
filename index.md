@@ -1,122 +1,136 @@
 ---
-layout: default
+data:
+  libraryCategories:
+  - name: Algorithm
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Algorithm/doubling-pow.hpp
+      title: "doubling-pow() (\u7E70\u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5)"
+  - name: Data-Structure/Disjoint-Set
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Data-Structure/Disjoint-Set/union-find.hpp
+      title: "Union-Find (\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020)"
+  - name: Math/Combinatorics
+    pages:
+    - icon: ':warning:'
+      path: Math/Combinatorics/factorials.hpp
+      title: "factorials (\u968E\u4E57, \u968E\u4E57\u306E\u9006\u5143, nCr, nPr)"
+  - name: Math/Modulo
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Math/Modulo/mod-int.hpp
+      title: "Mod-Int (\u30B3\u30F3\u30D1\u30A4\u30EB\u6642mod\u578B\u3068\u5B9F\u884C\
+        \u6642mod\u578B)"
+  - name: Math/Number-Theory
+    pages:
+    - icon: ':warning:'
+      path: Math/Number-Theory/enumerate-divisors.hpp
+      title: "enumerateDivisors() (\u7D04\u6570\u5217\u6319)"
+    - icon: ':warning:'
+      path: Math/Number-Theory/eratosthenes-sieve.hpp
+      title: "Eratosthenes-Sieve (\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\
+        \u7BE9)"
+    - icon: ':heavy_check_mark:'
+      path: Math/Number-Theory/extgcd.hpp
+      title: "extgcd() (\u62E1\u5F35\u30E6\u30FC\u30AF\u30EA\u30C3\u30C9\u306E\u4E92\
+        \u9664\u6CD5)"
+    - icon: ':heavy_check_mark:'
+      path: Math/Number-Theory/is-prime.hpp
+      title: "isPrime() (\u7D20\u6570\u5224\u5B9A $O(\\sqrt n)$)"
+    - icon: ':heavy_check_mark:'
+      path: Math/Number-Theory/prime-factorize.hpp
+      title: "primeFactorize() (\u7D20\u56E0\u6570\u5206\u89E3 $O(\\sqrt n)$)"
+    - icon: ':heavy_check_mark:'
+      path: Math/Number-Theory/totient-func.hpp
+      title: "totient() (\u30AA\u30A4\u30E9\u30FC\u306E\u30C8\u30FC\u30B7\u30A7\u30F3\
+        \u30C8\u95A2\u6570)"
+  - name: Util/Debug
+    pages:
+    - icon: ':warning:'
+      path: Util/Debug/debug.hpp
+      title: Debug
+  - name: Util/IO
+    pages:
+    - icon: ':warning:'
+      path: Util/IO/container-io.hpp
+      title: "\u30B3\u30F3\u30C6\u30CA\u306E\u5165\u51FA\u529B"
+    - icon: ':warning:'
+      path: Util/IO/join-into-ostream.hpp
+      title: "join() (\u8981\u7D20\u3092\u533A\u5207\u308A\u6587\u5B57\u3067\u7D50\
+        \u5408\u3057\u3066\u51FA\u529B)"
+    - icon: ':heavy_check_mark:'
+      path: Util/IO/println.hpp
+      title: "println() (\u53EF\u5909\u500B\u306E\u5024\u3092\u7A7A\u767D\u533A\u5207\
+        \u308A\u3067\u51FA\u529B\u3057\u3066\u6539\u884C\u3059\u308B)"
+    - icon: ':warning:'
+      path: Util/IO/var-declaration-with-input.hpp
+      title: "\u8907\u6570\u5909\u6570\u5BA3\u8A00\u3092\u3057\u3066\u540C\u6642\u306B\
+        \u5165\u529B\u3082\u3059\u308B\u3084\u3064"
+  - name: Util
+    pages:
+    - icon: ':warning:'
+      path: Util/all-macro.hpp
+      title: "all()\u30DE\u30AF\u30ED"
+    - icon: ':warning:'
+      path: Util/bye.hpp
+      title: "bye() (\u51FA\u529B\u3057\u3066exit(0))"
+    - icon: ':warning:'
+      path: Util/chminmax.hpp
+      title: chmin(), chmax()
+    - icon: ':warning:'
+      path: Util/div-ceil.hpp
+      title: "divceil() (\u5207\u308A\u4E0A\u3052\u9664\u7B97)"
+    - icon: ':heavy_check_mark:'
+      path: Util/int-alias.hpp
+      title: "int-alias (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)"
+    - icon: ':warning:'
+      path: Util/int-infinity.hpp
+      title: "int-infinity (\u6574\u6570\u306E\u30C7\u30AB\u30A4\u5024)"
+    - icon: ':warning:'
+      path: Util/is-within-range.hpp
+      title: "within() (\u534A\u958B\u533A\u9593\u5185\u306B\u542B\u307E\u308C\u3066\
+        \u3044\u308B\u304B\u306E\u5224\u5B9A)"
+    - icon: ':warning:'
+      path: Util/makeVec.hpp
+      title: "makeVec() (\u591A\u6B21\u5143std::vector\u306E\u751F\u6210)"
+    - icon: ':warning:'
+      path: Util/rep-macro.hpp
+      title: "rep()\u30DE\u30AF\u30ED"
+  - name: export
+    pages:
+    - icon: ':warning:'
+      path: export/template-prototype.cpp
+      title: export/template-prototype.cpp
+    - icon: ':warning:'
+      path: export/template.cpp
+      title: export/template.cpp
+  verificationCategories:
+  - name: test/AOJ
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/AOJ/0264-Finite-Field-Calculator.test.cpp
+      title: test/AOJ/0264-Finite-Field-Calculator.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp
+      title: test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/AOJ/DPL_5_A.test.cpp
+      title: test/AOJ/DPL_5_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/AOJ/DSL_1_A.test.cpp
+      title: test/AOJ/DSL_1_A.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/AOJ/NTL_1_A-Prime-Factorize.test.cpp
+      title: test/AOJ/NTL_1_A-Prime-Factorize.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/AOJ/NTL_1_B-Power.test.cpp
+      title: test/AOJ/NTL_1_B-Power.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/AOJ/NTL_1_D-Eulers-Phi-Function.test.cpp
+      title: test/AOJ/NTL_1_D-Eulers-Phi-Function.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
+      title: test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
+layout: toppage
 ---
-
-<!-- mathjax config similar to math.stackexchange -->
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    TeX: { equationNumbers: { autoNumber: "AMS" }},
-    tex2jax: {
-      inlineMath: [ ['$','$'] ],
-      processEscapes: true
-    },
-    "HTML-CSS": { matchFontHeight: false },
-    displayAlign: "left",
-    displayIndent: "2em"
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-balloon-js@1.1.2/jquery.balloon.min.js" integrity="sha256-ZEYs9VrgAeNuPvs15E39OsyOJaIkXEEt10fzxJ20+2I=" crossorigin="anonymous"></script>
-<script type="text/javascript" src="assets/js/copy-button.js"></script>
-<link rel="stylesheet" href="assets/css/copy-button.css" />
-
-
-# {{ site.title }}
-
-[![Actions Status]({{ site.github.repository_url }}/workflows/verify/badge.svg)]({{ site.github.repository_url }}/actions)
-<a href="{{ site.github.repository_url }}"><img src="https://img.shields.io/github/last-commit/{{ site.github.owner_name }}/{{ site.github.repository_name }}" /></a>
-
-{% if site.github.project_tagline %}{{ site.github.project_tagline }}{% else %}This documentation is automatically generated by <a href="https://github.com/online-judge-tools/verification-helper">online-judge-tools/verification-helper</a>.{% endif %}
-
-## Library Files
-
-<div id="4afa80e77a07f7488ce4d1bdd8c4977a"></div>
-
-### Algorithm
-
-* :heavy_check_mark: <a href="library/Algorithm/pow-doubling.hpp.html">pow() (繰り返し二乗法) <small>(Algorithm/pow-doubling.hpp)</small></a>
-
-
-<div id="510221fd93ed01153e9d07e085298835"></div>
-
-### Data-Structure/Disjoint-Set
-
-* :heavy_check_mark: <a href="library/Data-Structure/Disjoint-Set/union-find.hpp.html">Union-Find (素集合データ構造) <small>(Data-Structure/Disjoint-Set/union-find.hpp)</small></a>
-
-
-<div id="ee048ce79e556b7fa2b3b7d2fb796245"></div>
-
-### Math/Modulo
-
-* :heavy_check_mark: <a href="library/Math/Modulo/mod-int.hpp.html">Mod-Int (コンパイル時mod型と実行時mod型) <small>(Math/Modulo/mod-int.hpp)</small></a>
-
-
-<div id="4def0f0d6848bdd7ffa44d10031ae87a"></div>
-
-### Math/Number-Theory
-
-* :warning: <a href="library/Math/Number-Theory/enumerate-divisors.hpp.html">enumerateDivisors() (約数列挙) <small>(Math/Number-Theory/enumerate-divisors.hpp)</small></a>
-* :warning: <a href="library/Math/Number-Theory/eratosthenes-sieve.hpp.html">Eratosthenes-Sieve (エラトステネスの篩) <small>(Math/Number-Theory/eratosthenes-sieve.hpp)</small></a>
-* :heavy_check_mark: <a href="library/Math/Number-Theory/extgcd.hpp.html">extgcd() (拡張ユークリッドの互除法) <small>(Math/Number-Theory/extgcd.hpp)</small></a>
-* :heavy_check_mark: <a href="library/Math/Number-Theory/is-prime.hpp.html">isPrime() (素数判定 $O(\sqrt n)$) <small>(Math/Number-Theory/is-prime.hpp)</small></a>
-* :heavy_check_mark: <a href="library/Math/Number-Theory/prime-factorize.hpp.html">primeFactorize() (素因数分解 $O(\sqrt n)$) <small>(Math/Number-Theory/prime-factorize.hpp)</small></a>
-* :heavy_check_mark: <a href="library/Math/Number-Theory/totient-func.hpp.html">totient() (オイラーのトーシェント関数) <small>(Math/Number-Theory/totient-func.hpp)</small></a>
-
-
-<div id="23e8a4b4f7cc1898ef12b4e6e48852bb"></div>
-
-### Util
-
-* :warning: <a href="library/Util/all-macro.hpp.html">all()マクロ <small>(Util/all-macro.hpp)</small></a>
-* :warning: <a href="library/Util/bye.hpp.html">bye() (出力してexit(0)) <small>(Util/bye.hpp)</small></a>
-* :warning: <a href="library/Util/chminmax.hpp.html">chmin(), chmax() <small>(Util/chminmax.hpp)</small></a>
-* :warning: <a href="library/Util/div-ceil.hpp.html">divceil() (切り上げ除算) <small>(Util/div-ceil.hpp)</small></a>
-* :heavy_check_mark: <a href="library/Util/int-alias.hpp.html">int-alias (整数型のエイリアス) <small>(Util/int-alias.hpp)</small></a>
-* :warning: <a href="library/Util/int-infinity.hpp.html">int-infinity (整数のデカイ値) <small>(Util/int-infinity.hpp)</small></a>
-* :warning: <a href="library/Util/is-within-range.hpp.html">within() (半開区間内に含まれているかの判定) <small>(Util/is-within-range.hpp)</small></a>
-* :warning: <a href="library/Util/makeVec.hpp.html">makeVec() (多次元std::vectorの生成) <small>(Util/makeVec.hpp)</small></a>
-* :warning: <a href="library/Util/rep-macro.hpp.html">rep()マクロ <small>(Util/rep-macro.hpp)</small></a>
-
-
-<div id="9b72678fcee7fc825926f536e5c04d88"></div>
-
-### Util/Debug
-
-* :warning: <a href="library/Util/Debug/debug.hpp.html">Debug <small>(Util/Debug/debug.hpp)</small></a>
-
-
-<div id="9a8d3eea1c7cba0485906562328c7d47"></div>
-
-### Util/IO
-
-* :warning: <a href="library/Util/IO/container-io.hpp.html">コンテナの入出力 <small>(Util/IO/container-io.hpp)</small></a>
-* :heavy_check_mark: <a href="library/Util/IO/io-setup.hpp.html">ioSetup() (iostreamの高速化と実数出力の設定) <small>(Util/IO/io-setup.hpp)</small></a>
-* :warning: <a href="library/Util/IO/join-into-ostream.hpp.html">join() (要素を区切り文字で結合して出力) <small>(Util/IO/join-into-ostream.hpp)</small></a>
-* :heavy_check_mark: <a href="library/Util/IO/println.hpp.html">println() (可変個の値を空白区切りで出力して改行する) <small>(Util/IO/println.hpp)</small></a>
-* :warning: <a href="library/Util/IO/var-declaration-with-input.hpp.html">複数変数宣言をして同時に入力もするやつ <small>(Util/IO/var-declaration-with-input.hpp)</small></a>
-
-
-<div id="b2507468f95156358fa490fd543ad2f0"></div>
-
-### export
-
-* :warning: <a href="library/export/template-prototype.cpp.html">export/template-prototype.cpp</a>
-* :warning: <a href="library/export/template.cpp.html">export/template.cpp</a>
-
-
-## Verify Files
-
-* :heavy_check_mark: <a href="verify/test/AOJ/0264-Finite-Field-Calculator.test.cpp.html">test/AOJ/0264-Finite-Field-Calculator.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp.html">test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/AOJ/DPL_5_A.test.cpp.html">test/AOJ/DPL_5_A.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/AOJ/DSL_1_A.test.cpp.html">test/AOJ/DSL_1_A.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/AOJ/NTL_1_A-Prime-Factorize.test.cpp.html">test/AOJ/NTL_1_A-Prime-Factorize.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/AOJ/NTL_1_B-Power.test.cpp.html">test/AOJ/NTL_1_B-Power.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/AOJ/NTL_1_D-Eulers-Phi-Function.test.cpp.html">test/AOJ/NTL_1_D-Eulers-Phi-Function.test.cpp</a>
-* :heavy_check_mark: <a href="verify/test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp.html">test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp</a>
-
-
