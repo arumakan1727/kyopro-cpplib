@@ -10,25 +10,25 @@ data:
     links: []
   bundledCode: '#line 1 "short-snip/yay.cpp"
 
-    const auto yay = [](bool cond) { std::cout << (cond ? "yay!" : ":(") << ''\n'';
-    };
+    [[maybe_unused]] const auto yay = [](bool cond) { std::cout << (cond ? "yay!"
+    : ":(") << ''\n''; };
 
-    const auto Yay = [](bool cond) { std::cout << (cond ? "Yay!" : ":(") << ''\n'';
-    };
+    [[maybe_unused]] const auto Yay = [](bool cond) { std::cout << (cond ? "Yay!"
+    : ":(") << ''\n''; };
 
     '
-  code: 'const auto yay = [](bool cond) { std::cout << (cond ? "yay!" : ":(") << ''\n'';
-    };
+  code: '[[maybe_unused]] const auto yay = [](bool cond) { std::cout << (cond ? "yay!"
+    : ":(") << ''\n''; };
 
-    const auto Yay = [](bool cond) { std::cout << (cond ? "Yay!" : ":(") << ''\n'';
-    };
+    [[maybe_unused]] const auto Yay = [](bool cond) { std::cout << (cond ? "Yay!"
+    : ":(") << ''\n''; };
 
     '
   dependsOn: []
   isVerificationFile: false
   path: short-snip/yay.cpp
   requiredBy: []
-  timestamp: '2020-09-17 11:52:26+09:00'
+  timestamp: '2020-09-17 14:12:50+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: short-snip/yay.cpp

@@ -20,12 +20,13 @@ data:
     \ = path.splitext(baseName)\n\n        if useAllLines:\n            lines = progReader.allLines(fpath)\n\
     \        else:\n            lines = progReader.linesBelowDoc(fpath)\n\n      \
     \  snipTrigger = base_ext_pair[0]\n        snipDescription = path.join(dirBaseName,\
-    \ baseName)\n        snipBody = \"\".join(lines)\n\n        sys.stdout.write('snippet\
-    \ {} \"{}\"\\n'.format(\n            snipTrigger, snipDescription))\n\n      \
-    \  if addFoldMarker:\n            sys.stdout.write(\"// \" + base_ext_pair[0]\
-    \ + \" {{{\\n\")\n            sys.stdout.write(snipBody)\n            sys.stdout.write(\"\
+    \ baseName)\n        snipBody = \"\".join(lines)\n\n        if snipBody[-1] !=\
+    \ '\\n':\n            snipBody += '\\n'\n\n        sys.stdout.write('snippet {}\
+    \ \"{}\"\\n'.format(\n            snipTrigger, snipDescription))\n\n        if\
+    \ addFoldMarker:\n            sys.stdout.write(\"// \" + base_ext_pair[0] + \"\
+    \ {{{\\n\")\n            sys.stdout.write(snipBody)\n            sys.stdout.write(\"\
     // }}}\\n\")\n        else:\n            sys.stdout.write(snipBody)\n\n      \
-    \  sys.stdout.write(\"endsnippt\\n\\n\")\n\n    pass\n\n\nif __name__ == '__main__':\n\
+    \  sys.stdout.write(\"endsnippet\\n\\n\")\n\n    pass\n\n\nif __name__ == '__main__':\n\
     \    if len(sys.argv) != 2:\n        sys.stderr.write(\"Error: Please ONE option.\\\
     n\")\n        sys.exit(1)\n\n    elif sys.argv[1] == '--short-snippets':\n   \
     \     genSnippet(glob.glob(shortSnippetsFileGlob), True, False)\n\n    elif sys.argv[1]\
