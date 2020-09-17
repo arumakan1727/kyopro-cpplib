@@ -10,7 +10,7 @@ constexpr Integer doublingPow(const Integer& n, const i64 expv) {
     return (expv < 0) ? (1 / ret) : ret;
 }
 // }}}
-endsnippt
+endsnippet
 
 snippet union-find "Disjoint-Set/union-find.hpp"
 // union-find {{{
@@ -53,7 +53,7 @@ public:
     }
 };
 // }}}
-endsnippt
+endsnippet
 
 snippet factorials "Combinatorics/factorials.hpp"
 // factorials {{{
@@ -101,7 +101,7 @@ std::vector<typename Factorials<Mod>::Mint> Factorials<Mod>::factorial(2, 1);
 template <int Mod>
 std::vector<typename Factorials<Mod>::Mint> Factorials<Mod>::factInv(2, 1);
 // }}}
-endsnippt
+endsnippet
 
 snippet mod-int "Modulo/mod-int.hpp"
 // mod-int {{{
@@ -229,7 +229,7 @@ using ModInt998244353 = StaticModInt<998244353>;
 template <auto ID>
 using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
 // }}}
-endsnippt
+endsnippet
 
 snippet enumerate-divisors "Number-Theory/enumerate-divisors.hpp"
 // enumerate-divisors {{{
@@ -244,9 +244,8 @@ std::vector<Integer> enumerateDivisors(Integer n) {
     std::sort(divisors.begin(), divisors.end());
     return divisors;
 }
-
 // }}}
-endsnippt
+endsnippet
 
 snippet eratosthenes-sieve "Number-Theory/eratosthenes-sieve.hpp"
 // eratosthenes-sieve {{{
@@ -283,7 +282,7 @@ public:
     }
 };
 // }}}
-endsnippt
+endsnippet
 
 snippet extgcd "Number-Theory/extgcd.hpp"
 // extgcd {{{
@@ -299,8 +298,9 @@ T extgcd(T a, T b, T& x, T& y) {
         y = 0;
     }
     return g;
-}// }}}
-endsnippt
+}
+// }}}
+endsnippet
 
 snippet is-prime "Number-Theory/is-prime.hpp"
 // is-prime {{{
@@ -311,8 +311,9 @@ bool isPrime(int64_t n) {
         if (n % i == 0) return false;
     }
     return true;
-}// }}}
-endsnippt
+}
+// }}}
+endsnippet
 
 snippet prime-factorize "Number-Theory/prime-factorize.hpp"
 // prime-factorize {{{
@@ -327,8 +328,9 @@ std::map<Integer, int> primeFactorize(Integer n) {
     }
     if (n != 1) res[n] = 1;
     return res;
-}// }}}
-endsnippt
+}
+// }}}
+endsnippet
 
 snippet totient-func "Number-Theory/totient-func.hpp"
 // totient-func {{{
@@ -343,8 +345,9 @@ Integer totient(Integer n) {
     }
     if (n != 1) ret -= ret / n;
     return ret;
-}// }}}
-endsnippt
+}
+// }}}
+endsnippet
 
 snippet debug "Debug/debug.hpp"
 // debug {{{
@@ -494,7 +497,7 @@ struct Debug {
 
 Debug debug;
 // }}}
-endsnippt
+endsnippet
 
 snippet container-io "IO/container-io.hpp"
 // container-io {{{
@@ -510,7 +513,7 @@ std::ostream& operator<<(std::ostream& os, const Container& v) {
     return os;
 }
 // }}}
-endsnippt
+endsnippet
 
 snippet join-into-ostream "IO/join-into-ostream.hpp"
 // join-into-ostream {{{
@@ -521,7 +524,7 @@ void join(std::ostream& os, InputItr begin, InputItr end, const char* delim, con
     os << last;
 }
 // }}}
-endsnippt
+endsnippet
 
 snippet println "IO/println.hpp"
 // println {{{
@@ -534,7 +537,7 @@ inline void println(Head&& head, Tail&&... tail) {
     println(std::forward<Tail>(tail)...);
 }
 // }}}
-endsnippt
+endsnippet
 
 snippet var-declaration-with-input "IO/var-declaration-with-input.hpp"
 // var-declaration-with-input {{{
@@ -547,14 +550,14 @@ std::istream& operator,(std::istream& is, T& rhs) {
     type __VA_ARGS__;  \
     std::cin >> __VA_ARGS__
 // }}}
-endsnippt
+endsnippet
 
 snippet all-macro "Util/all-macro.hpp"
 // all-macro {{{
 #define all(x) std::begin(x), std::end(x)
 #define rall(x) std::rbegin(x), std::rend(x)
 // }}}
-endsnippt
+endsnippet
 
 snippet chminmax "Util/chminmax.hpp"
 // chminmax {{{
@@ -568,21 +571,21 @@ inline bool chmax(T& a, const U& b) {
     return b > a && (a = b, true);
 }
 // }}}
-endsnippt
+endsnippet
 
 snippet int-alias "Util/int-alias.hpp"
 // int-alias {{{
 using i64 = std::int64_t;
 using u64 = std::uint64_t;
 // }}}
-endsnippt
+endsnippet
 
 snippet int-infinity "Util/int-infinity.hpp"
 // int-infinity {{{
 constexpr std::int32_t INF = 0x3f3f3f3f;
 constexpr std::int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
 // }}}
-endsnippt
+endsnippet
 
 snippet is-within-range "Util/is-within-range.hpp"
 // is-within-range {{{
@@ -591,7 +594,7 @@ inline bool within(const Value& v, const ValueBegin& begin, const ValueEnd& end)
     return begin <= v && v < end;
 }
 // }}}
-endsnippt
+endsnippet
 
 snippet makeVec "Util/makeVec.hpp"
 // makeVec {{{
@@ -604,7 +607,7 @@ inline auto makeVec(const T& initValue, size_t sz, Args... args) {
     return std::vector<decltype(makeVec<T>(initValue, args...))>(sz, makeVec<T>(initValue, args...));
 }
 // }}}
-endsnippt
+endsnippet
 
 snippet rep-macro "Util/rep-macro.hpp"
 // rep-macro {{{
@@ -612,5 +615,5 @@ snippet rep-macro "Util/rep-macro.hpp"
 #define repc(i, begin, last) for (int64_t i{begin}, i##_last{last}; i <= i##_last; ++i)
 #define repr(i, begin, last) for (int64_t i{begin}, i##_last{last}; i >= i##_last; --i)
 // }}}
-endsnippt
+endsnippet
 

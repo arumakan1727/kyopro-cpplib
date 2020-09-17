@@ -26,6 +26,9 @@ def genSnippet(srcFiles, useAllLines, addFoldMarker):
         snipDescription = path.join(dirBaseName, baseName)
         snipBody = "".join(lines)
 
+        if snipBody[-1] != '\n':
+            snipBody += '\n'
+
         sys.stdout.write('snippet {} "{}"\n'.format(
             snipTrigger, snipDescription))
 
@@ -36,7 +39,7 @@ def genSnippet(srcFiles, useAllLines, addFoldMarker):
         else:
             sys.stdout.write(snipBody)
 
-        sys.stdout.write("endsnippt\n\n")
+        sys.stdout.write("endsnippet\n\n")
 
     pass
 

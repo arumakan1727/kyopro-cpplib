@@ -1,48 +1,48 @@
 snippet bye "short-snip/bye.cpp"
 const auto bye = [](const auto& x) { std::cout << x << '\n', std::exit(0); };
-endsnippt
+endsnippet
 
 snippet div-ceil "short-snip/div-ceil.cpp"
 const auto divceil = [](int64_t a, int64_t b) { return (a + b - 1) / b; };
-endsnippt
+endsnippet
 
 snippet io-setup "short-snip/io-setup.cpp"
 std::cin.tie(nullptr);
 std::ios_base::sync_with_stdio(false);
-endsnippt
+endsnippet
 
 snippet mod1 "short-snip/mod1.cpp"
 constexpr int MOD = int(1e9) + 7;
-endsnippt
+endsnippet
 
 snippet mod2 "short-snip/mod2.cpp"
 constexpr int MOD = 998244353;
-endsnippt
+endsnippet
 
 snippet possible "short-snip/possible.cpp"
 const auto possible = [](bool cond) { std::cout << (cond ? "possible" : "impossible") << '\n'; };
 const auto Possible = [](bool cond) { std::cout << (cond ? "Possible" : "Impossible") << '\n'; };
 const auto POSSIBLE = [](bool cond) { std::cout << (cond ? "POSSIBLE" : "IMPOSSIBLE") << '\n'; };
-endsnippt
+endsnippet
 
 snippet precision "short-snip/precision.cpp"
 ${1:std::cout} << std::fixed << std::setprecision(12);
 $0
-endsnippt
+endsnippet
 
 snippet uniq "short-snip/uniq.cpp"
 ${1}.erase(std::unique(begin($1), end($1)), end($1));
 $0
-endsnippt
+endsnippet
 
 snippet yay "short-snip/yay.cpp"
 const auto yay = [](bool cond) { std::cout << (cond ? "yay!" : ":(") << '\n'; };
 const auto Yay = [](bool cond) { std::cout << (cond ? "Yay!" : ":(") << '\n'; };
-endsnippt
+endsnippet
 
 snippet yesno "short-snip/yesno.cpp"
 const auto yesno = [](bool cond) { std::cout << (cond ? "yes" : "no") << '\n'; };
 const auto YesNo = [](bool cond) { std::cout << (cond ? "Yes" : "No") << '\n'; };
 const auto YESNO = [](bool cond) { std::cout << (cond ? "YES" : "NO") << '\n'; };
-endsnippt
+endsnippet
 
