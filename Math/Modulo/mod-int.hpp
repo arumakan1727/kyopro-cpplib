@@ -20,8 +20,6 @@ public:
     constexpr ModInt(int64_t v)
         : value(ModInt::normalized(v)) {}
 
-    constexpr ModInt(const ModInt& v) = default;
-
     static constexpr ModInt raw(int64_t v) {
         ModInt ret;
         ret.value = v;
@@ -100,8 +98,8 @@ private:
         int64_t u = 0, v = 1;
         while (a != 0) {
             const auto t = m / a;
-            m -= t * a, std::swap(m, a);
-            u -= t * v, std::swap(u, v);
+            static_cast<void>(m -= t * a), std::swap(m, a);
+            static_cast<void>(u -= t * v), std::swap(u, v);
         }
         assert(m == 1);
         return u;
