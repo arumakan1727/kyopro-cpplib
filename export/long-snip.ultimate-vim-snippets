@@ -1,0 +1,616 @@
+snippet doubling-pow "Algorithm/doubling-pow.hpp"
+// doubling-pow {{{
+template <class Integer>
+constexpr Integer doublingPow(const Integer& n, const i64 expv) {
+    Integer ret = 1, square = n;
+    for (u64 p = std::abs(expv); p; p >>= 1) {
+        if (p & 1) ret *= square;
+        square *= square;
+    }
+    return (expv < 0) ? (1 / ret) : ret;
+}
+// }}}
+endsnippt
+
+snippet union-find "Disjoint-Set/union-find.hpp"
+// union-find {{{
+class UnionFind {
+private:
+    int n;
+    mutable std::vector<int> p;
+
+public:
+    UnionFind() = default;
+
+    explicit UnionFind(int n_)
+        : n(n_)
+        , p(n_, -1) {}
+
+    int unite(int x, int y) {
+        x = leader(x), y = leader(y);
+        if (x == y) return x;
+        if (p[y] < p[x]) std::swap(x, y);
+        p[x] += p[y];
+        p[y] = x;
+        return x;
+    }
+
+    int leader(int x) const { return p[x] < 0 ? x : p[x] = leader(p[x]); }
+
+    bool same(int x, int y) const { return leader(x) == leader(y); }
+
+    int size(int x) const { return -p[leader(x)]; }
+
+    std::vector<std::vector<int>> groups() const {
+        std::vector<int> leaderBuf(n), groupSize(n);
+        for (int i = 0; i < n; i++) ++groupSize[leaderBuf[i] = leader(i)];
+
+        std::vector<std::vector<int>> result(n);
+        for (int i = 0; i < n; i++) result[i].reserve(groupSize[i]);
+        for (int i = 0; i < n; i++) result[leaderBuf[i]].push_back(i);
+        result.erase(std::remove_if(result.begin(), result.end(), [](const std::vector<int>& v) { return v.empty(); }), result.end());
+        return result;
+    }
+};
+// }}}
+endsnippt
+
+snippet factorials "Combinatorics/factorials.hpp"
+// factorials {{{
+template <int Mod>
+class Factorials {
+private:
+    using Mint = StaticModInt<Mod>;
+    static std::vector<Mint> factorial, factInv;
+
+public:
+    Factorials() = delete;
+
+    static void grow(size_t n) {
+        if (n < factorial.size()) return;
+        const int l = static_cast<int>(factorial.size());
+        const int r = static_cast<int>(n << 1) + 1000;
+        factorial.resize(r, Mint::raw(1));
+        factInv.resize(r, Mint::raw(1));
+        for (int i = l; i < r; ++i) factorial[i] = factorial[i - 1] * i;
+        factInv[r - 1] = Mint::raw(1) / factorial[r - 1];
+        for (int i = r - 1; i > l; --i) factInv[i - 1] = factInv[i] * i;
+    }
+
+    static Mint fact(int i) { return grow(i), factorial[i]; }
+    static Mint finv(int i) { return grow(i), factInv[i]; }
+
+    static Mint C(int n, int r) {
+        if (r < 0 || n < r) return Mint::raw(0);
+        return grow(n), factorial[n] * factInv[r] * factInv[n - r];
+    }
+
+    static Mint P(int n, int r) {
+        if (r < 0 || n < r) return Mint::raw(0);
+        return grow(n), factorial[n] * factInv[n - r];
+    }
+
+    static Mint H(int n, int r) {
+        if (r < 0 || n < r) return Mint::raw(0);
+        if (n == 0 && r == 0) return Mint::raw(1);
+        return C(n + r - 1, r);
+    }
+};
+template <int Mod>
+std::vector<typename Factorials<Mod>::Mint> Factorials<Mod>::factorial(2, 1);
+template <int Mod>
+std::vector<typename Factorials<Mod>::Mint> Factorials<Mod>::factInv(2, 1);
+// }}}
+endsnippt
+
+snippet mod-int "Modulo/mod-int.hpp"
+// mod-int {{{
+namespace impl {
+
+template <class ModHolder>
+class ModInt {
+private:
+    int64_t value;
+
+public:
+    constexpr ModInt()
+        : value(0) {}
+    constexpr ModInt(int64_t v)
+        : value(ModInt::normalized(v)) {}
+
+    constexpr ModInt(const ModInt& v) = default;
+
+    static constexpr ModInt raw(int64_t v) {
+        ModInt ret;
+        ret.value = v;
+        return ret;
+    }
+
+    static constexpr ModInt nullopt() { return ModInt::raw(std::numeric_limits<int64_t>::min()); }
+
+    constexpr bool isNull() const { return *this == ModInt::nullopt(); }
+
+    static constexpr int64_t mod() { return ModHolder::mod; }
+
+    static int64_t setMod(int64_t m) {
+        assert(m >= 1);
+        return ModHolder::mod = m;
+    }
+
+    template <class T>
+    constexpr explicit operator T() const {
+        return static_cast<T>(value);
+    }
+    constexpr ModInt& operator+=(const ModInt& rhs) {
+        if ((value += rhs.value) >= mod()) value -= mod();
+        return *this;
+    }
+    constexpr ModInt& operator-=(const ModInt& rhs) {
+        if ((value -= rhs.value) < 0) value += mod();
+        return *this;
+    }
+    constexpr ModInt& operator*=(const ModInt& rhs) {
+        (value *= rhs.value) %= mod();
+        return *this;
+    }
+    constexpr ModInt& operator/=(const ModInt& rhs) { return *this *= rhs.inv(); }
+    constexpr const ModInt inv() const { return ModInt(ModInt::inverse(value, mod())); }
+    constexpr const ModInt operator+() const { return *this; }
+    constexpr const ModInt operator-() const { return ModInt(-value); }
+
+    constexpr const ModInt pow(int64_t expv) const {
+        int64_t ret = 1, square = value;
+        for (uint64_t p = std::abs(expv); p; p >>= 1) {
+            if (p & 1) (ret *= square) %= mod();
+            (square *= square) %= mod();
+        }
+        return (expv < 0) ? (ModInt::raw(1) / ModInt::raw(ret)) : ModInt::raw(ret);
+    }
+
+    friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) { return lhs.value == rhs.value; }
+    friend constexpr bool operator!=(const ModInt& lhs, const ModInt& rhs) { return lhs.value != rhs.value; }
+    friend constexpr const ModInt operator+(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) += rhs; }
+    friend constexpr const ModInt operator-(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) -= rhs; }
+    friend constexpr const ModInt operator*(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) *= rhs; }
+    friend constexpr const ModInt operator/(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) /= rhs; }
+
+    friend std::ostream& operator<<(std::ostream& os, const ModInt& x) {
+#ifdef LOCAL_DEBUG
+        if (x.isNull()) return os << "{nullopt}";
+#endif
+        return os << x.value;
+    }
+
+    friend std::istream& operator>>(std::istream& is, ModInt& x) {
+        is >> x.value;
+        x.value = ModInt::normalized(x.value);
+        return is;
+    }
+
+private:
+    static constexpr int64_t normalized(int64_t n) {
+        n = (-mod() <= n && n < mod() ? n : n % mod());
+        if (n < 0) n += mod();
+        return n;
+    }
+
+    static constexpr int64_t inverse(int64_t a, int64_t m) {
+        int64_t u = 0, v = 1;
+        while (a != 0) {
+            const auto t = m / a;
+            m -= t * a, std::swap(m, a);
+            u -= t * v, std::swap(u, v);
+        }
+        assert(m == 1);
+        return u;
+    }
+};
+
+template <int64_t Mod>
+struct StaticModHolder {
+    static constexpr int64_t mod = Mod;
+};
+
+template <auto ID>
+struct DynamicModHolder {
+    static int64_t mod;
+};
+template <auto ID>
+int64_t DynamicModHolder<ID>::mod;
+
+}  // namespace impl
+
+template <int64_t Mod>
+using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
+
+using ModInt1000000007 = StaticModInt<int(1e9) + 7>;
+using ModInt998244353 = StaticModInt<998244353>;
+
+template <auto ID>
+using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
+// }}}
+endsnippt
+
+snippet enumerate-divisors "Number-Theory/enumerate-divisors.hpp"
+// enumerate-divisors {{{
+template <class Integer>
+std::vector<Integer> enumerateDivisors(Integer n) {
+    std::vector<Integer> divisors;
+    Integer i;
+    for (i = 1; i * i < n; ++i) {
+        if (n % i == 0) divisors.push_back(i), divisors.push_back(n / i);
+    }
+    if (i * i == n) divisors.push_back(i);
+    std::sort(divisors.begin(), divisors.end());
+    return divisors;
+}
+
+// }}}
+endsnippt
+
+snippet eratosthenes-sieve "Number-Theory/eratosthenes-sieve.hpp"
+// eratosthenes-sieve {{{
+class EratosthenesSieve {
+private:
+    int n_;
+    std::vector<int> minFactor_;
+
+public:
+    EratosthenesSieve() = default;
+
+    explicit EratosthenesSieve(int n)
+        : n_(n)
+        , minFactor_(n) {
+        std::iota(minFactor_.begin(), minFactor_.end(), 0);
+        for (int i = 2; i * i < n; ++i) {
+            if (minFactor_[i] < i) continue;
+            for (int j = i * i; j < n; j += i) {
+                if (minFactor_[j] == j) minFactor_[j] = i;
+            }
+        }
+        if (n >= 0) minFactor_[0] = -1;
+        if (n >= 1) minFactor_[1] = -1;
+    }
+
+    bool isPrime(int x) const {
+        assert(0 <= x && x < n_);
+        return minFactor_[x] == x;
+    }
+
+    int minFactor(int x) const {
+        assert(0 <= x && x < n_);
+        return minFactor_[x];
+    }
+};
+// }}}
+endsnippt
+
+snippet extgcd "Number-Theory/extgcd.hpp"
+// extgcd {{{
+// ax + by = gcd(a, b) の整数解 (x, y) を求める
+template <class T>
+T extgcd(T a, T b, T& x, T& y) {
+    T g = a;
+    if (b != 0) {
+        g = extgcd(b, a % b, y, x);
+        y -= (a / b) * x;
+    } else {
+        x = 1;
+        y = 0;
+    }
+    return g;
+}// }}}
+endsnippt
+
+snippet is-prime "Number-Theory/is-prime.hpp"
+// is-prime {{{
+bool isPrime(int64_t n) {
+    if (n == 2) return true;
+    if (n <= 1 || n % 2 == 0) return false;
+    for (int64_t i = 3; i * i <= n; i += 2) {
+        if (n % i == 0) return false;
+    }
+    return true;
+}// }}}
+endsnippt
+
+snippet prime-factorize "Number-Theory/prime-factorize.hpp"
+// prime-factorize {{{
+template <class Integer>
+std::map<Integer, int> primeFactorize(Integer n) {
+    std::map<Integer, int> res;
+    for (Integer i = 2; i * i <= n; ++i) {
+        while (n % i == 0) {
+            ++res[i];
+            n /= i;
+        }
+    }
+    if (n != 1) res[n] = 1;
+    return res;
+}// }}}
+endsnippt
+
+snippet totient-func "Number-Theory/totient-func.hpp"
+// totient-func {{{
+template <class Integer>
+Integer totient(Integer n) {
+    Integer ret = n;
+    for (Integer i = 2; i * i <= n; ++i) {
+        if (n % i == 0) {
+            ret -= ret / i;
+            while (n % i == 0) n /= i;
+        }
+    }
+    if (n != 1) ret -= ret / n;
+    return ret;
+}// }}}
+endsnippt
+
+snippet debug "Debug/debug.hpp"
+// debug {{{
+template <class A, class B>
+std::ostream& operator<<(std::ostream& os, const std::pair<A, B>& t) {
+    return os << '{' << std::get<0>(t) << ", " << std::get<1>(t) << '}';
+}
+template <class A, class B, class C>
+std::ostream& operator<<(std::ostream& os, const std::tuple<A, B, C>& t) {
+    return os << '{' << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << '}';
+}
+
+template <class T, std::enable_if_t<std::is_integral_v<T> && sizeof(T) == 4, std::nullptr_t> = nullptr>
+constexpr T infinity() {
+    return INF;
+}
+
+template <class T, std::enable_if_t<std::is_integral_v<T> && sizeof(T) == 8, std::nullptr_t> = nullptr>
+constexpr T infinity() {
+    return LINF;
+}
+
+#ifdef LOCAL_DEBUG
+
+class Debug {
+private:
+    int w_ = 4;
+    int valueOffset_ = 0;
+    int indexOffset_ = 0;
+    bool negativeValAsNull_ = true;
+    static constexpr int32_t inf32_ = INF;
+    static constexpr int64_t inf64_ = LINF;
+
+public:
+    std::ostream& os = std::cerr;
+
+    Debug() = default;
+
+    void line() const { os << "---------------------------------------------------\n"; }
+    void flush() const { os << std::flush; }
+    void w(int w) { w_ = w; }
+    void valueOffset(int v) { valueOffset_ = v; }
+    void indexOffset(int v) { indexOffset_ = v; }
+    void negativeValAsNull(bool f) { negativeValAsNull_ = f; }
+
+    template <class T>
+    void show(const T& x) const {
+        put(x), os << '\n';
+    }
+
+    template <class T, class U, class... Tail>
+    void show(const T& x, const U& y, const Tail&... tail) const {
+        put(x);
+        os << ",  ";
+        show(y, tail...);
+    }
+
+    template <class Arr>
+    void showArray(const Arr& a) const {
+        showArray(a, 0, a.size());
+    }
+
+    template <class Arr>
+    void showArray(const Arr& a, size_t begin, size_t end) const {
+        os << '\n';
+        for (size_t i = begin; i < end; ++i) os << '[' << std::setw(w_) << (i + indexOffset_) << "] ";
+        os << '\n';
+        for (size_t i = begin; i < end; ++i) os << ' ' << std::setw(w_), put(a[i]), os << "  ";
+        os << '\n';
+    }
+
+    template <class Table>
+    void showTable(const Table& t) const {
+        showTable(t, 0, t.size(), 0, t[0].size());
+    }
+
+    template <class Table>
+    void showTable(const Table& t, size_t yBegin, size_t yEnd, size_t xBegin, size_t xEnd) const {
+        os << '\n';
+        os << std::string(1 + 2 + 1, ' ');
+        for (size_t j = xBegin; j < xEnd; ++j) os << '[' << std::setw(w_) << (j + indexOffset_) << "] ";
+        os << '\n';
+
+        for (size_t i = yBegin; i < yEnd; ++i) {
+            os << '[' << std::setw(2) << (i + indexOffset_) << "]";
+            for (size_t j = xBegin; j < xEnd; ++j) os << ' ' << std::setw(w_), put(t[i][j]), os << "  ";
+            os << '\n';
+        }
+    }
+
+private:
+    template <class T>
+    void put(const T& x) const {
+        if constexpr (std::is_same_v<T, char>) {
+            os << '\'' << x << '\'';
+        } else if constexpr (std::is_same_v<T, bool>) {
+            os << std::setw(w_) << (x ? "1" : "0");
+        } else if constexpr (std::is_integral_v<T>) {
+            os << std::setw(w_) << convert(x);
+        } else if constexpr (std::is_convertible_v<T, std::string_view>) {
+            os << std::setw(w_) << std::quoted(x);
+        } else {
+            os << std::setw(w_) << x;
+        }
+    }
+
+    template <class T>
+    std::string convert(const T& x) const {
+        if constexpr (std::is_signed_v<T>) {
+            if (x <= -infinity<T>()) return "-INF";
+            if (negativeValAsNull_ && x < 0) return "-";
+        }
+        if (x >= infinity<T>()) return "INF";
+        return std::to_string(x + valueOffset_);
+    }
+};
+
+#define dump(...)                                                                                    \
+    debug.os << "line" << std::setw(3) << std::setfill('0') << __LINE__ << std::setfill(' ') << ": " \
+             << "[" << #__VA_ARGS__ << "]: ",                                                        \
+        debug.show(__VA_ARGS__)
+
+#else
+
+#define DEF_FUNC(funcName) \
+    template <class... T>  \
+    void funcName(T&&...) {}
+
+struct Debug {
+    DEF_FUNC(line)
+    DEF_FUNC(flush)
+    DEF_FUNC(w)
+    DEF_FUNC(valueOffset)
+    DEF_FUNC(indexOffset)
+    DEF_FUNC(negativeValAsNull)
+    DEF_FUNC(inf32)
+    DEF_FUNC(inf64)
+    DEF_FUNC(show)
+    DEF_FUNC(showArray)
+    DEF_FUNC(showTable)
+};
+
+#undef DEF_FUNC
+#define dump(...) ((void)0)
+
+#endif
+
+Debug debug;
+// }}}
+endsnippt
+
+snippet container-io "IO/container-io.hpp"
+// container-io {{{
+template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container, std::string>, std::nullptr_t> = nullptr>
+std::istream& operator>>(std::istream& is, Container& v) {
+    for (auto& e : v) is >> e;
+    return is;
+}
+
+template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container, std::string>, std::nullptr_t> = nullptr>
+std::ostream& operator<<(std::ostream& os, const Container& v) {
+    for (auto it = std::begin(v); it != std::end(v); ++it) os << &" "[it == std::begin(v)] << *it;
+    return os;
+}
+// }}}
+endsnippt
+
+snippet join-into-ostream "IO/join-into-ostream.hpp"
+// join-into-ostream {{{
+template <class InputItr>
+void join(std::ostream& os, InputItr begin, InputItr end, const char* delim, const char* last = "\n") {
+    const char* tmp[] = {delim, ""};
+    for (auto it = begin; it != end; ++it) os << tmp[it == begin] << *it;
+    os << last;
+}
+// }}}
+endsnippt
+
+snippet println "IO/println.hpp"
+// println {{{
+inline void println() {
+    std::cout << '\n';
+}
+template <class Head, class... Tail>
+inline void println(Head&& head, Tail&&... tail) {
+    std::cout << head << &" "[!sizeof...(tail)];
+    println(std::forward<Tail>(tail)...);
+}
+// }}}
+endsnippt
+
+snippet var-declaration-with-input "IO/var-declaration-with-input.hpp"
+// var-declaration-with-input {{{
+template <class T>
+std::istream& operator,(std::istream& is, T& rhs) {
+    return is >> rhs;
+}
+
+#define var(type, ...) \
+    type __VA_ARGS__;  \
+    std::cin >> __VA_ARGS__
+// }}}
+endsnippt
+
+snippet all-macro "Util/all-macro.hpp"
+// all-macro {{{
+#define all(x) std::begin(x), std::end(x)
+#define rall(x) std::rbegin(x), std::rend(x)
+// }}}
+endsnippt
+
+snippet chminmax "Util/chminmax.hpp"
+// chminmax {{{
+template <class T, class U>
+inline bool chmin(T& a, const U& b) {
+    return b < a && (a = b, true);
+}
+
+template <class T, class U>
+inline bool chmax(T& a, const U& b) {
+    return b > a && (a = b, true);
+}
+// }}}
+endsnippt
+
+snippet int-alias "Util/int-alias.hpp"
+// int-alias {{{
+using i64 = std::int64_t;
+using u64 = std::uint64_t;
+// }}}
+endsnippt
+
+snippet int-infinity "Util/int-infinity.hpp"
+// int-infinity {{{
+constexpr std::int32_t INF = 0x3f3f3f3f;
+constexpr std::int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
+// }}}
+endsnippt
+
+snippet is-within-range "Util/is-within-range.hpp"
+// is-within-range {{{
+template <class Value, class ValueBegin, class ValueEnd>
+inline bool within(const Value& v, const ValueBegin& begin, const ValueEnd& end) {
+    return begin <= v && v < end;
+}
+// }}}
+endsnippt
+
+snippet makeVec "Util/makeVec.hpp"
+// makeVec {{{
+template <class T>
+inline std::vector<T> makeVec(const T& initValue, size_t sz) {
+    return std::vector<T>(sz, initValue);
+}
+template <class T, class... Args>
+inline auto makeVec(const T& initValue, size_t sz, Args... args) {
+    return std::vector<decltype(makeVec<T>(initValue, args...))>(sz, makeVec<T>(initValue, args...));
+}
+// }}}
+endsnippt
+
+snippet rep-macro "Util/rep-macro.hpp"
+// rep-macro {{{
+#define rep(i, begin, end) for (int64_t i{begin}, i##_end{end}; i < i##_end; ++i)
+#define repc(i, begin, last) for (int64_t i{begin}, i##_last{last}; i <= i##_last; ++i)
+#define repr(i, begin, last) for (int64_t i{begin}, i##_last{last}; i >= i##_last; --i)
+// }}}
+endsnippt
+

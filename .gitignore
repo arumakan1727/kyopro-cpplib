@@ -7,7 +7,7 @@ tmp.*
 bin/
 build/
 ignore/
+__pycache__/
 
-/short-snip-src/
 /bits-dir/
 /.vscode/
