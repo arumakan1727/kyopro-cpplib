@@ -252,34 +252,35 @@ snippet eratosthenes-sieve "Number-Theory/eratosthenes-sieve.hpp"
 // eratosthenes-sieve {{{
 class EratosthenesSieve {
 private:
-    int n_;
-    std::vector<int> minFactor_;
+    int m_size;
+    std::vector<int> m_minFactor;
 
 public:
     EratosthenesSieve() = default;
 
-    explicit EratosthenesSieve(int n)
-        : n_(n)
-        , minFactor_(n) {
-        std::iota(minFactor_.begin(), minFactor_.end(), 0);
-        for (int i = 2; i * i < n; ++i) {
-            if (minFactor_[i] < i) continue;
-            for (int j = i * i; j < n; j += i) {
-                if (minFactor_[j] == j) minFactor_[j] = i;
+    // [0, n] の範囲で篩を構築する
+    explicit EratosthenesSieve(int n_)
+        : m_size(n_ + 1)
+        , m_minFactor(m_size) {
+        std::iota(m_minFactor.begin(), m_minFactor.end(), 0);
+        for (int i = 2; i * i < m_size; ++i) {
+            if (m_minFactor[i] < i) continue;
+            for (int j = i * i; j < m_size; j += i) {
+                if (m_minFactor[j] == j) m_minFactor[j] = i;
             }
         }
-        if (n >= 0) minFactor_[0] = -1;
-        if (n >= 1) minFactor_[1] = -1;
+        m_minFactor[0] = -1;
+        if (n_ >= 1) m_minFactor[1] = -1;
     }
 
     bool isPrime(int x) const {
-        assert(0 <= x && x < n_);
-        return minFactor_[x] == x;
+        assert(0 <= x && x < m_size);
+        return m_minFactor[x] == x;
     }
 
     int minFactor(int x) const {
-        assert(0 <= x && x < n_);
-        return minFactor_[x];
+        assert(0 <= x && x < m_size);
+        return m_minFactor[x];
     }
 };
 // }}}
@@ -610,11 +611,62 @@ inline auto makeVec(const T& initValue, size_t sz, Args... args) {
 // }}}
 endsnippet
 
+snippet project "Util/project.hpp"
+// project {{{
+template <std::size_t I, class Container, class Value = typename std::tuple_element_t<I, typename Container::value_type>>
+std::vector<Value> project(const Container& v) {
+    std::vector<Value> ret(v.size());
+    std::transform(v.begin(), v.end(), ret.begin(), [](auto&& t) { return std::get<I>(t); });
+    return ret;
+}
+// }}}
+endsnippet
+
 snippet rep-macro "Util/rep-macro.hpp"
 // rep-macro {{{
 #define rep(i, begin, end) for (std::make_signed_t<decltype(end)> i = (begin), i##_end = (end); i < i##_end; ++i)
 #define repc(i, begin, last) for (std::make_signed_t<decltype(end)> i = (begin), i##_last = (last); i <= i##_last; ++i)
 #define repr(i, begin, last) for (std::make_signed_t<decltype(end)> i = (begin), i##_last = (last); i >= i##_last; --i)
+// }}}
+endsnippet
+
+snippet runlength "Util/runlength.hpp"
+// runlength {{{
+template <class Iterator>
+auto runlength(Iterator const begin, Iterator const end) {
+    std::vector<std::pair<Iterator, std::size_t>> ret;
+    ret.reserve(std::distance(begin, end));
+
+    for (auto itr = begin; itr != end;) {
+        std::size_t cnt = 1;
+        const auto head = itr++;
+        while (itr != end && *itr == *head) ++itr, ++cnt;
+        ret.emplace_back(head, cnt);
+    }
+
+    ret.shrink_to_fit();
+    return ret;
+}
+// }}}
+endsnippet
+
+snippet zip "Util/zip.hpp"
+// zip {{{
+template <class T1, class T2>
+std::vector<std::pair<T1, T2>> zip(const std::vector<T1>& v1, const std::vector<T2>& v2) {
+    const auto sz = std::min(v1.size(), v2.size());
+    std::vector<std::pair<T1, T2>> ret(sz);
+    for (std::size_t i = 0; i < sz; ++i) ret[i] = std::make_pair(v1[i], v2[i]);
+    return ret;
+}
+
+template <class T1, class T2, class T3>
+std::vector<std::tuple<T1, T2, T3>> zip(const std::vector<T1>& v1, const std::vector<T2>& v2, const std::vector<T3>& v3) {
+    const auto sz = std::min({v1.size(), v2.size(), v3.size()});
+    std::vector<std::tuple<T1, T2, T3>> ret(sz);
+    for (std::size_t i = 0; i < sz; ++i) ret[i] = std::make_tuple(v1[i], v2[i], v3[i]);
+    return ret;
+}
 // }}}
 endsnippet
 
