@@ -18,8 +18,8 @@ using namespace std;
 int main() {
     constexpr int OFFSET = 2000;
     constexpr int MOD = int(1e8) + 7;
-    using F = Factorials<MOD>;
     using Mint = StaticModInt<MOD>;
+    const auto F = Factorials<Mint::mod()>();
 
     var(int, H, W, sy, sx, gy, gx);
     sx += OFFSET;
@@ -51,10 +51,10 @@ int main() {
             const int h = abs(sy - (gy + ay));
             const int w = abs(sx - (gx + ax));
 
-            const auto res1 = F::fact(h + w) * F::finv(h) * F::finv(w);
-            const auto res2 = F::fact(h + w) / (F::fact(h) * F::fact(w));
-            const auto res3 = F::C(h + w, h);
-            const auto res4 = F::C(h + w, w);
+            const auto res1 = F.fact(h + w) * F.finv(h) * F.finv(w);
+            const auto res2 = F.fact(h + w) / (F.fact(h) * F.fact(w));
+            const auto res3 = F.C(h + w, h);
+            const auto res4 = F.C(h + w, w);
             const auto res5 = binomial<Mint>(h + w, h);
             const auto res6 = binomialTable<Mint>(h + w)[h + w][h];
             const auto res7 = binomialTable_constN<Mint>(h + w, h)[h];
