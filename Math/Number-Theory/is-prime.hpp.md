@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/unittest/eratosthenes-sieve.test.cpp
+    title: test/unittest/eratosthenes-sieve.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp
     title: test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp
   _pathExtension: hpp
@@ -29,6 +32,7 @@ data:
   timestamp: '2020-09-17 22:43:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/unittest/eratosthenes-sieve.test.cpp
   - test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp
 documentation_of: Math/Number-Theory/is-prime.hpp
 layout: document

@@ -37,7 +37,7 @@ data:
     - icon: ':warning:'
       path: Math/Number-Theory/enumerate-divisors.hpp
       title: "enumerateDivisors() (\u7D04\u6570\u5217\u6319)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Math/Number-Theory/eratosthenes-sieve.hpp
       title: "Eratosthenes-Sieve (\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\
         \u7BE9)"
@@ -98,9 +98,20 @@ data:
     - icon: ':warning:'
       path: Util/makeVec.hpp
       title: "makeVec() (\u591A\u6B21\u5143std::vector\u306E\u751F\u6210)"
+    - icon: ':heavy_check_mark:'
+      path: Util/project.hpp
+      title: "project() (\u30BF\u30D7\u30EB\u306E\u30B3\u30F3\u30C6\u30CA\u306E\u7B2C\
+        \ I \u8981\u7D20\u3092\u62BD\u51FA\u3057\u305Fvector\u3092\u8FD4\u3059)"
     - icon: ':warning:'
       path: Util/rep-macro.hpp
       title: "rep()\u30DE\u30AF\u30ED"
+    - icon: ':heavy_check_mark:'
+      path: Util/runlength.hpp
+      title: "runlength() (\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
+    - icon: ':heavy_check_mark:'
+      path: Util/zip.hpp
+      title: "zip() (n\u500B\u306Evector\u304B\u3089n\u8981\u7D20\u306E\u30BF\u30D7\
+        \u30EB\u306Evector\u3092\u751F\u6210\u3059\u308B)"
   - name: export
     pages:
     - icon: ':warning:'
@@ -182,5 +193,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
       title: test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
+  - name: test/unittest
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/unittest/eratosthenes-sieve.test.cpp
+      title: test/unittest/eratosthenes-sieve.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unittest/project.test.cpp
+      title: test/unittest/project.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unittest/runlength.test.cpp
+      title: test/unittest/runlength.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unittest/zip.test.cpp
+      title: test/unittest/zip.test.cpp
 layout: toppage
 ---
