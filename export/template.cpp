@@ -2,9 +2,9 @@
 // header {{{
 #define all(x) std::begin(x), std::end(x)
 #define rall(x) std::rbegin(x), std::rend(x)
-#define rep(i, begin, end) for (int64_t i{begin}, i##_end{end}; i < i##_end; ++i)
-#define repc(i, begin, last) for (int64_t i{begin}, i##_last{last}; i <= i##_last; ++i)
-#define repr(i, begin, last) for (int64_t i{begin}, i##_last{last}; i >= i##_last; --i)
+#define rep(i, begin, end) for (std::make_signed_t<decltype(end)> i = (begin), i##_end = (end); i < i##_end; ++i)
+#define repc(i, begin, last) for (std::make_signed_t<decltype(end)> i = (begin), i##_last = (last); i <= i##_last; ++i)
+#define repr(i, begin, last) for (std::make_signed_t<decltype(end)> i = (begin), i##_last = (last); i >= i##_last; --i)
 #define let const auto
 using i64 = std::int64_t;
 using u64 = std::uint64_t;
