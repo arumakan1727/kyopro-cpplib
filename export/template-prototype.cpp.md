@@ -38,12 +38,13 @@ data:
     // header {{{\n#line 2 \"Util/all-macro.hpp\"\n\n/**\n * @brief all()\u30DE\u30AF\
     \u30ED\n */\n#define all(x) std::begin(x), std::end(x)\n#define rall(x) std::rbegin(x),\
     \ std::rend(x)\n#line 2 \"Util/rep-macro.hpp\"\n\n/**\n * @brief rep()\u30DE\u30AF\
-    \u30ED\n */\n#define rep(i, begin, end) for (int64_t i{begin}, i##_end{end}; i\
-    \ < i##_end; ++i)\n#define repc(i, begin, last) for (int64_t i{begin}, i##_last{last};\
-    \ i <= i##_last; ++i)\n#define repr(i, begin, last) for (int64_t i{begin}, i##_last{last};\
-    \ i >= i##_last; --i)\n#line 5 \"export/template-prototype.cpp\"\n#define let\
-    \ const auto\n#line 3 \"Util/int-alias.hpp\"\n\n/**\n * @brief int-alias (\u6574\
-    \u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)\n */\nusing i64 = std::int64_t;\n\
+    \u30ED\n */\n#define rep(i, begin, end) for (std::make_signed_t<decltype(end)>\
+    \ i = (begin), i##_end = (end); i < i##_end; ++i)\n#define repc(i, begin, last)\
+    \ for (std::make_signed_t<decltype(end)> i = (begin), i##_last = (last); i <=\
+    \ i##_last; ++i)\n#define repr(i, begin, last) for (std::make_signed_t<decltype(end)>\
+    \ i = (begin), i##_last = (last); i >= i##_last; --i)\n#line 5 \"export/template-prototype.cpp\"\
+    \n#define let const auto\n#line 3 \"Util/int-alias.hpp\"\n\n/**\n * @brief int-alias\
+    \ (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)\n */\nusing i64 = std::int64_t;\n\
     using u64 = std::uint64_t;\n#line 3 \"Util/int-infinity.hpp\"\n\n/**\n * @brief\
     \ int-infinity (\u6574\u6570\u306E\u30C7\u30AB\u30A4\u5024)\n * 2\u500D\u3057\u3066\
     \u3082\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044 & memset()\u306B\
@@ -95,7 +96,7 @@ data:
   isVerificationFile: false
   path: export/template-prototype.cpp
   requiredBy: []
-  timestamp: '2020-09-17 11:52:26+09:00'
+  timestamp: '2020-09-18 11:31:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: export/template-prototype.cpp

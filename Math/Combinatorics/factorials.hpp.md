@@ -72,57 +72,56 @@ data:
     \nusing ModInt1000000007 = StaticModInt<int(1e9) + 7>;\nusing ModInt998244353\
     \ = StaticModInt<998244353>;\n\ntemplate <auto ID>\nusing DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;\n\
     #line 6 \"Math/Combinatorics/factorials.hpp\"\n\n/**\n * @brief factorials (\u968E\
-    \u4E57, \u968E\u4E57\u306E\u9006\u5143, nCr, nPr)\n */\ntemplate <int Mod>\nclass\
-    \ Factorials {\npublic:\n    static constexpr std::size_t MAX_N = std::min<std::size_t>(3e6,\
-    \ Mod) + 1;\n    using value_type = StaticModInt<Mod>;\n\nprivate:\n    static\
-    \ size_t size;\n    static value_type factorial[MAX_N];\n    static value_type\
-    \ factInv[MAX_N];\n\npublic:\n    Factorials() = delete;\n\n    static void preCalc(std::size_t\
-    \ n) {\n        if (n < size) return;\n        if (size == 0) ++size, (factorial[0]\
-    \ = factInv[0] = value_type::raw(1));\n        const std::size_t l = size;\n \
-    \       const std::size_t r = n + 1;\n        for (std::size_t i = l; i < r; ++i)\
-    \ factorial[i] = factorial[i - 1] * i;\n        factInv[r - 1] = factorial[r -\
-    \ 1].inv();\n        for (std::size_t i = r - 1; i > l; --i) factInv[i - 1] =\
-    \ factInv[i] * i;\n        size = r;\n    }\n\n    static value_type fact(int\
-    \ i) { return preCalc(i), factorial[i]; }\n    static value_type finv(int i) {\
-    \ return preCalc(i), factInv[i]; }\n\n    static value_type C(int n, int r) {\n\
-    \        if (r < 0 || n < r) return value_type::raw(0);\n        return preCalc(n),\
-    \ factorial[n] * factInv[r] * factInv[n - r];\n    }\n\n    static value_type\
-    \ P(int n, int r) {\n        if (r < 0 || n < r) return value_type::raw(0);\n\
-    \        return preCalc(n), factorial[n] * factInv[n - r];\n    }\n\n    static\
-    \ value_type H(int n, int r) {\n        if (n < 0 || r < 0) return value_type::raw(0);\n\
-    \        if (n == 0 && r == 0) return value_type::raw(1);\n        return C(n\
-    \ + r - 1, r);\n    }\n};\ntemplate <int Mod>\nstd::size_t Factorials<Mod>::size\
-    \ = 0;\ntemplate <int Mod>\ntypename Factorials<Mod>::value_type Factorials<Mod>::factorial[];\n\
-    template <int Mod>\ntypename Factorials<Mod>::value_type Factorials<Mod>::factInv[];\n"
+    \u4E57, \u968E\u4E57\u306E\u9006\u5143, nCr, nPr)\n */\ntemplate <int Mod>\nstruct\
+    \ Factorials {\npublic:\n    using value_type = StaticModInt<Mod>;\n    static\
+    \ constexpr std::size_t MAX_N = std::min<std::size_t>(1e7, Mod) + 1;\n\nprivate:\n\
+    \    mutable std::vector<value_type> m_fact, m_finv;\n\npublic:\n    Factorials()\
+    \ {\n        m_fact.reserve(MAX_N);\n        m_finv.reserve(MAX_N);\n        m_fact.resize(2,\
+    \ value_type::raw(1));   // m_fact[0] = m_fact[1] = 1\n        m_finv.resize(2,\
+    \ value_type::raw(1));   // m_finv[0] = m_finv[1] = 1\n    }\n\n    void preCalc(std::size_t\
+    \ n) const {\n        if (n < m_fact.size()) return;\n        const std::size_t\
+    \ l = m_fact.size();\n        const std::size_t r = n + 1;\n        m_fact.resize(r),\
+    \ m_finv.resize(r);\n        for (std::size_t i = l; i < r; ++i) m_fact[i] = m_fact[i\
+    \ - 1] * i;\n        m_finv[r - 1] = m_fact[r - 1].inv();\n        for (std::size_t\
+    \ i = r - 1; i > l; --i) m_finv[i - 1] = m_finv[i] * i;\n    }\n\n    const value_type\
+    \ fact(int i) const { return preCalc(i), m_fact[i]; }\n    const value_type finv(int\
+    \ i) const { return preCalc(i), m_finv[i]; }\n\n    const value_type C(int n,\
+    \ int r) const {\n        if (r < 0 || n < r) return value_type::raw(0);\n   \
+    \     return preCalc(n), m_fact[n] * m_finv[r] * m_finv[n - r];\n    }\n\n   \
+    \ const value_type P(int n, int r) const {\n        if (r < 0 || n < r) return\
+    \ value_type::raw(0);\n        return preCalc(n), m_fact[n] * m_finv[n - r];\n\
+    \    }\n\n    const value_type H(int n, int r) const {\n        if (n < 0 || r\
+    \ < 0) return value_type::raw(0);\n        if (n == 0 && r == 0) return value_type::raw(1);\n\
+    \        return C(n + r - 1, r);\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n\n#include \"../Modulo/mod-int.hpp\"\
     \n\n/**\n * @brief factorials (\u968E\u4E57, \u968E\u4E57\u306E\u9006\u5143, nCr,\
-    \ nPr)\n */\ntemplate <int Mod>\nclass Factorials {\npublic:\n    static constexpr\
-    \ std::size_t MAX_N = std::min<std::size_t>(3e6, Mod) + 1;\n    using value_type\
-    \ = StaticModInt<Mod>;\n\nprivate:\n    static size_t size;\n    static value_type\
-    \ factorial[MAX_N];\n    static value_type factInv[MAX_N];\n\npublic:\n    Factorials()\
-    \ = delete;\n\n    static void preCalc(std::size_t n) {\n        if (n < size)\
-    \ return;\n        if (size == 0) ++size, (factorial[0] = factInv[0] = value_type::raw(1));\n\
-    \        const std::size_t l = size;\n        const std::size_t r = n + 1;\n \
-    \       for (std::size_t i = l; i < r; ++i) factorial[i] = factorial[i - 1] *\
-    \ i;\n        factInv[r - 1] = factorial[r - 1].inv();\n        for (std::size_t\
-    \ i = r - 1; i > l; --i) factInv[i - 1] = factInv[i] * i;\n        size = r;\n\
-    \    }\n\n    static value_type fact(int i) { return preCalc(i), factorial[i];\
-    \ }\n    static value_type finv(int i) { return preCalc(i), factInv[i]; }\n\n\
-    \    static value_type C(int n, int r) {\n        if (r < 0 || n < r) return value_type::raw(0);\n\
-    \        return preCalc(n), factorial[n] * factInv[r] * factInv[n - r];\n    }\n\
-    \n    static value_type P(int n, int r) {\n        if (r < 0 || n < r) return\
-    \ value_type::raw(0);\n        return preCalc(n), factorial[n] * factInv[n - r];\n\
-    \    }\n\n    static value_type H(int n, int r) {\n        if (n < 0 || r < 0)\
-    \ return value_type::raw(0);\n        if (n == 0 && r == 0) return value_type::raw(1);\n\
-    \        return C(n + r - 1, r);\n    }\n};\ntemplate <int Mod>\nstd::size_t Factorials<Mod>::size\
-    \ = 0;\ntemplate <int Mod>\ntypename Factorials<Mod>::value_type Factorials<Mod>::factorial[];\n\
-    template <int Mod>\ntypename Factorials<Mod>::value_type Factorials<Mod>::factInv[];\n"
+    \ nPr)\n */\ntemplate <int Mod>\nstruct Factorials {\npublic:\n    using value_type\
+    \ = StaticModInt<Mod>;\n    static constexpr std::size_t MAX_N = std::min<std::size_t>(1e7,\
+    \ Mod) + 1;\n\nprivate:\n    mutable std::vector<value_type> m_fact, m_finv;\n\
+    \npublic:\n    Factorials() {\n        m_fact.reserve(MAX_N);\n        m_finv.reserve(MAX_N);\n\
+    \        m_fact.resize(2, value_type::raw(1));   // m_fact[0] = m_fact[1] = 1\n\
+    \        m_finv.resize(2, value_type::raw(1));   // m_finv[0] = m_finv[1] = 1\n\
+    \    }\n\n    void preCalc(std::size_t n) const {\n        if (n < m_fact.size())\
+    \ return;\n        const std::size_t l = m_fact.size();\n        const std::size_t\
+    \ r = n + 1;\n        m_fact.resize(r), m_finv.resize(r);\n        for (std::size_t\
+    \ i = l; i < r; ++i) m_fact[i] = m_fact[i - 1] * i;\n        m_finv[r - 1] = m_fact[r\
+    \ - 1].inv();\n        for (std::size_t i = r - 1; i > l; --i) m_finv[i - 1] =\
+    \ m_finv[i] * i;\n    }\n\n    const value_type fact(int i) const { return preCalc(i),\
+    \ m_fact[i]; }\n    const value_type finv(int i) const { return preCalc(i), m_finv[i];\
+    \ }\n\n    const value_type C(int n, int r) const {\n        if (r < 0 || n <\
+    \ r) return value_type::raw(0);\n        return preCalc(n), m_fact[n] * m_finv[r]\
+    \ * m_finv[n - r];\n    }\n\n    const value_type P(int n, int r) const {\n  \
+    \      if (r < 0 || n < r) return value_type::raw(0);\n        return preCalc(n),\
+    \ m_fact[n] * m_finv[n - r];\n    }\n\n    const value_type H(int n, int r) const\
+    \ {\n        if (n < 0 || r < 0) return value_type::raw(0);\n        if (n ==\
+    \ 0 && r == 0) return value_type::raw(1);\n        return C(n + r - 1, r);\n \
+    \   }\n};\n"
   dependsOn:
   - Math/Modulo/mod-int.hpp
   isVerificationFile: false
   path: Math/Combinatorics/factorials.hpp
   requiredBy: []
-  timestamp: '2020-09-17 22:45:30+09:00'
+  timestamp: '2020-09-18 11:32:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/1501-Grid.test.cpp
