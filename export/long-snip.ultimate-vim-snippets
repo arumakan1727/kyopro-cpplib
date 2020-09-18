@@ -58,55 +58,51 @@ endsnippet
 snippet factorials "Combinatorics/factorials.hpp"
 // factorials {{{
 template <int Mod>
-class Factorials {
+struct Factorials {
 public:
-    static constexpr std::size_t MAX_N = std::min<std::size_t>(3e6, Mod) + 1;
     using value_type = StaticModInt<Mod>;
+    static constexpr std::size_t MAX_N = std::min<std::size_t>(1e7, Mod) + 1;
 
 private:
-    static size_t size;
-    static value_type factorial[MAX_N];
-    static value_type factInv[MAX_N];
+    mutable std::vector<value_type> m_fact, m_finv;
 
 public:
-    Factorials() = delete;
+    Factorials() {
+        m_fact.reserve(MAX_N);
+        m_finv.reserve(MAX_N);
+        m_fact.resize(2, value_type::raw(1));   // m_fact[0] = m_fact[1] = 1
+        m_finv.resize(2, value_type::raw(1));   // m_finv[0] = m_finv[1] = 1
+    }
 
-    static void preCalc(std::size_t n) {
-        if (n < size) return;
-        if (size == 0) ++size, (factorial[0] = factInv[0] = value_type::raw(1));
-        const std::size_t l = size;
+    void preCalc(std::size_t n) const {
+        if (n < m_fact.size()) return;
+        const std::size_t l = m_fact.size();
         const std::size_t r = n + 1;
-        for (std::size_t i = l; i < r; ++i) factorial[i] = factorial[i - 1] * i;
-        factInv[r - 1] = factorial[r - 1].inv();
-        for (std::size_t i = r - 1; i > l; --i) factInv[i - 1] = factInv[i] * i;
-        size = r;
+        m_fact.resize(r), m_finv.resize(r);
+        for (std::size_t i = l; i < r; ++i) m_fact[i] = m_fact[i - 1] * i;
+        m_finv[r - 1] = m_fact[r - 1].inv();
+        for (std::size_t i = r - 1; i > l; --i) m_finv[i - 1] = m_finv[i] * i;
     }
 
-    static value_type fact(int i) { return preCalc(i), factorial[i]; }
-    static value_type finv(int i) { return preCalc(i), factInv[i]; }
+    const value_type fact(int i) const { return preCalc(i), m_fact[i]; }
+    const value_type finv(int i) const { return preCalc(i), m_finv[i]; }
 
-    static value_type C(int n, int r) {
+    const value_type C(int n, int r) const {
         if (r < 0 || n < r) return value_type::raw(0);
-        return preCalc(n), factorial[n] * factInv[r] * factInv[n - r];
+        return preCalc(n), m_fact[n] * m_finv[r] * m_finv[n - r];
     }
 
-    static value_type P(int n, int r) {
+    const value_type P(int n, int r) const {
         if (r < 0 || n < r) return value_type::raw(0);
-        return preCalc(n), factorial[n] * factInv[n - r];
+        return preCalc(n), m_fact[n] * m_finv[n - r];
     }
 
-    static value_type H(int n, int r) {
+    const value_type H(int n, int r) const {
         if (n < 0 || r < 0) return value_type::raw(0);
         if (n == 0 && r == 0) return value_type::raw(1);
         return C(n + r - 1, r);
     }
 };
-template <int Mod>
-std::size_t Factorials<Mod>::size = 0;
-template <int Mod>
-typename Factorials<Mod>::value_type Factorials<Mod>::factorial[];
-template <int Mod>
-typename Factorials<Mod>::value_type Factorials<Mod>::factInv[];
 // }}}
 endsnippet
 
@@ -616,9 +612,9 @@ endsnippet
 
 snippet rep-macro "Util/rep-macro.hpp"
 // rep-macro {{{
-#define rep(i, begin, end) for (int64_t i{begin}, i##_end{end}; i < i##_end; ++i)
-#define repc(i, begin, last) for (int64_t i{begin}, i##_last{last}; i <= i##_last; ++i)
-#define repr(i, begin, last) for (int64_t i{begin}, i##_last{last}; i >= i##_last; --i)
+#define rep(i, begin, end) for (std::make_signed_t<decltype(end)> i = (begin), i##_end = (end); i < i##_end; ++i)
+#define repc(i, begin, last) for (std::make_signed_t<decltype(end)> i = (begin), i##_last = (last); i <= i##_last; ++i)
+#define repr(i, begin, last) for (std::make_signed_t<decltype(end)> i = (begin), i##_last = (last); i >= i##_last; --i)
 // }}}
 endsnippet
 
