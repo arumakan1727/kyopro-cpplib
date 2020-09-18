@@ -8,33 +8,34 @@
  */
 class EratosthenesSieve {
 private:
-    int n_;
-    std::vector<int> minFactor_;
+    int m_size;
+    std::vector<int> m_minFactor;
 
 public:
     EratosthenesSieve() = default;
 
-    explicit EratosthenesSieve(int n)
-        : n_(n)
-        , minFactor_(n) {
-        std::iota(minFactor_.begin(), minFactor_.end(), 0);
-        for (int i = 2; i * i < n; ++i) {
-            if (minFactor_[i] < i) continue;
-            for (int j = i * i; j < n; j += i) {
-                if (minFactor_[j] == j) minFactor_[j] = i;
+    // [0, n] の範囲で篩を構築する
+    explicit EratosthenesSieve(int n_)
+        : m_size(n_ + 1)
+        , m_minFactor(m_size) {
+        std::iota(m_minFactor.begin(), m_minFactor.end(), 0);
+        for (int i = 2; i * i < m_size; ++i) {
+            if (m_minFactor[i] < i) continue;
+            for (int j = i * i; j < m_size; j += i) {
+                if (m_minFactor[j] == j) m_minFactor[j] = i;
             }
         }
-        if (n >= 0) minFactor_[0] = -1;
-        if (n >= 1) minFactor_[1] = -1;
+        m_minFactor[0] = -1;
+        if (n_ >= 1) m_minFactor[1] = -1;
     }
 
     bool isPrime(int x) const {
-        assert(0 <= x && x < n_);
-        return minFactor_[x] == x;
+        assert(0 <= x && x < m_size);
+        return m_minFactor[x] == x;
     }
 
     int minFactor(int x) const {
-        assert(0 <= x && x < n_);
-        return minFactor_[x];
+        assert(0 <= x && x < m_size);
+        return m_minFactor[x];
     }
 };
