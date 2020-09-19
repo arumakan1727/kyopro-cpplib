@@ -351,6 +351,108 @@ constexpr Integer totient(Integer n) {
 // }}}
 endsnippet
 
+snippet rabin-karp "String/rabin-karp.hpp"
+// rabin-karp {{{
+std::vector<std::size_t> rabinKarp(const RollingHash& s, const RollingHash& pattern) {
+    const auto sLen = s.size();
+    const auto patLen = pattern.size();
+
+    std::vector<std::size_t> foundIndexes;
+    foundIndexes.reserve(sLen);
+
+    for (std::size_t i = 0; i + patLen <= sLen; ++i) {
+        if (s.substr(i, patLen) == pattern.hash()) foundIndexes.emplace_back(i);
+    }
+
+    foundIndexes.shrink_to_fit();
+    return foundIndexes;
+}
+// }}}
+endsnippet
+
+snippet rolling-hash "String/rolling-hash.hpp"
+// rolling-hash {{{
+class RollingHash {
+public:
+    using u64 = std::uint_fast64_t;
+    using u128 = __uint128_t;
+    static constexpr u64 MOD = (1uL << 61) - 1;
+    static constexpr u64 BASE = 17273747;
+
+private:
+    static std::vector<u64> s_pow;
+    std::vector<u64> m_hash;
+
+public:
+    RollingHash() = default;
+
+    template <class InputIter>
+    RollingHash(InputIter begin, InputIter end)
+        : m_hash(std::distance(begin, end) + 1, 0) {
+        if (s_pow.empty()) {
+            s_pow.reserve(1e6);
+            s_pow.emplace_back(1);
+        }
+        growPowArray(m_hash.size());
+
+        std::size_t i;
+        InputIter itr;
+        for (itr = begin, i = 0; itr != end; ++itr, ++i) {
+            m_hash[i + 1] = add(mul(m_hash[i], BASE), xorShift(static_cast<u64>(*itr + 1)));
+        }
+    }
+
+    // 文字列全体のハッシュ値
+    u64 hash() const { return m_hash.back(); }
+
+    // 半開区間 [l, r) のハッシュ値
+    u64 rangeHash(std::size_t l, std::size_t r) const {
+        assert(l < r && r < m_hash.size());
+        return add(m_hash[r], MOD - mul(m_hash[l], s_pow[r - l]));
+    }
+
+    // rangeHash(begin, begin + length) と等価
+    u64 substr(std::size_t begin, std::size_t length) const { return rangeHash(begin, begin + length); }
+
+    // もとの文字列の長さ
+    std::size_t size() const { return m_hash.size() - 1; }
+
+    // 連結した文字列 (leftStr + rightStr) のハッシュ値
+    static u64 concat(u64 leftHash, u64 rightHash, std::size_t leftLength) {
+        growPowArray(leftLength);
+        return add(mul(rightHash, s_pow[leftLength]), leftHash);
+    }
+
+private:
+    static constexpr inline u64 add(u64 a, u64 b) noexcept {
+        if ((a += b) >= MOD) a -= MOD;
+        return a;
+    }
+
+    static constexpr inline u64 mul(u128 a, u128 b) noexcept {
+        const auto c = a * b;
+        return add(static_cast<u64>(c >> 61), static_cast<u64>(c & MOD));
+    }
+
+    static constexpr inline u64 xorShift(u64 x) noexcept {
+        x ^= x << 13;
+        x ^= x >> 17;
+        x ^= x << 5;
+        return x;
+    }
+
+    static void growPowArray(std::size_t len) {
+        ++len;
+        while (s_pow.size() < len) {
+            s_pow.emplace_back(mul(s_pow.back(), BASE));
+        }
+    }
+};
+
+std::vector<RollingHash::u64> RollingHash::s_pow;
+// }}}
+endsnippet
+
 snippet debug "Debug/debug.hpp"
 // debug {{{
 template <class A, class B>
@@ -624,9 +726,9 @@ endsnippet
 
 snippet rep-macro "Util/rep-macro.hpp"
 // rep-macro {{{
-#define rep(i, begin, end) for (std::make_signed_t<decltype(end)> i = (begin), i##_end = (end); i < i##_end; ++i)
-#define repc(i, begin, last) for (std::make_signed_t<decltype(end)> i = (begin), i##_last = (last); i <= i##_last; ++i)
-#define repr(i, begin, last) for (std::make_signed_t<decltype(end)> i = (begin), i##_last = (last); i >= i##_last; --i)
+#define rep(i, begin, end) for (std::make_signed_t<std::remove_cv_t<decltype(end)>> i = (begin), i##_end = (end); i < i##_end; ++i)
+#define repc(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(end)>> i = (begin), i##_last = (last); i <= i##_last; ++i)
+#define repr(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(end)>> i = (begin), i##_last = (last); i >= i##_last; --i)
 // }}}
 endsnippet
 
