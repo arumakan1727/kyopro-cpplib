@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/DPL_5_A.test.cpp
     title: test/AOJ/DPL_5_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/ALDS1_14_B-String-Search.test.cpp
+    title: test/AOJ/ALDS1_14_B-String-Search.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -38,6 +41,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/DPL_5_A.test.cpp
+  - test/AOJ/ALDS1_14_B-String-Search.test.cpp
 documentation_of: Util/IO/println.hpp
 layout: document
 redirect_from:

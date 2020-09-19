@@ -55,6 +55,16 @@ data:
       path: Math/Number-Theory/totient-func.hpp
       title: "totient() (\u30AA\u30A4\u30E9\u30FC\u306E\u30C8\u30FC\u30B7\u30A7\u30F3\
         \u30C8\u95A2\u6570)"
+  - name: String
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: String/rabin-karp.hpp
+      title: "rabinKarp() (\u30E9\u30D3\u30F3\u30AB\u30FC\u30D7\u6CD5, RollingHash\u3092\
+        \u7528\u3044\u305F\u6587\u5B57\u5217\u691C\u7D22 $O(|s|)$)"
+    - icon: ':heavy_check_mark:'
+      path: String/rolling-hash.hpp
+      title: "Rolling-Hash (\u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5\
+        , mod\u5024 $2^61 - 1$ \u56FA\u5B9A)"
   - name: Util/Debug
     pages:
     - icon: ':heavy_check_mark:'
@@ -79,7 +89,7 @@ data:
         \u5165\u529B\u3082\u3059\u308B\u3084\u3064"
   - name: Util
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Util/all-macro.hpp
       title: "all()\u30DE\u30AF\u30ED"
     - icon: ':heavy_check_mark:'
@@ -172,6 +182,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/AOJ/1501-Grid.test.cpp
       title: test/AOJ/1501-Grid.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/AOJ/ALDS1_14_B-String-Search.test.cpp
+      title: test/AOJ/ALDS1_14_B-String-Search.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp
       title: test/AOJ/ALDS1_1_C-Prime-Numbers.test.cpp
