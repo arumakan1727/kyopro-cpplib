@@ -353,7 +353,8 @@ endsnippet
 
 snippet rabin-karp "String/rabin-karp.hpp"
 // rabin-karp {{{
-std::vector<std::size_t> rabinKarp(const RollingHash& s, const RollingHash& pattern) {
+template <std::uint_fast64_t Base>
+std::vector<std::size_t> rabinKarp(const RollingHash<Base>& s, const RollingHash<Base>& pattern) {
     const auto sLen = s.size();
     const auto patLen = pattern.size();
 
@@ -372,15 +373,15 @@ endsnippet
 
 snippet rolling-hash "String/rolling-hash.hpp"
 // rolling-hash {{{
+template <std::uint_fast64_t Base>
 class RollingHash {
 public:
     using u64 = std::uint_fast64_t;
     using u128 = __uint128_t;
     static constexpr u64 MOD = (1uL << 61) - 1;
-    static constexpr u64 BASE = 17273747;
+    static constexpr u64 BASE = Base;
 
 private:
-    static std::vector<u64> s_pow;
     std::vector<u64> m_hash;
 
 public:
@@ -389,16 +390,16 @@ public:
     template <class InputIter>
     RollingHash(InputIter begin, InputIter end)
         : m_hash(std::distance(begin, end) + 1, 0) {
-        if (s_pow.empty()) {
-            s_pow.reserve(1e6);
-            s_pow.emplace_back(1);
+        if (powArray().empty()) {
+            powArray().reserve(1e6);
+            powArray().emplace_back(1);
         }
         growPowArray(m_hash.size());
 
         std::size_t i;
         InputIter itr;
         for (itr = begin, i = 0; itr != end; ++itr, ++i) {
-            m_hash[i + 1] = add(mul(m_hash[i], BASE), xorShift(static_cast<u64>(*itr + 1)));
+            m_hash[i + 1] = add(mul(m_hash[i], BASE), *itr);
         }
     }
 
@@ -408,7 +409,7 @@ public:
     // 半開区間 [l, r) のハッシュ値
     u64 rangeHash(std::size_t l, std::size_t r) const {
         assert(l < r && r < m_hash.size());
-        return add(m_hash[r], MOD - mul(m_hash[l], s_pow[r - l]));
+        return add(m_hash[r], MOD - mul(m_hash[l], powArray()[r - l]));
     }
 
     // rangeHash(begin, begin + length) と等価
@@ -418,12 +419,17 @@ public:
     std::size_t size() const { return m_hash.size() - 1; }
 
     // 連結した文字列 (leftStr + rightStr) のハッシュ値
-    static u64 concat(u64 leftHash, u64 rightHash, std::size_t leftLength) {
-        growPowArray(leftLength);
-        return add(mul(rightHash, s_pow[leftLength]), leftHash);
+    static u64 concat(u64 leftHash, u64 rightHash, std::size_t rightLength) {
+        growPowArray(rightLength);
+        return add(mul(leftHash, powArray()[rightLength]), rightHash);
     }
 
 private:
+    static inline std::vector<u64>& powArray() {
+        static std::vector<u64> p;
+        return p;
+    }
+
     static constexpr inline u64 add(u64 a, u64 b) noexcept {
         if ((a += b) >= MOD) a -= MOD;
         return a;
@@ -434,22 +440,13 @@ private:
         return add(static_cast<u64>(c >> 61), static_cast<u64>(c & MOD));
     }
 
-    static constexpr inline u64 xorShift(u64 x) noexcept {
-        x ^= x << 13;
-        x ^= x >> 17;
-        x ^= x << 5;
-        return x;
-    }
-
-    static void growPowArray(std::size_t len) {
+    static inline void growPowArray(std::size_t len) {
         ++len;
-        while (s_pow.size() < len) {
-            s_pow.emplace_back(mul(s_pow.back(), BASE));
+        while (powArray().size() < len) {
+            powArray().emplace_back(mul(powArray().back(), BASE));
         }
     }
 };
-
-std::vector<RollingHash::u64> RollingHash::s_pow;
 // }}}
 endsnippet
 
@@ -603,6 +600,25 @@ Debug debug;
 // }}}
 endsnippet
 
+snippet errln "Debug/errln.hpp"
+// errln {{{
+inline void eprintln() {
+    std::clog << std::endl;
+}
+template <class Head, class... Tail>
+inline void eprintln(Head&& head, Tail&&... tail) {
+    std::clog << head << &" "[!sizeof...(tail)];
+    eprintln(std::forward<Tail>(tail)...);
+}
+
+#ifdef LOCAL_DEBUG
+#define errln(...) std::clog << __FILE__ << "(" << __LINE__ << ")[" << __func__ << "()]: ", eprintln(__VA_ARGS__)
+#else
+#define errln(...) ((void)0)
+#endif
+// }}}
+endsnippet
+
 snippet container-io "IO/container-io.hpp"
 // container-io {{{
 template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container, std::string>, std::nullptr_t> = nullptr>
@@ -724,11 +740,53 @@ std::vector<Value> project(const Container& v) {
 // }}}
 endsnippet
 
+snippet randoms "Util/randoms.hpp"
+// randoms {{{
+namespace arumakan::random {
+
+std::mt19937 mt(std::random_device{}());
+
+// 閉区間[min, max] の乱数を一様分布で生成する
+template <class Integer>
+Integer randint(Integer min, Integer max) {
+    return std::uniform_int_distribution<Integer>(min, max)(mt);
+}
+
+// dest に randint(sizeMin, sizeMax) 回 randint(valueMin, valueMax) を格納する
+template <class OutputIter, class Integer>
+OutputIter randomValueContainer(OutputIter dest, Integer valueMin, Integer valueMax, std::size_t sizeMin, std::size_t sizeMax) {
+    auto size = randint(sizeMin, sizeMax);
+    while (size--) {
+        *dest = randint(valueMin, valueMax);
+        ++dest;
+    }
+    return dest;
+}
+
+// 要素数が randint(sizeMin, sizeMax) の randint(valueMin, valueMax) を生成する
+template <class Container, class Integer>
+Container randomValueContainer(Integer valueMin, Integer valueMax, std::size_t sizeMin, std::size_t sizeMax) {
+    Container ret;
+    randomValueContainer(std::back_inserter(ret), valueMin, valueMax, sizeMin, sizeMax);
+    return ret;
+}
+
+// [begin, end) の範囲のうちひとつをランダムに選んで返す
+template <class RandomAccessIter>
+auto choice(RandomAccessIter begin, RandomAccessIter end) {
+    const auto i = randint<std::size_t>(0, std::distance(begin, end));
+    return begin[i];
+}
+
+}  // namespace rand
+// }}}
+endsnippet
+
 snippet rep-macro "Util/rep-macro.hpp"
 // rep-macro {{{
 #define rep(i, begin, end) for (std::make_signed_t<std::remove_cv_t<decltype(end)>> i = (begin), i##_end = (end); i < i##_end; ++i)
-#define repc(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(end)>> i = (begin), i##_last = (last); i <= i##_last; ++i)
-#define repr(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(end)>> i = (begin), i##_last = (last); i >= i##_last; --i)
+#define repc(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(last)>> i = (begin), i##_last = (last); i <= i##_last; ++i)
+#define repr(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(begin)>> i = (begin), i##_last = (last); i >= i##_last; --i)
 // }}}
 endsnippet
 
