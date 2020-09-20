@@ -99,6 +99,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: Util/chminmax.hpp
       title: chmin(), chmax()
+    - icon: ':warning:'
+      path: Util/constexpr-randint.hpp
+      title: "constexprRandint() (\u30B3\u30F3\u30D1\u30A4\u30EB\u6642\u4E71\u6570\
+        )"
+    - icon: ':warning:'
+      path: Util/cstring-hash.hpp
+      title: Util/cstring-hash.hpp
     - icon: ':heavy_check_mark:'
       path: Util/int-alias.hpp
       title: "int-alias (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)"
