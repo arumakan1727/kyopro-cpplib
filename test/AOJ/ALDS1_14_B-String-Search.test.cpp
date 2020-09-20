@@ -12,12 +12,13 @@
 int main() {
     std::cin.tie(nullptr);
     std::ios_base::sync_with_stdio(false);
+    using RH = RollingHash<17273747>;
 
     std::string T, P;
     std::cin >> T >> P;
 
-    const RollingHash rolHashT(all(T));
-    const RollingHash rolHashP(all(P));
+    const RH rolHashT(all(T));
+    const RH rolHashP(all(P));
 
     for (const auto foundIndex : rabinKarp(rolHashT, rolHashP)) {
         println(foundIndex);
