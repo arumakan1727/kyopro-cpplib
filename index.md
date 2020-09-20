@@ -64,12 +64,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: String/rolling-hash.hpp
       title: "Rolling-Hash (\u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\u30E5\
-        , mod\u5024 $2^61 - 1$ \u56FA\u5B9A)"
+        , mod\u5024 $2^{61} - 1$ \u56FA\u5B9A)"
   - name: Util/Debug
     pages:
     - icon: ':heavy_check_mark:'
       path: Util/Debug/debug.hpp
       title: Debug
+    - icon: ':heavy_check_mark:'
+      path: Util/Debug/errln.hpp
+      title: "errln() (println()\u306Estderr\u7248, \u30C7\u30D0\u30C3\u30B0\u6642\
+        \u306E\u307F\u6709\u52B9)"
   - name: Util/IO
     pages:
     - icon: ':warning:'
@@ -112,7 +116,10 @@ data:
       path: Util/project.hpp
       title: "project() (\u30BF\u30D7\u30EB\u306E\u30B3\u30F3\u30C6\u30CA\u306E\u7B2C\
         \ I \u8981\u7D20\u3092\u62BD\u51FA\u3057\u305Fvector\u3092\u8FD4\u3059)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: Util/randoms.hpp
+      title: "randoms (randint()\u3068\u304Bchoice()\u3068\u304B)"
+    - icon: ':heavy_check_mark:'
       path: Util/rep-macro.hpp
       title: "rep()\u30DE\u30AF\u30ED"
     - icon: ':heavy_check_mark:'
@@ -214,6 +221,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/unittest/project.test.cpp
       title: test/unittest/project.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/unittest/rolling-hash.test.cpp
+      title: test/unittest/rolling-hash.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/unittest/runlength.test.cpp
       title: test/unittest/runlength.test.cpp
