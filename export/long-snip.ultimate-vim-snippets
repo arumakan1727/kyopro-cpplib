@@ -693,6 +693,36 @@ inline bool chmax(T& a, const U& b) {
 // }}}
 endsnippet
 
+snippet constexpr-randint "Util/constexpr-randint.hpp"
+// constexpr-randint {{{
+#define STRINGIZE_I(x) #x
+#define STRINGIZE(x) STRINGIZE_I(x)
+#define UNIQUE_STRING __DATE__ "_" __TIME__ "_" __FILE__ "_" STRINGIZE(__LINE__)
+
+constexpr std::uint32_t constexprRandint(std::uint32_t min, std::uint32_t max) {
+    const auto m = max - min + 1;
+    return cstringHash(UNIQUE_STRING) % m + min;
+}
+// }}}
+endsnippet
+
+snippet cstring-hash "Util/cstring-hash.hpp"
+// cstring-hash {{{
+constexpr std::uint32_t cstringHash(const char* s) {
+    std::uint32_t hashv = 0;
+    while (*s != '\0') {
+        hashv += *s++;
+        hashv += hashv << 10;
+        hashv ^= hashv >> 6;
+    }
+    hashv += hashv << 3;
+    hashv ^= hashv >> 11;
+    hashv += hashv << 15;
+    return hashv;
+}
+// }}}
+endsnippet
+
 snippet int-alias "Util/int-alias.hpp"
 // int-alias {{{
 using i64 = std::int64_t;
