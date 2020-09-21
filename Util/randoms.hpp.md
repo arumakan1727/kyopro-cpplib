@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/unittest/rolling-hash.test.cpp
-    title: test/unittest/rolling-hash.test.cpp
+    path: test/helloworld/rolling-hash.test.cpp
+    title: test/helloworld/rolling-hash.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -61,7 +61,7 @@ data:
   timestamp: '2020-09-20 14:54:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unittest/rolling-hash.test.cpp
+  - test/helloworld/rolling-hash.test.cpp
 documentation_of: Util/randoms.hpp
 layout: document
 redirect_from:

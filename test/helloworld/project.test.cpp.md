@@ -14,7 +14,7 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
-  bundledCode: "#line 1 \"test/unittest/project.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
+  bundledCode: "#line 1 \"test/helloworld/project.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n#include <bits/stdc++.h>\n\n#line 6 \"Util/project.hpp\"\n\n/**\n * @brief project()\
     \ (\u30BF\u30D7\u30EB\u306E\u30B3\u30F3\u30C6\u30CA\u306E\u7B2C I \u8981\u7D20\
     \u3092\u62BD\u51FA\u3057\u305Fvector\u3092\u8FD4\u3059)\n */\ntemplate <std::size_t\
@@ -22,7 +22,7 @@ data:
     \ Container::value_type>>\nstd::vector<Value> project(const Container& v) {\n\
     \    std::vector<Value> ret(v.size());\n    std::transform(v.begin(), v.end(),\
     \ ret.begin(), [](auto&& t) { return std::get<I>(t); });\n    return ret;\n}\n\
-    #line 5 \"test/unittest/project.test.cpp\"\n\nusing namespace std;\n\nvoid test1()\
+    #line 5 \"test/helloworld/project.test.cpp\"\n\nusing namespace std;\n\nvoid test1()\
     \ {\n    vector<pair<int, char>> a {\n        {0, 'a'},\n        {1, 'b'},\n \
     \       {2, 'c'},\n    };\n\n    const vector<int> expected0 = {0, 1, 2};\n  \
     \  const vector<char> expected1 = {'a', 'b', 'c'};\n\n    assert(project<0>(a)\
@@ -52,15 +52,15 @@ data:
   dependsOn:
   - Util/project.hpp
   isVerificationFile: true
-  path: test/unittest/project.test.cpp
+  path: test/helloworld/project.test.cpp
   requiredBy: []
-  timestamp: '2020-09-18 19:25:46+09:00'
+  timestamp: '2020-09-21 11:43:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/unittest/project.test.cpp
+documentation_of: test/helloworld/project.test.cpp
 layout: document
 redirect_from:
-- /verify/test/unittest/project.test.cpp
-- /verify/test/unittest/project.test.cpp.html
-title: test/unittest/project.test.cpp
+- /verify/test/helloworld/project.test.cpp
+- /verify/test/helloworld/project.test.cpp.html
+title: test/helloworld/project.test.cpp
 ---

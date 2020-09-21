@@ -23,27 +23,27 @@ data:
     \ += hashv << 10;\n        hashv ^= hashv >> 6;\n    }\n    hashv += hashv <<\
     \ 3;\n    hashv ^= hashv >> 11;\n    hashv += hashv << 15;\n    return hashv;\n\
     }\n#line 6 \"Util/constexpr-randint.hpp\"\n\n/**\n * @brief constexprRandint()\
-    \ (\u30B3\u30F3\u30D1\u30A4\u30EB\u6642\u4E71\u6570)\n * \u4F55\u56DE\u547C\u3073\
-    \u51FA\u3057\u3066\u3082\u540C\u3058\u5024\u306A\u306E\u3067 \u3046\u7B11\n */\n\
-    #define STRINGIZE_I(x) #x\n#define STRINGIZE(x) STRINGIZE_I(x)\n#define UNIQUE_STRING\
-    \ __DATE__ \"_\" __TIME__ \"_\" __FILE__ \"_\" STRINGIZE(__LINE__)\n\nconstexpr\
-    \ std::uint32_t constexprRandint(std::uint32_t min, std::uint32_t max) {\n   \
-    \ const auto m = max - min + 1;\n    return cstringHash(UNIQUE_STRING) % m + min;\n\
-    }\n"
-  code: "#pragma once\n\n#include <cstdint>\n\n#include \"./cstring-hash.hpp\"\n\n\
-    /**\n * @brief constexprRandint() (\u30B3\u30F3\u30D1\u30A4\u30EB\u6642\u4E71\u6570\
-    )\n * \u4F55\u56DE\u547C\u3073\u51FA\u3057\u3066\u3082\u540C\u3058\u5024\u306A\
+    \ (\u30B3\u30F3\u30D1\u30A4\u30EB\u6642\u4E71\u6570)\n * \u547C\u3073\u51FA\u3059\
+    \u5EA6\u306B\u5024\u304C\u5909\u308F\u308B\u308F\u3051\u3067\u306F\u306A\u3044\
     \u306E\u3067 \u3046\u7B11\n */\n#define STRINGIZE_I(x) #x\n#define STRINGIZE(x)\
     \ STRINGIZE_I(x)\n#define UNIQUE_STRING __DATE__ \"_\" __TIME__ \"_\" __FILE__\
     \ \"_\" STRINGIZE(__LINE__)\n\nconstexpr std::uint32_t constexprRandint(std::uint32_t\
     \ min, std::uint32_t max) {\n    const auto m = max - min + 1;\n    return cstringHash(UNIQUE_STRING)\
     \ % m + min;\n}\n"
+  code: "#pragma once\n\n#include <cstdint>\n\n#include \"./cstring-hash.hpp\"\n\n\
+    /**\n * @brief constexprRandint() (\u30B3\u30F3\u30D1\u30A4\u30EB\u6642\u4E71\u6570\
+    )\n * \u547C\u3073\u51FA\u3059\u5EA6\u306B\u5024\u304C\u5909\u308F\u308B\u308F\
+    \u3051\u3067\u306F\u306A\u3044\u306E\u3067 \u3046\u7B11\n */\n#define STRINGIZE_I(x)\
+    \ #x\n#define STRINGIZE(x) STRINGIZE_I(x)\n#define UNIQUE_STRING __DATE__ \"_\"\
+    \ __TIME__ \"_\" __FILE__ \"_\" STRINGIZE(__LINE__)\n\nconstexpr std::uint32_t\
+    \ constexprRandint(std::uint32_t min, std::uint32_t max) {\n    const auto m =\
+    \ max - min + 1;\n    return cstringHash(UNIQUE_STRING) % m + min;\n}\n"
   dependsOn:
   - Util/cstring-hash.hpp
   isVerificationFile: false
   path: Util/constexpr-randint.hpp
   requiredBy: []
-  timestamp: '2020-09-20 20:25:19+09:00'
+  timestamp: '2020-09-21 12:51:19+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Util/constexpr-randint.hpp

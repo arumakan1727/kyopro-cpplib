@@ -34,6 +34,10 @@ data:
         \u6642mod\u578B)"
   - name: Math/Number-Theory
     pages:
+    - icon: ':heavy_check_mark:'
+      path: Math/Number-Theory/divisor-count-table.hpp
+      title: "divisorCountTable (\u7D04\u6570\u306E\u500B\u6570\u306E\u30C6\u30FC\u30D6\
+        \u30EB, $O(N \\log N)$)"
     - icon: ':warning:'
       path: Math/Number-Theory/enumerate-divisors.hpp
       title: "enumerateDivisors() (\u7D04\u6570\u5217\u6319)"
@@ -48,6 +52,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: Math/Number-Theory/is-prime.hpp
       title: "isPrime() (\u7D20\u6570\u5224\u5B9A $O(\\sqrt n)$)"
+    - icon: ':heavy_check_mark:'
+      path: Math/Number-Theory/osa_k.hpp
+      title: "osa_k() (\u524D\u8A08\u7B97 $O(N \\log \\log N)$, \u7D20\u56E0\u6570\
+        \u5206\u89E3 $O(\\log N)$)"
     - icon: ':heavy_check_mark:'
       path: Math/Number-Theory/prime-factorize.hpp
       title: "primeFactorize() (\u7D20\u56E0\u6570\u5206\u89E3 $O(\\sqrt n)$)"
@@ -220,22 +228,28 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
       title: test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
-  - name: test/unittest
+  - name: test/helloworld
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/unittest/eratosthenes-sieve.test.cpp
-      title: test/unittest/eratosthenes-sieve.test.cpp
+      path: test/helloworld/divisor-count-table.test.cpp
+      title: test/helloworld/divisor-count-table.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/unittest/project.test.cpp
-      title: test/unittest/project.test.cpp
+      path: test/helloworld/eratosthenes-sieve.test.cpp
+      title: test/helloworld/eratosthenes-sieve.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/unittest/rolling-hash.test.cpp
-      title: test/unittest/rolling-hash.test.cpp
+      path: test/helloworld/osa_k.test.cpp
+      title: test/helloworld/osa_k.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/unittest/runlength.test.cpp
-      title: test/unittest/runlength.test.cpp
+      path: test/helloworld/project.test.cpp
+      title: test/helloworld/project.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/unittest/zip.test.cpp
-      title: test/unittest/zip.test.cpp
+      path: test/helloworld/rolling-hash.test.cpp
+      title: test/helloworld/rolling-hash.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/helloworld/runlength.test.cpp
+      title: test/helloworld/runlength.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/helloworld/zip.test.cpp
+      title: test/helloworld/zip.test.cpp
 layout: toppage
 ---

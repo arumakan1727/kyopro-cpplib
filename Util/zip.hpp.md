@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/unittest/zip.test.cpp
-    title: test/unittest/zip.test.cpp
+    path: test/helloworld/zip.test.cpp
+    title: test/helloworld/zip.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -45,7 +45,7 @@ data:
   timestamp: '2020-09-18 19:25:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unittest/zip.test.cpp
+  - test/helloworld/zip.test.cpp
 documentation_of: Util/zip.hpp
 layout: document
 redirect_from:

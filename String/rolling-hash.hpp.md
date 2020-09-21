@@ -8,11 +8,11 @@ data:
       \u7528\u3044\u305F\u6587\u5B57\u5217\u691C\u7D22 $O(|s|)$)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/unittest/rolling-hash.test.cpp
-    title: test/unittest/rolling-hash.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/AOJ/ALDS1_14_B-String-Search.test.cpp
     title: test/AOJ/ALDS1_14_B-String-Search.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/helloworld/rolling-hash.test.cpp
+    title: test/helloworld/rolling-hash.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -98,8 +98,8 @@ data:
   timestamp: '2020-09-20 14:53:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/unittest/rolling-hash.test.cpp
   - test/AOJ/ALDS1_14_B-String-Search.test.cpp
+  - test/helloworld/rolling-hash.test.cpp
 documentation_of: String/rolling-hash.hpp
 layout: document
 redirect_from:

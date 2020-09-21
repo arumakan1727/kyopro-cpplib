@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/NTL_1_A-Prime-Factorize.test.cpp
     title: test/AOJ/NTL_1_A-Prime-Factorize.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/helloworld/osa_k.test.cpp
+    title: test/helloworld/osa_k.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -32,6 +35,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/NTL_1_A-Prime-Factorize.test.cpp
+  - test/helloworld/osa_k.test.cpp
 documentation_of: Math/Number-Theory/prime-factorize.hpp
 layout: document
 redirect_from:

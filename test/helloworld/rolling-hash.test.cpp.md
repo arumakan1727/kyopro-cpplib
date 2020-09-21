@@ -27,8 +27,8 @@ data:
     PROBLEM: http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
     links:
     - http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A
-  bundledCode: "#line 1 \"test/unittest/rolling-hash.test.cpp\"\n#define PROBLEM \"\
-    http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\n#include\
+  bundledCode: "#line 1 \"test/helloworld/rolling-hash.test.cpp\"\n#define PROBLEM\
+    \ \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\n#include\
     \ <bits/stdc++.h>\n\n#line 2 \"String/rolling-hash.hpp\"\n\n#line 7 \"String/rolling-hash.hpp\"\
     \n\n/**\n * @brief Rolling-Hash (\u30ED\u30FC\u30EA\u30F3\u30B0\u30CF\u30C3\u30B7\
     \u30E5, mod\u5024 $2^{61} - 1$ \u56FA\u5B9A)\n * @see https://qiita.com/keymoon/items/11fac5627672a6d6a9f6\n\
@@ -62,7 +62,7 @@ data:
     \ >> 61), static_cast<u64>(c & MOD));\n    }\n\n    static inline void growPowArray(std::size_t\
     \ len) {\n        ++len;\n        while (powArray().size() < len) {\n        \
     \    powArray().emplace_back(mul(powArray().back(), BASE));\n        }\n    }\n\
-    };\n#line 5 \"test/unittest/rolling-hash.test.cpp\"\n\n#line 2 \"Util/randoms.hpp\"\
+    };\n#line 5 \"test/helloworld/rolling-hash.test.cpp\"\n\n#line 2 \"Util/randoms.hpp\"\
     \n\n#line 5 \"Util/randoms.hpp\"\n\n/**\n * @brief randoms (randint()\u3068\u304B\
     choice()\u3068\u304B)\n */\nnamespace arumakan::random {\n\nstd::mt19937 mt(std::random_device{}());\n\
     \n// \u9589\u533A\u9593[min, max] \u306E\u4E71\u6570\u3092\u4E00\u69D8\u5206\u5E03\
@@ -98,7 +98,7 @@ data:
     [!sizeof...(tail)];\n    eprintln(std::forward<Tail>(tail)...);\n}\n\n#ifdef LOCAL_DEBUG\n\
     #define errln(...) std::clog << __FILE__ << \"(\" << __LINE__ << \")[\" << __func__\
     \ << \"()]: \", eprintln(__VA_ARGS__)\n#else\n#define errln(...) ((void)0)\n#endif\n\
-    #line 10 \"test/unittest/rolling-hash.test.cpp\"\n\nusing namespace std;\nnamespace\
+    #line 10 \"test/helloworld/rolling-hash.test.cpp\"\n\nusing namespace std;\nnamespace\
     \ rnd = arumakan::random;\nusing RH = RollingHash<17273747>;\n\nconst auto testdatas\
     \ = []() -> vector<pair<string, RH>> {\n    string s1 = \"a\";\n    string s2\
     \ = \"zzzzz\";\n    string s3 = rnd::randomValueContainer<string>('a', 'b', 30,\
@@ -164,15 +164,15 @@ data:
   - Util/rep-macro.hpp
   - Util/Debug/errln.hpp
   isVerificationFile: true
-  path: test/unittest/rolling-hash.test.cpp
+  path: test/helloworld/rolling-hash.test.cpp
   requiredBy: []
-  timestamp: '2020-09-20 14:54:12+09:00'
+  timestamp: '2020-09-21 11:43:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/unittest/rolling-hash.test.cpp
+documentation_of: test/helloworld/rolling-hash.test.cpp
 layout: document
 redirect_from:
-- /verify/test/unittest/rolling-hash.test.cpp
-- /verify/test/unittest/rolling-hash.test.cpp.html
-title: test/unittest/rolling-hash.test.cpp
+- /verify/test/helloworld/rolling-hash.test.cpp
+- /verify/test/helloworld/rolling-hash.test.cpp.html
+title: test/helloworld/rolling-hash.test.cpp
 ---
