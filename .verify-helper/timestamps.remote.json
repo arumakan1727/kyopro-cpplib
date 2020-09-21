@@ -9,9 +9,11 @@
 "test/AOJ/NTL_1_B-Power.test.cpp": "2020-09-17 22:44:48 +0900",
 "test/AOJ/NTL_1_D-Eulers-Phi-Function.test.cpp": "2020-09-17 22:43:19 +0900",
 "test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp": "2020-09-17 10:59:30 +0900",
-"test/unittest/eratosthenes-sieve.test.cpp": "2020-09-18 19:25:46 +0900",
-"test/unittest/project.test.cpp": "2020-09-18 19:25:46 +0900",
-"test/unittest/rolling-hash.test.cpp": "2020-09-20 14:54:12 +0900",
-"test/unittest/runlength.test.cpp": "2020-09-18 19:25:46 +0900",
-"test/unittest/zip.test.cpp": "2020-09-18 19:25:46 +0900"
+"test/helloworld/divisor-count-table.test.cpp": "2020-09-21 12:52:06 +0900",
+"test/helloworld/eratosthenes-sieve.test.cpp": "2020-09-21 11:43:36 +0900",
+"test/helloworld/osa_k.test.cpp": "2020-09-21 12:52:06 +0900",
+"test/helloworld/project.test.cpp": "2020-09-21 11:43:36 +0900",
+"test/helloworld/rolling-hash.test.cpp": "2020-09-21 11:43:36 +0900",
+"test/helloworld/runlength.test.cpp": "2020-09-21 11:43:36 +0900",
+"test/helloworld/zip.test.cpp": "2020-09-21 11:43:36 +0900"
 }
