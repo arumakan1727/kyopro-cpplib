@@ -5,6 +5,7 @@
 
 /**
  * @brief Eratosthenes-Sieve (エラトステネスの篩)
+ * @see https://qiita.com/rsk0315_h4x/items/ff3b542a4468679fb409
  */
 class EratosthenesSieve {
 private:
