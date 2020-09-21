@@ -232,6 +232,18 @@ using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
 // }}}
 endsnippet
 
+snippet divisor-count-table "Number-Theory/divisor-count-table.hpp"
+// divisor-count-table {{{
+std::vector<int> divisorCountTable(int N) {
+    std::vector<int> cnt(N + 1);
+    for (int d = 1; d <= N; ++d) {
+        for (int i = d; i <= N; i += d) ++cnt[i];
+    }
+    return cnt;
+}
+// }}}
+endsnippet
+
 snippet enumerate-divisors "Number-Theory/enumerate-divisors.hpp"
 // enumerate-divisors {{{
 template <class Integer>
@@ -313,6 +325,19 @@ constexpr bool isPrime(int64_t n) {
         if (n % i == 0) return false;
     }
     return true;
+}
+// }}}
+endsnippet
+
+snippet osa_k "Number-Theory/osa_k.hpp"
+// osa_k {{{
+std::map<int, int> osa_k(int n, const EratosthenesSieve& es) {
+    std::map<int, int> ret;
+    while (n > 1) {
+        ++ret[es.minFactor(n)];
+        n /= es.minFactor(n);
+    }
+    return ret;
 }
 // }}}
 endsnippet
