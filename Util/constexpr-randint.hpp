@@ -6,7 +6,7 @@
 
 /**
  * @brief constexprRandint() (コンパイル時乱数)
- * 何回呼び出しても同じ値なので う笑
+ * 呼び出す度に値が変わるわけではないので う笑
  */
 #define STRINGIZE_I(x) #x
 #define STRINGIZE(x) STRINGIZE_I(x)
