@@ -3,7 +3,7 @@
 #include <cstdint>
 
 /**
- * @biref cstringHash() ヌル文字終端された文字列から32bitハッシュ値を生成する(constexpr)
+ * @brief cstringHash() ヌル文字終端された文字列から32bitハッシュ値を生成する(constexpr)
  * @see https://en.wikipedia.org/wiki/Jenkins_hash_function
  */
 constexpr std::uint32_t cstringHash(const char* s) {
