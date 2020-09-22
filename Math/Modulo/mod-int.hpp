@@ -111,11 +111,11 @@ struct StaticModHolder {
     static constexpr int64_t mod = Mod;
 };
 
-template <auto ID>
+template <int ID>
 struct DynamicModHolder {
     static int64_t mod;
 };
-template <auto ID>
+template <int ID>
 int64_t DynamicModHolder<ID>::mod;
 
 }  // namespace impl
@@ -126,5 +126,5 @@ using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
 using ModInt1000000007 = StaticModInt<int(1e9) + 7>;
 using ModInt998244353 = StaticModInt<998244353>;
 
-template <auto ID>
+template <int ID>
 using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
