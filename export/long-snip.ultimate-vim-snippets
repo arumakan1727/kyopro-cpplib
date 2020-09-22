@@ -212,11 +212,11 @@ struct StaticModHolder {
     static constexpr int64_t mod = Mod;
 };
 
-template <auto ID>
+template <int ID>
 struct DynamicModHolder {
     static int64_t mod;
 };
-template <auto ID>
+template <int ID>
 int64_t DynamicModHolder<ID>::mod;
 
 }  // namespace impl
@@ -227,7 +227,7 @@ using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
 using ModInt1000000007 = StaticModInt<int(1e9) + 7>;
 using ModInt998244353 = StaticModInt<998244353>;
 
-template <auto ID>
+template <int ID>
 using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
 // }}}
 endsnippet
@@ -477,151 +477,121 @@ endsnippet
 
 snippet debug "Debug/debug.hpp"
 // debug {{{
-template <class A, class B>
-std::ostream& operator<<(std::ostream& os, const std::pair<A, B>& t) {
-    return os << '{' << std::get<0>(t) << ", " << std::get<1>(t) << '}';
-}
-template <class A, class B, class C>
-std::ostream& operator<<(std::ostream& os, const std::tuple<A, B, C>& t) {
-    return os << '{' << std::get<0>(t) << ", " << std::get<1>(t) << ", " << std::get<2>(t) << '}';
-}
-
-template <class T, std::enable_if_t<std::is_integral_v<T> && sizeof(T) == 4, std::nullptr_t> = nullptr>
-constexpr T infinity() {
-    return INF;
-}
-
-template <class T, std::enable_if_t<std::is_integral_v<T> && sizeof(T) == 8, std::nullptr_t> = nullptr>
-constexpr T infinity() {
-    return LINF;
-}
-
 #ifdef LOCAL_DEBUG
 
-class Debug {
-private:
-    int w_ = 4;
-    int valueOffset_ = 0;
-    int indexOffset_ = 0;
-    bool negativeValAsNull_ = true;
-    static constexpr int32_t inf32_ = INF;
-    static constexpr int64_t inf64_ = LINF;
+namespace dbg {
 
-public:
-    std::ostream& os = std::cerr;
+int w_ = 4;
+bool negativeValAsNull_ = true;
+std::ostream* os = &std::cerr;
 
-    Debug() = default;
+template <class T, std::enable_if_t<!std::is_arithmetic<T>::value, std::nullptr_t> = nullptr>
+void put(const T& x) {
+    *os << std::setw(w_) << x;
+}
+template <class T, std::enable_if_t<std::is_signed<T>::value, std::nullptr_t> = nullptr>
+void put(const T& x) {
+    if (x <= -INF)
+        *os << std::setw(w_) << "-INF";
+    else if (negativeValAsNull_ && x < 0)
+        *os << std::setw(w_) << " - ";
+    else if (x >= INF)
+        *os << std::setw(w_) << "INF";
+    else
+        *os << std::setw(w_) << x;
+}
+template <class T, std::enable_if_t<std::is_unsigned<T>::value, std::nullptr_t> = nullptr>
+void put(const T& x) {
+    if (static_cast<std::int64_t>(x) >= static_cast<std::int64_t>(INF))
+        *os << std::setw(w_) << "INF";
+    else
+        *os << std::setw(w_) << x;
+}
+template <class A, class B>
+void put(const std::pair<A, B>& t) {
+    *os << '(' << std::setw(w_) << std::get<0>(t) << ",  " << std::setw(w_) << std::get<1>(t) << ')';
+}
+template <class A, class B, class C>
+void put(const std::tuple<A, B, C>& t) {
+    *os << '(' << std::setw(w_) << std::get<0>(t) << ",  " << std::setw(w_) << std::get<1>(t) << ",  " << std::setw(w_) << std::get<2>(t) << ')';
+}
 
-    void line() const { os << "---------------------------------------------------\n"; }
-    void flush() const { os << std::flush; }
-    void w(int w) { w_ = w; }
-    void valueOffset(int v) { valueOffset_ = v; }
-    void indexOffset(int v) { indexOffset_ = v; }
-    void negativeValAsNull(bool f) { negativeValAsNull_ = f; }
+}  // namespace dbg
 
-    template <class T>
-    void show(const T& x) const {
-        put(x), os << '\n';
+void debug_setw(int w) {
+    dbg::w_ = w;
+}
+void debug_negativeValAsNull(bool f) {
+    dbg::negativeValAsNull_ = f;
+}
+void debug_setOstream(std::ostream& os) {
+    dbg::os = &os;
+}
+void debug_hr() {
+    *dbg::os << "----------------------------------------------------------------------\n";
+}
+void debug_println() {
+    *dbg::os << std::endl;
+}
+template <class Head, class... Tail>
+void debug_println(const Head& head, const Tail&... tail) {
+    dbg::put(head);
+    debug_println(tail...);
+}
+template <class Arr>
+void debug_showArrayH(const Arr& a, size_t begin, size_t end) {
+    for (size_t i = begin; i < end; ++i) *dbg::os << '[' << std::setw(dbg::w_) << i << "] ";
+    *dbg::os << '\n';
+    for (size_t i = begin; i < end; ++i) *dbg::os << ' ' << std::setw(dbg::w_), dbg::put(a[i]), *dbg::os << "  ";
+    *dbg::os << '\n';
+}
+template <class Arr>
+void debug_showArrayV(const Arr& a, size_t begin, size_t end) {
+    for (size_t i = begin; i < end; ++i)
+        *dbg::os << '[' << std::setw(2) << i << ']' << std::setw(dbg::w_), dbg::put(a[i]), *dbg::os << "\n";
+    *dbg::os << std::flush;
+}
+template <class Table>
+void debug_showTable(const Table& t, size_t yBegin, size_t yEnd, size_t xBegin, size_t xEnd) {
+    *dbg::os << std::string(1 + 2 + 1, ' ');
+    for (size_t j = xBegin; j < xEnd; ++j) *dbg::os << '[' << std::setw(dbg::w_) << j << "] ";
+    *dbg::os << '\n';
+
+    for (size_t i = yBegin; i < yEnd; ++i) {
+        *dbg::os << '[' << std::setw(2) << i << "]";
+        for (size_t j = xBegin; j < xEnd; ++j) *dbg::os << ' ' << std::setw(dbg::w_), dbg::put(t[i][j]), *dbg::os << "  ";
+        *dbg::os << '\n';
     }
+}
 
-    template <class T, class U, class... Tail>
-    void show(const T& x, const U& y, const Tail&... tail) const {
-        put(x);
-        os << ",  ";
-        show(y, tail...);
-    }
-
-    template <class Arr>
-    void showArray(const Arr& a) const {
-        showArray(a, 0, a.size());
-    }
-
-    template <class Arr>
-    void showArray(const Arr& a, size_t begin, size_t end) const {
-        os << '\n';
-        for (size_t i = begin; i < end; ++i) os << '[' << std::setw(w_) << (i + indexOffset_) << "] ";
-        os << '\n';
-        for (size_t i = begin; i < end; ++i) os << ' ' << std::setw(w_), put(a[i]), os << "  ";
-        os << '\n';
-    }
-
-    template <class Table>
-    void showTable(const Table& t) const {
-        showTable(t, 0, t.size(), 0, t[0].size());
-    }
-
-    template <class Table>
-    void showTable(const Table& t, size_t yBegin, size_t yEnd, size_t xBegin, size_t xEnd) const {
-        os << '\n';
-        os << std::string(1 + 2 + 1, ' ');
-        for (size_t j = xBegin; j < xEnd; ++j) os << '[' << std::setw(w_) << (j + indexOffset_) << "] ";
-        os << '\n';
-
-        for (size_t i = yBegin; i < yEnd; ++i) {
-            os << '[' << std::setw(2) << (i + indexOffset_) << "]";
-            for (size_t j = xBegin; j < xEnd; ++j) os << ' ' << std::setw(w_), put(t[i][j]), os << "  ";
-            os << '\n';
-        }
-    }
-
-private:
-    template <class T>
-    void put(const T& x) const {
-        if constexpr (std::is_same_v<T, char>) {
-            os << '\'' << x << '\'';
-        } else if constexpr (std::is_same_v<T, bool>) {
-            os << std::setw(w_) << (x ? "1" : "0");
-        } else if constexpr (std::is_integral_v<T>) {
-            os << std::setw(w_) << convert(x);
-        } else if constexpr (std::is_convertible_v<T, std::string_view>) {
-            os << std::setw(w_) << std::quoted(x);
-        } else {
-            os << std::setw(w_) << x;
-        }
-    }
-
-    template <class T>
-    std::string convert(const T& x) const {
-        if constexpr (std::is_signed_v<T>) {
-            if (x <= -infinity<T>()) return "-INF";
-            if (negativeValAsNull_ && x < 0) return "-";
-        }
-        if (x >= infinity<T>()) return "INF";
-        return std::to_string(x + valueOffset_);
-    }
-};
-
-#define dump(...)                                                                                    \
-    debug.os << "line" << std::setw(3) << std::setfill('0') << __LINE__ << std::setfill(' ') << ": " \
-             << "[" << #__VA_ARGS__ << "]: ",                                                        \
-        debug.show(__VA_ARGS__)
+#define putDbgPrefix() *dbg::os << __func__ << '(' << std::setfill('0') << std::setw(3) << __LINE__ << std::setfill(' ') << "): "
+#define showArrayH(a, beginIdx, endIdx) (void)(putDbgPrefix() << #a << ":\n"), debug_showArrayH(a, beginIdx, endIdx)
+#define showArrayV(a, beginIdx, endIdx) (void)(putDbgPrefix() << #a << ":\n"), debug_showArrayV(a, beginIdx, endIdx)
+#define showTable(t, yBegin, yEnd, xBegin, xEnd) (void)(putDbgPrefix() << #t << ":\n"), debug_showTable(t, yBegin, yEnd, xBegin, xEnd)
+#define dbgMsg_(x) "  |  " #x " = ", x
+#define dump1(a) (void)(putDbgPrefix()), debug_println(#a " = ", a)
+#define dump2(a, b) (void)(putDbgPrefix()), debug_println(#a " = ", a, dbgMsg_(b))
+#define dump3(a, b, c) (void)(putDbgPrefix()), debug_println(#a " = ", a, dbgMsg_(b), dbgMsg_(c))
+#define dump4(a, b, c, d) (void)(putDbgPrefix()), debug_println(#a " = ", a, dbgMsg_(b), dbgMsg_(c), dbgMsg_(d))
+#define dump5(a, b, c, d, e) (void)(putDbgPrefix()), debug_println(#a " = ", a, dbgMsg_(b), dbgMsg_(c), dbgMsg_(d), dbgMsg_(e))
+#define dump6(a, b, c, d, e, f) (void)(putDbgPrefix()), debug_println(#a " = ", a, dbgMsg_(b), dbgMsg_(c), dbgMsg_(d), dbgMsg_(e), dbgMsg_(f))
+#define dump7(a, b, c, d, e, f, g) (void)(putDbgPrefix()), debug_println(#a " = ", a, dbgMsg_(b), dbgMsg_(c), dbgMsg_(d), dbgMsg_(e), dbgMsg_(f), dbgMsg_(g))
+#define GET_8TH_ARG(dummy1, dummy2, dummy3, dummy4, dummy5, dummy6, dumy7, NAME, ...) NAME
+#define dump(...) GET_8TH_ARG(__VA_ARGS__, dump7, dump6, dump5, dump4, dump3, dump2, dump1)(__VA_ARGS__)
 
 #else
 
-#define DEF_FUNC(funcName) \
-    template <class... T>  \
-    void funcName(T&&...) {}
-
-struct Debug {
-    DEF_FUNC(line)
-    DEF_FUNC(flush)
-    DEF_FUNC(w)
-    DEF_FUNC(valueOffset)
-    DEF_FUNC(indexOffset)
-    DEF_FUNC(negativeValAsNull)
-    DEF_FUNC(inf32)
-    DEF_FUNC(inf64)
-    DEF_FUNC(show)
-    DEF_FUNC(showArray)
-    DEF_FUNC(showTable)
-};
-
-#undef DEF_FUNC
+#define debug_setw(...) ((void)0)
+#define debug_negativeValAsNull(...) ((void)0)
+#define debug_setOstream(...) ((void)0)
+#define debug_hr(...) ((void)0)
+#define debug_println(...) ((void)0)
+#define showArrayH(...) ((void)0)
+#define showArrayV(...) ((void)0)
+#define showTable(...) ((void)0)
 #define dump(...) ((void)0)
 
 #endif
-
-Debug debug;
 // }}}
 endsnippet
 
@@ -644,15 +614,19 @@ inline void eprintln(Head&& head, Tail&&... tail) {
 // }}}
 endsnippet
 
-snippet container-io "IO/container-io.hpp"
-// container-io {{{
-template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container, std::string>, std::nullptr_t> = nullptr>
+snippet container-input "IO/container-input.hpp"
+// container-input {{{
+template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
 std::istream& operator>>(std::istream& is, Container& v) {
     for (auto& e : v) is >> e;
     return is;
 }
+// }}}
+endsnippet
 
-template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container, std::string>, std::nullptr_t> = nullptr>
+snippet container-output "IO/container-output.hpp"
+// container-output {{{
+template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
 std::ostream& operator<<(std::ostream& os, const Container& v) {
     for (auto it = std::begin(v); it != std::end(v); ++it) os << &" "[it == std::begin(v)] << *it;
     return os;
@@ -680,6 +654,17 @@ template <class Head, class... Tail>
 inline void println(Head&& head, Tail&&... tail) {
     std::cout << head << &" "[!sizeof...(tail)];
     println(std::forward<Tail>(tail)...);
+}
+// }}}
+endsnippet
+
+snippet read "IO/read.hpp"
+// read {{{
+template <class T = int, template <class, class...> class Container = std::vector>
+Container<T> read(std::size_t n) {
+    Container<T> ret(n);
+    for (auto& e : ret) std::cin >> e;
+    return ret;
 }
 // }}}
 endsnippet
