@@ -66,11 +66,11 @@ data:
     \            static_cast<void>(u -= t * v), std::swap(u, v);\n        }\n    \
     \    assert(m == 1);\n        return u;\n    }\n};\n\ntemplate <int64_t Mod>\n\
     struct StaticModHolder {\n    static constexpr int64_t mod = Mod;\n};\n\ntemplate\
-    \ <auto ID>\nstruct DynamicModHolder {\n    static int64_t mod;\n};\ntemplate\
-    \ <auto ID>\nint64_t DynamicModHolder<ID>::mod;\n\n}  // namespace impl\n\ntemplate\
+    \ <int ID>\nstruct DynamicModHolder {\n    static int64_t mod;\n};\ntemplate <int\
+    \ ID>\nint64_t DynamicModHolder<ID>::mod;\n\n}  // namespace impl\n\ntemplate\
     \ <int64_t Mod>\nusing StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;\n\
     \nusing ModInt1000000007 = StaticModInt<int(1e9) + 7>;\nusing ModInt998244353\
-    \ = StaticModInt<998244353>;\n\ntemplate <auto ID>\nusing DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;\n\
+    \ = StaticModInt<998244353>;\n\ntemplate <int ID>\nusing DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;\n\
     #line 6 \"Math/Combinatorics/factorials.hpp\"\n\n/**\n * @brief factorials (\u968E\
     \u4E57, \u968E\u4E57\u306E\u9006\u5143, nCr, nPr)\n */\ntemplate <int Mod>\nstruct\
     \ Factorials {\npublic:\n    using value_type = StaticModInt<Mod>;\n    static\
@@ -121,7 +121,7 @@ data:
   isVerificationFile: false
   path: Math/Combinatorics/factorials.hpp
   requiredBy: []
-  timestamp: '2020-09-18 11:32:55+09:00'
+  timestamp: '2020-09-22 21:53:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/1501-Grid.test.cpp

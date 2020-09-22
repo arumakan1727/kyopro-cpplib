@@ -65,11 +65,11 @@ data:
     \            static_cast<void>(u -= t * v), std::swap(u, v);\n        }\n    \
     \    assert(m == 1);\n        return u;\n    }\n};\n\ntemplate <int64_t Mod>\n\
     struct StaticModHolder {\n    static constexpr int64_t mod = Mod;\n};\n\ntemplate\
-    \ <auto ID>\nstruct DynamicModHolder {\n    static int64_t mod;\n};\ntemplate\
-    \ <auto ID>\nint64_t DynamicModHolder<ID>::mod;\n\n}  // namespace impl\n\ntemplate\
+    \ <int ID>\nstruct DynamicModHolder {\n    static int64_t mod;\n};\ntemplate <int\
+    \ ID>\nint64_t DynamicModHolder<ID>::mod;\n\n}  // namespace impl\n\ntemplate\
     \ <int64_t Mod>\nusing StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;\n\
     \nusing ModInt1000000007 = StaticModInt<int(1e9) + 7>;\nusing ModInt998244353\
-    \ = StaticModInt<998244353>;\n\ntemplate <auto ID>\nusing DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;\n\
+    \ = StaticModInt<998244353>;\n\ntemplate <int ID>\nusing DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;\n\
     #line 11 \"test/AOJ/0264-Finite-Field-Calculator.test.cpp\"\n\nusing namespace\
     \ std;\nusing Mint = DynamicModInt<0>;\nusing Itr = string::const_iterator;\n\n\
     Mint expr(Itr&);\nMint term(Itr&);\nMint factor(Itr&);\nMint number(Itr&);\n\n\
@@ -125,7 +125,7 @@ data:
   isVerificationFile: true
   path: test/AOJ/0264-Finite-Field-Calculator.test.cpp
   requiredBy: []
-  timestamp: '2020-09-17 22:44:48+09:00'
+  timestamp: '2020-09-22 21:53:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/AOJ/0264-Finite-Field-Calculator.test.cpp

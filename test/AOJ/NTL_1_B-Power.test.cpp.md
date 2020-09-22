@@ -69,11 +69,11 @@ data:
     \            static_cast<void>(u -= t * v), std::swap(u, v);\n        }\n    \
     \    assert(m == 1);\n        return u;\n    }\n};\n\ntemplate <int64_t Mod>\n\
     struct StaticModHolder {\n    static constexpr int64_t mod = Mod;\n};\n\ntemplate\
-    \ <auto ID>\nstruct DynamicModHolder {\n    static int64_t mod;\n};\ntemplate\
-    \ <auto ID>\nint64_t DynamicModHolder<ID>::mod;\n\n}  // namespace impl\n\ntemplate\
+    \ <int ID>\nstruct DynamicModHolder {\n    static int64_t mod;\n};\ntemplate <int\
+    \ ID>\nint64_t DynamicModHolder<ID>::mod;\n\n}  // namespace impl\n\ntemplate\
     \ <int64_t Mod>\nusing StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;\n\
     \nusing ModInt1000000007 = StaticModInt<int(1e9) + 7>;\nusing ModInt998244353\
-    \ = StaticModInt<998244353>;\n\ntemplate <auto ID>\nusing DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;\n\
+    \ = StaticModInt<998244353>;\n\ntemplate <int ID>\nusing DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;\n\
     #line 2 \"Algorithm/doubling-pow.hpp\"\n#include <cmath>\n#line 3 \"Util/int-alias.hpp\"\
     \n\n/**\n * @brief int-alias (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\
     \u30B9)\n */\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n#line 4 \"\
@@ -101,7 +101,7 @@ data:
   isVerificationFile: true
   path: test/AOJ/NTL_1_B-Power.test.cpp
   requiredBy: []
-  timestamp: '2020-09-17 22:44:48+09:00'
+  timestamp: '2020-09-22 21:53:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/AOJ/NTL_1_B-Power.test.cpp

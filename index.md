@@ -85,8 +85,11 @@ data:
   - name: Util/IO
     pages:
     - icon: ':warning:'
-      path: Util/IO/container-io.hpp
-      title: "\u30B3\u30F3\u30C6\u30CA\u306E\u5165\u51FA\u529B"
+      path: Util/IO/container-input.hpp
+      title: "std::istream\u306B\u3088\u308B\u30B3\u30F3\u30C6\u30CA\u306E\u5165\u529B"
+    - icon: ':warning:'
+      path: Util/IO/container-output.hpp
+      title: "std::ostream\u306B\u3088\u308B\u30B3\u30F3\u30C6\u30CA\u306E\u51FA\u529B"
     - icon: ':warning:'
       path: Util/IO/join-into-ostream.hpp
       title: "join() (\u8981\u7D20\u3092\u533A\u5207\u308A\u6587\u5B57\u3067\u7D50\
@@ -95,6 +98,10 @@ data:
       path: Util/IO/println.hpp
       title: "println() (\u53EF\u5909\u500B\u306E\u5024\u3092\u7A7A\u767D\u533A\u5207\
         \u308A\u3067\u51FA\u529B\u3057\u3066\u6539\u884C\u3059\u308B)"
+    - icon: ':warning:'
+      path: Util/IO/read.hpp
+      title: "read() (n\u500B\u5165\u529B\u3057\u3066Container\u306B\u683C\u7D0D\u3057\
+        \u3066\u8FD4\u3059)"
     - icon: ':heavy_check_mark:'
       path: Util/IO/var-declaration-with-input.hpp
       title: "\u8907\u6570\u5909\u6570\u5BA3\u8A00\u3092\u3057\u3066\u540C\u6642\u306B\
@@ -113,7 +120,9 @@ data:
         )"
     - icon: ':warning:'
       path: Util/cstring-hash.hpp
-      title: Util/cstring-hash.hpp
+      title: "cstringHash() \u30CC\u30EB\u6587\u5B57\u7D42\u7AEF\u3055\u308C\u305F\
+        \u6587\u5B57\u5217\u304B\u308932bit\u30CF\u30C3\u30B7\u30E5\u5024\u3092\u751F\
+        \u6210\u3059\u308B(constexpr)"
     - icon: ':heavy_check_mark:'
       path: Util/int-alias.hpp
       title: "int-alias (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)"

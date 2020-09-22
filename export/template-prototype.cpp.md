@@ -14,8 +14,12 @@ data:
     path: Util/int-infinity.hpp
     title: "int-infinity (\u6574\u6570\u306E\u30C7\u30AB\u30A4\u5024)"
   - icon: ':warning:'
-    path: Util/IO/container-io.hpp
-    title: "\u30B3\u30F3\u30C6\u30CA\u306E\u5165\u51FA\u529B"
+    path: Util/IO/read.hpp
+    title: "read() (n\u500B\u5165\u529B\u3057\u3066Container\u306B\u683C\u7D0D\u3057\
+      \u3066\u8FD4\u3059)"
+  - icon: ':warning:'
+    path: Util/IO/container-output.hpp
+    title: "std::ostream\u306B\u3088\u308B\u30B3\u30F3\u30C6\u30CA\u306E\u51FA\u529B"
   - icon: ':heavy_check_mark:'
     path: Util/IO/var-declaration-with-input.hpp
     title: "\u8907\u6570\u5909\u6570\u5BA3\u8A00\u3092\u3057\u3066\u540C\u6642\u306B\
@@ -50,53 +54,56 @@ data:
     \u3082\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044 & memset()\u306B\
     \u3082\u4F7F\u3048\u308B (\u9700\u8981\u3042\u308B\uFF1F)\n */\nconstexpr std::int32_t\
     \ INF = 0x3f3f3f3f;\nconstexpr std::int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;\n#line\
-    \ 8 \"export/template-prototype.cpp\"\n\n#line 3 \"Util/IO/container-io.hpp\"\n\
-    \n/**\n * @brief \u30B3\u30F3\u30C6\u30CA\u306E\u5165\u51FA\u529B\n */\ntemplate\
-    \ <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container,\
-    \ std::string>, std::nullptr_t> = nullptr>\nstd::istream& operator>>(std::istream&\
-    \ is, Container& v) {\n    for (auto& e : v) is >> e;\n    return is;\n}\n\ntemplate\
-    \ <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container,\
-    \ std::string>, std::nullptr_t> = nullptr>\nstd::ostream& operator<<(std::ostream&\
-    \ os, const Container& v) {\n    for (auto it = std::begin(v); it != std::end(v);\
-    \ ++it) os << &\" \"[it == std::begin(v)] << *it;\n    return os;\n}\n#line 10\
-    \ \"export/template-prototype.cpp\"\n\n#line 3 \"Util/IO/var-declaration-with-input.hpp\"\
-    \n\n/**\n * @brief \u8907\u6570\u5909\u6570\u5BA3\u8A00\u3092\u3057\u3066\u540C\
-    \u6642\u306B\u5165\u529B\u3082\u3059\u308B\u3084\u3064\n */\ntemplate <class T>\n\
-    std::istream& operator,(std::istream& is, T& rhs) {\n    return is >> rhs;\n}\n\
-    \n#define var(type, ...) \\\n    type __VA_ARGS__;  \\\n    std::cin >> __VA_ARGS__\n\
-    #line 12 \"export/template-prototype.cpp\"\n\n#line 4 \"Util/IO/println.hpp\"\n\
-    \n/**\n * @brief println() (\u53EF\u5909\u500B\u306E\u5024\u3092\u7A7A\u767D\u533A\
-    \u5207\u308A\u3067\u51FA\u529B\u3057\u3066\u6539\u884C\u3059\u308B)\n */\ninline\
-    \ void println() {\n    std::cout << '\\n';\n}\ntemplate <class Head, class...\
-    \ Tail>\ninline void println(Head&& head, Tail&&... tail) {\n    std::cout <<\
-    \ head << &\" \"[!sizeof...(tail)];\n    println(std::forward<Tail>(tail)...);\n\
-    }\n#line 14 \"export/template-prototype.cpp\"\n\n#line 2 \"Util/chminmax.hpp\"\
+    \ 8 \"export/template-prototype.cpp\"\n\n#line 4 \"Util/IO/read.hpp\"\n\n/**\n\
+    \ * @brief read() (n\u500B\u5165\u529B\u3057\u3066Container\u306B\u683C\u7D0D\u3057\
+    \u3066\u8FD4\u3059)\n */\ntemplate <class T = int, template <class, class...>\
+    \ class Container = std::vector>\nContainer<T> read(std::size_t n) {\n    Container<T>\
+    \ ret(n);\n    for (auto& e : ret) std::cin >> e;\n    return ret;\n}\n#line 10\
+    \ \"export/template-prototype.cpp\"\n\n#line 3 \"Util/IO/container-output.hpp\"\
+    \n\n/**\n * @brief std::ostream\u306B\u3088\u308B\u30B3\u30F3\u30C6\u30CA\u306E\
+    \u51FA\u529B\n */\ntemplate <class Container, class = typename Container::value_type,\
+    \ std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t>\
+    \ = nullptr>\nstd::ostream& operator<<(std::ostream& os, const Container& v) {\n\
+    \    for (auto it = std::begin(v); it != std::end(v); ++it) os << &\" \"[it ==\
+    \ std::begin(v)] << *it;\n    return os;\n}\n#line 12 \"export/template-prototype.cpp\"\
+    \n\n#line 3 \"Util/IO/var-declaration-with-input.hpp\"\n\n/**\n * @brief \u8907\
+    \u6570\u5909\u6570\u5BA3\u8A00\u3092\u3057\u3066\u540C\u6642\u306B\u5165\u529B\
+    \u3082\u3059\u308B\u3084\u3064\n */\ntemplate <class T>\nstd::istream& operator,(std::istream&\
+    \ is, T& rhs) {\n    return is >> rhs;\n}\n\n#define var(type, ...) \\\n    type\
+    \ __VA_ARGS__;  \\\n    std::cin >> __VA_ARGS__\n#line 14 \"export/template-prototype.cpp\"\
+    \n\n#line 4 \"Util/IO/println.hpp\"\n\n/**\n * @brief println() (\u53EF\u5909\u500B\
+    \u306E\u5024\u3092\u7A7A\u767D\u533A\u5207\u308A\u3067\u51FA\u529B\u3057\u3066\
+    \u6539\u884C\u3059\u308B)\n */\ninline void println() {\n    std::cout << '\\\
+    n';\n}\ntemplate <class Head, class... Tail>\ninline void println(Head&& head,\
+    \ Tail&&... tail) {\n    std::cout << head << &\" \"[!sizeof...(tail)];\n    println(std::forward<Tail>(tail)...);\n\
+    }\n#line 16 \"export/template-prototype.cpp\"\n\n#line 2 \"Util/chminmax.hpp\"\
     \n\n/**\n * @brief chmin(), chmax()\n */\ntemplate <class T, class U>\ninline\
     \ bool chmin(T& a, const U& b) {\n    return b < a && (a = b, true);\n}\n\ntemplate\
     \ <class T, class U>\ninline bool chmax(T& a, const U& b) {\n    return b > a\
-    \ && (a = b, true);\n}\n#line 16 \"export/template-prototype.cpp\"\n// }}}\n\n\
+    \ && (a = b, true);\n}\n#line 18 \"export/template-prototype.cpp\"\n// }}}\n\n\
     using namespace std;\n\nint main() {\n    cin.tie(nullptr);\n    ios_base::sync_with_stdio(false);\n\
     \    cout << std::fixed << std::setprecision(12);\n\n    return 0;\n}\n"
   code: "#include <bits/stdc++.h>\n// header {{{\n#include \"../Util/all-macro.hpp\"\
     \n#include \"../Util/rep-macro.hpp\"\n#define let const auto\n#include \"../Util/int-alias.hpp\"\
-    \n#include \"../Util/int-infinity.hpp\"\n\n#include \"../Util/IO/container-io.hpp\"\
-    \n\n#include \"../Util/IO/var-declaration-with-input.hpp\"\n\n#include \"../Util/IO/println.hpp\"\
-    \n\n#include \"../Util/chminmax.hpp\"\n// }}}\n\nusing namespace std;\n\nint main()\
-    \ {\n    cin.tie(nullptr);\n    ios_base::sync_with_stdio(false);\n    cout <<\
-    \ std::fixed << std::setprecision(12);\n\n    return 0;\n}\n"
+    \n#include \"../Util/int-infinity.hpp\"\n\n#include \"../Util/IO/read.hpp\"\n\n\
+    #include \"../Util/IO/container-output.hpp\"\n\n#include \"../Util/IO/var-declaration-with-input.hpp\"\
+    \n\n#include \"../Util/IO/println.hpp\"\n\n#include \"../Util/chminmax.hpp\"\n\
+    // }}}\n\nusing namespace std;\n\nint main() {\n    cin.tie(nullptr);\n    ios_base::sync_with_stdio(false);\n\
+    \    cout << std::fixed << std::setprecision(12);\n\n    return 0;\n}\n"
   dependsOn:
   - Util/all-macro.hpp
   - Util/rep-macro.hpp
   - Util/int-alias.hpp
   - Util/int-infinity.hpp
-  - Util/IO/container-io.hpp
+  - Util/IO/read.hpp
+  - Util/IO/container-output.hpp
   - Util/IO/var-declaration-with-input.hpp
   - Util/IO/println.hpp
   - Util/chminmax.hpp
   isVerificationFile: false
   path: export/template-prototype.cpp
   requiredBy: []
-  timestamp: '2020-09-20 14:50:23+09:00'
+  timestamp: '2020-09-22 21:57:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: export/template-prototype.cpp

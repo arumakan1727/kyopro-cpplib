@@ -3,7 +3,9 @@ data:
   _extendedDependsOn:
   - icon: ':warning:'
     path: Util/cstring-hash.hpp
-    title: Util/cstring-hash.hpp
+    title: "cstringHash() \u30CC\u30EB\u6587\u5B57\u7D42\u7AEF\u3055\u308C\u305F\u6587\
+      \u5B57\u5217\u304B\u308932bit\u30CF\u30C3\u30B7\u30E5\u5024\u3092\u751F\u6210\
+      \u3059\u308B(constexpr)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: hpp
@@ -15,7 +17,7 @@ data:
     links: []
   bundledCode: "#line 2 \"Util/constexpr-randint.hpp\"\n\n#include <cstdint>\n\n#line\
     \ 2 \"Util/cstring-hash.hpp\"\n\n#line 4 \"Util/cstring-hash.hpp\"\n\n/**\n *\
-    \ @biref cstringHash() \u30CC\u30EB\u6587\u5B57\u7D42\u7AEF\u3055\u308C\u305F\u6587\
+    \ @brief cstringHash() \u30CC\u30EB\u6587\u5B57\u7D42\u7AEF\u3055\u308C\u305F\u6587\
     \u5B57\u5217\u304B\u308932bit\u30CF\u30C3\u30B7\u30E5\u5024\u3092\u751F\u6210\u3059\
     \u308B(constexpr)\n * @see https://en.wikipedia.org/wiki/Jenkins_hash_function\n\
     \ */\nconstexpr std::uint32_t cstringHash(const char* s) {\n    std::uint32_t\
@@ -43,7 +45,7 @@ data:
   isVerificationFile: false
   path: Util/constexpr-randint.hpp
   requiredBy: []
-  timestamp: '2020-09-21 12:51:19+09:00'
+  timestamp: '2020-09-22 21:55:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Util/constexpr-randint.hpp

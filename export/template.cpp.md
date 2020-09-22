@@ -17,11 +17,11 @@ data:
     \ i = (begin), i##_last = (last); i >= i##_last; --i)\n#define let const auto\n\
     using i64 = std::int64_t;\nusing u64 = std::uint64_t;\nconstexpr std::int32_t\
     \ INF = 0x3f3f3f3f;\nconstexpr std::int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;\n\ntemplate\
-    \ <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container,\
-    \ std::string>, std::nullptr_t> = nullptr>\nstd::istream& operator>>(std::istream&\
-    \ is, Container& v) {\n    for (auto& e : v) is >> e;\n    return is;\n}\n\ntemplate\
-    \ <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container,\
-    \ std::string>, std::nullptr_t> = nullptr>\nstd::ostream& operator<<(std::ostream&\
+    \ <class T = int, template <class, class...> class Container = std::vector>\n\
+    Container<T> read(std::size_t n) {\n    Container<T> ret(n);\n    for (auto& e\
+    \ : ret) std::cin >> e;\n    return ret;\n}\n\ntemplate <class Container, class\
+    \ = typename Container::value_type, std::enable_if_t<!std::is_same<Container,\
+    \ std::string>::value, std::nullptr_t> = nullptr>\nstd::ostream& operator<<(std::ostream&\
     \ os, const Container& v) {\n    for (auto it = std::begin(v); it != std::end(v);\
     \ ++it) os << &\" \"[it == std::begin(v)] << *it;\n    return os;\n}\n\ntemplate\
     \ <class T>\nstd::istream& operator,(std::istream& is, T& rhs) {\n    return is\
@@ -42,11 +42,11 @@ data:
     \ i = (begin), i##_last = (last); i >= i##_last; --i)\n#define let const auto\n\
     using i64 = std::int64_t;\nusing u64 = std::uint64_t;\nconstexpr std::int32_t\
     \ INF = 0x3f3f3f3f;\nconstexpr std::int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;\n\ntemplate\
-    \ <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container,\
-    \ std::string>, std::nullptr_t> = nullptr>\nstd::istream& operator>>(std::istream&\
-    \ is, Container& v) {\n    for (auto& e : v) is >> e;\n    return is;\n}\n\ntemplate\
-    \ <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container,\
-    \ std::string>, std::nullptr_t> = nullptr>\nstd::ostream& operator<<(std::ostream&\
+    \ <class T = int, template <class, class...> class Container = std::vector>\n\
+    Container<T> read(std::size_t n) {\n    Container<T> ret(n);\n    for (auto& e\
+    \ : ret) std::cin >> e;\n    return ret;\n}\n\ntemplate <class Container, class\
+    \ = typename Container::value_type, std::enable_if_t<!std::is_same<Container,\
+    \ std::string>::value, std::nullptr_t> = nullptr>\nstd::ostream& operator<<(std::ostream&\
     \ os, const Container& v) {\n    for (auto it = std::begin(v); it != std::end(v);\
     \ ++it) os << &\" \"[it == std::begin(v)] << *it;\n    return os;\n}\n\ntemplate\
     \ <class T>\nstd::istream& operator,(std::istream& is, T& rhs) {\n    return is\
@@ -63,7 +63,7 @@ data:
   isVerificationFile: false
   path: export/template.cpp
   requiredBy: []
-  timestamp: '2020-09-20 05:54:49+00:00'
+  timestamp: '2020-09-22 12:58:55+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: export/template.cpp

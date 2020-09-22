@@ -73,11 +73,11 @@ data:
     \            static_cast<void>(u -= t * v), std::swap(u, v);\n        }\n    \
     \    assert(m == 1);\n        return u;\n    }\n};\n\ntemplate <int64_t Mod>\n\
     struct StaticModHolder {\n    static constexpr int64_t mod = Mod;\n};\n\ntemplate\
-    \ <auto ID>\nstruct DynamicModHolder {\n    static int64_t mod;\n};\ntemplate\
-    \ <auto ID>\nint64_t DynamicModHolder<ID>::mod;\n\n}  // namespace impl\n\ntemplate\
+    \ <int ID>\nstruct DynamicModHolder {\n    static int64_t mod;\n};\ntemplate <int\
+    \ ID>\nint64_t DynamicModHolder<ID>::mod;\n\n}  // namespace impl\n\ntemplate\
     \ <int64_t Mod>\nusing StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;\n\
     \nusing ModInt1000000007 = StaticModInt<int(1e9) + 7>;\nusing ModInt998244353\
-    \ = StaticModInt<998244353>;\n\ntemplate <auto ID>\nusing DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;\n"
+    \ = StaticModInt<998244353>;\n\ntemplate <int ID>\nusing DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;\n"
   code: "#pragma once\n#include <cstdint>\n#include <cassert>\n#include <iostream>\n\
     #include <limits>\n\n/**\n * @brief Mod-Int (\u30B3\u30F3\u30D1\u30A4\u30EB\u6642\
     mod\u578B\u3068\u5B9F\u884C\u6642mod\u578B)\n */\nnamespace impl {\n\ntemplate\
@@ -125,17 +125,17 @@ data:
     \            static_cast<void>(u -= t * v), std::swap(u, v);\n        }\n    \
     \    assert(m == 1);\n        return u;\n    }\n};\n\ntemplate <int64_t Mod>\n\
     struct StaticModHolder {\n    static constexpr int64_t mod = Mod;\n};\n\ntemplate\
-    \ <auto ID>\nstruct DynamicModHolder {\n    static int64_t mod;\n};\ntemplate\
-    \ <auto ID>\nint64_t DynamicModHolder<ID>::mod;\n\n}  // namespace impl\n\ntemplate\
+    \ <int ID>\nstruct DynamicModHolder {\n    static int64_t mod;\n};\ntemplate <int\
+    \ ID>\nint64_t DynamicModHolder<ID>::mod;\n\n}  // namespace impl\n\ntemplate\
     \ <int64_t Mod>\nusing StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;\n\
     \nusing ModInt1000000007 = StaticModInt<int(1e9) + 7>;\nusing ModInt998244353\
-    \ = StaticModInt<998244353>;\n\ntemplate <auto ID>\nusing DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;\n"
+    \ = StaticModInt<998244353>;\n\ntemplate <int ID>\nusing DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;\n"
   dependsOn: []
   isVerificationFile: false
   path: Math/Modulo/mod-int.hpp
   requiredBy:
   - Math/Combinatorics/factorials.hpp
-  timestamp: '2020-09-17 22:44:48+09:00'
+  timestamp: '2020-09-22 21:53:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/NTL_1_B-Power.test.cpp
