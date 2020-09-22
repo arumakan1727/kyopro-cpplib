@@ -11,13 +11,14 @@ using u64 = std::uint64_t;
 constexpr std::int32_t INF = 0x3f3f3f3f;
 constexpr std::int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
 
-template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container, std::string>, std::nullptr_t> = nullptr>
-std::istream& operator>>(std::istream& is, Container& v) {
-    for (auto& e : v) is >> e;
-    return is;
+template <class T = int, template <class, class...> class Container = std::vector>
+Container<T> read(std::size_t n) {
+    Container<T> ret(n);
+    for (auto& e : ret) std::cin >> e;
+    return ret;
 }
 
-template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same_v<Container, std::string>, std::nullptr_t> = nullptr>
+template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
 std::ostream& operator<<(std::ostream& os, const Container& v) {
     for (auto it = std::begin(v); it != std::end(v); ++it) os << &" "[it == std::begin(v)] << *it;
     return os;
