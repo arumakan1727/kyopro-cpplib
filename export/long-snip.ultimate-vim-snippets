@@ -55,6 +55,125 @@ public:
 // }}}
 endsnippet
 
+snippet bfs "Shortest-Path/bfs.hpp"
+// bfs {{{
+template <class DistArray, class Vertex, class NextVertexEnumerator>
+DistArray bfs(DistArray&& dist, Vertex start, NextVertexEnumerator enumerateNextVertex) {
+    using arumakan::at;
+    assert(!dist.empty());
+    assert(at(dist, start) == -1 || at(dist, start) >= INF);
+
+    std::queue<Vertex> que({start});
+    const auto yetReachedMarker = at(dist, start);
+    at(dist, start) = 0;
+    while (!que.empty()) {
+        const Vertex v = std::move(que.front());
+        que.pop();
+        const auto curDist = at(dist, v);
+        enumerateNextVertex(v, [&](Vertex nxt) {
+            if (at(dist, nxt) == yetReachedMarker) {
+                at(dist, nxt) = curDist + 1;
+                que.push(nxt);
+            }
+        });
+    }
+    return dist;
+}
+// }}}
+endsnippet
+
+snippet dijkstra "Shortest-Path/dijkstra.hpp"
+// dijkstra {{{
+template <class DistArray, class Vertex, class NextVertexEnumerator>
+DistArray dijkstra(DistArray&& dist, Vertex start, NextVertexEnumerator enumerateNextVertex) {
+    using arumakan::at;
+    assert(!dist.empty());
+    assert(at(dist, start) >= INF);
+    using WeightType = typename std::remove_reference_t<decltype(at(dist, start))>;
+    using P = std::pair<WeightType, Vertex>;
+
+    std::priority_queue<P, std::vector<P>, std::greater<P>> que;
+    que.emplace(at(dist, start) = WeightType(), start);
+
+    while (!que.empty()) {
+        const auto curDist = que.top().first;
+        const auto curVertex = que.top().second;
+        que.pop();
+        if (at(dist, curVertex) < curDist) continue;
+        enumerateNextVertex(curVertex, [&](auto nxtVertex, auto edgeWeight) {
+            if (chmin(at(dist, nxtVertex), curDist + edgeWeight)) {
+                que.emplace(curDist + edgeWeight, nxtVertex);
+            }
+        });
+    }
+    return dist;
+}
+
+// }}}
+endsnippet
+
+snippet graph-template "Graph/graph-template.hpp"
+// graph-template {{{
+// グラフの辺 (重み付き)
+template <class T>
+struct Edge {
+    int from, to;
+    T weight;
+    int id;
+
+    Edge() = default;
+
+    constexpr explicit Edge(int to_, const T& weight_)
+        : Edge(-1, to_, weight_, -1) {}
+
+    constexpr Edge(int from_, int to_, const T& weight_, int id_ = -1)
+        : from(from_)
+        , to(to_)
+        , weight(weight_)
+        , id(id_) {}
+
+    constexpr const Edge rev() const { return Edge(to, from, weight, id); }
+
+    template <class Int, std::enable_if_t<std::is_integral<Int>::value, std::nullptr_t> = nullptr>
+    constexpr operator Int() const {
+        return static_cast<Int>(to);
+    }
+
+    friend std::istream& operator>>(std::istream& is, Edge& e) { return is >> e.from >> e.to >> e.weight; }
+};
+
+// グラフの辺 (重みナシ)
+template <>
+struct Edge<void> {
+    int from, to;
+    int id;
+
+    Edge() = default;
+
+    constexpr explicit Edge(int to_)
+        : Edge(-1, to_, -1) {}
+
+    constexpr Edge(int from_, int to_, int id_ = -1)
+        : from(from_)
+        , to(to_)
+        , id(id_) {}
+
+    constexpr const Edge rev() const { return Edge(to, from, id); }
+
+    template <class Int, std::enable_if_t<std::is_integral<Int>::value, std::nullptr_t> = nullptr>
+    constexpr operator Int() const {
+        return static_cast<Int>(to);
+    }
+
+    friend std::istream& operator>>(std::istream& is, Edge& e) { return is >> e.from >> e.to; }
+};
+
+// グラフ (隣接リスト実装)
+template <class T>
+using Graph = std::vector<std::vector<Edge<T>>>;
+// }}}
+endsnippet
+
 snippet factorials "Combinatorics/factorials.hpp"
 // factorials {{{
 template <int Mod>
@@ -615,6 +734,26 @@ inline void eprintln(Head&& head, Tail&&... tail) {
 // }}}
 endsnippet
 
+snippet graph-debug "Debug/graph-debug.hpp"
+// graph-debug {{{
+template <class T>
+std::ostream& operator<<(std::ostream& os, const Edge<T>& e) {
+    os << std::setw(0) << '(' << std::setfill('0') << std::setw(2) << e.from << "-" << std::setw(2) << e.to << ", w=" << std::setw(2) << e.weight;
+    if (e.id != -1) os << ", id=" << std::setw(2) << e.id;
+    os << std::setfill(' ') << ')';
+    return os;
+}
+
+template<>
+std::ostream& operator<<(std::ostream& os, const Edge<void>& e) {
+    os << std::setw(0) << '(' << std::setfill('0') << std::setw(2) << e.from << "-" << std::setw(2) << e.to;
+    if (e.id != -1) os << ", id=" << std::setw(2) << e.id;
+    os << std::setfill(' ') << ')';
+    return os;
+}
+// }}}
+endsnippet
+
 snippet container-input "IO/container-input.hpp"
 // container-input {{{
 template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
@@ -655,6 +794,42 @@ template <class Head, class... Tail>
 inline void println(Head&& head, Tail&&... tail) {
     std::cout << head << &" "[!sizeof...(tail)];
     println(std::forward<Tail>(tail)...);
+}
+// }}}
+endsnippet
+
+snippet read-directed-graph "IO/read-directed-graph.hpp"
+// read-directed-graph {{{
+template <class T>
+Graph<T> readDirectedGraph(std::size_t V, std::size_t E, int padding = -1, std::istream& is = std::cin) {
+    Graph<T> G(V);
+    for (std::size_t i = 0; i < E; ++i) {
+        Edge<T> e;
+        is >> e;
+        e.from += padding, e.to += padding;
+        e.id = static_cast<int>(i);
+        G[e.from].emplace_back(e);
+    }
+    return G;
+}
+
+// }}}
+endsnippet
+
+snippet read-undirected-graph "IO/read-undirected-graph.hpp"
+// read-undirected-graph {{{
+template <class T>
+Graph<T> readUndirectedGraph(std::size_t V, std::size_t E, int padding = -1, std::istream& is = std::cin) {
+    Graph<T> G(V);
+    for (std::size_t i = 0; i < E; ++i) {
+        Edge<T> e;
+        is >> e;
+        e.from += padding, e.to += padding;
+        e.id = static_cast<int>(i);
+        G[e.from].emplace_back(e);
+        G[e.to].emplace_back(e.rev());
+    }
+    return G;
 }
 // }}}
 endsnippet
@@ -766,6 +941,20 @@ constexpr std::uint32_t cstringHash(const char* s) {
 // }}}
 endsnippet
 
+snippet fillContainer "Util/fillContainer.hpp"
+// fillContainer {{{
+template <class T, class Container, class... ConstructorArgs, std::enable_if_t<std::is_same<Container, T>::value, std::nullptr_t> = nullptr>
+inline void fillContainer(Container& container, ConstructorArgs&&... constructorArgs) {
+    container = T(std::forward<ConstructorArgs>(constructorArgs)...);
+}
+
+template <class T, class Container, class... ConstructorArgs, std::enable_if_t<!std::is_same<Container, T>::value, std::nullptr_t> = nullptr>
+inline void fillContainer(Container& container, ConstructorArgs&&... constructorArgs) {
+    for (auto& e: container) fillContainer<T>(e, std::forward<ConstructorArgs>(constructorArgs)...);
+}
+// }}}
+endsnippet
+
 snippet fix-point "Util/fix-point.hpp"
 // fix-point {{{
 // Ex) FixPoint([&](auto func, int n) -> int {...})(10);
@@ -805,15 +994,35 @@ inline bool within(const Value& v, const ValueBegin& begin, const ValueEnd& end)
 // }}}
 endsnippet
 
+snippet make-four-neighbor-enumerator "Util/make-four-neighbor-enumerator.hpp"
+// make-four-neighbor-enumerator {{{
+template <class HandlerFunc>
+auto makeFourNeighborEnumerator(int H, int W, HandlerFunc handlerFunc) {
+    return [H, W, handlerFunc](auto v, auto func) {
+        using P = decltype(v);
+        static constexpr int dy[]{0, 1, 0, -1};
+        const auto y = std::get<0>(v);
+        const auto x = std::get<1>(v);
+
+        for (std::size_t q = 0; q < 4; ++q) {
+            const auto ny = y + dy[q];
+            const auto nx = x + dy[q ^ 1];
+            if (0 <= ny && ny < H && 0 <= nx && nx < W) handlerFunc(P{y, x}, P{ny, nx}, func);
+        }
+    };
+}
+// }}}
+endsnippet
+
 snippet makeVec "Util/makeVec.hpp"
 // makeVec {{{
 template <class T>
-inline std::vector<T> makeVec(const T& initValue, size_t sz) {
+inline std::vector<T> makeVec(std::size_t sz, const T& initValue) {
     return std::vector<T>(sz, initValue);
 }
 template <class T, class... Args>
-inline auto makeVec(const T& initValue, size_t sz, Args... args) {
-    return std::vector<decltype(makeVec<T>(initValue, args...))>(sz, makeVec<T>(initValue, args...));
+inline auto makeVec(size_t sz, Args... args) {
+    return std::vector<decltype(makeVec<T>(args...))>(sz, makeVec<T>(args...));
 }
 // }}}
 endsnippet
