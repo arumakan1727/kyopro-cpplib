@@ -47,6 +47,32 @@ void put(const std::tuple<A, B, C>& t) {
     *os << '(' << std::setw(w_) << std::get<0>(t) << ",  " << std::setw(w_) << std::get<1>(t) << ",  " << std::setw(w_) << std::get<2>(t) << ')';
 }
 
+template <class Arr>
+void showArrayH__(const Arr& a, size_t begin, size_t end) {
+    for (size_t i = begin; i < end; ++i) *os << '[' << std::setw(dbg::w_) << i << "] ";
+    *os << '\n';
+    for (size_t i = begin; i < end; ++i) *os << ' ', dbg::put(a[i]), *os << "  ";
+    *os << '\n';
+}
+template <class Arr>
+void showArrayV__(const Arr& a, size_t begin, size_t end) {
+    for (size_t i = begin; i < end; ++i)
+        *os << '[' << std::setw(2) << i << ']', dbg::put(a[i]), *os << "\n";
+    *os << std::flush;
+}
+template <class Table>
+void showTable__(const Table& t, size_t yBegin, size_t yEnd, size_t xBegin, size_t xEnd) {
+    *os << std::string(1 + 2 + 1, ' ');
+    for (size_t j = xBegin; j < xEnd; ++j) *os << '[' << std::setw(dbg::w_) << j << "] ";
+    *os << '\n';
+
+    for (size_t i = yBegin; i < yEnd; ++i) {
+        *os << '[' << std::setw(2) << i << "]";
+        for (size_t j = xBegin; j < xEnd; ++j) *os << ' ', dbg::put(t[i][j]), *os << "  ";
+        *os << '\n';
+    }
+}
+
 }  // namespace dbg
 
 void debug_setw(int w) {
@@ -69,36 +95,11 @@ void debug_println(const Head& head, const Tail&... tail) {
     dbg::put(head);
     debug_println(tail...);
 }
-template <class Arr>
-void debug_showArrayH(const Arr& a, size_t begin, size_t end) {
-    for (size_t i = begin; i < end; ++i) *dbg::os << '[' << std::setw(dbg::w_) << i << "] ";
-    *dbg::os << '\n';
-    for (size_t i = begin; i < end; ++i) *dbg::os << ' ' << std::setw(dbg::w_), dbg::put(a[i]), *dbg::os << "  ";
-    *dbg::os << '\n';
-}
-template <class Arr>
-void debug_showArrayV(const Arr& a, size_t begin, size_t end) {
-    for (size_t i = begin; i < end; ++i)
-        *dbg::os << '[' << std::setw(2) << i << ']' << std::setw(dbg::w_), dbg::put(a[i]), *dbg::os << "\n";
-    *dbg::os << std::flush;
-}
-template <class Table>
-void debug_showTable(const Table& t, size_t yBegin, size_t yEnd, size_t xBegin, size_t xEnd) {
-    *dbg::os << std::string(1 + 2 + 1, ' ');
-    for (size_t j = xBegin; j < xEnd; ++j) *dbg::os << '[' << std::setw(dbg::w_) << j << "] ";
-    *dbg::os << '\n';
-
-    for (size_t i = yBegin; i < yEnd; ++i) {
-        *dbg::os << '[' << std::setw(2) << i << "]";
-        for (size_t j = xBegin; j < xEnd; ++j) *dbg::os << ' ' << std::setw(dbg::w_), dbg::put(t[i][j]), *dbg::os << "  ";
-        *dbg::os << '\n';
-    }
-}
 
 #define putDbgPrefix() *dbg::os << __func__ << '(' << std::setfill('0') << std::setw(3) << __LINE__ << std::setfill(' ') << "): "
-#define showArrayH(a, beginIdx, endIdx) (void)(putDbgPrefix() << #a << ":\n"), debug_showArrayH(a, beginIdx, endIdx)
-#define showArrayV(a, beginIdx, endIdx) (void)(putDbgPrefix() << #a << ":\n"), debug_showArrayV(a, beginIdx, endIdx)
-#define showTable(t, yBegin, yEnd, xBegin, xEnd) (void)(putDbgPrefix() << #t << ":\n"), debug_showTable(t, yBegin, yEnd, xBegin, xEnd)
+#define showArrayH(a, beginIdx, endIdx) (void)(putDbgPrefix() << #a << ":\n"), dbg::showArrayH__(a, beginIdx, endIdx)
+#define showArrayV(a, beginIdx, endIdx) (void)(putDbgPrefix() << #a << ":\n"), dbg::showArrayV__(a, beginIdx, endIdx)
+#define showTable(t, yBegin, yEnd, xBegin, xEnd) (void)(putDbgPrefix() << #t << ":\n"), dbg::showTable__(t, yBegin, yEnd, xBegin, xEnd)
 #define dbgMsg_(x) "  |  " #x " = ", x
 #define dump1(a) (void)(putDbgPrefix()), debug_println(#a " = ", a)
 #define dump2(a, b) (void)(putDbgPrefix()), debug_println(#a " = ", a, dbgMsg_(b))
