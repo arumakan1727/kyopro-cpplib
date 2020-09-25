@@ -112,6 +112,9 @@ data:
       path: Util/all-macro.hpp
       title: "all()\u30DE\u30AF\u30ED"
     - icon: ':heavy_check_mark:'
+      path: Util/at.hpp
+      title: at() ()
+    - icon: ':heavy_check_mark:'
       path: Util/chminmax.hpp
       title: chmin(), chmax()
     - icon: ':warning:'
@@ -123,6 +126,9 @@ data:
       title: "cstringHash() \u30CC\u30EB\u6587\u5B57\u7D42\u7AEF\u3055\u308C\u305F\
         \u6587\u5B57\u5217\u304B\u308932bit\u30CF\u30C3\u30B7\u30E5\u5024\u3092\u751F\
         \u6210\u3059\u308B(constexpr)"
+    - icon: ':heavy_check_mark:'
+      path: Util/fix-point.hpp
+      title: "FixPoint (\u30E9\u30E0\u30C0\u5F0F\u306E\u518D\u5E30)"
     - icon: ':heavy_check_mark:'
       path: Util/int-alias.hpp
       title: "int-alias (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)"
@@ -240,11 +246,17 @@ data:
   - name: test/helloworld
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/helloworld/at.test.cpp
+      title: test/helloworld/at.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/helloworld/divisor-count-table.test.cpp
       title: test/helloworld/divisor-count-table.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/helloworld/eratosthenes-sieve.test.cpp
       title: test/helloworld/eratosthenes-sieve.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/helloworld/fix-point.test.cpp
+      title: test/helloworld/fix-point.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/helloworld/osa_k.test.cpp
       title: test/helloworld/osa_k.test.cpp
