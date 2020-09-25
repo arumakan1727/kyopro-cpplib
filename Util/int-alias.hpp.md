@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
     title: test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
+    title: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -43,6 +46,7 @@ data:
   - test/AOJ/NTL_1_B-Power.test.cpp
   - test/AOJ/DPL_5_A.test.cpp
   - test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
+  - test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
 documentation_of: Util/int-alias.hpp
 layout: document
 redirect_from:

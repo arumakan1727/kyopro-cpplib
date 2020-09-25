@@ -7,6 +7,9 @@ data:
     title: export/template-prototype.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/AOJ/0558-Cheese.test.cpp
+    title: test/AOJ/0558-Cheese.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/helloworld/rolling-hash.test.cpp
     title: test/helloworld/rolling-hash.test.cpp
   _pathExtension: hpp
@@ -35,6 +38,7 @@ data:
   timestamp: '2020-09-20 14:50:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/AOJ/0558-Cheese.test.cpp
   - test/helloworld/rolling-hash.test.cpp
 documentation_of: Util/rep-macro.hpp
 layout: document

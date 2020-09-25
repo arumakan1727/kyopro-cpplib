@@ -5,10 +5,16 @@ data:
   - icon: ':warning:'
     path: export/template-prototype.cpp
     title: export/template-prototype.cpp
+  - icon: ':heavy_check_mark:'
+    path: Graph/Shortest-Path/dijkstra.hpp
+    title: "dijkstra() (\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9, $O((V + E)\\log V)$)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/1501-Grid.test.cpp
     title: test/AOJ/1501-Grid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
+    title: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -28,10 +34,12 @@ data:
   path: Util/chminmax.hpp
   requiredBy:
   - export/template-prototype.cpp
+  - Graph/Shortest-Path/dijkstra.hpp
   timestamp: '2020-09-08 04:00:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/1501-Grid.test.cpp
+  - test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
 documentation_of: Util/chminmax.hpp
 layout: document
 redirect_from:

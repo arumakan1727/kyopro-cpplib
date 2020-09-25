@@ -7,11 +7,17 @@ data:
     title: export/template-prototype.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
+    title: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/AOJ/DPL_5_A.test.cpp
     title: test/AOJ/DPL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/AOJ/ALDS1_14_B-String-Search.test.cpp
     title: test/AOJ/ALDS1_14_B-String-Search.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
+    title: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -40,8 +46,10 @@ data:
   timestamp: '2020-09-17 10:59:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
   - test/AOJ/DPL_5_A.test.cpp
   - test/AOJ/ALDS1_14_B-String-Search.test.cpp
+  - test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
 documentation_of: Util/IO/println.hpp
 layout: document
 redirect_from:

@@ -4,7 +4,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: Util/int-infinity.hpp
     title: "int-infinity (\u6574\u6570\u306E\u30C7\u30AB\u30A4\u5024)"
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: Util/Debug/graph-debug.hpp
+    title: "graph-debug (\u30B0\u30E9\u30D5\u306E\u30C7\u30D0\u30C3\u30B0\u51FA\u529B\
+      )"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/1501-Grid.test.cpp
@@ -144,7 +148,8 @@ data:
   - Util/int-infinity.hpp
   isVerificationFile: false
   path: Util/Debug/debug.hpp
-  requiredBy: []
+  requiredBy:
+  - Util/Debug/graph-debug.hpp
   timestamp: '2020-09-25 13:56:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
