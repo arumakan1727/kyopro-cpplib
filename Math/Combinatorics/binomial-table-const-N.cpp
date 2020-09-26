@@ -7,7 +7,7 @@
  * binomial[k] = binomial(N, k) を O(K) で前計算する。
  */
 template <class T>
-std::vector<T> binomialTable_constN(std::int64_t N, int K) {
+std::vector<T> binomialTable_constN(int64_t N, int K) {
     std::vector<T> binomial(K + 1);
     binomial[0] = 1;
     for (int i = 1; i <= K; ++i) {

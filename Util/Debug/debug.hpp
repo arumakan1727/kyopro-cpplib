@@ -33,7 +33,7 @@ void put(const T& x) {
 }
 template <class T, std::enable_if_t<std::is_unsigned<T>::value, std::nullptr_t> = nullptr>
 void put(const T& x) {
-    if (static_cast<std::int64_t>(x) >= static_cast<std::int64_t>(INF))
+    if (static_cast<int64_t>(x) >= static_cast<int64_t>(INF))
         *os << std::setw(w_) << "INF";
     else
         *os << std::setw(w_) << x;

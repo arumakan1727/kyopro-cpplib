@@ -5,7 +5,7 @@
  * @brief makeVec() (多次元std::vectorの生成)
  */
 template <class T>
-inline std::vector<T> makeVec(std::size_t sz, const T& initValue) {
+inline std::vector<T> makeVec(size_t sz, const T& initValue) {
     return std::vector<T>(sz, initValue);
 }
 template <class T, class... Args>

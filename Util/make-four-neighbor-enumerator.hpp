@@ -15,7 +15,7 @@ auto makeFourNeighborEnumerator(int H, int W, HandlerFunc handlerFunc) {
         const auto y = std::get<0>(v);
         const auto x = std::get<1>(v);
 
-        for (std::size_t q = 0; q < 4; ++q) {
+        for (size_t q = 0; q < 4; ++q) {
             const auto ny = y + dy[q];
             const auto nx = x + dy[q ^ 1];
             if (0 <= ny && ny < H && 0 <= nx && nx < W) handlerFunc(P{y, x}, P{ny, nx}, func);

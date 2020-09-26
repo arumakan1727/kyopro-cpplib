@@ -11,7 +11,7 @@ template <int Mod>
 struct Factorials {
 public:
     using value_type = StaticModInt<Mod>;
-    static constexpr std::size_t MAX_N = std::min<std::size_t>(1e7, Mod) + 1;
+    static constexpr size_t MAX_N = std::min<size_t>(1e7, Mod) + 1;
 
 private:
     mutable std::vector<value_type> m_fact, m_finv;
@@ -24,14 +24,14 @@ public:
         m_finv.resize(2, value_type::raw(1));   // m_finv[0] = m_finv[1] = 1
     }
 
-    void preCalc(std::size_t n) const {
+    void preCalc(size_t n) const {
         if (n < m_fact.size()) return;
-        const std::size_t l = m_fact.size();
-        const std::size_t r = n + 1;
+        const size_t l = m_fact.size();
+        const size_t r = n + 1;
         m_fact.resize(r), m_finv.resize(r);
-        for (std::size_t i = l; i < r; ++i) m_fact[i] = m_fact[i - 1] * i;
+        for (size_t i = l; i < r; ++i) m_fact[i] = m_fact[i - 1] * i;
         m_finv[r - 1] = m_fact[r - 1].inv();
-        for (std::size_t i = r - 1; i > l; --i) m_finv[i - 1] = m_finv[i] * i;
+        for (size_t i = r - 1; i > l; --i) m_finv[i - 1] = m_finv[i] * i;
     }
 
     const value_type fact(int i) const { return preCalc(i), m_fact[i]; }

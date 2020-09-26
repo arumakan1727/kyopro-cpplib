@@ -8,9 +8,9 @@
  * @brief readUndirectedGraph() (無向グラフの入力)
  */
 template <class T>
-Graph<T> readUndirectedGraph(std::size_t V, std::size_t E, int padding = -1, std::istream& is = std::cin) {
+Graph<T> readUndirectedGraph(size_t V, size_t E, int padding = -1, std::istream& is = std::cin) {
     Graph<T> G(V);
-    for (std::size_t i = 0; i < E; ++i) {
+    for (size_t i = 0; i < E; ++i) {
         Edge<T> e;
         is >> e;
         e.from += padding, e.to += padding;

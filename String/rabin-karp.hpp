@@ -8,15 +8,15 @@
  * @brief rabinKarp() (ラビンカープ法, RollingHashを用いた文字列検索 $O(|s|)$)
  * s の中で pattern が出現するインデックスを全て求めて vector として返す(インデックスは昇順)。
  */
-template <std::uint_fast64_t Base>
-std::vector<std::size_t> rabinKarp(const RollingHash<Base>& s, const RollingHash<Base>& pattern) {
+template <uint_fast64_t Base>
+std::vector<size_t> rabinKarp(const RollingHash<Base>& s, const RollingHash<Base>& pattern) {
     const auto sLen = s.size();
     const auto patLen = pattern.size();
 
-    std::vector<std::size_t> foundIndexes;
+    std::vector<size_t> foundIndexes;
     foundIndexes.reserve(sLen);
 
-    for (std::size_t i = 0; i + patLen <= sLen; ++i) {
+    for (size_t i = 0; i + patLen <= sLen; ++i) {
         if (s.substr(i, patLen) == pattern.hash()) foundIndexes.emplace_back(i);
     }
 

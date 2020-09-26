@@ -4,5 +4,5 @@
 /**
  * @brief int-alias (整数型のエイリアス)
  */
-using i64 = std::int64_t;
-using u64 = std::uint64_t;
+using i64 = int64_t;
+using u64 = uint64_t;

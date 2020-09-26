@@ -18,7 +18,7 @@ Integer randint(Integer min, Integer max) {
 
 // dest に randint(sizeMin, sizeMax) 回 randint(valueMin, valueMax) を格納する
 template <class OutputIter, class Integer>
-OutputIter randomValueContainer(OutputIter dest, Integer valueMin, Integer valueMax, std::size_t sizeMin, std::size_t sizeMax) {
+OutputIter randomValueContainer(OutputIter dest, Integer valueMin, Integer valueMax, size_t sizeMin, size_t sizeMax) {
     auto size = randint(sizeMin, sizeMax);
     while (size--) {
         *dest = randint(valueMin, valueMax);
@@ -29,7 +29,7 @@ OutputIter randomValueContainer(OutputIter dest, Integer valueMin, Integer value
 
 // 要素数が randint(sizeMin, sizeMax) の randint(valueMin, valueMax) を生成する
 template <class Container, class Integer>
-Container randomValueContainer(Integer valueMin, Integer valueMax, std::size_t sizeMin, std::size_t sizeMax) {
+Container randomValueContainer(Integer valueMin, Integer valueMax, size_t sizeMin, size_t sizeMax) {
     Container ret;
     randomValueContainer(std::back_inserter(ret), valueMin, valueMax, sizeMin, sizeMax);
     return ret;
@@ -38,7 +38,7 @@ Container randomValueContainer(Integer valueMin, Integer valueMax, std::size_t s
 // [begin, end) の範囲のうちひとつをランダムに選んで返す
 template <class RandomAccessIter>
 auto choice(RandomAccessIter begin, RandomAccessIter end) {
-    const auto i = randint<std::size_t>(0, std::distance(begin, end));
+    const auto i = randint<size_t>(0, std::distance(begin, end));
     return begin[i];
 }
 

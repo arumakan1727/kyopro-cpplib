@@ -6,13 +6,13 @@
 #define repc(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(last)>> i = (begin), i##_last = (last); i <= i##_last; ++i)
 #define repr(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(begin)>> i = (begin), i##_last = (last); i >= i##_last; --i)
 #define let const auto
-using i64 = std::int64_t;
-using u64 = std::uint64_t;
-constexpr std::int32_t INF = 0x3f3f3f3f;
-constexpr std::int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
+using i64 = int64_t;
+using u64 = uint64_t;
+constexpr int32_t INF = 0x3f3f3f3f;
+constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
 
 template <class T = int, template <class, class...> class Container = std::vector>
-Container<T> read(std::size_t n) {
+Container<T> read(size_t n) {
     Container<T> ret(n);
     for (auto& e : ret) std::cin >> e;
     return ret;

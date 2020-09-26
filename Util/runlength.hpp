@@ -9,11 +9,11 @@
  */
 template <class Iterator>
 auto runlength(Iterator const begin, Iterator const end) {
-    std::vector<std::pair<Iterator, std::size_t>> ret;
+    std::vector<std::pair<Iterator, size_t>> ret;
     ret.reserve(std::distance(begin, end));
 
     for (auto itr = begin; itr != end;) {
-        std::size_t cnt = 1;
+        size_t cnt = 1;
         const auto head = itr++;
         while (itr != end && *itr == *head) ++itr, ++cnt;
         ret.emplace_back(head, cnt);
