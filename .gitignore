@@ -4,6 +4,10 @@
 *.gch
 tmp.*
 
+compile_flags.txt
+debug_flags.txt
+release_flags.txt
+
 bin/
 build/
 ignore/
