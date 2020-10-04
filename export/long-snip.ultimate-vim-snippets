@@ -180,7 +180,7 @@ template <int Mod>
 struct Factorials {
 public:
     using value_type = StaticModInt<Mod>;
-    static constexpr std::size_t MAX_N = std::min<std::size_t>(1e7, Mod) + 1;
+    static constexpr size_t MAX_N = std::min<size_t>(1e7, Mod) + 1;
 
 private:
     mutable std::vector<value_type> m_fact, m_finv;
@@ -193,14 +193,14 @@ public:
         m_finv.resize(2, value_type::raw(1));   // m_finv[0] = m_finv[1] = 1
     }
 
-    void preCalc(std::size_t n) const {
+    void preCalc(size_t n) const {
         if (n < m_fact.size()) return;
-        const std::size_t l = m_fact.size();
-        const std::size_t r = n + 1;
+        const size_t l = m_fact.size();
+        const size_t r = n + 1;
         m_fact.resize(r), m_finv.resize(r);
-        for (std::size_t i = l; i < r; ++i) m_fact[i] = m_fact[i - 1] * i;
+        for (size_t i = l; i < r; ++i) m_fact[i] = m_fact[i - 1] * i;
         m_finv[r - 1] = m_fact[r - 1].inv();
-        for (std::size_t i = r - 1; i > l; --i) m_finv[i - 1] = m_finv[i] * i;
+        for (size_t i = r - 1; i > l; --i) m_finv[i - 1] = m_finv[i] * i;
     }
 
     const value_type fact(int i) const { return preCalc(i), m_fact[i]; }
@@ -497,15 +497,15 @@ endsnippet
 
 snippet rabin-karp "String/rabin-karp.hpp"
 // rabin-karp {{{
-template <std::uint_fast64_t Base>
-std::vector<std::size_t> rabinKarp(const RollingHash<Base>& s, const RollingHash<Base>& pattern) {
+template <uint_fast64_t Base>
+std::vector<size_t> rabinKarp(const RollingHash<Base>& s, const RollingHash<Base>& pattern) {
     const auto sLen = s.size();
     const auto patLen = pattern.size();
 
-    std::vector<std::size_t> foundIndexes;
+    std::vector<size_t> foundIndexes;
     foundIndexes.reserve(sLen);
 
-    for (std::size_t i = 0; i + patLen <= sLen; ++i) {
+    for (size_t i = 0; i + patLen <= sLen; ++i) {
         if (s.substr(i, patLen) == pattern.hash()) foundIndexes.emplace_back(i);
     }
 
@@ -517,10 +517,10 @@ endsnippet
 
 snippet rolling-hash "String/rolling-hash.hpp"
 // rolling-hash {{{
-template <std::uint_fast64_t Base>
+template <uint_fast64_t Base>
 class RollingHash {
 public:
-    using u64 = std::uint_fast64_t;
+    using u64 = uint_fast64_t;
     using u128 = __uint128_t;
     static constexpr u64 MOD = (1uL << 61) - 1;
     static constexpr u64 BASE = Base;
@@ -540,7 +540,7 @@ public:
         }
         growPowArray(m_hash.size());
 
-        std::size_t i;
+        size_t i;
         InputIter itr;
         for (itr = begin, i = 0; itr != end; ++itr, ++i) {
             m_hash[i + 1] = add(mul(m_hash[i], BASE), *itr);
@@ -551,19 +551,19 @@ public:
     u64 hash() const { return m_hash.back(); }
 
     // 半開区間 [l, r) のハッシュ値
-    u64 rangeHash(std::size_t l, std::size_t r) const {
+    u64 rangeHash(size_t l, size_t r) const {
         assert(l < r && r < m_hash.size());
         return add(m_hash[r], MOD - mul(m_hash[l], powArray()[r - l]));
     }
 
     // rangeHash(begin, begin + length) と等価
-    u64 substr(std::size_t begin, std::size_t length) const { return rangeHash(begin, begin + length); }
+    u64 substr(size_t begin, size_t length) const { return rangeHash(begin, begin + length); }
 
     // もとの文字列の長さ
-    std::size_t size() const { return m_hash.size() - 1; }
+    size_t size() const { return m_hash.size() - 1; }
 
     // 連結した文字列 (leftStr + rightStr) のハッシュ値
-    static u64 concat(u64 leftHash, u64 rightHash, std::size_t rightLength) {
+    static u64 concat(u64 leftHash, u64 rightHash, size_t rightLength) {
         growPowArray(rightLength);
         return add(mul(leftHash, powArray()[rightLength]), rightHash);
     }
@@ -584,7 +584,7 @@ private:
         return add(static_cast<u64>(c >> 61), static_cast<u64>(c & MOD));
     }
 
-    static inline void growPowArray(std::size_t len) {
+    static inline void growPowArray(size_t len) {
         ++len;
         while (powArray().size() < len) {
             powArray().emplace_back(mul(powArray().back(), BASE));
@@ -621,7 +621,7 @@ void put(const T& x) {
 }
 template <class T, std::enable_if_t<std::is_unsigned<T>::value, std::nullptr_t> = nullptr>
 void put(const T& x) {
-    if (static_cast<std::int64_t>(x) >= static_cast<std::int64_t>(INF))
+    if (static_cast<int64_t>(x) >= static_cast<int64_t>(INF))
         *os << std::setw(w_) << "INF";
     else
         *os << std::setw(w_) << x;
@@ -801,9 +801,9 @@ endsnippet
 snippet read-directed-graph "IO/read-directed-graph.hpp"
 // read-directed-graph {{{
 template <class T>
-Graph<T> readDirectedGraph(std::size_t V, std::size_t E, int padding = -1, std::istream& is = std::cin) {
+Graph<T> readDirectedGraph(size_t V, size_t E, int padding = -1, std::istream& is = std::cin) {
     Graph<T> G(V);
-    for (std::size_t i = 0; i < E; ++i) {
+    for (size_t i = 0; i < E; ++i) {
         Edge<T> e;
         is >> e;
         e.from += padding, e.to += padding;
@@ -819,9 +819,9 @@ endsnippet
 snippet read-undirected-graph "IO/read-undirected-graph.hpp"
 // read-undirected-graph {{{
 template <class T>
-Graph<T> readUndirectedGraph(std::size_t V, std::size_t E, int padding = -1, std::istream& is = std::cin) {
+Graph<T> readUndirectedGraph(size_t V, size_t E, int padding = -1, std::istream& is = std::cin) {
     Graph<T> G(V);
-    for (std::size_t i = 0; i < E; ++i) {
+    for (size_t i = 0; i < E; ++i) {
         Edge<T> e;
         is >> e;
         e.from += padding, e.to += padding;
@@ -837,7 +837,7 @@ endsnippet
 snippet read "IO/read.hpp"
 // read {{{
 template <class T = int, template <class, class...> class Container = std::vector>
-Container<T> read(std::size_t n) {
+Container<T> read(size_t n) {
     Container<T> ret(n);
     for (auto& e : ret) std::cin >> e;
     return ret;
@@ -917,7 +917,7 @@ snippet constexpr-randint "Util/constexpr-randint.hpp"
 #define STRINGIZE(x) STRINGIZE_I(x)
 #define UNIQUE_STRING __DATE__ "_" __TIME__ "_" __FILE__ "_" STRINGIZE(__LINE__)
 
-constexpr std::uint32_t constexprRandint(std::uint32_t min, std::uint32_t max) {
+constexpr uint32_t constexprRandint(uint32_t min, uint32_t max) {
     const auto m = max - min + 1;
     return cstringHash(UNIQUE_STRING) % m + min;
 }
@@ -926,8 +926,8 @@ endsnippet
 
 snippet cstring-hash "Util/cstring-hash.hpp"
 // cstring-hash {{{
-constexpr std::uint32_t cstringHash(const char* s) {
-    std::uint32_t hashv = 0;
+constexpr uint32_t cstringHash(const char* s) {
+    uint32_t hashv = 0;
     while (*s != '\0') {
         hashv += *s++;
         hashv += hashv << 10;
@@ -971,17 +971,49 @@ struct FixPoint : F {
 // }}}
 endsnippet
 
+snippet indexing-wrapper "Util/indexing-wrapper.hpp"
+// indexing-wrapper {{{
+template <class IndexConverterFunc>
+struct IndexingWrapper {
+    IndexConverterFunc indexConverter;
+
+    IndexingWrapper(IndexConverterFunc indexConverter_)
+        : indexConverter(indexConverter_) {}
+
+    template <class... Args>
+    auto&& at(Args&&... args) {
+        return indexConverter(std::forward<Args>(args)...);
+    }
+
+    template <class... Args>
+    const auto&& at(Args&&... args) const {
+        return indexConverter(std::forward<Args>(args)...);
+    }
+
+    template <class Arg>
+    auto&& operator[](Arg&& arg) {
+        return indexConverter(std::forward<Arg>(arg));
+    }
+
+    template <class Arg>
+    const auto&& operator[](Arg&& arg) const {
+        return indexConverter(std::forward<Arg>(arg));
+    }
+};
+// }}}
+endsnippet
+
 snippet int-alias "Util/int-alias.hpp"
 // int-alias {{{
-using i64 = std::int64_t;
-using u64 = std::uint64_t;
+using i64 = int64_t;
+using u64 = uint64_t;
 // }}}
 endsnippet
 
 snippet int-infinity "Util/int-infinity.hpp"
 // int-infinity {{{
-constexpr std::int32_t INF = 0x3f3f3f3f;
-constexpr std::int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
+constexpr int32_t INF = 0x3f3f3f3f;
+constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
 // }}}
 endsnippet
 
@@ -1004,7 +1036,7 @@ auto makeFourNeighborEnumerator(int H, int W, HandlerFunc handlerFunc) {
         const auto y = std::get<0>(v);
         const auto x = std::get<1>(v);
 
-        for (std::size_t q = 0; q < 4; ++q) {
+        for (size_t q = 0; q < 4; ++q) {
             const auto ny = y + dy[q];
             const auto nx = x + dy[q ^ 1];
             if (0 <= ny && ny < H && 0 <= nx && nx < W) handlerFunc(P{y, x}, P{ny, nx}, func);
@@ -1017,7 +1049,7 @@ endsnippet
 snippet makeVec "Util/makeVec.hpp"
 // makeVec {{{
 template <class T>
-inline std::vector<T> makeVec(std::size_t sz, const T& initValue) {
+inline std::vector<T> makeVec(size_t sz, const T& initValue) {
     return std::vector<T>(sz, initValue);
 }
 template <class T, class... Args>
@@ -1029,7 +1061,7 @@ endsnippet
 
 snippet project "Util/project.hpp"
 // project {{{
-template <std::size_t I, class Container, class Value = typename std::tuple_element_t<I, typename Container::value_type>>
+template <size_t I, class Container, class Value = typename std::tuple_element_t<I, typename Container::value_type>>
 std::vector<Value> project(const Container& v) {
     std::vector<Value> ret(v.size());
     std::transform(v.begin(), v.end(), ret.begin(), [](auto&& t) { return std::get<I>(t); });
@@ -1052,7 +1084,7 @@ Integer randint(Integer min, Integer max) {
 
 // dest に randint(sizeMin, sizeMax) 回 randint(valueMin, valueMax) を格納する
 template <class OutputIter, class Integer>
-OutputIter randomValueContainer(OutputIter dest, Integer valueMin, Integer valueMax, std::size_t sizeMin, std::size_t sizeMax) {
+OutputIter randomValueContainer(OutputIter dest, Integer valueMin, Integer valueMax, size_t sizeMin, size_t sizeMax) {
     auto size = randint(sizeMin, sizeMax);
     while (size--) {
         *dest = randint(valueMin, valueMax);
@@ -1063,7 +1095,7 @@ OutputIter randomValueContainer(OutputIter dest, Integer valueMin, Integer value
 
 // 要素数が randint(sizeMin, sizeMax) の randint(valueMin, valueMax) を生成する
 template <class Container, class Integer>
-Container randomValueContainer(Integer valueMin, Integer valueMax, std::size_t sizeMin, std::size_t sizeMax) {
+Container randomValueContainer(Integer valueMin, Integer valueMax, size_t sizeMin, size_t sizeMax) {
     Container ret;
     randomValueContainer(std::back_inserter(ret), valueMin, valueMax, sizeMin, sizeMax);
     return ret;
@@ -1072,7 +1104,7 @@ Container randomValueContainer(Integer valueMin, Integer valueMax, std::size_t s
 // [begin, end) の範囲のうちひとつをランダムに選んで返す
 template <class RandomAccessIter>
 auto choice(RandomAccessIter begin, RandomAccessIter end) {
-    const auto i = randint<std::size_t>(0, std::distance(begin, end));
+    const auto i = randint<size_t>(0, std::distance(begin, end));
     return begin[i];
 }
 
@@ -1092,11 +1124,11 @@ snippet runlength "Util/runlength.hpp"
 // runlength {{{
 template <class Iterator>
 auto runlength(Iterator const begin, Iterator const end) {
-    std::vector<std::pair<Iterator, std::size_t>> ret;
+    std::vector<std::pair<Iterator, size_t>> ret;
     ret.reserve(std::distance(begin, end));
 
     for (auto itr = begin; itr != end;) {
-        std::size_t cnt = 1;
+        size_t cnt = 1;
         const auto head = itr++;
         while (itr != end && *itr == *head) ++itr, ++cnt;
         ret.emplace_back(head, cnt);
@@ -1114,7 +1146,7 @@ template <class T1, class T2>
 std::vector<std::pair<T1, T2>> zip(const std::vector<T1>& v1, const std::vector<T2>& v2) {
     const auto sz = std::min(v1.size(), v2.size());
     std::vector<std::pair<T1, T2>> ret(sz);
-    for (std::size_t i = 0; i < sz; ++i) ret[i] = std::make_pair(v1[i], v2[i]);
+    for (size_t i = 0; i < sz; ++i) ret[i] = std::make_pair(v1[i], v2[i]);
     return ret;
 }
 
@@ -1122,7 +1154,7 @@ template <class T1, class T2, class T3>
 std::vector<std::tuple<T1, T2, T3>> zip(const std::vector<T1>& v1, const std::vector<T2>& v2, const std::vector<T3>& v3) {
     const auto sz = std::min({v1.size(), v2.size(), v3.size()});
     std::vector<std::tuple<T1, T2, T3>> ret(sz);
-    for (std::size_t i = 0; i < sz; ++i) ret[i] = std::make_tuple(v1[i], v2[i], v3[i]);
+    for (size_t i = 0; i < sz; ++i) ret[i] = std::make_tuple(v1[i], v2[i], v3[i]);
     return ret;
 }
 // }}}
