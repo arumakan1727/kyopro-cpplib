@@ -6,7 +6,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "std::istream\u306B\u3088\u308B\u30B3\u30F3\u30C6\u30CA\u306E\u5165\
       \u529B"
     links: []

@@ -12,7 +12,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "readDirectedGraph() (\u6709\u5411\u30B0\u30E9\u30D5\u306E\u5165\
       \u529B)"
     links: []
@@ -42,24 +41,24 @@ data:
     \u30C8\u5B9F\u88C5)\ntemplate <class T>\nusing Graph = std::vector<std::vector<Edge<T>>>;\n\
     #line 6 \"Util/IO/read-directed-graph.hpp\"\n\n/**\n * @brief readDirectedGraph()\
     \ (\u6709\u5411\u30B0\u30E9\u30D5\u306E\u5165\u529B)\n */\ntemplate <class T>\n\
-    Graph<T> readDirectedGraph(std::size_t V, std::size_t E, int padding = -1, std::istream&\
-    \ is = std::cin) {\n    Graph<T> G(V);\n    for (std::size_t i = 0; i < E; ++i)\
-    \ {\n        Edge<T> e;\n        is >> e;\n        e.from += padding, e.to +=\
-    \ padding;\n        e.id = static_cast<int>(i);\n        G[e.from].emplace_back(e);\n\
-    \    }\n    return G;\n}\n\n"
+    Graph<T> readDirectedGraph(size_t V, size_t E, int padding = -1, std::istream&\
+    \ is = std::cin) {\n    Graph<T> G(V);\n    for (size_t i = 0; i < E; ++i) {\n\
+    \        Edge<T> e;\n        is >> e;\n        e.from += padding, e.to += padding;\n\
+    \        e.id = static_cast<int>(i);\n        G[e.from].emplace_back(e);\n   \
+    \ }\n    return G;\n}\n\n"
   code: "#pragma once\n#include <cstdint>\n#include <iostream>\n\n#include \"../../Graph/graph-template.hpp\"\
     \n\n/**\n * @brief readDirectedGraph() (\u6709\u5411\u30B0\u30E9\u30D5\u306E\u5165\
-    \u529B)\n */\ntemplate <class T>\nGraph<T> readDirectedGraph(std::size_t V, std::size_t\
+    \u529B)\n */\ntemplate <class T>\nGraph<T> readDirectedGraph(size_t V, size_t\
     \ E, int padding = -1, std::istream& is = std::cin) {\n    Graph<T> G(V);\n  \
-    \  for (std::size_t i = 0; i < E; ++i) {\n        Edge<T> e;\n        is >> e;\n\
-    \        e.from += padding, e.to += padding;\n        e.id = static_cast<int>(i);\n\
+    \  for (size_t i = 0; i < E; ++i) {\n        Edge<T> e;\n        is >> e;\n  \
+    \      e.from += padding, e.to += padding;\n        e.id = static_cast<int>(i);\n\
     \        G[e.from].emplace_back(e);\n    }\n    return G;\n}\n\n"
   dependsOn:
   - Graph/graph-template.hpp
   isVerificationFile: false
   path: Util/IO/read-directed-graph.hpp
   requiredBy: []
-  timestamp: '2020-09-25 23:46:50+09:00'
+  timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp

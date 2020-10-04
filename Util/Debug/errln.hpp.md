@@ -9,7 +9,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "errln() (println()\u306Estderr\u7248, \u30C7\u30D0\u30C3\u30B0\
       \u6642\u306E\u307F\u6709\u52B9)"
     links: []

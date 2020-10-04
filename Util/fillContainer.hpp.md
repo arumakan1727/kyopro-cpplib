@@ -9,7 +9,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "fillContainer() (\u30B3\u30F3\u30C6\u30CA\u306Efill)"
     links: []
   bundledCode: "#line 2 \"Util/fillContainer.hpp\"\n#include <cstdint>\n#include <type_traits>\n\

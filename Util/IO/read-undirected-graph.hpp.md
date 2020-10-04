@@ -9,7 +9,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "readUndirectedGraph() (\u7121\u5411\u30B0\u30E9\u30D5\u306E\u5165\
       \u529B)"
     links: []
@@ -39,17 +38,17 @@ data:
     \u30C8\u5B9F\u88C5)\ntemplate <class T>\nusing Graph = std::vector<std::vector<Edge<T>>>;\n\
     #line 6 \"Util/IO/read-undirected-graph.hpp\"\n\n/**\n * @brief readUndirectedGraph()\
     \ (\u7121\u5411\u30B0\u30E9\u30D5\u306E\u5165\u529B)\n */\ntemplate <class T>\n\
-    Graph<T> readUndirectedGraph(std::size_t V, std::size_t E, int padding = -1, std::istream&\
-    \ is = std::cin) {\n    Graph<T> G(V);\n    for (std::size_t i = 0; i < E; ++i)\
-    \ {\n        Edge<T> e;\n        is >> e;\n        e.from += padding, e.to +=\
-    \ padding;\n        e.id = static_cast<int>(i);\n        G[e.from].emplace_back(e);\n\
-    \        G[e.to].emplace_back(e.rev());\n    }\n    return G;\n}\n"
+    Graph<T> readUndirectedGraph(size_t V, size_t E, int padding = -1, std::istream&\
+    \ is = std::cin) {\n    Graph<T> G(V);\n    for (size_t i = 0; i < E; ++i) {\n\
+    \        Edge<T> e;\n        is >> e;\n        e.from += padding, e.to += padding;\n\
+    \        e.id = static_cast<int>(i);\n        G[e.from].emplace_back(e);\n   \
+    \     G[e.to].emplace_back(e.rev());\n    }\n    return G;\n}\n"
   code: "#pragma once\n#include <cstdint>\n#include <iostream>\n\n#include \"../../Graph/graph-template.hpp\"\
     \n\n/**\n * @brief readUndirectedGraph() (\u7121\u5411\u30B0\u30E9\u30D5\u306E\
-    \u5165\u529B)\n */\ntemplate <class T>\nGraph<T> readUndirectedGraph(std::size_t\
-    \ V, std::size_t E, int padding = -1, std::istream& is = std::cin) {\n    Graph<T>\
-    \ G(V);\n    for (std::size_t i = 0; i < E; ++i) {\n        Edge<T> e;\n     \
-    \   is >> e;\n        e.from += padding, e.to += padding;\n        e.id = static_cast<int>(i);\n\
+    \u5165\u529B)\n */\ntemplate <class T>\nGraph<T> readUndirectedGraph(size_t V,\
+    \ size_t E, int padding = -1, std::istream& is = std::cin) {\n    Graph<T> G(V);\n\
+    \    for (size_t i = 0; i < E; ++i) {\n        Edge<T> e;\n        is >> e;\n\
+    \        e.from += padding, e.to += padding;\n        e.id = static_cast<int>(i);\n\
     \        G[e.from].emplace_back(e);\n        G[e.to].emplace_back(e.rev());\n\
     \    }\n    return G;\n}\n"
   dependsOn:
@@ -57,7 +56,7 @@ data:
   isVerificationFile: false
   path: Util/IO/read-undirected-graph.hpp
   requiredBy: []
-  timestamp: '2020-09-25 23:46:50+09:00'
+  timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Util/IO/read-undirected-graph.hpp

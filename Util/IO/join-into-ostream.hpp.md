@@ -6,7 +6,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "join() (\u8981\u7D20\u3092\u533A\u5207\u308A\u6587\u5B57\u3067\
       \u7D50\u5408\u3057\u3066\u51FA\u529B)"
     links: []

@@ -7,21 +7,20 @@ data:
     title: "factorials (\u968E\u4E57, \u968E\u4E57\u306E\u9006\u5143, nCr, nPr)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/AOJ/NTL_1_B-Power.test.cpp
-    title: test/AOJ/NTL_1_B-Power.test.cpp
+    path: test/AOJ/0264-Finite-Field-Calculator.test.cpp
+    title: test/AOJ/0264-Finite-Field-Calculator.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/AOJ/1501-Grid.test.cpp
     title: test/AOJ/1501-Grid.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/AOJ/0264-Finite-Field-Calculator.test.cpp
-    title: test/AOJ/0264-Finite-Field-Calculator.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/AOJ/DPL_5_A.test.cpp
     title: test/AOJ/DPL_5_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/NTL_1_B-Power.test.cpp
+    title: test/AOJ/NTL_1_B-Power.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "Mod-Int (\u30B3\u30F3\u30D1\u30A4\u30EB\u6642mod\u578B\u3068\u5B9F\
       \u884C\u6642mod\u578B)"
     links: []

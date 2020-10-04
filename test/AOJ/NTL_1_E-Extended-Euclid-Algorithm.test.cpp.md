@@ -27,7 +27,7 @@ data:
     \ -= (a / b) * x;\n    } else {\n        x = 1;\n        y = 0;\n    }\n    return\
     \ g;\n}\n#line 2 \"Util/int-alias.hpp\"\n#include <cstdint>\n\n/**\n * @brief\
     \ int-alias (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)\n */\nusing\
-    \ i64 = std::int64_t;\nusing u64 = std::uint64_t;\n#line 7 \"test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp\"\
+    \ i64 = int64_t;\nusing u64 = uint64_t;\n#line 7 \"test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp\"\
     \n\nint main() {\n    i64 a, b, x, y;\n    std::cin >> a >> b;\n    extgcd(a,\
     \ b, x, y);\n    std::cout << x << ' ' << y << std::endl;\n\n    return 0;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E\"\
@@ -41,7 +41,7 @@ data:
   isVerificationFile: true
   path: test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
   requiredBy: []
-  timestamp: '2020-09-17 10:59:30+09:00'
+  timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp

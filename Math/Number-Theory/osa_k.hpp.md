@@ -16,7 +16,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "osa_k() (\u524D\u8A08\u7B97 $O(N \\log \\log N)$, \u7D20\u56E0\
       \u6570\u5206\u89E3 $O(\\log N)$)"
     links:

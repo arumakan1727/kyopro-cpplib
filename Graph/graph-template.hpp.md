@@ -6,13 +6,13 @@ data:
     path: Util/Debug/graph-debug.hpp
     title: "graph-debug (\u30B0\u30E9\u30D5\u306E\u30C7\u30D0\u30C3\u30B0\u51FA\u529B\
       )"
+  - icon: ':heavy_check_mark:'
+    path: Util/IO/read-directed-graph.hpp
+    title: "readDirectedGraph() (\u6709\u5411\u30B0\u30E9\u30D5\u306E\u5165\u529B)"
   - icon: ':warning:'
     path: Util/IO/read-undirected-graph.hpp
     title: "readUndirectedGraph() (\u7121\u5411\u30B0\u30E9\u30D5\u306E\u5165\u529B\
       )"
-  - icon: ':heavy_check_mark:'
-    path: Util/IO/read-directed-graph.hpp
-    title: "readDirectedGraph() (\u6709\u5411\u30B0\u30E9\u30D5\u306E\u5165\u529B)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
@@ -23,7 +23,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: graph-template (Edge, Graph, MatrixGraph)
     links: []
   bundledCode: "#line 2 \"Graph/graph-template.hpp\"\n#include <cstdint>\n#include\

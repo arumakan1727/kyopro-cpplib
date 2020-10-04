@@ -11,15 +11,14 @@ data:
     path: test/helloworld/divisor-count-table.test.cpp
     title: test/helloworld/divisor-count-table.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/helloworld/osa_k.test.cpp
-    title: test/helloworld/osa_k.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/helloworld/eratosthenes-sieve.test.cpp
     title: test/helloworld/eratosthenes-sieve.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/helloworld/osa_k.test.cpp
+    title: test/helloworld/osa_k.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "Eratosthenes-Sieve (\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\
       \u306E\u7BE9)"
     links:

@@ -15,7 +15,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "all()\u30DE\u30AF\u30ED"
     links: []
   bundledCode: "#line 2 \"Util/all-macro.hpp\"\n\n/**\n * @brief all()\u30DE\u30AF\

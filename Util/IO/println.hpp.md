@@ -10,18 +10,17 @@ data:
     path: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
     title: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/AOJ/DPL_5_A.test.cpp
-    title: test/AOJ/DPL_5_A.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/AOJ/ALDS1_14_B-String-Search.test.cpp
     title: test/AOJ/ALDS1_14_B-String-Search.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/DPL_5_A.test.cpp
+    title: test/AOJ/DPL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
     title: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "println() (\u53EF\u5909\u500B\u306E\u5024\u3092\u7A7A\u767D\u533A\
       \u5207\u308A\u3067\u51FA\u529B\u3057\u3066\u6539\u884C\u3059\u308B)"
     links: []

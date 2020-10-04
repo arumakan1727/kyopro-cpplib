@@ -9,7 +9,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "Union-Find (\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020)"
     links: []
   bundledCode: "#line 2 \"Data-Structure/Disjoint-Set/union-find.hpp\"\n#include <cassert>\n\

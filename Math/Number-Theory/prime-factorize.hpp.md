@@ -12,7 +12,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "primeFactorize() (\u7D20\u56E0\u6570\u5206\u89E3 $O(\\sqrt n)$)"
     links: []
   bundledCode: "#line 2 \"Math/Number-Theory/prime-factorize.hpp\"\n#include <map>\n\

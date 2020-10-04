@@ -2,11 +2,18 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Graph/Shortest-Path/dijkstra.hpp
+    title: "dijkstra() (\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9, $O((V + E)\\log V)$)"
+  - icon: ':heavy_check_mark:'
     path: Graph/graph-template.hpp
     title: graph-template (Edge, Graph, MatrixGraph)
   - icon: ':heavy_check_mark:'
-    path: Graph/Shortest-Path/dijkstra.hpp
-    title: "dijkstra() (\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9, $O((V + E)\\log V)$)"
+    path: Util/IO/println.hpp
+    title: "println() (\u53EF\u5909\u500B\u306E\u5024\u3092\u7A7A\u767D\u533A\u5207\
+      \u308A\u3067\u51FA\u529B\u3057\u3066\u6539\u884C\u3059\u308B)"
+  - icon: ':heavy_check_mark:'
+    path: Util/IO/read-directed-graph.hpp
+    title: "readDirectedGraph() (\u6709\u5411\u30B0\u30E9\u30D5\u306E\u5165\u529B)"
   - icon: ':heavy_check_mark:'
     path: Util/at.hpp
     title: at() ()
@@ -14,18 +21,11 @@ data:
     path: Util/chminmax.hpp
     title: chmin(), chmax()
   - icon: ':heavy_check_mark:'
-    path: Util/int-infinity.hpp
-    title: "int-infinity (\u6574\u6570\u306E\u30C7\u30AB\u30A4\u5024)"
-  - icon: ':heavy_check_mark:'
-    path: Util/IO/read-directed-graph.hpp
-    title: "readDirectedGraph() (\u6709\u5411\u30B0\u30E9\u30D5\u306E\u5165\u529B)"
-  - icon: ':heavy_check_mark:'
     path: Util/int-alias.hpp
     title: "int-alias (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)"
   - icon: ':heavy_check_mark:'
-    path: Util/IO/println.hpp
-    title: "println() (\u53EF\u5909\u500B\u306E\u5024\u3092\u7A7A\u767D\u533A\u5207\
-      \u308A\u3067\u51FA\u529B\u3057\u3066\u6539\u884C\u3059\u308B)"
+    path: Util/int-infinity.hpp
+    title: "int-infinity (\u6574\u6570\u306E\u30C7\u30AB\u30A4\u5024)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -84,8 +84,8 @@ data:
     }\n#line 3 \"Util/int-infinity.hpp\"\n\n/**\n * @brief int-infinity (\u6574\u6570\
     \u306E\u30C7\u30AB\u30A4\u5024)\n * 2\u500D\u3057\u3066\u3082\u30AA\u30FC\u30D0\
     \u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044 & memset()\u306B\u3082\u4F7F\u3048\u308B\
-    \ (\u9700\u8981\u3042\u308B\uFF1F)\n */\nconstexpr std::int32_t INF = 0x3f3f3f3f;\n\
-    constexpr std::int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;\n#line 12 \"Graph/Shortest-Path/dijkstra.hpp\"\
+    \ (\u9700\u8981\u3042\u308B\uFF1F)\n */\nconstexpr int32_t INF = 0x3f3f3f3f;\n\
+    constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;\n#line 12 \"Graph/Shortest-Path/dijkstra.hpp\"\
     \n\n/**\n * @brief dijkstra() (\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9, $O((V + E)\\\
     log V)$)\n *\n * @param dist:\n *      start \u304B\u3089\u306E\u8DDD\u96E2\u3092\
     \u683C\u7D0D\u3059\u308B\u914D\u5217\u3002\n *      \u8981\u7D20\u6570\u306F\u9802\
@@ -121,17 +121,17 @@ data:
     \ nxtVertex);\n            }\n        });\n    }\n    return dist;\n}\n\n#line\
     \ 4 \"Util/IO/read-directed-graph.hpp\"\n\n#line 6 \"Util/IO/read-directed-graph.hpp\"\
     \n\n/**\n * @brief readDirectedGraph() (\u6709\u5411\u30B0\u30E9\u30D5\u306E\u5165\
-    \u529B)\n */\ntemplate <class T>\nGraph<T> readDirectedGraph(std::size_t V, std::size_t\
+    \u529B)\n */\ntemplate <class T>\nGraph<T> readDirectedGraph(size_t V, size_t\
     \ E, int padding = -1, std::istream& is = std::cin) {\n    Graph<T> G(V);\n  \
-    \  for (std::size_t i = 0; i < E; ++i) {\n        Edge<T> e;\n        is >> e;\n\
-    \        e.from += padding, e.to += padding;\n        e.id = static_cast<int>(i);\n\
+    \  for (size_t i = 0; i < E; ++i) {\n        Edge<T> e;\n        is >> e;\n  \
+    \      e.from += padding, e.to += padding;\n        e.id = static_cast<int>(i);\n\
     \        G[e.from].emplace_back(e);\n    }\n    return G;\n}\n\n#line 9 \"test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp\"\
     \n\n#line 3 \"Util/int-alias.hpp\"\n\n/**\n * @brief int-alias (\u6574\u6570\u578B\
-    \u306E\u30A8\u30A4\u30EA\u30A2\u30B9)\n */\nusing i64 = std::int64_t;\nusing u64\
-    \ = std::uint64_t;\n#line 4 \"Util/IO/println.hpp\"\n\n/**\n * @brief println()\
-    \ (\u53EF\u5909\u500B\u306E\u5024\u3092\u7A7A\u767D\u533A\u5207\u308A\u3067\u51FA\
-    \u529B\u3057\u3066\u6539\u884C\u3059\u308B)\n */\ninline void println() {\n  \
-    \  std::cout << '\\n';\n}\ntemplate <class Head, class... Tail>\ninline void println(Head&&\
+    \u306E\u30A8\u30A4\u30EA\u30A2\u30B9)\n */\nusing i64 = int64_t;\nusing u64 =\
+    \ uint64_t;\n#line 4 \"Util/IO/println.hpp\"\n\n/**\n * @brief println() (\u53EF\
+    \u5909\u500B\u306E\u5024\u3092\u7A7A\u767D\u533A\u5207\u308A\u3067\u51FA\u529B\
+    \u3057\u3066\u6539\u884C\u3059\u308B)\n */\ninline void println() {\n    std::cout\
+    \ << '\\n';\n}\ntemplate <class Head, class... Tail>\ninline void println(Head&&\
     \ head, Tail&&... tail) {\n    std::cout << head << &\" \"[!sizeof...(tail)];\n\
     \    println(std::forward<Tail>(tail)...);\n}\n#line 13 \"test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp\"\
     \n\nint main() {\n    std::cin.tie(nullptr);\n    std::ios_base::sync_with_stdio(false);\n\
@@ -165,7 +165,7 @@ data:
   isVerificationFile: true
   path: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
   requiredBy: []
-  timestamp: '2020-09-25 23:46:50+09:00'
+  timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp

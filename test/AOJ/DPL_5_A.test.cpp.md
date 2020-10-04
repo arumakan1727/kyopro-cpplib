@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Algorithm/doubling-pow.hpp
+    title: "doubling-pow() (\u7E70\u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5)"
+  - icon: ':heavy_check_mark:'
     path: Math/Modulo/mod-int.hpp
     title: "Mod-Int (\u30B3\u30F3\u30D1\u30A4\u30EB\u6642mod\u578B\u3068\u5B9F\u884C\
       \u6642mod\u578B)"
   - icon: ':heavy_check_mark:'
-    path: Algorithm/doubling-pow.hpp
-    title: "doubling-pow() (\u7E70\u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5)"
-  - icon: ':heavy_check_mark:'
-    path: Util/int-alias.hpp
-    title: "int-alias (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)"
-  - icon: ':heavy_check_mark:'
     path: Util/IO/println.hpp
     title: "println() (\u53EF\u5909\u500B\u306E\u5024\u3092\u7A7A\u767D\u533A\u5207\
       \u308A\u3067\u51FA\u529B\u3057\u3066\u6539\u884C\u3059\u308B)"
+  - icon: ':heavy_check_mark:'
+    path: Util/int-alias.hpp
+    title: "int-alias (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -80,21 +80,20 @@ data:
     \ = StaticModInt<998244353>;\n\ntemplate <int ID>\nusing DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;\n\
     #line 2 \"Algorithm/doubling-pow.hpp\"\n#include <cmath>\n#line 3 \"Util/int-alias.hpp\"\
     \n\n/**\n * @brief int-alias (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\
-    \u30B9)\n */\nusing i64 = std::int64_t;\nusing u64 = std::uint64_t;\n#line 4 \"\
-    Algorithm/doubling-pow.hpp\"\n\n/**\n * @brief doubling-pow() (\u7E70\u308A\u8FD4\
-    \u3057\u4E8C\u4E57\u6CD5)\n */\ntemplate <class Integer>\nconstexpr Integer doublingPow(const\
-    \ Integer& n, const i64 expv) {\n    Integer ret = 1, square = n;\n    for (u64\
-    \ p = std::abs(expv); p; p >>= 1) {\n        if (p & 1) ret *= square;\n     \
-    \   square *= square;\n    }\n    return (expv < 0) ? (1 / ret) : ret;\n}\n#line\
-    \ 3 \"Util/IO/println.hpp\"\n#include <utility>\n\n/**\n * @brief println() (\u53EF\
-    \u5909\u500B\u306E\u5024\u3092\u7A7A\u767D\u533A\u5207\u308A\u3067\u51FA\u529B\
-    \u3057\u3066\u6539\u884C\u3059\u308B)\n */\ninline void println() {\n    std::cout\
-    \ << '\\n';\n}\ntemplate <class Head, class... Tail>\ninline void println(Head&&\
-    \ head, Tail&&... tail) {\n    std::cout << head << &\" \"[!sizeof...(tail)];\n\
-    \    println(std::forward<Tail>(tail)...);\n}\n#line 9 \"test/AOJ/DPL_5_A.test.cpp\"\
-    \n\nint main() {\n    using Mint = ModInt1000000007;\n\n    int n;\n    std::cin\
-    \ >> n;\n\n    Mint k;\n    std::cin >> k;\n\n    const auto ans1 = k.pow(n);\n\
-    \    const auto ans2 = doublingPow(k, n);\n\n    static_assert(std::is_same_v<decltype(ans1),\
+    \u30B9)\n */\nusing i64 = int64_t;\nusing u64 = uint64_t;\n#line 4 \"Algorithm/doubling-pow.hpp\"\
+    \n\n/**\n * @brief doubling-pow() (\u7E70\u308A\u8FD4\u3057\u4E8C\u4E57\u6CD5\
+    )\n */\ntemplate <class Integer>\nconstexpr Integer doublingPow(const Integer&\
+    \ n, const i64 expv) {\n    Integer ret = 1, square = n;\n    for (u64 p = std::abs(expv);\
+    \ p; p >>= 1) {\n        if (p & 1) ret *= square;\n        square *= square;\n\
+    \    }\n    return (expv < 0) ? (1 / ret) : ret;\n}\n#line 3 \"Util/IO/println.hpp\"\
+    \n#include <utility>\n\n/**\n * @brief println() (\u53EF\u5909\u500B\u306E\u5024\
+    \u3092\u7A7A\u767D\u533A\u5207\u308A\u3067\u51FA\u529B\u3057\u3066\u6539\u884C\
+    \u3059\u308B)\n */\ninline void println() {\n    std::cout << '\\n';\n}\ntemplate\
+    \ <class Head, class... Tail>\ninline void println(Head&& head, Tail&&... tail)\
+    \ {\n    std::cout << head << &\" \"[!sizeof...(tail)];\n    println(std::forward<Tail>(tail)...);\n\
+    }\n#line 9 \"test/AOJ/DPL_5_A.test.cpp\"\n\nint main() {\n    using Mint = ModInt1000000007;\n\
+    \n    int n;\n    std::cin >> n;\n\n    Mint k;\n    std::cin >> k;\n\n    const\
+    \ auto ans1 = k.pow(n);\n    const auto ans2 = doublingPow(k, n);\n\n    static_assert(std::is_same_v<decltype(ans1),\
     \ decltype(ans2)>);\n    assert(ans1 == ans2);\n\n\n    println(ans1);\n\n   \
     \ return 0;\n}\n"
   code: "#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_5_A&lang=ja\"\
@@ -113,7 +112,7 @@ data:
   isVerificationFile: true
   path: test/AOJ/DPL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2020-09-22 21:53:00+09:00'
+  timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/AOJ/DPL_5_A.test.cpp

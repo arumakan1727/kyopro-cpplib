@@ -6,7 +6,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     links: []
   bundledCode: "#line 1 \"export/template.cpp\"\n#include <bits/stdc++.h>\n// header\
     \ {{{\n#define all(x) std::begin(x), std::end(x)\n#define rall(x) std::rbegin(x),\
@@ -15,55 +14,171 @@ data:
     \ for (std::make_signed_t<std::remove_cv_t<decltype(last)>> i = (begin), i##_last\
     \ = (last); i <= i##_last; ++i)\n#define repr(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(begin)>>\
     \ i = (begin), i##_last = (last); i >= i##_last; --i)\n#define let const auto\n\
-    using i64 = std::int64_t;\nusing u64 = std::uint64_t;\nconstexpr std::int32_t\
-    \ INF = 0x3f3f3f3f;\nconstexpr std::int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;\n\ntemplate\
-    \ <class T = int, template <class, class...> class Container = std::vector>\n\
-    Container<T> read(std::size_t n) {\n    Container<T> ret(n);\n    for (auto& e\
-    \ : ret) std::cin >> e;\n    return ret;\n}\n\ntemplate <class Container, class\
-    \ = typename Container::value_type, std::enable_if_t<!std::is_same<Container,\
-    \ std::string>::value, std::nullptr_t> = nullptr>\nstd::ostream& operator<<(std::ostream&\
-    \ os, const Container& v) {\n    for (auto it = std::begin(v); it != std::end(v);\
-    \ ++it) os << &\" \"[it == std::begin(v)] << *it;\n    return os;\n}\n\ntemplate\
-    \ <class T>\nstd::istream& operator,(std::istream& is, T& rhs) {\n    return is\
-    \ >> rhs;\n}\n\n#define var(type, ...) \\\n    type __VA_ARGS__;  \\\n    std::cin\
-    \ >> __VA_ARGS__\n\ninline void println() {\n    std::cout << '\\n';\n}\ntemplate\
-    \ <class Head, class... Tail>\ninline void println(Head&& head, Tail&&... tail)\
-    \ {\n    std::cout << head << &\" \"[!sizeof...(tail)];\n    println(std::forward<Tail>(tail)...);\n\
-    }\n\ntemplate <class T, class U>\ninline bool chmin(T& a, const U& b) {\n    return\
-    \ b < a && (a = b, true);\n}\n\ntemplate <class T, class U>\ninline bool chmax(T&\
-    \ a, const U& b) {\n    return b > a && (a = b, true);\n}\n// }}}\n\nusing namespace\
-    \ std;\n\nint main() {\n    cin.tie(nullptr);\n    ios_base::sync_with_stdio(false);\n\
-    \    cout << std::fixed << std::setprecision(12);\n\n    return 0;\n}\n"
+    using i64 = int64_t;\nusing u64 = uint64_t;\nconstexpr int32_t INF = 0x3f3f3f3f;\n\
+    constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;\n\ntemplate <class T = int, template\
+    \ <class, class...> class Container = std::vector>\nContainer<T> read(size_t n)\
+    \ {\n    Container<T> ret(n);\n    for (auto& e : ret) std::cin >> e;\n    return\
+    \ ret;\n}\n\ntemplate <class Container, class = typename Container::value_type,\
+    \ std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t>\
+    \ = nullptr>\nstd::ostream& operator<<(std::ostream& os, const Container& v) {\n\
+    \    for (auto it = std::begin(v); it != std::end(v); ++it) os << &\" \"[it ==\
+    \ std::begin(v)] << *it;\n    return os;\n}\n\ntemplate <class T>\nstd::istream&\
+    \ operator,(std::istream& is, T& rhs) {\n    return is >> rhs;\n}\n\n#define var(type,\
+    \ ...) \\\n    type __VA_ARGS__;  \\\n    std::cin >> __VA_ARGS__\n\ninline void\
+    \ println() {\n    std::cout << '\\n';\n}\ntemplate <class Head, class... Tail>\n\
+    inline void println(Head&& head, Tail&&... tail) {\n    std::cout << head << &\"\
+    \ \"[!sizeof...(tail)];\n    println(std::forward<Tail>(tail)...);\n}\n\ntemplate\
+    \ <class T, class U>\ninline bool chmin(T& a, const U& b) {\n    return b < a\
+    \ && (a = b, true);\n}\n\ntemplate <class T, class U>\ninline bool chmax(T& a,\
+    \ const U& b) {\n    return b > a && (a = b, true);\n}\n// }}}\n\n// debug {{{\n\
+    #ifdef LOCAL_DEBUG\n\nnamespace dbg {\n\nint w_ = 4;\nbool negativeValAsNull_\
+    \ = true;\nstd::ostream* os = &std::cerr;\n\ntemplate <class T, std::enable_if_t<!std::is_arithmetic<T>::value,\
+    \ std::nullptr_t> = nullptr>\nvoid put(const T& x) {\n    *os << std::setw(w_)\
+    \ << x;\n}\ntemplate <class T, std::enable_if_t<std::is_signed<T>::value, std::nullptr_t>\
+    \ = nullptr>\nvoid put(const T& x) {\n    if (x <= -INF)\n        *os << std::setw(w_)\
+    \ << \"-INF\";\n    else if (negativeValAsNull_ && x < 0)\n        *os << std::setw(w_)\
+    \ << \" - \";\n    else if (x >= INF)\n        *os << std::setw(w_) << \"INF\"\
+    ;\n    else\n        *os << std::setw(w_) << x;\n}\ntemplate <class T, std::enable_if_t<std::is_unsigned<T>::value,\
+    \ std::nullptr_t> = nullptr>\nvoid put(const T& x) {\n    if (static_cast<int64_t>(x)\
+    \ >= static_cast<int64_t>(INF))\n        *os << std::setw(w_) << \"INF\";\n  \
+    \  else\n        *os << std::setw(w_) << x;\n}\ntemplate <class A, class B>\n\
+    void put(const std::pair<A, B>& t) {\n    *os << '(' << std::setw(w_) << std::get<0>(t)\
+    \ << \",  \" << std::setw(w_) << std::get<1>(t) << ')';\n}\ntemplate <class A,\
+    \ class B, class C>\nvoid put(const std::tuple<A, B, C>& t) {\n    *os << '('\
+    \ << std::setw(w_) << std::get<0>(t) << \",  \" << std::setw(w_) << std::get<1>(t)\
+    \ << \",  \" << std::setw(w_) << std::get<2>(t) << ')';\n}\n\ntemplate <class\
+    \ Arr>\nvoid showArrayH__(const Arr& a, size_t begin, size_t end) {\n    for (size_t\
+    \ i = begin; i < end; ++i) *os << '[' << std::setw(dbg::w_) << i << \"] \";\n\
+    \    *os << '\\n';\n    for (size_t i = begin; i < end; ++i) *os << ' ', dbg::put(a[i]),\
+    \ *os << \"  \";\n    *os << '\\n';\n}\ntemplate <class Arr>\nvoid showArrayV__(const\
+    \ Arr& a, size_t begin, size_t end) {\n    for (size_t i = begin; i < end; ++i)\n\
+    \        *os << '[' << std::setw(2) << i << ']', dbg::put(a[i]), *os << \"\\n\"\
+    ;\n    *os << std::flush;\n}\ntemplate <class Table>\nvoid showTable__(const Table&\
+    \ t, size_t yBegin, size_t yEnd, size_t xBegin, size_t xEnd) {\n    *os << std::string(1\
+    \ + 2 + 1, ' ');\n    for (size_t j = xBegin; j < xEnd; ++j) *os << '[' << std::setw(dbg::w_)\
+    \ << j << \"] \";\n    *os << '\\n';\n\n    for (size_t i = yBegin; i < yEnd;\
+    \ ++i) {\n        *os << '[' << std::setw(2) << i << \"]\";\n        for (size_t\
+    \ j = xBegin; j < xEnd; ++j) *os << ' ', dbg::put(t[i][j]), *os << \"  \";\n \
+    \       *os << '\\n';\n    }\n}\n\n}  // namespace dbg\n\nvoid debug_setw(int\
+    \ w) {\n    dbg::w_ = w;\n}\nvoid debug_negativeValAsNull(bool f) {\n    dbg::negativeValAsNull_\
+    \ = f;\n}\nvoid debug_setOstream(std::ostream& os) {\n    dbg::os = &os;\n}\n\
+    void debug_hr() {\n    *dbg::os << \"----------------------------------------------------------------------\\\
+    n\";\n}\nvoid debug_println() {\n    *dbg::os << std::endl;\n}\ntemplate <class\
+    \ Head, class... Tail>\nvoid debug_println(const Head& head, const Tail&... tail)\
+    \ {\n    dbg::put(head);\n    debug_println(tail...);\n}\n\n#define putDbgPrefix()\
+    \ *dbg::os << __func__ << '(' << std::setfill('0') << std::setw(3) << __LINE__\
+    \ << std::setfill(' ') << \"): \"\n#define showArrayH(a, beginIdx, endIdx) (void)(putDbgPrefix()\
+    \ << #a << \":\\n\"), dbg::showArrayH__(a, beginIdx, endIdx)\n#define showArrayV(a,\
+    \ beginIdx, endIdx) (void)(putDbgPrefix() << #a << \":\\n\"), dbg::showArrayV__(a,\
+    \ beginIdx, endIdx)\n#define showTable(t, yBegin, yEnd, xBegin, xEnd) (void)(putDbgPrefix()\
+    \ << #t << \":\\n\"), dbg::showTable__(t, yBegin, yEnd, xBegin, xEnd)\n#define\
+    \ dbgMsg_(x) \"  |  \" #x \" = \", x\n#define dump1(a) (void)(putDbgPrefix()),\
+    \ debug_println(#a \" = \", a)\n#define dump2(a, b) (void)(putDbgPrefix()), debug_println(#a\
+    \ \" = \", a, dbgMsg_(b))\n#define dump3(a, b, c) (void)(putDbgPrefix()), debug_println(#a\
+    \ \" = \", a, dbgMsg_(b), dbgMsg_(c))\n#define dump4(a, b, c, d) (void)(putDbgPrefix()),\
+    \ debug_println(#a \" = \", a, dbgMsg_(b), dbgMsg_(c), dbgMsg_(d))\n#define dump5(a,\
+    \ b, c, d, e) (void)(putDbgPrefix()), debug_println(#a \" = \", a, dbgMsg_(b),\
+    \ dbgMsg_(c), dbgMsg_(d), dbgMsg_(e))\n#define dump6(a, b, c, d, e, f) (void)(putDbgPrefix()),\
+    \ debug_println(#a \" = \", a, dbgMsg_(b), dbgMsg_(c), dbgMsg_(d), dbgMsg_(e),\
+    \ dbgMsg_(f))\n#define dump7(a, b, c, d, e, f, g) (void)(putDbgPrefix()), debug_println(#a\
+    \ \" = \", a, dbgMsg_(b), dbgMsg_(c), dbgMsg_(d), dbgMsg_(e), dbgMsg_(f), dbgMsg_(g))\n\
+    #define GET_8TH_ARG(dummy1, dummy2, dummy3, dummy4, dummy5, dummy6, dumy7, NAME,\
+    \ ...) NAME\n#define dump(...) GET_8TH_ARG(__VA_ARGS__, dump7, dump6, dump5, dump4,\
+    \ dump3, dump2, dump1)(__VA_ARGS__)\n\n#else\n\n#define debug_setw(...) ((void)0)\n\
+    #define debug_negativeValAsNull(...) ((void)0)\n#define debug_setOstream(...)\
+    \ ((void)0)\n#define debug_hr(...) ((void)0)\n#define debug_println(...) ((void)0)\n\
+    #define showArrayH(...) ((void)0)\n#define showArrayV(...) ((void)0)\n#define\
+    \ showTable(...) ((void)0)\n#define dump(...) ((void)0)\n\n#endif\n// }}}\n\n\
+    using namespace std;\n\nint main() {\n    cin.tie(nullptr);\n    ios_base::sync_with_stdio(false);\n\
+    \n    return 0;\n}\n"
   code: "#include <bits/stdc++.h>\n// header {{{\n#define all(x) std::begin(x), std::end(x)\n\
     #define rall(x) std::rbegin(x), std::rend(x)\n#define rep(i, begin, end) for (std::make_signed_t<std::remove_cv_t<decltype(end)>>\
     \ i = (begin), i##_end = (end); i < i##_end; ++i)\n#define repc(i, begin, last)\
     \ for (std::make_signed_t<std::remove_cv_t<decltype(last)>> i = (begin), i##_last\
     \ = (last); i <= i##_last; ++i)\n#define repr(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(begin)>>\
     \ i = (begin), i##_last = (last); i >= i##_last; --i)\n#define let const auto\n\
-    using i64 = std::int64_t;\nusing u64 = std::uint64_t;\nconstexpr std::int32_t\
-    \ INF = 0x3f3f3f3f;\nconstexpr std::int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;\n\ntemplate\
-    \ <class T = int, template <class, class...> class Container = std::vector>\n\
-    Container<T> read(std::size_t n) {\n    Container<T> ret(n);\n    for (auto& e\
-    \ : ret) std::cin >> e;\n    return ret;\n}\n\ntemplate <class Container, class\
-    \ = typename Container::value_type, std::enable_if_t<!std::is_same<Container,\
-    \ std::string>::value, std::nullptr_t> = nullptr>\nstd::ostream& operator<<(std::ostream&\
-    \ os, const Container& v) {\n    for (auto it = std::begin(v); it != std::end(v);\
-    \ ++it) os << &\" \"[it == std::begin(v)] << *it;\n    return os;\n}\n\ntemplate\
-    \ <class T>\nstd::istream& operator,(std::istream& is, T& rhs) {\n    return is\
-    \ >> rhs;\n}\n\n#define var(type, ...) \\\n    type __VA_ARGS__;  \\\n    std::cin\
-    \ >> __VA_ARGS__\n\ninline void println() {\n    std::cout << '\\n';\n}\ntemplate\
-    \ <class Head, class... Tail>\ninline void println(Head&& head, Tail&&... tail)\
-    \ {\n    std::cout << head << &\" \"[!sizeof...(tail)];\n    println(std::forward<Tail>(tail)...);\n\
-    }\n\ntemplate <class T, class U>\ninline bool chmin(T& a, const U& b) {\n    return\
-    \ b < a && (a = b, true);\n}\n\ntemplate <class T, class U>\ninline bool chmax(T&\
-    \ a, const U& b) {\n    return b > a && (a = b, true);\n}\n// }}}\n\nusing namespace\
-    \ std;\n\nint main() {\n    cin.tie(nullptr);\n    ios_base::sync_with_stdio(false);\n\
-    \    cout << std::fixed << std::setprecision(12);\n\n    return 0;\n}\n"
+    using i64 = int64_t;\nusing u64 = uint64_t;\nconstexpr int32_t INF = 0x3f3f3f3f;\n\
+    constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;\n\ntemplate <class T = int, template\
+    \ <class, class...> class Container = std::vector>\nContainer<T> read(size_t n)\
+    \ {\n    Container<T> ret(n);\n    for (auto& e : ret) std::cin >> e;\n    return\
+    \ ret;\n}\n\ntemplate <class Container, class = typename Container::value_type,\
+    \ std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t>\
+    \ = nullptr>\nstd::ostream& operator<<(std::ostream& os, const Container& v) {\n\
+    \    for (auto it = std::begin(v); it != std::end(v); ++it) os << &\" \"[it ==\
+    \ std::begin(v)] << *it;\n    return os;\n}\n\ntemplate <class T>\nstd::istream&\
+    \ operator,(std::istream& is, T& rhs) {\n    return is >> rhs;\n}\n\n#define var(type,\
+    \ ...) \\\n    type __VA_ARGS__;  \\\n    std::cin >> __VA_ARGS__\n\ninline void\
+    \ println() {\n    std::cout << '\\n';\n}\ntemplate <class Head, class... Tail>\n\
+    inline void println(Head&& head, Tail&&... tail) {\n    std::cout << head << &\"\
+    \ \"[!sizeof...(tail)];\n    println(std::forward<Tail>(tail)...);\n}\n\ntemplate\
+    \ <class T, class U>\ninline bool chmin(T& a, const U& b) {\n    return b < a\
+    \ && (a = b, true);\n}\n\ntemplate <class T, class U>\ninline bool chmax(T& a,\
+    \ const U& b) {\n    return b > a && (a = b, true);\n}\n// }}}\n\n// debug {{{\n\
+    #ifdef LOCAL_DEBUG\n\nnamespace dbg {\n\nint w_ = 4;\nbool negativeValAsNull_\
+    \ = true;\nstd::ostream* os = &std::cerr;\n\ntemplate <class T, std::enable_if_t<!std::is_arithmetic<T>::value,\
+    \ std::nullptr_t> = nullptr>\nvoid put(const T& x) {\n    *os << std::setw(w_)\
+    \ << x;\n}\ntemplate <class T, std::enable_if_t<std::is_signed<T>::value, std::nullptr_t>\
+    \ = nullptr>\nvoid put(const T& x) {\n    if (x <= -INF)\n        *os << std::setw(w_)\
+    \ << \"-INF\";\n    else if (negativeValAsNull_ && x < 0)\n        *os << std::setw(w_)\
+    \ << \" - \";\n    else if (x >= INF)\n        *os << std::setw(w_) << \"INF\"\
+    ;\n    else\n        *os << std::setw(w_) << x;\n}\ntemplate <class T, std::enable_if_t<std::is_unsigned<T>::value,\
+    \ std::nullptr_t> = nullptr>\nvoid put(const T& x) {\n    if (static_cast<int64_t>(x)\
+    \ >= static_cast<int64_t>(INF))\n        *os << std::setw(w_) << \"INF\";\n  \
+    \  else\n        *os << std::setw(w_) << x;\n}\ntemplate <class A, class B>\n\
+    void put(const std::pair<A, B>& t) {\n    *os << '(' << std::setw(w_) << std::get<0>(t)\
+    \ << \",  \" << std::setw(w_) << std::get<1>(t) << ')';\n}\ntemplate <class A,\
+    \ class B, class C>\nvoid put(const std::tuple<A, B, C>& t) {\n    *os << '('\
+    \ << std::setw(w_) << std::get<0>(t) << \",  \" << std::setw(w_) << std::get<1>(t)\
+    \ << \",  \" << std::setw(w_) << std::get<2>(t) << ')';\n}\n\ntemplate <class\
+    \ Arr>\nvoid showArrayH__(const Arr& a, size_t begin, size_t end) {\n    for (size_t\
+    \ i = begin; i < end; ++i) *os << '[' << std::setw(dbg::w_) << i << \"] \";\n\
+    \    *os << '\\n';\n    for (size_t i = begin; i < end; ++i) *os << ' ', dbg::put(a[i]),\
+    \ *os << \"  \";\n    *os << '\\n';\n}\ntemplate <class Arr>\nvoid showArrayV__(const\
+    \ Arr& a, size_t begin, size_t end) {\n    for (size_t i = begin; i < end; ++i)\n\
+    \        *os << '[' << std::setw(2) << i << ']', dbg::put(a[i]), *os << \"\\n\"\
+    ;\n    *os << std::flush;\n}\ntemplate <class Table>\nvoid showTable__(const Table&\
+    \ t, size_t yBegin, size_t yEnd, size_t xBegin, size_t xEnd) {\n    *os << std::string(1\
+    \ + 2 + 1, ' ');\n    for (size_t j = xBegin; j < xEnd; ++j) *os << '[' << std::setw(dbg::w_)\
+    \ << j << \"] \";\n    *os << '\\n';\n\n    for (size_t i = yBegin; i < yEnd;\
+    \ ++i) {\n        *os << '[' << std::setw(2) << i << \"]\";\n        for (size_t\
+    \ j = xBegin; j < xEnd; ++j) *os << ' ', dbg::put(t[i][j]), *os << \"  \";\n \
+    \       *os << '\\n';\n    }\n}\n\n}  // namespace dbg\n\nvoid debug_setw(int\
+    \ w) {\n    dbg::w_ = w;\n}\nvoid debug_negativeValAsNull(bool f) {\n    dbg::negativeValAsNull_\
+    \ = f;\n}\nvoid debug_setOstream(std::ostream& os) {\n    dbg::os = &os;\n}\n\
+    void debug_hr() {\n    *dbg::os << \"----------------------------------------------------------------------\\\
+    n\";\n}\nvoid debug_println() {\n    *dbg::os << std::endl;\n}\ntemplate <class\
+    \ Head, class... Tail>\nvoid debug_println(const Head& head, const Tail&... tail)\
+    \ {\n    dbg::put(head);\n    debug_println(tail...);\n}\n\n#define putDbgPrefix()\
+    \ *dbg::os << __func__ << '(' << std::setfill('0') << std::setw(3) << __LINE__\
+    \ << std::setfill(' ') << \"): \"\n#define showArrayH(a, beginIdx, endIdx) (void)(putDbgPrefix()\
+    \ << #a << \":\\n\"), dbg::showArrayH__(a, beginIdx, endIdx)\n#define showArrayV(a,\
+    \ beginIdx, endIdx) (void)(putDbgPrefix() << #a << \":\\n\"), dbg::showArrayV__(a,\
+    \ beginIdx, endIdx)\n#define showTable(t, yBegin, yEnd, xBegin, xEnd) (void)(putDbgPrefix()\
+    \ << #t << \":\\n\"), dbg::showTable__(t, yBegin, yEnd, xBegin, xEnd)\n#define\
+    \ dbgMsg_(x) \"  |  \" #x \" = \", x\n#define dump1(a) (void)(putDbgPrefix()),\
+    \ debug_println(#a \" = \", a)\n#define dump2(a, b) (void)(putDbgPrefix()), debug_println(#a\
+    \ \" = \", a, dbgMsg_(b))\n#define dump3(a, b, c) (void)(putDbgPrefix()), debug_println(#a\
+    \ \" = \", a, dbgMsg_(b), dbgMsg_(c))\n#define dump4(a, b, c, d) (void)(putDbgPrefix()),\
+    \ debug_println(#a \" = \", a, dbgMsg_(b), dbgMsg_(c), dbgMsg_(d))\n#define dump5(a,\
+    \ b, c, d, e) (void)(putDbgPrefix()), debug_println(#a \" = \", a, dbgMsg_(b),\
+    \ dbgMsg_(c), dbgMsg_(d), dbgMsg_(e))\n#define dump6(a, b, c, d, e, f) (void)(putDbgPrefix()),\
+    \ debug_println(#a \" = \", a, dbgMsg_(b), dbgMsg_(c), dbgMsg_(d), dbgMsg_(e),\
+    \ dbgMsg_(f))\n#define dump7(a, b, c, d, e, f, g) (void)(putDbgPrefix()), debug_println(#a\
+    \ \" = \", a, dbgMsg_(b), dbgMsg_(c), dbgMsg_(d), dbgMsg_(e), dbgMsg_(f), dbgMsg_(g))\n\
+    #define GET_8TH_ARG(dummy1, dummy2, dummy3, dummy4, dummy5, dummy6, dumy7, NAME,\
+    \ ...) NAME\n#define dump(...) GET_8TH_ARG(__VA_ARGS__, dump7, dump6, dump5, dump4,\
+    \ dump3, dump2, dump1)(__VA_ARGS__)\n\n#else\n\n#define debug_setw(...) ((void)0)\n\
+    #define debug_negativeValAsNull(...) ((void)0)\n#define debug_setOstream(...)\
+    \ ((void)0)\n#define debug_hr(...) ((void)0)\n#define debug_println(...) ((void)0)\n\
+    #define showArrayH(...) ((void)0)\n#define showArrayV(...) ((void)0)\n#define\
+    \ showTable(...) ((void)0)\n#define dump(...) ((void)0)\n\n#endif\n// }}}\n\n\
+    using namespace std;\n\nint main() {\n    cin.tie(nullptr);\n    ios_base::sync_with_stdio(false);\n\
+    \n    return 0;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: export/template.cpp
   requiredBy: []
-  timestamp: '2020-09-22 12:58:55+00:00'
+  timestamp: '2020-10-04 05:27:26+00:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: export/template.cpp

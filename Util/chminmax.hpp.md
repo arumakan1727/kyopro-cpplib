@@ -2,12 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: export/template-prototype.cpp
-    title: export/template-prototype.cpp
   - icon: ':heavy_check_mark:'
     path: Graph/Shortest-Path/dijkstra.hpp
     title: "dijkstra() (\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9, $O((V + E)\\log V)$)"
+  - icon: ':warning:'
+    path: export/template-prototype.cpp
+    title: export/template-prototype.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/1501-Grid.test.cpp
@@ -18,7 +18,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: chmin(), chmax()
     links: []
   bundledCode: "#line 2 \"Util/chminmax.hpp\"\n\n/**\n * @brief chmin(), chmax()\n\

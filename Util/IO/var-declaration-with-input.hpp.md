@@ -7,18 +7,17 @@ data:
     title: export/template-prototype.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
-    title: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/AOJ/0558-Cheese.test.cpp
     title: test/AOJ/0558-Cheese.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/AOJ/1501-Grid.test.cpp
     title: test/AOJ/1501-Grid.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
+    title: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "\u8907\u6570\u5909\u6570\u5BA3\u8A00\u3092\u3057\u3066\u540C\u6642\
       \u306B\u5165\u529B\u3082\u3059\u308B\u3084\u3064"
     links: []

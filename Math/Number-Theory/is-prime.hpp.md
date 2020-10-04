@@ -12,7 +12,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "isPrime() (\u7D20\u6570\u5224\u5B9A $O(\\sqrt n)$)"
     links: []
   bundledCode: "#line 2 \"Math/Number-Theory/is-prime.hpp\"\n#include <cstdint>\n\n\

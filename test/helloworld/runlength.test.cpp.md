@@ -20,10 +20,10 @@ data:
     \u306E\u59CB\u307E\u308A\u4F4D\u7F6E\u30A4\u30C6\u30EC\u30FC\u30BF, \u304B\u305F\
     \u307E\u308A\u306E\u8981\u7D20\u6570) \u306Epair\u306Evector\u3092\u8FD4\u3059\
     \u3002\n */\ntemplate <class Iterator>\nauto runlength(Iterator const begin, Iterator\
-    \ const end) {\n    std::vector<std::pair<Iterator, std::size_t>> ret;\n    ret.reserve(std::distance(begin,\
-    \ end));\n\n    for (auto itr = begin; itr != end;) {\n        std::size_t cnt\
-    \ = 1;\n        const auto head = itr++;\n        while (itr != end && *itr ==\
-    \ *head) ++itr, ++cnt;\n        ret.emplace_back(head, cnt);\n    }\n\n    ret.shrink_to_fit();\n\
+    \ const end) {\n    std::vector<std::pair<Iterator, size_t>> ret;\n    ret.reserve(std::distance(begin,\
+    \ end));\n\n    for (auto itr = begin; itr != end;) {\n        size_t cnt = 1;\n\
+    \        const auto head = itr++;\n        while (itr != end && *itr == *head)\
+    \ ++itr, ++cnt;\n        ret.emplace_back(head, cnt);\n    }\n\n    ret.shrink_to_fit();\n\
     \    return ret;\n}\n#line 5 \"test/helloworld/runlength.test.cpp\"\n\nusing namespace\
     \ std;\n\nvoid test1() {\n    array<int, 6> a{1, 1, 5, 5, 5, -8};\n\n    const\
     \ vector<pair<decltype(a)::iterator, size_t>> expected = {\n        {begin(a)\
@@ -62,7 +62,7 @@ data:
   isVerificationFile: true
   path: test/helloworld/runlength.test.cpp
   requiredBy: []
-  timestamp: '2020-09-21 11:43:36+09:00'
+  timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/helloworld/runlength.test.cpp

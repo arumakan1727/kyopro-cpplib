@@ -9,7 +9,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "divisorCountTable (\u7D04\u6570\u306E\u500B\u6570\u306E\u30C6\
       \u30FC\u30D6\u30EB, $O(N \\log N)$)"
     links: []

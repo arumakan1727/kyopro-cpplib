@@ -9,7 +9,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "FixPoint (\u30E9\u30E0\u30C0\u5F0F\u306E\u518D\u5E30)"
     links: []
   bundledCode: "#line 2 \"Util/fix-point.hpp\"\n#include <functional>\n\n/**\n * @brief\

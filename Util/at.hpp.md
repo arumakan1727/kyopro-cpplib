@@ -11,11 +11,11 @@ data:
     title: "dijkstra() (\u30C0\u30A4\u30AF\u30B9\u30C8\u30E9, $O((V + E)\\log V)$)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
-    title: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/AOJ/0558-Cheese.test.cpp
     title: test/AOJ/0558-Cheese.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
+    title: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
     title: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
@@ -25,7 +25,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: at() ()
     links: []
   bundledCode: "#line 2 \"Util/at.hpp\"\n#include <tuple>\n#include <functional>\n\

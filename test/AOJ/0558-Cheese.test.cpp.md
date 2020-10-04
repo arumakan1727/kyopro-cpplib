@@ -6,8 +6,15 @@ data:
     title: "bfs() (\u5E45\u512A\u5148\u63A2\u7D22\u306B\u3088\u308B\u5358\u4E00\u59CB\
       \u70B9\u6700\u77ED\u7D4C\u8DEF, \u6B21\u5143\u62E1\u5F35\u306B\u5BFE\u5FDC)"
   - icon: ':heavy_check_mark:'
+    path: Util/IO/var-declaration-with-input.hpp
+    title: "\u8907\u6570\u5909\u6570\u5BA3\u8A00\u3092\u3057\u3066\u540C\u6642\u306B\
+      \u5165\u529B\u3082\u3059\u308B\u3084\u3064"
+  - icon: ':heavy_check_mark:'
     path: Util/at.hpp
     title: at() ()
+  - icon: ':heavy_check_mark:'
+    path: Util/fillContainer.hpp
+    title: "fillContainer() (\u30B3\u30F3\u30C6\u30CA\u306Efill)"
   - icon: ':heavy_check_mark:'
     path: Util/int-infinity.hpp
     title: "int-infinity (\u6574\u6570\u306E\u30C7\u30AB\u30A4\u5024)"
@@ -16,18 +23,11 @@ data:
     title: "makeFourNeighborEnumerator() (\u30B0\u30EA\u30C3\u30C9\u306E\u56DB\u8FD1\
       \u508D(\u4E0A\u4E0B\u5DE6\u53F3)\u306E\u5217\u6319)"
   - icon: ':heavy_check_mark:'
-    path: Util/rep-macro.hpp
-    title: "rep()\u30DE\u30AF\u30ED"
-  - icon: ':heavy_check_mark:'
     path: Util/makeVec.hpp
     title: "makeVec() (\u591A\u6B21\u5143std::vector\u306E\u751F\u6210)"
   - icon: ':heavy_check_mark:'
-    path: Util/fillContainer.hpp
-    title: "fillContainer() (\u30B3\u30F3\u30C6\u30CA\u306Efill)"
-  - icon: ':heavy_check_mark:'
-    path: Util/IO/var-declaration-with-input.hpp
-    title: "\u8907\u6570\u5909\u6570\u5BA3\u8A00\u3092\u3057\u3066\u540C\u6642\u306B\
-      \u5165\u529B\u3082\u3059\u308B\u3084\u3064"
+    path: Util/rep-macro.hpp
+    title: "rep()\u30DE\u30AF\u30ED"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp
@@ -56,13 +56,13 @@ data:
     }\n\n}  // namespace arumakan\n#line 3 \"Util/int-infinity.hpp\"\n\n/**\n * @brief\
     \ int-infinity (\u6574\u6570\u306E\u30C7\u30AB\u30A4\u5024)\n * 2\u500D\u3057\u3066\
     \u3082\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044 & memset()\u306B\
-    \u3082\u4F7F\u3048\u308B (\u9700\u8981\u3042\u308B\uFF1F)\n */\nconstexpr std::int32_t\
-    \ INF = 0x3f3f3f3f;\nconstexpr std::int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;\n#line\
-    \ 10 \"Graph/Shortest-Path/bfs.hpp\"\n\n/**\n * @brief bfs() (\u5E45\u512A\u5148\
-    \u63A2\u7D22\u306B\u3088\u308B\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF\
-    , \u6B21\u5143\u62E1\u5F35\u306B\u5BFE\u5FDC)\n *\n * @param dist:\n *      start\
-    \ \u304B\u3089\u306E\u8DDD\u96E2\u3092\u683C\u7D0D\u3059\u308B\u914D\u5217\u3002\
-    \n *      \u8981\u7D20\u6570\u306F\u9802\u70B9\u6570\u4EE5\u4E0A\u3067\u306A\u3051\
+    \u3082\u4F7F\u3048\u308B (\u9700\u8981\u3042\u308B\uFF1F)\n */\nconstexpr int32_t\
+    \ INF = 0x3f3f3f3f;\nconstexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;\n#line 10\
+    \ \"Graph/Shortest-Path/bfs.hpp\"\n\n/**\n * @brief bfs() (\u5E45\u512A\u5148\u63A2\
+    \u7D22\u306B\u3088\u308B\u5358\u4E00\u59CB\u70B9\u6700\u77ED\u7D4C\u8DEF, \u6B21\
+    \u5143\u62E1\u5F35\u306B\u5BFE\u5FDC)\n *\n * @param dist:\n *      start \u304B\
+    \u3089\u306E\u8DDD\u96E2\u3092\u683C\u7D0D\u3059\u308B\u914D\u5217\u3002\n * \
+    \     \u8981\u7D20\u6570\u306F\u9802\u70B9\u6570\u4EE5\u4E0A\u3067\u306A\u3051\
     \u308C\u3070\u306A\u3089\u306A\u3044\u3002-1\u3084INF\u306A\u3069\u3001\u8DDD\u96E2\
     \u3068\u3057\u3066\u6B63\u5F53\u3067\u306A\u3044\u5024\u3067fill\u3055\u308C\u3066\
     \u3044\u308B\u5FC5\u8981\u304C\u3042\u308B\u3002\n *      \u591A\u6B21\u5143\u914D\
@@ -97,18 +97,18 @@ data:
     \ H, int W, HandlerFunc handlerFunc) {\n    return [H, W, handlerFunc](auto v,\
     \ auto func) {\n        using P = decltype(v);\n        static constexpr int dy[]{0,\
     \ 1, 0, -1};\n        const auto y = std::get<0>(v);\n        const auto x = std::get<1>(v);\n\
-    \n        for (std::size_t q = 0; q < 4; ++q) {\n            const auto ny = y\
-    \ + dy[q];\n            const auto nx = x + dy[q ^ 1];\n            if (0 <= ny\
-    \ && ny < H && 0 <= nx && nx < W) handlerFunc(P{y, x}, P{ny, nx}, func);\n   \
-    \     }\n    };\n}\n#line 2 \"Util/rep-macro.hpp\"\n\n/**\n * @brief rep()\u30DE\
-    \u30AF\u30ED\n */\n#define rep(i, begin, end) for (std::make_signed_t<std::remove_cv_t<decltype(end)>>\
+    \n        for (size_t q = 0; q < 4; ++q) {\n            const auto ny = y + dy[q];\n\
+    \            const auto nx = x + dy[q ^ 1];\n            if (0 <= ny && ny < H\
+    \ && 0 <= nx && nx < W) handlerFunc(P{y, x}, P{ny, nx}, func);\n        }\n  \
+    \  };\n}\n#line 2 \"Util/rep-macro.hpp\"\n\n/**\n * @brief rep()\u30DE\u30AF\u30ED\
+    \n */\n#define rep(i, begin, end) for (std::make_signed_t<std::remove_cv_t<decltype(end)>>\
     \ i = (begin), i##_end = (end); i < i##_end; ++i)\n#define repc(i, begin, last)\
     \ for (std::make_signed_t<std::remove_cv_t<decltype(last)>> i = (begin), i##_last\
     \ = (last); i <= i##_last; ++i)\n#define repr(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(begin)>>\
     \ i = (begin), i##_last = (last); i >= i##_last; --i)\n#line 3 \"Util/makeVec.hpp\"\
     \n\n/**\n * @brief makeVec() (\u591A\u6B21\u5143std::vector\u306E\u751F\u6210\
-    )\n */\ntemplate <class T>\ninline std::vector<T> makeVec(std::size_t sz, const\
-    \ T& initValue) {\n    return std::vector<T>(sz, initValue);\n}\ntemplate <class\
+    )\n */\ntemplate <class T>\ninline std::vector<T> makeVec(size_t sz, const T&\
+    \ initValue) {\n    return std::vector<T>(sz, initValue);\n}\ntemplate <class\
     \ T, class... Args>\ninline auto makeVec(size_t sz, Args... args) {\n    return\
     \ std::vector<decltype(makeVec<T>(args...))>(sz, makeVec<T>(args...));\n}\n#line\
     \ 5 \"Util/fillContainer.hpp\"\n\n/**\n * @brief fillContainer() (\u30B3\u30F3\
@@ -167,7 +167,7 @@ data:
   isVerificationFile: true
   path: test/AOJ/0558-Cheese.test.cpp
   requiredBy: []
-  timestamp: '2020-09-25 22:23:19+09:00'
+  timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/AOJ/0558-Cheese.test.cpp

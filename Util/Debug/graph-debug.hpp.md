@@ -15,7 +15,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "graph-debug (\u30B0\u30E9\u30D5\u306E\u30C7\u30D0\u30C3\u30B0\
       \u51FA\u529B)"
     links: []
@@ -47,19 +46,19 @@ data:
     \ * @brief int-infinity (\u6574\u6570\u306E\u30C7\u30AB\u30A4\u5024)\n * 2\u500D\
     \u3057\u3066\u3082\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\
     \ & memset()\u306B\u3082\u4F7F\u3048\u308B (\u9700\u8981\u3042\u308B\uFF1F)\n\
-    \ */\nconstexpr std::int32_t INF = 0x3f3f3f3f;\nconstexpr std::int64_t LINF =\
-    \ 0x3f3f3f3f3f3f3f3fLL;\n#line 7 \"Util/Debug/debug.hpp\"\n\n/**\n * @brief Debug\n\
-    \ */\n#ifdef LOCAL_DEBUG\n\nnamespace dbg {\n\nint w_ = 4;\nbool negativeValAsNull_\
-    \ = true;\nstd::ostream* os = &std::cerr;\n\ntemplate <class T, std::enable_if_t<!std::is_arithmetic<T>::value,\
+    \ */\nconstexpr int32_t INF = 0x3f3f3f3f;\nconstexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;\n\
+    #line 7 \"Util/Debug/debug.hpp\"\n\n/**\n * @brief Debug\n */\n#ifdef LOCAL_DEBUG\n\
+    \nnamespace dbg {\n\nint w_ = 4;\nbool negativeValAsNull_ = true;\nstd::ostream*\
+    \ os = &std::cerr;\n\ntemplate <class T, std::enable_if_t<!std::is_arithmetic<T>::value,\
     \ std::nullptr_t> = nullptr>\nvoid put(const T& x) {\n    *os << std::setw(w_)\
     \ << x;\n}\ntemplate <class T, std::enable_if_t<std::is_signed<T>::value, std::nullptr_t>\
     \ = nullptr>\nvoid put(const T& x) {\n    if (x <= -INF)\n        *os << std::setw(w_)\
     \ << \"-INF\";\n    else if (negativeValAsNull_ && x < 0)\n        *os << std::setw(w_)\
     \ << \" - \";\n    else if (x >= INF)\n        *os << std::setw(w_) << \"INF\"\
     ;\n    else\n        *os << std::setw(w_) << x;\n}\ntemplate <class T, std::enable_if_t<std::is_unsigned<T>::value,\
-    \ std::nullptr_t> = nullptr>\nvoid put(const T& x) {\n    if (static_cast<std::int64_t>(x)\
-    \ >= static_cast<std::int64_t>(INF))\n        *os << std::setw(w_) << \"INF\"\
-    ;\n    else\n        *os << std::setw(w_) << x;\n}\ntemplate <class A, class B>\n\
+    \ std::nullptr_t> = nullptr>\nvoid put(const T& x) {\n    if (static_cast<int64_t>(x)\
+    \ >= static_cast<int64_t>(INF))\n        *os << std::setw(w_) << \"INF\";\n  \
+    \  else\n        *os << std::setw(w_) << x;\n}\ntemplate <class A, class B>\n\
     void put(const std::pair<A, B>& t) {\n    *os << '(' << std::setw(w_) << std::get<0>(t)\
     \ << \",  \" << std::setw(w_) << std::get<1>(t) << ')';\n}\ntemplate <class A,\
     \ class B, class C>\nvoid put(const std::tuple<A, B, C>& t) {\n    *os << '('\
@@ -137,7 +136,7 @@ data:
   isVerificationFile: false
   path: Util/Debug/graph-debug.hpp
   requiredBy: []
-  timestamp: '2020-09-25 22:23:19+09:00'
+  timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: Util/Debug/graph-debug.hpp

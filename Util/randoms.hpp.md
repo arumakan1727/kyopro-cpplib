@@ -9,7 +9,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "randoms (randint()\u3068\u304Bchoice()\u3068\u304B)"
     links: []
   bundledCode: "#line 2 \"Util/randoms.hpp\"\n\n#include <random>\n#include <functional>\n\
@@ -20,18 +19,18 @@ data:
     \ {\n    return std::uniform_int_distribution<Integer>(min, max)(mt);\n}\n\n//\
     \ dest \u306B randint(sizeMin, sizeMax) \u56DE randint(valueMin, valueMax) \u3092\
     \u683C\u7D0D\u3059\u308B\ntemplate <class OutputIter, class Integer>\nOutputIter\
-    \ randomValueContainer(OutputIter dest, Integer valueMin, Integer valueMax, std::size_t\
-    \ sizeMin, std::size_t sizeMax) {\n    auto size = randint(sizeMin, sizeMax);\n\
-    \    while (size--) {\n        *dest = randint(valueMin, valueMax);\n        ++dest;\n\
+    \ randomValueContainer(OutputIter dest, Integer valueMin, Integer valueMax, size_t\
+    \ sizeMin, size_t sizeMax) {\n    auto size = randint(sizeMin, sizeMax);\n   \
+    \ while (size--) {\n        *dest = randint(valueMin, valueMax);\n        ++dest;\n\
     \    }\n    return dest;\n}\n\n// \u8981\u7D20\u6570\u304C randint(sizeMin, sizeMax)\
     \ \u306E randint(valueMin, valueMax) \u3092\u751F\u6210\u3059\u308B\ntemplate\
     \ <class Container, class Integer>\nContainer randomValueContainer(Integer valueMin,\
-    \ Integer valueMax, std::size_t sizeMin, std::size_t sizeMax) {\n    Container\
-    \ ret;\n    randomValueContainer(std::back_inserter(ret), valueMin, valueMax,\
-    \ sizeMin, sizeMax);\n    return ret;\n}\n\n// [begin, end) \u306E\u7BC4\u56F2\
-    \u306E\u3046\u3061\u3072\u3068\u3064\u3092\u30E9\u30F3\u30C0\u30E0\u306B\u9078\
-    \u3093\u3067\u8FD4\u3059\ntemplate <class RandomAccessIter>\nauto choice(RandomAccessIter\
-    \ begin, RandomAccessIter end) {\n    const auto i = randint<std::size_t>(0, std::distance(begin,\
+    \ Integer valueMax, size_t sizeMin, size_t sizeMax) {\n    Container ret;\n  \
+    \  randomValueContainer(std::back_inserter(ret), valueMin, valueMax, sizeMin,\
+    \ sizeMax);\n    return ret;\n}\n\n// [begin, end) \u306E\u7BC4\u56F2\u306E\u3046\
+    \u3061\u3072\u3068\u3064\u3092\u30E9\u30F3\u30C0\u30E0\u306B\u9078\u3093\u3067\
+    \u8FD4\u3059\ntemplate <class RandomAccessIter>\nauto choice(RandomAccessIter\
+    \ begin, RandomAccessIter end) {\n    const auto i = randint<size_t>(0, std::distance(begin,\
     \ end));\n    return begin[i];\n}\n\n}  // namespace rand\n"
   code: "#pragma once\n\n#include <random>\n#include <functional>\n\n/**\n * @brief\
     \ randoms (randint()\u3068\u304Bchoice()\u3068\u304B)\n */\nnamespace arumakan::random\
@@ -41,24 +40,24 @@ data:
     \    return std::uniform_int_distribution<Integer>(min, max)(mt);\n}\n\n// dest\
     \ \u306B randint(sizeMin, sizeMax) \u56DE randint(valueMin, valueMax) \u3092\u683C\
     \u7D0D\u3059\u308B\ntemplate <class OutputIter, class Integer>\nOutputIter randomValueContainer(OutputIter\
-    \ dest, Integer valueMin, Integer valueMax, std::size_t sizeMin, std::size_t sizeMax)\
-    \ {\n    auto size = randint(sizeMin, sizeMax);\n    while (size--) {\n      \
-    \  *dest = randint(valueMin, valueMax);\n        ++dest;\n    }\n    return dest;\n\
-    }\n\n// \u8981\u7D20\u6570\u304C randint(sizeMin, sizeMax) \u306E randint(valueMin,\
+    \ dest, Integer valueMin, Integer valueMax, size_t sizeMin, size_t sizeMax) {\n\
+    \    auto size = randint(sizeMin, sizeMax);\n    while (size--) {\n        *dest\
+    \ = randint(valueMin, valueMax);\n        ++dest;\n    }\n    return dest;\n}\n\
+    \n// \u8981\u7D20\u6570\u304C randint(sizeMin, sizeMax) \u306E randint(valueMin,\
     \ valueMax) \u3092\u751F\u6210\u3059\u308B\ntemplate <class Container, class Integer>\n\
-    Container randomValueContainer(Integer valueMin, Integer valueMax, std::size_t\
-    \ sizeMin, std::size_t sizeMax) {\n    Container ret;\n    randomValueContainer(std::back_inserter(ret),\
+    Container randomValueContainer(Integer valueMin, Integer valueMax, size_t sizeMin,\
+    \ size_t sizeMax) {\n    Container ret;\n    randomValueContainer(std::back_inserter(ret),\
     \ valueMin, valueMax, sizeMin, sizeMax);\n    return ret;\n}\n\n// [begin, end)\
     \ \u306E\u7BC4\u56F2\u306E\u3046\u3061\u3072\u3068\u3064\u3092\u30E9\u30F3\u30C0\
     \u30E0\u306B\u9078\u3093\u3067\u8FD4\u3059\ntemplate <class RandomAccessIter>\n\
     auto choice(RandomAccessIter begin, RandomAccessIter end) {\n    const auto i\
-    \ = randint<std::size_t>(0, std::distance(begin, end));\n    return begin[i];\n\
-    }\n\n}  // namespace rand\n"
+    \ = randint<size_t>(0, std::distance(begin, end));\n    return begin[i];\n}\n\n\
+    }  // namespace rand\n"
   dependsOn: []
   isVerificationFile: false
   path: Util/randoms.hpp
   requiredBy: []
-  timestamp: '2020-09-20 14:54:12+09:00'
+  timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/helloworld/rolling-hash.test.cpp

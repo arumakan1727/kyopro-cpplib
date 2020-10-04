@@ -2,6 +2,10 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
+    path: Math/Number-Theory/divisor-count-table.hpp
+    title: "divisorCountTable (\u7D04\u6570\u306E\u500B\u6570\u306E\u30C6\u30FC\u30D6\
+      \u30EB, $O(N \\log N)$)"
+  - icon: ':heavy_check_mark:'
     path: Math/Number-Theory/eratosthenes-sieve.hpp
     title: "Eratosthenes-Sieve (\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\u306E\u7BE9\
       )"
@@ -9,10 +13,6 @@ data:
     path: Math/Number-Theory/osa_k.hpp
     title: "osa_k() (\u524D\u8A08\u7B97 $O(N \\log \\log N)$, \u7D20\u56E0\u6570\u5206\
       \u89E3 $O(\\log N)$)"
-  - icon: ':heavy_check_mark:'
-    path: Math/Number-Theory/divisor-count-table.hpp
-    title: "divisorCountTable (\u7D04\u6570\u306E\u500B\u6570\u306E\u30C6\u30FC\u30D6\
-      \u30EB, $O(N \\log N)$)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _pathExtension: cpp

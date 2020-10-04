@@ -159,6 +159,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Util/fix-point.hpp
       title: "FixPoint (\u30E9\u30E0\u30C0\u5F0F\u306E\u518D\u5E30)"
+    - icon: ':warning:'
+      path: Util/indexing-wrapper.hpp
+      title: IndexingWrapper
     - icon: ':heavy_check_mark:'
       path: Util/int-alias.hpp
       title: "int-alias (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)"

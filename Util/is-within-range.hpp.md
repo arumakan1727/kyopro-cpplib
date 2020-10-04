@@ -6,7 +6,6 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "within() (\u534A\u958B\u533A\u9593\u5185\u306B\u542B\u307E\u308C\
       \u3066\u3044\u308B\u304B\u306E\u5224\u5B9A)"
     links: []

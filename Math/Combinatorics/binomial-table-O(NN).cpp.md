@@ -9,7 +9,6 @@ data:
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
     document_title: "binomialTable() (\u4E8C\u9805\u4FC2\u6570\u30C6\u30FC\u30D6\u30EB\
       \ $O(N^2)$)"
     links: []
