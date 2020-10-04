@@ -17,12 +17,15 @@
 #include "../Util/chminmax.hpp"
 // }}}
 
+// debug {{{
+#include "../Util/Debug/debug.hpp"
+// }}}
+
 using namespace std;
 
 int main() {
     cin.tie(nullptr);
     ios_base::sync_with_stdio(false);
-    cout << std::fixed << std::setprecision(12);
 
     return 0;
 }
