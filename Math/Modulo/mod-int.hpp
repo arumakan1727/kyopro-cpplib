@@ -7,7 +7,7 @@
 /**
  * @brief Mod-Int (コンパイル時mod型と実行時mod型)
  */
-namespace impl {
+namespace internal {
 
 template <class ModHolder>
 class ModInt {
@@ -15,50 +15,51 @@ private:
     int64_t value;
 
 public:
-    constexpr ModInt()
+    constexpr ModInt() noexcept
         : value(0) {}
-    constexpr ModInt(int64_t v)
+
+    constexpr ModInt(int64_t v) noexcept
         : value(ModInt::normalized(v)) {}
 
-    static constexpr ModInt raw(int64_t v) {
+    static constexpr const ModInt raw(int64_t v) noexcept {
         ModInt ret;
         ret.value = v;
         return ret;
     }
 
-    static constexpr ModInt nullopt() { return ModInt::raw(std::numeric_limits<int64_t>::min()); }
+    static constexpr ModInt nullopt() noexcept { return ModInt::raw(std::numeric_limits<int64_t>::min()); }
 
-    constexpr bool isNull() const { return *this == ModInt::nullopt(); }
+    constexpr bool isNull() const noexcept { return *this == ModInt::nullopt(); }
 
     static constexpr int64_t mod() { return ModHolder::mod; }
 
-    static int64_t setMod(int64_t m) {
+    static int64_t setMod(int64_t m) noexcept {
         assert(m >= 1);
         return ModHolder::mod = m;
     }
 
     template <class T>
-    constexpr explicit operator T() const {
+    constexpr explicit operator T() const noexcept {
         return static_cast<T>(value);
     }
-    constexpr ModInt& operator+=(const ModInt& rhs) {
+    constexpr ModInt& operator+=(const ModInt& rhs) noexcept {
         if ((value += rhs.value) >= mod()) value -= mod();
         return *this;
     }
-    constexpr ModInt& operator-=(const ModInt& rhs) {
+    constexpr ModInt& operator-=(const ModInt& rhs) noexcept {
         if ((value -= rhs.value) < 0) value += mod();
         return *this;
     }
-    constexpr ModInt& operator*=(const ModInt& rhs) {
+    constexpr ModInt& operator*=(const ModInt& rhs) noexcept {
         (value *= rhs.value) %= mod();
         return *this;
     }
-    constexpr ModInt& operator/=(const ModInt& rhs) { return *this *= rhs.inv(); }
-    constexpr const ModInt inv() const { return ModInt(ModInt::inverse(value, mod())); }
-    constexpr const ModInt operator+() const { return *this; }
-    constexpr const ModInt operator-() const { return ModInt(-value); }
+    constexpr ModInt& operator/=(const ModInt& rhs) noexcept { return *this *= rhs.inv(); }
+    constexpr const ModInt inv() const noexcept { return ModInt(ModInt::inverse(value, mod())); }
+    constexpr const ModInt operator+() const noexcept { return *this; }
+    constexpr const ModInt operator-() const noexcept { return ModInt(-value); }
 
-    constexpr const ModInt pow(int64_t expv) const {
+    constexpr const ModInt pow(int64_t expv) const noexcept {
         int64_t ret = 1, square = value;
         for (uint64_t p = std::abs(expv); p; p >>= 1) {
             if (p & 1) (ret *= square) %= mod();
@@ -67,12 +68,12 @@ public:
         return (expv < 0) ? (ModInt::raw(1) / ModInt::raw(ret)) : ModInt::raw(ret);
     }
 
-    friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) { return lhs.value == rhs.value; }
-    friend constexpr bool operator!=(const ModInt& lhs, const ModInt& rhs) { return lhs.value != rhs.value; }
-    friend constexpr const ModInt operator+(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) += rhs; }
-    friend constexpr const ModInt operator-(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) -= rhs; }
-    friend constexpr const ModInt operator*(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) *= rhs; }
-    friend constexpr const ModInt operator/(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) /= rhs; }
+    friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) noexcept { return lhs.value == rhs.value; }
+    friend constexpr bool operator!=(const ModInt& lhs, const ModInt& rhs) noexcept { return lhs.value != rhs.value; }
+    friend constexpr const ModInt operator+(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) += rhs; }
+    friend constexpr const ModInt operator-(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) -= rhs; }
+    friend constexpr const ModInt operator*(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) *= rhs; }
+    friend constexpr const ModInt operator/(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) /= rhs; }
 
     friend std::ostream& operator<<(std::ostream& os, const ModInt& x) {
 #ifdef LOCAL_DEBUG
@@ -118,13 +119,13 @@ struct DynamicModHolder {
 template <int ID>
 int64_t DynamicModHolder<ID>::mod;
 
-}  // namespace impl
+}  // namespace internal
 
 template <int64_t Mod>
-using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
+using StaticModInt = internal::ModInt<internal::StaticModHolder<Mod>>;
 
 using ModInt1000000007 = StaticModInt<int(1e9) + 7>;
 using ModInt998244353 = StaticModInt<998244353>;
 
 template <int ID>
-using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
+using DynamicModInt = internal::ModInt<internal::DynamicModHolder<ID>>;
