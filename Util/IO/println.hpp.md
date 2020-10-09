@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: export/template-prototype.cpp
     title: export/template-prototype.cpp
+  - icon: ':warning:'
+    path: test/yosupo/static-range-sum.cpp
+    title: test/yosupo/static-range-sum.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
@@ -42,6 +45,7 @@ data:
   path: Util/IO/println.hpp
   requiredBy:
   - export/template-prototype.cpp
+  - test/yosupo/static-range-sum.cpp
   timestamp: '2020-09-17 10:59:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

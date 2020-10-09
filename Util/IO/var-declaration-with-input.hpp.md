@@ -40,8 +40,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
-  - test/AOJ/0558-Cheese.test.cpp
   - test/AOJ/1501-Grid.test.cpp
+  - test/AOJ/0558-Cheese.test.cpp
 documentation_of: Util/IO/var-declaration-with-input.hpp
 layout: document
 redirect_from:

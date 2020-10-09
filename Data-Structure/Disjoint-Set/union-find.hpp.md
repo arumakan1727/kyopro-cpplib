@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Graph/Minimum-Spanning-Tree/kruskal.hpp
+    title: "kruskal() (\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/DSL_1_A.test.cpp
     title: test/AOJ/DSL_1_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
+    title: test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -50,11 +56,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Data-Structure/Disjoint-Set/union-find.hpp
-  requiredBy: []
+  requiredBy:
+  - Graph/Minimum-Spanning-Tree/kruskal.hpp
   timestamp: '2020-09-13 19:39:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/DSL_1_A.test.cpp
+  - test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
 documentation_of: Data-Structure/Disjoint-Set/union-find.hpp
 layout: document
 redirect_from:

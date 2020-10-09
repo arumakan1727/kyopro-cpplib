@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: export/template-prototype.cpp
     title: export/template-prototype.cpp
+  - icon: ':warning:'
+    path: test/yosupo/static-range-sum.cpp
+    title: test/yosupo/static-range-sum.cpp
   _extendedVerifiedWith: []
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
@@ -27,6 +30,7 @@ data:
   path: Util/IO/read.hpp
   requiredBy:
   - export/template-prototype.cpp
+  - test/yosupo/static-range-sum.cpp
   timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

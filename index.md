@@ -11,6 +11,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: Data-Structure/Disjoint-Set/union-find.hpp
       title: "Union-Find (\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020)"
+  - name: Data-Structure/Range-Accumulate
+    pages:
+    - icon: ':warning:'
+      path: Data-Structure/Range-Accumulate/cumulative-sum.hpp
+      title: "CumulativeSum (\u7D2F\u7A4D\u548C)"
+    - icon: ':warning:'
+      path: Data-Structure/Range-Accumulate/foldLR.hpp
+      title: FoldLR
+  - name: Graph/Minimum-Spanning-Tree
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: Graph/Minimum-Spanning-Tree/kruskal.hpp
+      title: "kruskal() (\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
   - name: Graph/Shortest-Path
     pages:
     - icon: ':heavy_check_mark:'
@@ -43,6 +56,10 @@ data:
       title: "factorials (\u968E\u4E57, \u968E\u4E57\u306E\u9006\u5143, nCr, nPr)"
   - name: Math/Modulo
     pages:
+    - icon: ':warning:'
+      path: Math/Modulo/mersenne-prime-number-mod-int.hpp
+      title: "MersennePrimeNumberModInt (\u6CD5\u304C\u30E1\u30EB\u30BB\u30F3\u30CC\
+        \u7D20\u6570\u306EModInt\u7279\u6B8A\u5316)"
     - icon: ':heavy_check_mark:'
       path: Math/Modulo/mod-int.hpp
       title: "Mod-Int (\u30B3\u30F3\u30D1\u30A4\u30EB\u6642mod\u578B\u3068\u5B9F\u884C\
@@ -192,6 +209,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: Util/runlength.hpp
       title: "runlength() (\u30E9\u30F3\u30EC\u30F3\u30B0\u30B9\u5727\u7E2E)"
+    - icon: ':warning:'
+      path: Util/timer.hpp
+      title: "Timer (\u5B9F\u884C\u6642\u9593\u8A08\u6E2C)"
     - icon: ':heavy_check_mark:'
       path: Util/zip.hpp
       title: "zip() (n\u500B\u306Evector\u304B\u3089n\u8981\u7D20\u306E\u30BF\u30D7\
@@ -236,6 +256,11 @@ data:
     - icon: ':warning:'
       path: short-snip/yesno.cpp
       title: short-snip/yesno.cpp
+  - name: test/yosupo
+    pages:
+    - icon: ':warning:'
+      path: test/yosupo/static-range-sum.cpp
+      title: test/yosupo/static-range-sum.cpp
   - name: tool
     pages:
     - icon: ':warning:'
@@ -277,6 +302,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
       title: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
+      title: test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/AOJ/NTL_1_A-Prime-Factorize.test.cpp
       title: test/AOJ/NTL_1_A-Prime-Factorize.test.cpp

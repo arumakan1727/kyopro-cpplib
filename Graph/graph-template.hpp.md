@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: Graph/Minimum-Spanning-Tree/kruskal.hpp
+    title: "kruskal() (\u30AF\u30E9\u30B9\u30AB\u30EB\u6CD5)"
   - icon: ':warning:'
     path: Util/Debug/graph-debug.hpp
     title: "graph-debug (\u30B0\u30E9\u30D5\u306E\u30C7\u30D0\u30C3\u30B0\u51FA\u529B\
@@ -20,6 +23,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
     title: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
+    title: test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -74,13 +80,15 @@ data:
   isVerificationFile: false
   path: Graph/graph-template.hpp
   requiredBy:
-  - Util/Debug/graph-debug.hpp
   - Util/IO/read-undirected-graph.hpp
   - Util/IO/read-directed-graph.hpp
+  - Util/Debug/graph-debug.hpp
+  - Graph/Minimum-Spanning-Tree/kruskal.hpp
   timestamp: '2020-09-25 22:23:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
+  - test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
   - test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
 documentation_of: Graph/graph-template.hpp
 layout: document

@@ -54,15 +54,15 @@ data:
   - export/template-prototype.cpp
   - Util/Debug/debug.hpp
   - Util/Debug/graph-debug.hpp
-  - Graph/Shortest-Path/bfs.hpp
   - Graph/Shortest-Path/dijkstra.hpp
+  - Graph/Shortest-Path/bfs.hpp
   timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
-  - test/AOJ/0558-Cheese.test.cpp
-  - test/AOJ/1501-Grid.test.cpp
   - test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
+  - test/AOJ/1501-Grid.test.cpp
+  - test/AOJ/0558-Cheese.test.cpp
 documentation_of: Util/int-infinity.hpp
 layout: document
 redirect_from:

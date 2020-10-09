@@ -61,9 +61,9 @@ data:
   timestamp: '2020-09-21 11:42:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/helloworld/eratosthenes-sieve.test.cpp
   - test/helloworld/divisor-count-table.test.cpp
   - test/helloworld/osa_k.test.cpp
-  - test/helloworld/eratosthenes-sieve.test.cpp
 documentation_of: Math/Number-Theory/eratosthenes-sieve.hpp
 layout: document
 redirect_from:
