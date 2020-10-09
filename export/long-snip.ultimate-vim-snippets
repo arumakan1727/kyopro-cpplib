@@ -55,6 +55,108 @@ public:
 // }}}
 endsnippet
 
+snippet cumulative-sum "Range-Accumulate/cumulative-sum.hpp"
+// cumulative-sum {{{
+template <class T>
+struct CumulativeSum {
+    std::valarray<T> data;
+
+    CumulativeSum() = default;
+
+    template <class Container>
+    explicit CumulativeSum(const Container& container)
+        : CumulativeSum(container.cbegin(), container.cend()) {}
+
+    template <class InputItr>
+    CumulativeSum(InputItr begin, InputItr end)
+        : data(std::distance(begin, end) + 1) {
+        size_t i;
+        InputItr itr;
+        for (i = 0, itr = begin; itr != end; ++i, ++itr) {
+            data[i + 1] = data[i] + *itr;
+        }
+    }
+
+    //! [0, r)
+    const T prefixSum(size_t r) const { return data[r]; }
+
+    //! [l, r)
+    const T sum(size_t l, size_t r) const { return prefixSum(r) - prefixSum(l); }
+};
+// }}}
+endsnippet
+
+snippet foldLR "Range-Accumulate/foldLR.hpp"
+// foldLR {{{
+template <class T>
+class FoldLR {
+    std::vector<T> m_foldL, m_foldR;
+    T m_e;
+
+public:
+    FoldLR() = default;
+
+    template <class BidirectionalItr, class Op>
+    FoldLR(BidirectionalItr begin, BidirectionalItr end, const T& e, Op op)
+        : FoldLR(begin, end, e, op, op) {}
+
+    /**
+     * foldLeftOp: (T, Elem) -> T
+     * foldRightOp: (Elem, T) -> T
+     */
+    template <class BidirectionalItr, class FoldLeftOp, class FoldRightOp>
+    FoldLR(BidirectionalItr begin, BidirectionalItr end, const T& e, FoldLeftOp foldLeftOp, FoldRightOp foldRightOp)
+        : m_foldL(std::distance(begin, end) + 1, e)
+        , m_foldR(std::distance(begin, end) + 1, e)
+        , m_e(e) {
+        size_t i;
+        BidirectionalItr itr;
+        for (i = 0, itr = begin; itr != end; ++i, ++itr) {
+            m_foldL[i + 1] = foldLeftOp(m_foldL[i], *itr);
+        }
+        for (i = m_foldR.size() - 1, itr = std::prev(end); i > 0; --i, --itr) {
+            m_foldR[i - 1] = foldRightOp(*itr, m_foldR[i]);
+        }
+    }
+
+    /**
+     * [0, r)
+     * ((((e op a[0]) op a[1]) op a[2]) ... op a[r - 1])
+     * foldL(0) returns e();
+     */
+    const T foldL(size_t r) const { return m_foldL[r]; }
+
+    /**
+     * [l, N)
+     * (a[l] op ... (a[N - 3] op (a[N - 2] op (a[N - 1] op e))))
+     * foldR(N) returns e();
+     */
+    const T foldR(size_t l) const { return m_foldR[l]; }
+
+    const T e() const { return m_e; }
+};
+// }}}
+endsnippet
+
+snippet kruskal "Minimum-Spanning-Tree/kruskal.hpp"
+// kruskal {{{
+template <class ResultType, class WeightType>
+ResultType kruskal(int V, std::vector<Edge<WeightType>>& edges) {
+    ResultType weightSum{};
+    UnionFind uf(V);
+    std::sort(edges.begin(), edges.end(), [](const auto& e1, const auto& e2) {
+        return e1.weight < e2.weight;
+    });
+    for (const auto &e : edges) {
+        if (uf.same(e.from, e.to)) continue;
+        uf.unite(e.from, e.to);
+        weightSum += e.weight;
+    }
+    return weightSum;
+}
+// }}}
+endsnippet
+
 snippet bfs "Shortest-Path/bfs.hpp"
 // bfs {{{
 template <class DistArray, class Vertex, class NextVertexEnumerator>
@@ -225,9 +327,160 @@ public:
 // }}}
 endsnippet
 
+snippet mersenne-prime-number-mod-int "Modulo/mersenne-prime-number-mod-int.hpp"
+// mersenne-prime-number-mod-int {{{
+namespace internal {
+
+template <class ModHolder>
+class ModInt;
+
+constexpr int exponentOfMersennePrimeNumber(uint_fast64_t x) {
+    if (x == (1ull << 61) - 1) return 61;
+    if (x == (1ull << 31) - 1) return 31;
+    if (x == (1ull << 19) - 1) return 19;
+    if (x == (1ull << 17) - 1) return 17;
+    if (x == (1ull << 13) - 1) return 13;
+    if (x == (1ull << 7) - 1) return 7;
+    if (x == (1ull << 5) - 1) return 5;
+    if (x == (1ull << 3) - 1) return 3;
+    if (x == (1ull << 2) - 1) return 2;
+    return -1;
+}
+
+template <uint_fast64_t Mod>
+struct MersennePrimeNumberModHolder {
+    static constexpr uint_fast64_t mod = Mod;
+    static constexpr uint32_t exp = exponentOfMersennePrimeNumber(Mod);
+    static_assert(exponentOfMersennePrimeNumber(Mod) != -1, "Mod value is not a mersenne prime number.");
+};
+
+template <uint_fast64_t Mod>
+class ModInt<MersennePrimeNumberModHolder<Mod>> {
+private:
+    using u64 = uint_fast64_t;
+    using i64 = int_fast64_t;
+    using largeUint = std::conditional < Mod<(1ull << 31), u64, __uint128_t>;
+    using ModHolder = MersennePrimeNumberModHolder<Mod>;
+    u64 value;
+
+public:
+    constexpr inline ModInt() noexcept
+        : value(0) {}
+
+    constexpr inline ModInt(i64 v) noexcept
+        : value(ModInt::normalized(v)) {}
+
+    static constexpr inline const ModInt raw(u64 v) noexcept {
+        ModInt ret;
+        ret.value = v;
+        return ret;
+    }
+
+    static constexpr ModInt nullopt() noexcept { return ModInt::raw(Mod); }
+
+    constexpr bool isNull() const noexcept { return *this == ModInt::nullopt(); }
+
+    static constexpr inline u64 mod() noexcept { return ModHolder::mod; }
+
+    template <class T>
+    constexpr explicit operator T() const noexcept {
+        return static_cast<T>(value);
+    }
+
+    constexpr u64 val() const noexcept { return value; }
+
+    constexpr ModInt& operator+=(const ModInt& rhs) noexcept {
+        if ((value += rhs.value) >= mod()) value -= mod();
+        return *this;
+    }
+    constexpr ModInt& operator-=(const ModInt& rhs) noexcept {
+        if (value < rhs.value) value += mod();
+        value -= rhs.value;
+        return *this;
+    }
+    constexpr ModInt& operator*=(const ModInt& rhs) noexcept {
+        value = mul(value, rhs.value);
+        return *this;
+    }
+    constexpr ModInt& operator/=(const ModInt& rhs) noexcept { return *this *= rhs.inv(); }
+    constexpr const ModInt inv() const noexcept { return ModInt(ModInt::inverse(value, mod())); }
+    constexpr const ModInt operator+() const noexcept { return *this; }
+    constexpr const ModInt operator-() const noexcept { return ModInt(-static_cast<i64>(value)); }
+
+    constexpr const ModInt pow(i64 expv) const noexcept {
+        u64 ret = 1, square = value;
+        for (u64 p = std::abs(expv); p; p >>= 1) {
+            if (p & 1) ret = mul(ret, square);
+            square = mul(square, square);
+        }
+        return (expv < 0) ? (ModInt::raw(1) / ModInt::raw(ret)) : ModInt::raw(ret);
+    }
+
+    friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) noexcept { return lhs.value == rhs.value; }
+    friend constexpr bool operator!=(const ModInt& lhs, const ModInt& rhs) noexcept { return lhs.value != rhs.value; }
+    friend constexpr const ModInt operator+(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) += rhs; }
+    friend constexpr const ModInt operator-(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) -= rhs; }
+    friend constexpr const ModInt operator*(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) *= rhs; }
+    friend constexpr const ModInt operator/(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) /= rhs; }
+
+    friend std::ostream& operator<<(std::ostream& os, const ModInt& x) {
+#ifdef LOCAL_DEBUG
+        if (x.isNull()) return os << "{nullopt}";
+#endif
+        return os << x.value;
+    }
+
+    friend std::istream& operator>>(std::istream& is, ModInt& x) {
+        is >> x.value;
+        x.value = ModInt::normalized(x.value);
+        return is;
+    }
+
+private:
+    static constexpr inline u64 applyMod_u64(u64 x) noexcept {
+        x = (x >> ModHolder::exp) + (x & mod());
+        if (x >= mod()) x -= mod();
+        return x;
+    }
+
+    static constexpr inline u64 applyMod_largeUint(largeUint x) noexcept {
+        u64 y = static_cast<u64>(x >> ModHolder::exp) + static_cast<u64>(x & mod());
+        if (y >= mod()) y -= mod();
+        return y;
+    }
+
+    static constexpr inline u64 mul(u64 a, u64 b) noexcept { return applyMod_largeUint(static_cast<largeUint>(a) * static_cast<largeUint>(b)); }
+
+    static constexpr u64 normalized(i64 n) noexcept {
+        if (n >= 0) return applyMod_u64(n);
+        if (n < -mod()) n %= mod();
+        return n += mod();
+    }
+
+    static constexpr i64 inverse(i64 a, i64 m) noexcept {
+        i64 u = 0, v = 1;
+        while (a != 0) {
+            const auto t = m / a;
+            static_cast<void>(m -= t * a), std::swap(m, a);
+            static_cast<void>(u -= t * v), std::swap(u, v);
+        }
+        assert(m == 1);
+        return u;
+    }
+};
+
+}  // namespace internal
+
+template <uint_fast64_t Mod>
+using MersennePrimeNumberModInt = internal::ModInt<internal::MersennePrimeNumberModHolder<Mod>>;
+
+using ModInt_2pow61_1 = MersennePrimeNumberModInt<(1ull << 61) - 1>;
+// }}}
+endsnippet
+
 snippet mod-int "Modulo/mod-int.hpp"
 // mod-int {{{
-namespace impl {
+namespace internal {
 
 template <class ModHolder>
 class ModInt {
@@ -235,50 +488,51 @@ private:
     int64_t value;
 
 public:
-    constexpr ModInt()
+    constexpr ModInt() noexcept
         : value(0) {}
-    constexpr ModInt(int64_t v)
+
+    constexpr ModInt(int64_t v) noexcept
         : value(ModInt::normalized(v)) {}
 
-    static constexpr ModInt raw(int64_t v) {
+    static constexpr const ModInt raw(int64_t v) noexcept {
         ModInt ret;
         ret.value = v;
         return ret;
     }
 
-    static constexpr ModInt nullopt() { return ModInt::raw(std::numeric_limits<int64_t>::min()); }
+    static constexpr ModInt nullopt() noexcept { return ModInt::raw(std::numeric_limits<int64_t>::min()); }
 
-    constexpr bool isNull() const { return *this == ModInt::nullopt(); }
+    constexpr bool isNull() const noexcept { return *this == ModInt::nullopt(); }
 
     static constexpr int64_t mod() { return ModHolder::mod; }
 
-    static int64_t setMod(int64_t m) {
+    static int64_t setMod(int64_t m) noexcept {
         assert(m >= 1);
         return ModHolder::mod = m;
     }
 
     template <class T>
-    constexpr explicit operator T() const {
+    constexpr explicit operator T() const noexcept {
         return static_cast<T>(value);
     }
-    constexpr ModInt& operator+=(const ModInt& rhs) {
+    constexpr ModInt& operator+=(const ModInt& rhs) noexcept {
         if ((value += rhs.value) >= mod()) value -= mod();
         return *this;
     }
-    constexpr ModInt& operator-=(const ModInt& rhs) {
+    constexpr ModInt& operator-=(const ModInt& rhs) noexcept {
         if ((value -= rhs.value) < 0) value += mod();
         return *this;
     }
-    constexpr ModInt& operator*=(const ModInt& rhs) {
+    constexpr ModInt& operator*=(const ModInt& rhs) noexcept {
         (value *= rhs.value) %= mod();
         return *this;
     }
-    constexpr ModInt& operator/=(const ModInt& rhs) { return *this *= rhs.inv(); }
-    constexpr const ModInt inv() const { return ModInt(ModInt::inverse(value, mod())); }
-    constexpr const ModInt operator+() const { return *this; }
-    constexpr const ModInt operator-() const { return ModInt(-value); }
+    constexpr ModInt& operator/=(const ModInt& rhs) noexcept { return *this *= rhs.inv(); }
+    constexpr const ModInt inv() const noexcept { return ModInt(ModInt::inverse(value, mod())); }
+    constexpr const ModInt operator+() const noexcept { return *this; }
+    constexpr const ModInt operator-() const noexcept { return ModInt(-value); }
 
-    constexpr const ModInt pow(int64_t expv) const {
+    constexpr const ModInt pow(int64_t expv) const noexcept {
         int64_t ret = 1, square = value;
         for (uint64_t p = std::abs(expv); p; p >>= 1) {
             if (p & 1) (ret *= square) %= mod();
@@ -287,12 +541,12 @@ public:
         return (expv < 0) ? (ModInt::raw(1) / ModInt::raw(ret)) : ModInt::raw(ret);
     }
 
-    friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) { return lhs.value == rhs.value; }
-    friend constexpr bool operator!=(const ModInt& lhs, const ModInt& rhs) { return lhs.value != rhs.value; }
-    friend constexpr const ModInt operator+(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) += rhs; }
-    friend constexpr const ModInt operator-(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) -= rhs; }
-    friend constexpr const ModInt operator*(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) *= rhs; }
-    friend constexpr const ModInt operator/(const ModInt& lhs, const ModInt& rhs) { return ModInt(lhs) /= rhs; }
+    friend constexpr bool operator==(const ModInt& lhs, const ModInt& rhs) noexcept { return lhs.value == rhs.value; }
+    friend constexpr bool operator!=(const ModInt& lhs, const ModInt& rhs) noexcept { return lhs.value != rhs.value; }
+    friend constexpr const ModInt operator+(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) += rhs; }
+    friend constexpr const ModInt operator-(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) -= rhs; }
+    friend constexpr const ModInt operator*(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) *= rhs; }
+    friend constexpr const ModInt operator/(const ModInt& lhs, const ModInt& rhs) noexcept { return ModInt(lhs) /= rhs; }
 
     friend std::ostream& operator<<(std::ostream& os, const ModInt& x) {
 #ifdef LOCAL_DEBUG
@@ -338,16 +592,16 @@ struct DynamicModHolder {
 template <int ID>
 int64_t DynamicModHolder<ID>::mod;
 
-}  // namespace impl
+}  // namespace internal
 
 template <int64_t Mod>
-using StaticModInt = impl::ModInt<impl::StaticModHolder<Mod>>;
+using StaticModInt = internal::ModInt<internal::StaticModHolder<Mod>>;
 
 using ModInt1000000007 = StaticModInt<int(1e9) + 7>;
 using ModInt998244353 = StaticModInt<998244353>;
 
 template <int ID>
-using DynamicModInt = impl::ModInt<impl::DynamicModHolder<ID>>;
+using DynamicModInt = internal::ModInt<internal::DynamicModHolder<ID>>;
 // }}}
 endsnippet
 
@@ -1137,6 +1391,27 @@ auto runlength(Iterator const begin, Iterator const end) {
     ret.shrink_to_fit();
     return ret;
 }
+// }}}
+endsnippet
+
+snippet timer "Util/timer.hpp"
+// timer {{{
+class Timer {
+    std::chrono::system_clock::time_point m_start;
+
+public:
+    Timer() = default;
+
+    inline void start() {
+        m_start = std::chrono::system_clock::now();
+    }
+
+    inline uint64_t elapsedMilli() const {
+        using namespace std::chrono;
+        const auto end = system_clock::now();
+        return duration_cast<milliseconds>(end - m_start).count();
+    }
+};
 // }}}
 endsnippet
 
