@@ -13,10 +13,13 @@ data:
       title: "Union-Find (\u7D20\u96C6\u5408\u30C7\u30FC\u30BF\u69CB\u9020)"
   - name: Data-Structure/Range-Accumulate
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
+      path: Data-Structure/Range-Accumulate/FenwicTree.hpp
+      title: Fenwic-Tree (Binary-Indexed-Tree)
+    - icon: ':heavy_check_mark:'
       path: Data-Structure/Range-Accumulate/cumulative-sum.hpp
       title: "CumulativeSum (\u7D2F\u7A4D\u548C)"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Data-Structure/Range-Accumulate/foldLR.hpp
       title: FoldLR
   - name: Graph/Minimum-Spanning-Tree
@@ -142,7 +145,7 @@ data:
       path: Util/IO/read-undirected-graph.hpp
       title: "readUndirectedGraph() (\u7121\u5411\u30B0\u30E9\u30D5\u306E\u5165\u529B\
         )"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: Util/IO/read.hpp
       title: "read() (n\u500B\u5165\u529B\u3057\u3066Container\u306B\u683C\u7D0D\u3057\
         \u3066\u8FD4\u3059)"
@@ -256,11 +259,6 @@ data:
     - icon: ':warning:'
       path: short-snip/yesno.cpp
       title: short-snip/yesno.cpp
-  - name: test/yosupo
-    pages:
-    - icon: ':warning:'
-      path: test/yosupo/static-range-sum.cpp
-      title: test/yosupo/static-range-sum.cpp
   - name: tool
     pages:
     - icon: ':warning:'
@@ -346,5 +344,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/helloworld/zip.test.cpp
       title: test/helloworld/zip.test.cpp
+  - name: test/yosupo
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo/static-range-sum.test.cpp
+      title: test/yosupo/static-range-sum.test.cpp
 layout: toppage
 ---

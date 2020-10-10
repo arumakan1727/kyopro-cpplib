@@ -38,10 +38,11 @@ data:
     \ int64_t setMod(int64_t m) noexcept {\n        assert(m >= 1);\n        return\
     \ ModHolder::mod = m;\n    }\n\n    template <class T>\n    constexpr explicit\
     \ operator T() const noexcept {\n        return static_cast<T>(value);\n    }\n\
-    \    constexpr ModInt& operator+=(const ModInt& rhs) noexcept {\n        if ((value\
-    \ += rhs.value) >= mod()) value -= mod();\n        return *this;\n    }\n    constexpr\
-    \ ModInt& operator-=(const ModInt& rhs) noexcept {\n        if ((value -= rhs.value)\
-    \ < 0) value += mod();\n        return *this;\n    }\n    constexpr ModInt& operator*=(const\
+    \n    constexpr int64_t val() const noexcept { return value; }\n\n    constexpr\
+    \ ModInt& operator+=(const ModInt& rhs) noexcept {\n        if ((value += rhs.value)\
+    \ >= mod()) value -= mod();\n        return *this;\n    }\n    constexpr ModInt&\
+    \ operator-=(const ModInt& rhs) noexcept {\n        if ((value -= rhs.value) <\
+    \ 0) value += mod();\n        return *this;\n    }\n    constexpr ModInt& operator*=(const\
     \ ModInt& rhs) noexcept {\n        (value *= rhs.value) %= mod();\n        return\
     \ *this;\n    }\n    constexpr ModInt& operator/=(const ModInt& rhs) noexcept\
     \ { return *this *= rhs.inv(); }\n    constexpr const ModInt inv() const noexcept\
@@ -92,12 +93,13 @@ data:
     \ constexpr int64_t mod() { return ModHolder::mod; }\n\n    static int64_t setMod(int64_t\
     \ m) noexcept {\n        assert(m >= 1);\n        return ModHolder::mod = m;\n\
     \    }\n\n    template <class T>\n    constexpr explicit operator T() const noexcept\
-    \ {\n        return static_cast<T>(value);\n    }\n    constexpr ModInt& operator+=(const\
-    \ ModInt& rhs) noexcept {\n        if ((value += rhs.value) >= mod()) value -=\
-    \ mod();\n        return *this;\n    }\n    constexpr ModInt& operator-=(const\
-    \ ModInt& rhs) noexcept {\n        if ((value -= rhs.value) < 0) value += mod();\n\
-    \        return *this;\n    }\n    constexpr ModInt& operator*=(const ModInt&\
-    \ rhs) noexcept {\n        (value *= rhs.value) %= mod();\n        return *this;\n\
+    \ {\n        return static_cast<T>(value);\n    }\n\n    constexpr int64_t val()\
+    \ const noexcept { return value; }\n\n    constexpr ModInt& operator+=(const ModInt&\
+    \ rhs) noexcept {\n        if ((value += rhs.value) >= mod()) value -= mod();\n\
+    \        return *this;\n    }\n    constexpr ModInt& operator-=(const ModInt&\
+    \ rhs) noexcept {\n        if ((value -= rhs.value) < 0) value += mod();\n   \
+    \     return *this;\n    }\n    constexpr ModInt& operator*=(const ModInt& rhs)\
+    \ noexcept {\n        (value *= rhs.value) %= mod();\n        return *this;\n\
     \    }\n    constexpr ModInt& operator/=(const ModInt& rhs) noexcept { return\
     \ *this *= rhs.inv(); }\n    constexpr const ModInt inv() const noexcept { return\
     \ ModInt(ModInt::inverse(value, mod())); }\n    constexpr const ModInt operator+()\
@@ -139,7 +141,7 @@ data:
   path: Math/Modulo/mod-int.hpp
   requiredBy:
   - Math/Combinatorics/factorials.hpp
-  timestamp: '2020-10-10 05:22:35+09:00'
+  timestamp: '2020-10-10 20:15:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/DPL_5_A.test.cpp

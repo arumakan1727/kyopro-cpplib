@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/yosupo/static-range-sum.cpp
-    title: test/yosupo/static-range-sum.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/static-range-sum.test.cpp
+    title: test/yosupo/static-range-sum.test.cpp
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "CumulativeSum (\u7D2F\u7A4D\u548C)"
     links: []
@@ -37,11 +37,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Data-Structure/Range-Accumulate/cumulative-sum.hpp
-  requiredBy:
-  - test/yosupo/static-range-sum.cpp
+  requiredBy: []
   timestamp: '2020-10-10 05:48:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yosupo/static-range-sum.test.cpp
 documentation_of: Data-Structure/Range-Accumulate/cumulative-sum.hpp
 layout: document
 redirect_from:

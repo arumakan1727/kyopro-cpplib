@@ -11,7 +11,7 @@ data:
     path: Util/IO/println.hpp
     title: "println() (\u53EF\u5909\u500B\u306E\u5024\u3092\u7A7A\u767D\u533A\u5207\
       \u308A\u3067\u51FA\u529B\u3057\u3066\u6539\u884C\u3059\u308B)"
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: Util/IO/read.hpp
     title: "read() (n\u500B\u5165\u529B\u3057\u3066Container\u306B\u683C\u7D0D\u3057\
       \u3066\u8FD4\u3059)"

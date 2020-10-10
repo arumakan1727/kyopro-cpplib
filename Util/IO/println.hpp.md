@@ -5,9 +5,6 @@ data:
   - icon: ':warning:'
     path: export/template-prototype.cpp
     title: export/template-prototype.cpp
-  - icon: ':warning:'
-    path: test/yosupo/static-range-sum.cpp
-    title: test/yosupo/static-range-sum.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
@@ -21,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
     title: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/static-range-sum.test.cpp
+    title: test/yosupo/static-range-sum.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -45,7 +45,6 @@ data:
   path: Util/IO/println.hpp
   requiredBy:
   - export/template-prototype.cpp
-  - test/yosupo/static-range-sum.cpp
   timestamp: '2020-09-17 10:59:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -53,6 +52,7 @@ data:
   - test/AOJ/DPL_5_A.test.cpp
   - test/AOJ/ALDS1_14_B-String-Search.test.cpp
   - test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
+  - test/yosupo/static-range-sum.test.cpp
 documentation_of: Util/IO/println.hpp
 layout: document
 redirect_from:

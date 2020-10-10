@@ -8,9 +8,6 @@ data:
   - icon: ':warning:'
     path: export/template-prototype.cpp
     title: export/template-prototype.cpp
-  - icon: ':warning:'
-    path: test/yosupo/static-range-sum.cpp
-    title: test/yosupo/static-range-sum.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/DPL_5_A.test.cpp
@@ -24,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
     title: test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/static-range-sum.test.cpp
+    title: test/yosupo/static-range-sum.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -41,7 +41,6 @@ data:
   path: Util/int-alias.hpp
   requiredBy:
   - export/template-prototype.cpp
-  - test/yosupo/static-range-sum.cpp
   - Algorithm/doubling-pow.hpp
   timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -50,6 +49,7 @@ data:
   - test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
   - test/AOJ/NTL_1_B-Power.test.cpp
   - test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
+  - test/yosupo/static-range-sum.test.cpp
 documentation_of: Util/int-alias.hpp
 layout: document
 redirect_from:

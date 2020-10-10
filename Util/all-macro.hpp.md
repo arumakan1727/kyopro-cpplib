@@ -5,9 +5,6 @@ data:
   - icon: ':warning:'
     path: export/template-prototype.cpp
     title: export/template-prototype.cpp
-  - icon: ':warning:'
-    path: test/yosupo/static-range-sum.cpp
-    title: test/yosupo/static-range-sum.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/ALDS1_14_B-String-Search.test.cpp
@@ -15,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/helloworld/rolling-hash.test.cpp
     title: test/helloworld/rolling-hash.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yosupo/static-range-sum.test.cpp
+    title: test/yosupo/static-range-sum.test.cpp
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -30,12 +30,12 @@ data:
   path: Util/all-macro.hpp
   requiredBy:
   - export/template-prototype.cpp
-  - test/yosupo/static-range-sum.cpp
   timestamp: '2020-09-08 04:00:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/ALDS1_14_B-String-Search.test.cpp
   - test/helloworld/rolling-hash.test.cpp
+  - test/yosupo/static-range-sum.test.cpp
 documentation_of: Util/all-macro.hpp
 layout: document
 redirect_from:
