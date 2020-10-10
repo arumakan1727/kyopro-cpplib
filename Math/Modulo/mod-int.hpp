@@ -42,6 +42,9 @@ public:
     constexpr explicit operator T() const noexcept {
         return static_cast<T>(value);
     }
+
+    constexpr int64_t val() const noexcept { return value; }
+
     constexpr ModInt& operator+=(const ModInt& rhs) noexcept {
         if ((value += rhs.value) >= mod()) value -= mod();
         return *this;
