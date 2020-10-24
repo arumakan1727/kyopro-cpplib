@@ -19,7 +19,7 @@ int main() {
     constexpr int OFFSET = 2000;
     constexpr int MOD = int(1e8) + 7;
     using Mint = StaticModInt<MOD>;
-    const auto F = Factorials<Mint::mod()>();
+    const auto F = Factorials<Mint>();
 
     var(int, H, W, sy, sx, gy, gx);
     sx += OFFSET;

@@ -7,11 +7,11 @@
 /**
  * @brief factorials (階乗, 階乗の逆元, nCr, nPr)
  */
-template <int Mod>
+template <class Mint>
 struct Factorials {
 public:
-    using value_type = StaticModInt<Mod>;
-    static constexpr size_t MAX_N = std::min<size_t>(1e7, Mod) + 1;
+    using value_type = Mint;
+    static constexpr size_t MAX_N = std::min<size_t>(1e7, Mint::mod()) + 1;
 
 private:
     mutable std::vector<value_type> m_fact, m_finv;
