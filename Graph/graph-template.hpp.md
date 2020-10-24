@@ -80,16 +80,16 @@ data:
   isVerificationFile: false
   path: Graph/graph-template.hpp
   requiredBy:
-  - Util/IO/read-undirected-graph.hpp
-  - Util/IO/read-directed-graph.hpp
   - Util/Debug/graph-debug.hpp
+  - Util/IO/read-directed-graph.hpp
+  - Util/IO/read-undirected-graph.hpp
   - Graph/Minimum-Spanning-Tree/kruskal.hpp
   timestamp: '2020-09-25 22:23:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
-  - test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
   - test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
+  - test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
 documentation_of: Graph/graph-template.hpp
 layout: document
 redirect_from:

@@ -75,9 +75,9 @@ data:
     \nusing ModInt1000000007 = StaticModInt<int(1e9) + 7>;\nusing ModInt998244353\
     \ = StaticModInt<998244353>;\n\ntemplate <int ID>\nusing DynamicModInt = internal::ModInt<internal::DynamicModHolder<ID>>;\n\
     #line 6 \"Math/Combinatorics/factorials.hpp\"\n\n/**\n * @brief factorials (\u968E\
-    \u4E57, \u968E\u4E57\u306E\u9006\u5143, nCr, nPr)\n */\ntemplate <int Mod>\nstruct\
-    \ Factorials {\npublic:\n    using value_type = StaticModInt<Mod>;\n    static\
-    \ constexpr size_t MAX_N = std::min<size_t>(1e7, Mod) + 1;\n\nprivate:\n    mutable\
+    \u4E57, \u968E\u4E57\u306E\u9006\u5143, nCr, nPr)\n */\ntemplate <class Mint>\n\
+    struct Factorials {\npublic:\n    using value_type = Mint;\n    static constexpr\
+    \ size_t MAX_N = std::min<size_t>(1e7, Mint::mod()) + 1;\n\nprivate:\n    mutable\
     \ std::vector<value_type> m_fact, m_finv;\n\npublic:\n    Factorials() {\n   \
     \     m_fact.reserve(MAX_N);\n        m_finv.reserve(MAX_N);\n        m_fact.resize(2,\
     \ value_type::raw(1));   // m_fact[0] = m_fact[1] = 1\n        m_finv.resize(2,\
@@ -98,10 +98,10 @@ data:
     \ + r - 1, r);\n    }\n};\n"
   code: "#pragma once\n#include <cassert>\n#include <vector>\n\n#include \"../Modulo/mod-int.hpp\"\
     \n\n/**\n * @brief factorials (\u968E\u4E57, \u968E\u4E57\u306E\u9006\u5143, nCr,\
-    \ nPr)\n */\ntemplate <int Mod>\nstruct Factorials {\npublic:\n    using value_type\
-    \ = StaticModInt<Mod>;\n    static constexpr size_t MAX_N = std::min<size_t>(1e7,\
-    \ Mod) + 1;\n\nprivate:\n    mutable std::vector<value_type> m_fact, m_finv;\n\
-    \npublic:\n    Factorials() {\n        m_fact.reserve(MAX_N);\n        m_finv.reserve(MAX_N);\n\
+    \ nPr)\n */\ntemplate <class Mint>\nstruct Factorials {\npublic:\n    using value_type\
+    \ = Mint;\n    static constexpr size_t MAX_N = std::min<size_t>(1e7, Mint::mod())\
+    \ + 1;\n\nprivate:\n    mutable std::vector<value_type> m_fact, m_finv;\n\npublic:\n\
+    \    Factorials() {\n        m_fact.reserve(MAX_N);\n        m_finv.reserve(MAX_N);\n\
     \        m_fact.resize(2, value_type::raw(1));   // m_fact[0] = m_fact[1] = 1\n\
     \        m_finv.resize(2, value_type::raw(1));   // m_finv[0] = m_finv[1] = 1\n\
     \    }\n\n    void preCalc(size_t n) const {\n        if (n < m_fact.size()) return;\n\
@@ -123,7 +123,7 @@ data:
   isVerificationFile: false
   path: Math/Combinatorics/factorials.hpp
   requiredBy: []
-  timestamp: '2020-10-10 20:15:48+09:00'
+  timestamp: '2020-10-24 20:26:45+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/1501-Grid.test.cpp

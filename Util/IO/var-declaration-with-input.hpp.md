@@ -39,8 +39,8 @@ data:
   timestamp: '2020-09-08 04:00:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
   - test/AOJ/1501-Grid.test.cpp
+  - test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
   - test/AOJ/0558-Cheese.test.cpp
 documentation_of: Util/IO/var-declaration-with-input.hpp
 layout: document

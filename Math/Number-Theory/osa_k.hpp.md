@@ -55,8 +55,8 @@ data:
   timestamp: '2020-09-21 12:52:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/helloworld/divisor-count-table.test.cpp
   - test/helloworld/osa_k.test.cpp
+  - test/helloworld/divisor-count-table.test.cpp
 documentation_of: Math/Number-Theory/osa_k.hpp
 layout: document
 redirect_from:

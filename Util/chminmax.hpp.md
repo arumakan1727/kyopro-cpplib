@@ -32,13 +32,13 @@ data:
   isVerificationFile: false
   path: Util/chminmax.hpp
   requiredBy:
-  - export/template-prototype.cpp
   - Graph/Shortest-Path/dijkstra.hpp
+  - export/template-prototype.cpp
   timestamp: '2020-09-08 04:00:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
   - test/AOJ/1501-Grid.test.cpp
+  - test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
 documentation_of: Util/chminmax.hpp
 layout: document
 redirect_from:

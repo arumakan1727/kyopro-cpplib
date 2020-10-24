@@ -251,6 +251,12 @@ data:
       path: short-snip/precision.cpp
       title: short-snip/precision.cpp
     - icon: ':warning:'
+      path: short-snip/sigma.cpp
+      title: short-snip/sigma.cpp
+    - icon: ':warning:'
+      path: short-snip/sqr.cpp
+      title: short-snip/sqr.cpp
+    - icon: ':warning:'
       path: short-snip/uniq.cpp
       title: short-snip/uniq.cpp
     - icon: ':warning:'

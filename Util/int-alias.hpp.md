@@ -40,8 +40,8 @@ data:
   isVerificationFile: false
   path: Util/int-alias.hpp
   requiredBy:
-  - export/template-prototype.cpp
   - Algorithm/doubling-pow.hpp
+  - export/template-prototype.cpp
   timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
