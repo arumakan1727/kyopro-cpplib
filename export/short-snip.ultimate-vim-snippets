@@ -31,7 +31,8 @@ $0
 endsnippet
 
 snippet sigma "short-snip/sigma.cpp"
-const auto sigma = [](const auto x) { return x * (x + 1) / 2; };
+//! sum of [s, t]
+const auto sigma = [](const auto s, const auto t) { return (t * (t + 1) / 2) - ((s - 1) * s / 2); };
 endsnippet
 
 snippet sqr "short-snip/sqr.cpp"
