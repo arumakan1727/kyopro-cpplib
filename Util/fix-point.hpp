@@ -3,8 +3,9 @@
 
 /**
  * @brief FixPoint (ラムダ式の再帰)
+ *
+ * (Ex) FixPoint([&](auto func, int n) -> int {...})(10);
  */
-// Ex) FixPoint([&](auto func, int n) -> int {...})(10);
 template <class F>
 struct FixPoint : F {
     FixPoint(F&& f)

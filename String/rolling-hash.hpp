@@ -39,22 +39,22 @@ public:
         }
     }
 
-    // 文字列全体のハッシュ値
+    //! 文字列全体のハッシュ値
     u64 hash() const { return m_hash.back(); }
 
-    // 半開区間 [l, r) のハッシュ値
+    //! 半開区間 [l, r) のハッシュ値
     u64 rangeHash(size_t l, size_t r) const {
         assert(l < r && r < m_hash.size());
         return add(m_hash[r], MOD - mul(m_hash[l], powArray()[r - l]));
     }
 
-    // rangeHash(begin, begin + length) と等価
+    //! rangeHash(begin, begin + length) と等価
     u64 substr(size_t begin, size_t length) const { return rangeHash(begin, begin + length); }
 
-    // もとの文字列の長さ
+    //! もとの文字列の長さ
     size_t size() const { return m_hash.size() - 1; }
 
-    // 連結した文字列 (leftStr + rightStr) のハッシュ値
+    //! 連結した文字列 (leftStr + rightStr) のハッシュ値
     static u64 concat(u64 leftHash, u64 rightHash, size_t rightLength) {
         growPowArray(rightLength);
         return add(mul(leftHash, powArray()[rightLength]), rightHash);

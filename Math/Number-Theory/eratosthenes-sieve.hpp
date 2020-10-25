@@ -15,7 +15,7 @@ private:
 public:
     EratosthenesSieve() = default;
 
-    // [0, n] の範囲で篩を構築する
+    //! [0, n] の範囲で篩を構築する
     explicit EratosthenesSieve(int n_)
         : m_size(n_ + 1)
         , m_minFactor(m_size) {

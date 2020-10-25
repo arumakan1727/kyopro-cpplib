@@ -6,7 +6,7 @@
 /**
  * @brief graph-template (Edge, Graph, MatrixGraph)
  */
-// グラフの辺 (重み付き)
+//! グラフの辺 (重み付き)
 template <class T>
 struct Edge {
     int from, to;
@@ -34,7 +34,7 @@ struct Edge {
     friend std::istream& operator>>(std::istream& is, Edge& e) { return is >> e.from >> e.to >> e.weight; }
 };
 
-// グラフの辺 (重みナシ)
+//! グラフの辺 (重みなし)
 template <>
 struct Edge<void> {
     int from, to;
@@ -60,6 +60,5 @@ struct Edge<void> {
     friend std::istream& operator>>(std::istream& is, Edge& e) { return is >> e.from >> e.to; }
 };
 
-// グラフ (隣接リスト実装)
 template <class T>
 using Graph = std::vector<std::vector<Edge<T>>>;
