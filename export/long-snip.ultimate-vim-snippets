@@ -1,5 +1,8 @@
 snippet doubling-pow "Algorithm/doubling-pow.hpp"
 // doubling-pow {{{
+/**
+ * @brief doubling-pow() (繰り返し二乗法)
+ */
 template <class Integer>
 constexpr Integer doublingPow(const Integer& n, const i64 expv) {
     Integer ret = 1, square = n;
@@ -14,6 +17,10 @@ endsnippet
 
 snippet union-find "Disjoint-Set/union-find.hpp"
 // union-find {{{
+/**
+ * @brief Union-Find (素集合データ構造)
+ * @note path-compression + union-by-size
+ */
 class UnionFind {
 private:
     int n;
@@ -57,6 +64,9 @@ endsnippet
 
 snippet FenwicTree "Range-Accumulate/FenwicTree.hpp"
 // FenwicTree {{{
+/**
+ * @brief Fenwic-Tree (Binary-Indexed-Tree)
+ */
 template <class T>
 class FenwicTree {
     size_t m_size;
@@ -115,6 +125,9 @@ endsnippet
 
 snippet cumulative-sum "Range-Accumulate/cumulative-sum.hpp"
 // cumulative-sum {{{
+/**
+ * @brief CumulativeSum (累積和)
+ */
 template <class T>
 struct CumulativeSum {
     std::valarray<T> data;
@@ -146,6 +159,9 @@ endsnippet
 
 snippet foldLR "Range-Accumulate/foldLR.hpp"
 // foldLR {{{
+/**
+ * @brief FoldLR
+ */
 template <class T>
 class FoldLR {
     std::vector<T> m_foldL, m_foldR;
@@ -198,6 +214,9 @@ endsnippet
 
 snippet kruskal "Minimum-Spanning-Tree/kruskal.hpp"
 // kruskal {{{
+/**
+ * @brief kruskal() (クラスカル法)
+ */
 template <class ResultType, class WeightType>
 ResultType kruskal(int V, std::vector<Edge<WeightType>>& edges) {
     ResultType weightSum{};
@@ -217,6 +236,26 @@ endsnippet
 
 snippet bfs "Shortest-Path/bfs.hpp"
 // bfs {{{
+/**
+ * @brief bfs() (幅優先探索による単一始点最短経路, 次元拡張に対応)
+ *
+ * @param dist:
+ *      start からの距離を格納する配列。
+ *      要素数は頂点数以上でなければならない。-1やINFなど、距離として正当でない値でfillされている必要がある。
+ *      多次元配列でもOK。
+ *
+ * @param start:
+ *      頂点を表すdistの添字。
+ *      distが一次元配列なら整数型,
+ *      distが二次元配列ならstd::pair<integer, integer> または std::tuple<integer, integer> または std::array<integer, 2>,
+ *      distが三次元配列ならstd::tuple<integer, integer, integer> または std::array<integer, 3>。
+ *      start = {i, j, k} のとき dist[i][j][k] でアクセスする。
+ *
+ * @param enumerateNextVertex:
+ *      fn(from: Vertex, fn(to: Vertex) => void) => void
+ *      第一引数にVertex, 第二引数に関数をとる関数。
+ *      この関数が第一引数の頂点fromから次の頂点の遷移先を列挙し、第二引数に渡すことで bfs() に遷移処理を委譲する。
+ */
 template <class DistArray, class Vertex, class NextVertexEnumerator>
 DistArray bfs(DistArray&& dist, Vertex start, NextVertexEnumerator enumerateNextVertex) {
     using arumakan::at;
@@ -244,6 +283,26 @@ endsnippet
 
 snippet dijkstra "Shortest-Path/dijkstra.hpp"
 // dijkstra {{{
+/**
+ * @brief dijkstra() (ダイクストラ, $O((V + E)\log V)$)
+ *
+ * @param dist:
+ *      start からの距離を格納する配列。
+ *      要素数は頂点数以上でなければならない。INFなどのでかい値でfillされている必要がある。
+ *      多次元配列でもOK。
+ *
+ * @param start:
+ *      頂点を表すdistの添字。
+ *      distが一次元配列なら整数型,
+ *      distが二次元配列ならstd::pair<integer, integer> または std::tuple<integer, integer> または std::array<integer, 2>,
+ *      distが三次元配列ならstd::tuple<integer, integer, integer> または std::array<integer, 3>。
+ *      start = {i, j, k} のとき dist[i][j][k] でアクセスする。
+ *
+ * @param enumerateNextVertex:
+ *      fn(from: Vertex, fn(to: Vertex, w: EdgeWeight) => void) => void
+ *      第一引数にVertex, 第二引数に関数をとる関数。
+ *      この関数が第一引数の頂点fromから次の頂点の遷移先を列挙し、第二引数に渡すことで dijkstra() に遷移処理を委譲する。
+ */
 template <class DistArray, class Vertex, class NextVertexEnumerator>
 DistArray dijkstra(DistArray&& dist, Vertex start, NextVertexEnumerator enumerateNextVertex) {
     using arumakan::at;
@@ -274,7 +333,10 @@ endsnippet
 
 snippet graph-template "Graph/graph-template.hpp"
 // graph-template {{{
-// グラフの辺 (重み付き)
+/**
+ * @brief graph-template (Edge, Graph, MatrixGraph)
+ */
+//! グラフの辺 (重み付き)
 template <class T>
 struct Edge {
     int from, to;
@@ -302,7 +364,7 @@ struct Edge {
     friend std::istream& operator>>(std::istream& is, Edge& e) { return is >> e.from >> e.to >> e.weight; }
 };
 
-// グラフの辺 (重みナシ)
+//! グラフの辺 (重みなし)
 template <>
 struct Edge<void> {
     int from, to;
@@ -328,7 +390,6 @@ struct Edge<void> {
     friend std::istream& operator>>(std::istream& is, Edge& e) { return is >> e.from >> e.to; }
 };
 
-// グラフ (隣接リスト実装)
 template <class T>
 using Graph = std::vector<std::vector<Edge<T>>>;
 // }}}
@@ -336,6 +397,9 @@ endsnippet
 
 snippet factorials "Combinatorics/factorials.hpp"
 // factorials {{{
+/**
+ * @brief factorials (階乗, 階乗の逆元, nCr, nPr)
+ */
 template <class Mint>
 struct Factorials {
 public:
@@ -387,6 +451,9 @@ endsnippet
 
 snippet mersenne-prime-number-mod-int "Modulo/mersenne-prime-number-mod-int.hpp"
 // mersenne-prime-number-mod-int {{{
+/**
+ * @brief MersennePrimeNumberModInt (法がメルセンヌ素数のModInt特殊化)
+ */
 namespace internal {
 
 template <class ModHolder>
@@ -538,6 +605,9 @@ endsnippet
 
 snippet mod-int "Modulo/mod-int.hpp"
 // mod-int {{{
+/**
+ * @brief Mod-Int (コンパイル時mod型と実行時mod型)
+ */
 namespace internal {
 
 template <class ModHolder>
@@ -668,6 +738,10 @@ endsnippet
 
 snippet divisor-count-table "Number-Theory/divisor-count-table.hpp"
 // divisor-count-table {{{
+/**
+ * @brief divisorCountTable (約数の個数のテーブル, $O(N \log N)$)
+ * cnt[i] = i の約数の個数; 範囲は閉区間 [0, N]
+ */
 std::vector<int> divisorCountTable(int N) {
     std::vector<int> cnt(N + 1);
     for (int d = 1; d <= N; ++d) {
@@ -680,6 +754,9 @@ endsnippet
 
 snippet enumerate-divisors "Number-Theory/enumerate-divisors.hpp"
 // enumerate-divisors {{{
+/**
+ * @brief enumerateDivisors() (約数列挙)
+ */
 template <class Integer>
 std::vector<Integer> enumerateDivisors(Integer n) {
     std::vector<Integer> divisors;
@@ -696,6 +773,10 @@ endsnippet
 
 snippet eratosthenes-sieve "Number-Theory/eratosthenes-sieve.hpp"
 // eratosthenes-sieve {{{
+/**
+ * @brief Eratosthenes-Sieve (エラトステネスの篩)
+ * @see https://qiita.com/rsk0315_h4x/items/ff3b542a4468679fb409
+ */
 class EratosthenesSieve {
 private:
     int m_size;
@@ -704,7 +785,7 @@ private:
 public:
     EratosthenesSieve() = default;
 
-    // [0, n] の範囲で篩を構築する
+    //! [0, n] の範囲で篩を構築する
     explicit EratosthenesSieve(int n_)
         : m_size(n_ + 1)
         , m_minFactor(m_size) {
@@ -734,7 +815,10 @@ endsnippet
 
 snippet extgcd "Number-Theory/extgcd.hpp"
 // extgcd {{{
-// ax + by = gcd(a, b) の整数解 (x, y) を求める
+/**
+ * @brief extgcd() (拡張ユークリッドの互除法)
+ * ax + by = gcd(a, b) の整数解 (x, y) を引数に格納する
+ */
 template <class T>
 T extgcd(T a, T b, T& x, T& y) {
     T g = a;
@@ -752,6 +836,9 @@ endsnippet
 
 snippet is-prime "Number-Theory/is-prime.hpp"
 // is-prime {{{
+/**
+ * @brief isPrime() (素数判定 $O(\sqrt n)$)
+ */
 constexpr bool isPrime(int64_t n) {
     if (n == 2) return true;
     if (n <= 1 || n % 2 == 0) return false;
@@ -765,6 +852,10 @@ endsnippet
 
 snippet osa_k "Number-Theory/osa_k.hpp"
 // osa_k {{{
+/**
+ * @brief osa_k() (前計算 $O(N \log \log N)$, 素因数分解 $O(\log N)$)
+ * @see https://qiita.com/rsk0315_h4x/items/ff3b542a4468679fb409
+ */
 std::map<int, int> osa_k(int n, const EratosthenesSieve& es) {
     std::map<int, int> ret;
     while (n > 1) {
@@ -778,6 +869,9 @@ endsnippet
 
 snippet prime-factorize "Number-Theory/prime-factorize.hpp"
 // prime-factorize {{{
+/**
+ * @brief primeFactorize() (素因数分解 $O(\sqrt n)$)
+ */
 template <class Integer>
 std::map<Integer, int> primeFactorize(Integer n) {
     std::map<Integer, int> res;
@@ -795,6 +889,9 @@ endsnippet
 
 snippet totient-func "Number-Theory/totient-func.hpp"
 // totient-func {{{
+/**
+ * @brief totient() (オイラーのトーシェント関数)
+ */
 template <class Integer>
 constexpr Integer totient(Integer n) {
     Integer ret = n;
@@ -812,6 +909,10 @@ endsnippet
 
 snippet rabin-karp "String/rabin-karp.hpp"
 // rabin-karp {{{
+/**
+ * @brief rabinKarp() (ラビンカープ法, RollingHashを用いた文字列検索 $O(|s|)$)
+ * s の中で pattern が出現するインデックスを全て求めて vector として返す(インデックスは昇順)。
+ */
 template <uint_fast64_t Base>
 std::vector<size_t> rabinKarp(const RollingHash<Base>& s, const RollingHash<Base>& pattern) {
     const auto sLen = s.size();
@@ -832,6 +933,10 @@ endsnippet
 
 snippet rolling-hash "String/rolling-hash.hpp"
 // rolling-hash {{{
+/**
+ * @brief Rolling-Hash (ローリングハッシュ, mod値 $2^{61} - 1$ 固定)
+ * @see https://qiita.com/keymoon/items/11fac5627672a6d6a9f6
+ */
 template <uint_fast64_t Base>
 class RollingHash {
 public:
@@ -862,22 +967,22 @@ public:
         }
     }
 
-    // 文字列全体のハッシュ値
+    //! 文字列全体のハッシュ値
     u64 hash() const { return m_hash.back(); }
 
-    // 半開区間 [l, r) のハッシュ値
+    //! 半開区間 [l, r) のハッシュ値
     u64 rangeHash(size_t l, size_t r) const {
         assert(l < r && r < m_hash.size());
         return add(m_hash[r], MOD - mul(m_hash[l], powArray()[r - l]));
     }
 
-    // rangeHash(begin, begin + length) と等価
+    //! rangeHash(begin, begin + length) と等価
     u64 substr(size_t begin, size_t length) const { return rangeHash(begin, begin + length); }
 
-    // もとの文字列の長さ
+    //! もとの文字列の長さ
     size_t size() const { return m_hash.size() - 1; }
 
-    // 連結した文字列 (leftStr + rightStr) のハッシュ値
+    //! 連結した文字列 (leftStr + rightStr) のハッシュ値
     static u64 concat(u64 leftHash, u64 rightHash, size_t rightLength) {
         growPowArray(rightLength);
         return add(mul(leftHash, powArray()[rightLength]), rightHash);
@@ -911,6 +1016,9 @@ endsnippet
 
 snippet debug "Debug/debug.hpp"
 // debug {{{
+/**
+ * @brief Debug
+ */
 #ifdef LOCAL_DEBUG
 
 namespace dbg {
@@ -1032,6 +1140,9 @@ endsnippet
 
 snippet errln "Debug/errln.hpp"
 // errln {{{
+/**
+ * @brief errln() (println()のstderr版, デバッグ時のみ有効)
+ */
 inline void eprintln() {
     std::clog << std::endl;
 }
@@ -1051,6 +1162,9 @@ endsnippet
 
 snippet graph-debug "Debug/graph-debug.hpp"
 // graph-debug {{{
+/**
+ * @brief graph-debug (グラフのデバッグ出力)
+ */
 template <class T>
 std::ostream& operator<<(std::ostream& os, const Edge<T>& e) {
     os << std::setw(0) << '(' << std::setfill('0') << std::setw(2) << e.from << "-" << std::setw(2) << e.to << ", w=" << std::setw(2) << e.weight;
@@ -1071,6 +1185,9 @@ endsnippet
 
 snippet container-input "IO/container-input.hpp"
 // container-input {{{
+/**
+ * @brief std::istreamによるコンテナの入力
+ */
 template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
 std::istream& operator>>(std::istream& is, Container& v) {
     for (auto& e : v) is >> e;
@@ -1081,6 +1198,9 @@ endsnippet
 
 snippet container-output "IO/container-output.hpp"
 // container-output {{{
+/**
+ * @brief std::ostreamによるコンテナの出力
+ */
 template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
 std::ostream& operator<<(std::ostream& os, const Container& v) {
     for (auto it = std::begin(v); it != std::end(v); ++it) os << &" "[it == std::begin(v)] << *it;
@@ -1091,6 +1211,9 @@ endsnippet
 
 snippet join-into-ostream "IO/join-into-ostream.hpp"
 // join-into-ostream {{{
+/**
+ * @brief join() (要素を区切り文字で結合して出力)
+ */
 template <class InputItr>
 void join(std::ostream& os, InputItr begin, InputItr end, const char* delim, const char* last = "\n") {
     const char* tmp[] = {delim, ""};
@@ -1102,6 +1225,9 @@ endsnippet
 
 snippet println "IO/println.hpp"
 // println {{{
+/**
+ * @brief println() (可変個の値を空白区切りで出力して改行する)
+ */
 inline void println() {
     std::cout << '\n';
 }
@@ -1115,6 +1241,9 @@ endsnippet
 
 snippet read-directed-graph "IO/read-directed-graph.hpp"
 // read-directed-graph {{{
+/**
+ * @brief readDirectedGraph() (有向グラフの入力)
+ */
 template <class T>
 Graph<T> readDirectedGraph(size_t V, size_t E, int padding = -1, std::istream& is = std::cin) {
     Graph<T> G(V);
@@ -1133,6 +1262,9 @@ endsnippet
 
 snippet read-undirected-graph "IO/read-undirected-graph.hpp"
 // read-undirected-graph {{{
+/**
+ * @brief readUndirectedGraph() (無向グラフの入力)
+ */
 template <class T>
 Graph<T> readUndirectedGraph(size_t V, size_t E, int padding = -1, std::istream& is = std::cin) {
     Graph<T> G(V);
@@ -1151,6 +1283,9 @@ endsnippet
 
 snippet read "IO/read.hpp"
 // read {{{
+/**
+ * @brief read() (n個入力してContainerに格納して返す)
+ */
 template <class T = int, template <class, class...> class Container = std::vector>
 Container<T> read(size_t n) {
     Container<T> ret(n);
@@ -1162,6 +1297,9 @@ endsnippet
 
 snippet var-declaration-with-input "IO/var-declaration-with-input.hpp"
 // var-declaration-with-input {{{
+/**
+ * @brief 複数変数宣言をして同時に入力もするやつ
+ */
 template <class T>
 std::istream& operator,(std::istream& is, T& rhs) {
     return is >> rhs;
@@ -1175,6 +1313,9 @@ endsnippet
 
 snippet all-macro "Util/all-macro.hpp"
 // all-macro {{{
+/**
+ * @brief all()マクロ
+ */
 #define all(x) std::begin(x), std::end(x)
 #define rall(x) std::rbegin(x), std::rend(x)
 // }}}
@@ -1182,27 +1323,30 @@ endsnippet
 
 snippet at "Util/at.hpp"
 // at {{{
+/**
+ * @brief at() ()
+ */
 namespace arumakan {
 
-// at(a, i) returns a[i]
+//! at(a, i) returns a[i]
 template <class Array, class Integer, std::enable_if_t<std::is_integral<Integer>::value, std::nullptr_t> = nullptr>
 inline auto at(Array&& a, Integer i) -> decltype(a[0])& {
     return a[i];
 }
 
-// at(a, Tuple{i}) returns a[i]
+//! at(a, Tuple{i}) returns a[i]
 template <class Array, class Tuple, std::enable_if_t<std::tuple_size<Tuple>::value == 1, std::nullptr_t> = nullptr>
 inline auto at(Array&& a, Tuple index) -> decltype(a[0])& {
     return a[std::get<0>(index)];
 }
 
-// at(mat, Tuple{y, x}) returns mat[y][x]
+//! at(mat, Tuple{y, x}) returns mat[y][x]
 template <class Matrix, class Tuple, std::enable_if_t<std::tuple_size<Tuple>::value == 2, std::nullptr_t> = nullptr>
 inline auto at(Matrix&& mat, Tuple index) -> decltype(mat[0][0])& {
     return mat[std::get<0>(index)][std::get<1>(index)];
 }
 
-// at(cube, Tuple{z, y, x}) returns cube[z][y][x]
+//! at(cube, Tuple{z, y, x}) returns cube[z][y][x]
 template <class Cube, class Tuple, std::enable_if_t<std::tuple_size<Tuple>::value == 3, std::nullptr_t> = nullptr>
 inline auto at(Cube&& cube, Tuple index) -> decltype(cube[0][0][0])& {
     return cube[std::get<0>(index)][std::get<1>(index)][std::get<2>(index)];
@@ -1214,6 +1358,9 @@ endsnippet
 
 snippet chminmax "Util/chminmax.hpp"
 // chminmax {{{
+/**
+ * @brief chmin(), chmax()
+ */
 template <class T, class U>
 inline bool chmin(T& a, const U& b) {
     return b < a && (a = b, true);
@@ -1228,6 +1375,10 @@ endsnippet
 
 snippet constexpr-randint "Util/constexpr-randint.hpp"
 // constexpr-randint {{{
+/**
+ * @brief constexprRandint() (コンパイル時乱数)
+ * 呼び出す度に値が変わるわけではないので う笑
+ */
 #define STRINGIZE_I(x) #x
 #define STRINGIZE(x) STRINGIZE_I(x)
 #define UNIQUE_STRING __DATE__ "_" __TIME__ "_" __FILE__ "_" STRINGIZE(__LINE__)
@@ -1241,6 +1392,10 @@ endsnippet
 
 snippet cstring-hash "Util/cstring-hash.hpp"
 // cstring-hash {{{
+/**
+ * @brief cstringHash() ヌル文字終端された文字列から32bitハッシュ値を生成する(constexpr)
+ * @see https://en.wikipedia.org/wiki/Jenkins_hash_function
+ */
 constexpr uint32_t cstringHash(const char* s) {
     uint32_t hashv = 0;
     while (*s != '\0') {
@@ -1258,6 +1413,9 @@ endsnippet
 
 snippet fillContainer "Util/fillContainer.hpp"
 // fillContainer {{{
+/**
+ * @brief fillContainer() (コンテナのfill)
+ */
 template <class T, class Container, class... ConstructorArgs, std::enable_if_t<std::is_same<Container, T>::value, std::nullptr_t> = nullptr>
 inline void fillContainer(Container& container, ConstructorArgs&&... constructorArgs) {
     container = T(std::forward<ConstructorArgs>(constructorArgs)...);
@@ -1272,7 +1430,11 @@ endsnippet
 
 snippet fix-point "Util/fix-point.hpp"
 // fix-point {{{
-// Ex) FixPoint([&](auto func, int n) -> int {...})(10);
+/**
+ * @brief FixPoint (ラムダ式の再帰)
+ *
+ * (Ex) FixPoint([&](auto func, int n) -> int {...})(10);
+ */
 template <class F>
 struct FixPoint : F {
     FixPoint(F&& f)
@@ -1288,6 +1450,12 @@ endsnippet
 
 snippet indexing-wrapper "Util/indexing-wrapper.hpp"
 // indexing-wrapper {{{
+/**
+ * @brief IndexingWrapper
+ *
+ * a.at(i [, j, k, ...]) をコンストラクタで受け取った関数オブジェクトの呼び出し indexConverter(i [, j, k, ...]) として呼び出す
+ * indexConverter() は参照を返さなければならない
+ */
 template <class IndexConverterFunc>
 struct IndexingWrapper {
     IndexConverterFunc indexConverter;
@@ -1320,6 +1488,9 @@ endsnippet
 
 snippet int-alias "Util/int-alias.hpp"
 // int-alias {{{
+/**
+ * @brief int-alias (整数型のエイリアス)
+ */
 using i64 = int64_t;
 using u64 = uint64_t;
 // }}}
@@ -1327,6 +1498,10 @@ endsnippet
 
 snippet int-infinity "Util/int-infinity.hpp"
 // int-infinity {{{
+/**
+ * @brief int-infinity (整数のデカイ値)
+ * 2倍してもオーバーフローしない & memset()にも使える (需要ある？)
+ */
 constexpr int32_t INF = 0x3f3f3f3f;
 constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
 // }}}
@@ -1334,6 +1509,9 @@ endsnippet
 
 snippet is-within-range "Util/is-within-range.hpp"
 // is-within-range {{{
+/**
+ * @brief within() (半開区間内に含まれているかの判定)
+ */
 template <class Value, class ValueBegin, class ValueEnd>
 inline bool within(const Value& v, const ValueBegin& begin, const ValueEnd& end) {
     return begin <= v && v < end;
@@ -1343,6 +1521,11 @@ endsnippet
 
 snippet make-four-neighbor-enumerator "Util/make-four-neighbor-enumerator.hpp"
 // make-four-neighbor-enumerator {{{
+/**
+ * @brief makeFourNeighborEnumerator() (グリッドの四近傍(上下左右)の列挙) 
+ *
+ * handlerFunc: fn({sy, sx}, {ny, nx}, f)
+ */
 template <class HandlerFunc>
 auto makeFourNeighborEnumerator(int H, int W, HandlerFunc handlerFunc) {
     return [H, W, handlerFunc](auto v, auto func) {
@@ -1363,6 +1546,9 @@ endsnippet
 
 snippet makeVec "Util/makeVec.hpp"
 // makeVec {{{
+/**
+ * @brief makeVec() (多次元std::vectorの生成)
+ */
 template <class T>
 inline std::vector<T> makeVec(size_t sz, const T& initValue) {
     return std::vector<T>(sz, initValue);
@@ -1376,6 +1562,9 @@ endsnippet
 
 snippet project "Util/project.hpp"
 // project {{{
+/**
+ * @brief project() (タプルのコンテナの第 I 要素を抽出したvectorを返す)
+ */
 template <size_t I, class Container, class Value = typename std::tuple_element_t<I, typename Container::value_type>>
 std::vector<Value> project(const Container& v) {
     std::vector<Value> ret(v.size());
@@ -1387,17 +1576,20 @@ endsnippet
 
 snippet randoms "Util/randoms.hpp"
 // randoms {{{
+/**
+ * @brief randoms (randint()とかchoice()とか)
+ */
 namespace arumakan::random {
 
 std::mt19937 mt(std::random_device{}());
 
-// 閉区間[min, max] の乱数を一様分布で生成する
+//! 閉区間[min, max] の乱数を一様分布で生成する
 template <class Integer>
 Integer randint(Integer min, Integer max) {
     return std::uniform_int_distribution<Integer>(min, max)(mt);
 }
 
-// dest に randint(sizeMin, sizeMax) 回 randint(valueMin, valueMax) を格納する
+//! dest に randint(sizeMin, sizeMax) 回 randint(valueMin, valueMax) を格納する
 template <class OutputIter, class Integer>
 OutputIter randomValueContainer(OutputIter dest, Integer valueMin, Integer valueMax, size_t sizeMin, size_t sizeMax) {
     auto size = randint(sizeMin, sizeMax);
@@ -1408,7 +1600,7 @@ OutputIter randomValueContainer(OutputIter dest, Integer valueMin, Integer value
     return dest;
 }
 
-// 要素数が randint(sizeMin, sizeMax) の randint(valueMin, valueMax) を生成する
+//! 要素数が randint(sizeMin, sizeMax) の randint(valueMin, valueMax) を生成する
 template <class Container, class Integer>
 Container randomValueContainer(Integer valueMin, Integer valueMax, size_t sizeMin, size_t sizeMax) {
     Container ret;
@@ -1416,7 +1608,7 @@ Container randomValueContainer(Integer valueMin, Integer valueMax, size_t sizeMi
     return ret;
 }
 
-// [begin, end) の範囲のうちひとつをランダムに選んで返す
+//! [begin, end) の範囲のうちひとつをランダムに選んで返す
 template <class RandomAccessIter>
 auto choice(RandomAccessIter begin, RandomAccessIter end) {
     const auto i = randint<size_t>(0, std::distance(begin, end));
@@ -1429,6 +1621,9 @@ endsnippet
 
 snippet rep-macro "Util/rep-macro.hpp"
 // rep-macro {{{
+/**
+ * @brief rep()マクロ
+ */
 #define rep(i, begin, end) for (std::make_signed_t<std::remove_cv_t<decltype(end)>> i = (begin), i##_end = (end); i < i##_end; ++i)
 #define repc(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(last)>> i = (begin), i##_last = (last); i <= i##_last; ++i)
 #define repr(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(begin)>> i = (begin), i##_last = (last); i >= i##_last; --i)
@@ -1437,6 +1632,10 @@ endsnippet
 
 snippet runlength "Util/runlength.hpp"
 // runlength {{{
+/**
+ * @brief runlength() (ランレングス圧縮)
+ * (かたまりの始まり位置イテレータ, かたまりの要素数) のpairのvectorを返す。
+ */
 template <class Iterator>
 auto runlength(Iterator const begin, Iterator const end) {
     std::vector<std::pair<Iterator, size_t>> ret;
@@ -1457,6 +1656,9 @@ endsnippet
 
 snippet timer "Util/timer.hpp"
 // timer {{{
+/**
+ * @brief Timer (実行時間計測)
+ */
 class Timer {
     std::chrono::system_clock::time_point m_start;
 
@@ -1478,6 +1680,9 @@ endsnippet
 
 snippet zip "Util/zip.hpp"
 // zip {{{
+/**
+ * @brief zip() (n個のvectorからn要素のタプルのvectorを生成する)
+ */
 template <class T1, class T2>
 std::vector<std::pair<T1, T2>> zip(const std::vector<T1>& v1, const std::vector<T2>& v2) {
     const auto sz = std::min(v1.size(), v2.size());
