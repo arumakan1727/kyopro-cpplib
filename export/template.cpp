@@ -1,16 +1,32 @@
 #include <bits/stdc++.h>
 // header {{{
+/**
+ * @brief all()マクロ
+ */
 #define all(x) std::begin(x), std::end(x)
 #define rall(x) std::rbegin(x), std::rend(x)
+/**
+ * @brief rep()マクロ
+ */
 #define rep(i, begin, end) for (std::make_signed_t<std::remove_cv_t<decltype(end)>> i = (begin), i##_end = (end); i < i##_end; ++i)
 #define repc(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(last)>> i = (begin), i##_last = (last); i <= i##_last; ++i)
 #define repr(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(begin)>> i = (begin), i##_last = (last); i >= i##_last; --i)
 #define let const auto
+/**
+ * @brief int-alias (整数型のエイリアス)
+ */
 using i64 = int64_t;
 using u64 = uint64_t;
+/**
+ * @brief int-infinity (整数のデカイ値)
+ * 2倍してもオーバーフローしない & memset()にも使える (需要ある？)
+ */
 constexpr int32_t INF = 0x3f3f3f3f;
 constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
 
+/**
+ * @brief read() (n個入力してContainerに格納して返す)
+ */
 template <class T = int, template <class, class...> class Container = std::vector>
 Container<T> read(size_t n) {
     Container<T> ret(n);
@@ -18,12 +34,18 @@ Container<T> read(size_t n) {
     return ret;
 }
 
+/**
+ * @brief std::ostreamによるコンテナの出力
+ */
 template <class Container, class = typename Container::value_type, std::enable_if_t<!std::is_same<Container, std::string>::value, std::nullptr_t> = nullptr>
 std::ostream& operator<<(std::ostream& os, const Container& v) {
     for (auto it = std::begin(v); it != std::end(v); ++it) os << &" "[it == std::begin(v)] << *it;
     return os;
 }
 
+/**
+ * @brief 複数変数宣言をして同時に入力もするやつ
+ */
 template <class T>
 std::istream& operator,(std::istream& is, T& rhs) {
     return is >> rhs;
@@ -33,6 +55,9 @@ std::istream& operator,(std::istream& is, T& rhs) {
     type __VA_ARGS__;  \
     std::cin >> __VA_ARGS__
 
+/**
+ * @brief println() (可変個の値を空白区切りで出力して改行する)
+ */
 inline void println() {
     std::cout << '\n';
 }
@@ -42,6 +67,9 @@ inline void println(Head&& head, Tail&&... tail) {
     println(std::forward<Tail>(tail)...);
 }
 
+/**
+ * @brief chmin(), chmax()
+ */
 template <class T, class U>
 inline bool chmin(T& a, const U& b) {
     return b < a && (a = b, true);
@@ -51,9 +79,24 @@ template <class T, class U>
 inline bool chmax(T& a, const U& b) {
     return b > a && (a = b, true);
 }
+
+/**
+ * @brief makeVec() (多次元std::vectorの生成)
+ */
+template <class T>
+inline std::vector<T> makeVec(size_t sz, const T& initValue) {
+    return std::vector<T>(sz, initValue);
+}
+template <class T, class... Args>
+inline auto makeVec(size_t sz, Args... args) {
+    return std::vector<decltype(makeVec<T>(args...))>(sz, makeVec<T>(args...));
+}
 // }}}
 
 // debug {{{
+/**
+ * @brief Debug
+ */
 #ifdef LOCAL_DEBUG
 
 namespace dbg {
