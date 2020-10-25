@@ -35,7 +35,7 @@ data:
     \ PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_11_C\"\
     \n\n#include <iostream>\n#include <vector>\n\n#line 2 \"Graph/graph-template.hpp\"\
     \n#include <cstdint>\n#line 5 \"Graph/graph-template.hpp\"\n\n/**\n * @brief graph-template\
-    \ (Edge, Graph, MatrixGraph)\n */\n// \u30B0\u30E9\u30D5\u306E\u8FBA (\u91CD\u307F\
+    \ (Edge, Graph, MatrixGraph)\n */\n//! \u30B0\u30E9\u30D5\u306E\u8FBA (\u91CD\u307F\
     \u4ED8\u304D)\ntemplate <class T>\nstruct Edge {\n    int from, to;\n    T weight;\n\
     \    int id;\n\n    Edge() = default;\n\n    constexpr explicit Edge(int to_,\
     \ const T& weight_)\n        : Edge(-1, to_, weight_, -1) {}\n\n    constexpr\
@@ -45,8 +45,8 @@ data:
     \ <class Int, std::enable_if_t<std::is_integral<Int>::value, std::nullptr_t> =\
     \ nullptr>\n    constexpr operator Int() const {\n        return static_cast<Int>(to);\n\
     \    }\n\n    friend std::istream& operator>>(std::istream& is, Edge& e) { return\
-    \ is >> e.from >> e.to >> e.weight; }\n};\n\n// \u30B0\u30E9\u30D5\u306E\u8FBA\
-    \ (\u91CD\u307F\u30CA\u30B7)\ntemplate <>\nstruct Edge<void> {\n    int from,\
+    \ is >> e.from >> e.to >> e.weight; }\n};\n\n//! \u30B0\u30E9\u30D5\u306E\u8FBA\
+    \ (\u91CD\u307F\u306A\u3057)\ntemplate <>\nstruct Edge<void> {\n    int from,\
     \ to;\n    int id;\n\n    Edge() = default;\n\n    constexpr explicit Edge(int\
     \ to_)\n        : Edge(-1, to_, -1) {}\n\n    constexpr Edge(int from_, int to_,\
     \ int id_ = -1)\n        : from(from_)\n        , to(to_)\n        , id(id_) {}\n\
@@ -54,22 +54,21 @@ data:
     \ <class Int, std::enable_if_t<std::is_integral<Int>::value, std::nullptr_t> =\
     \ nullptr>\n    constexpr operator Int() const {\n        return static_cast<Int>(to);\n\
     \    }\n\n    friend std::istream& operator>>(std::istream& is, Edge& e) { return\
-    \ is >> e.from >> e.to; }\n};\n\n// \u30B0\u30E9\u30D5 (\u96A3\u63A5\u30EA\u30B9\
-    \u30C8\u5B9F\u88C5)\ntemplate <class T>\nusing Graph = std::vector<std::vector<Edge<T>>>;\n\
+    \ is >> e.from >> e.to; }\n};\n\ntemplate <class T>\nusing Graph = std::vector<std::vector<Edge<T>>>;\n\
     #line 2 \"Graph/Shortest-Path/bfs.hpp\"\n#include <cassert>\n#include <functional>\n\
     #include <queue>\n#include <utility>\n#line 7 \"Graph/Shortest-Path/bfs.hpp\"\n\
     \n#line 2 \"Util/at.hpp\"\n#include <tuple>\n#line 4 \"Util/at.hpp\"\n#include\
-    \ <type_traits>\n\n/**\n * @brief at() ()\n */\nnamespace arumakan {\n\n// at(a,\
+    \ <type_traits>\n\n/**\n * @brief at() ()\n */\nnamespace arumakan {\n\n//! at(a,\
     \ i) returns a[i]\ntemplate <class Array, class Integer, std::enable_if_t<std::is_integral<Integer>::value,\
     \ std::nullptr_t> = nullptr>\ninline auto at(Array&& a, Integer i) -> decltype(a[0])&\
-    \ {\n    return a[i];\n}\n\n// at(a, Tuple{i}) returns a[i]\ntemplate <class Array,\
-    \ class Tuple, std::enable_if_t<std::tuple_size<Tuple>::value == 1, std::nullptr_t>\
+    \ {\n    return a[i];\n}\n\n//! at(a, Tuple{i}) returns a[i]\ntemplate <class\
+    \ Array, class Tuple, std::enable_if_t<std::tuple_size<Tuple>::value == 1, std::nullptr_t>\
     \ = nullptr>\ninline auto at(Array&& a, Tuple index) -> decltype(a[0])& {\n  \
-    \  return a[std::get<0>(index)];\n}\n\n// at(mat, Tuple{y, x}) returns mat[y][x]\n\
+    \  return a[std::get<0>(index)];\n}\n\n//! at(mat, Tuple{y, x}) returns mat[y][x]\n\
     template <class Matrix, class Tuple, std::enable_if_t<std::tuple_size<Tuple>::value\
     \ == 2, std::nullptr_t> = nullptr>\ninline auto at(Matrix&& mat, Tuple index)\
     \ -> decltype(mat[0][0])& {\n    return mat[std::get<0>(index)][std::get<1>(index)];\n\
-    }\n\n// at(cube, Tuple{z, y, x}) returns cube[z][y][x]\ntemplate <class Cube,\
+    }\n\n//! at(cube, Tuple{z, y, x}) returns cube[z][y][x]\ntemplate <class Cube,\
     \ class Tuple, std::enable_if_t<std::tuple_size<Tuple>::value == 3, std::nullptr_t>\
     \ = nullptr>\ninline auto at(Cube&& cube, Tuple index) -> decltype(cube[0][0][0])&\
     \ {\n    return cube[std::get<0>(index)][std::get<1>(index)][std::get<2>(index)];\n\
@@ -149,7 +148,7 @@ data:
   isVerificationFile: true
   path: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp
   requiredBy: []
-  timestamp: '2020-09-26 18:37:05+09:00'
+  timestamp: '2020-10-25 20:18:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp

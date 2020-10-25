@@ -28,7 +28,7 @@ data:
     \n\n/**\n * @brief Eratosthenes-Sieve (\u30A8\u30E9\u30C8\u30B9\u30C6\u30CD\u30B9\
     \u306E\u7BE9)\n * @see https://qiita.com/rsk0315_h4x/items/ff3b542a4468679fb409\n\
     \ */\nclass EratosthenesSieve {\nprivate:\n    int m_size;\n    std::vector<int>\
-    \ m_minFactor;\n\npublic:\n    EratosthenesSieve() = default;\n\n    // [0, n]\
+    \ m_minFactor;\n\npublic:\n    EratosthenesSieve() = default;\n\n    //! [0, n]\
     \ \u306E\u7BC4\u56F2\u3067\u7BE9\u3092\u69CB\u7BC9\u3059\u308B\n    explicit EratosthenesSieve(int\
     \ n_)\n        : m_size(n_ + 1)\n        , m_minFactor(m_size) {\n        std::iota(m_minFactor.begin(),\
     \ m_minFactor.end(), 0);\n        for (int i = 2; i * i < m_size; ++i) {\n   \
@@ -79,7 +79,7 @@ data:
   isVerificationFile: true
   path: test/helloworld/divisor-count-table.test.cpp
   requiredBy: []
-  timestamp: '2020-09-21 12:52:06+09:00'
+  timestamp: '2020-10-25 20:18:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/helloworld/divisor-count-table.test.cpp

@@ -9,17 +9,23 @@ data:
     links: []
   bundledCode: '#line 1 "short-snip/sigma.cpp"
 
-    const auto sigma = [](const auto x) { return x * (x + 1) / 2; };
+    //! sum of [s, t]
+
+    const auto sigma = [](const auto s, const auto t) { return (t * (t + 1) / 2) -
+    ((s - 1) * s / 2); };
 
     '
-  code: 'const auto sigma = [](const auto x) { return x * (x + 1) / 2; };
+  code: '//! sum of [s, t]
+
+    const auto sigma = [](const auto s, const auto t) { return (t * (t + 1) / 2) -
+    ((s - 1) * s / 2); };
 
     '
   dependsOn: []
   isVerificationFile: false
   path: short-snip/sigma.cpp
   requiredBy: []
-  timestamp: '2020-10-24 12:55:26+09:00'
+  timestamp: '2020-10-25 20:18:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: short-snip/sigma.cpp

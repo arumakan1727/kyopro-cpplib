@@ -226,7 +226,7 @@ data:
       title: export/template-prototype.cpp
     - icon: ':warning:'
       path: export/template.cpp
-      title: export/template.cpp
+      title: "all()\u30DE\u30AF\u30ED"
   - name: short-snip
     pages:
     - icon: ':warning:'

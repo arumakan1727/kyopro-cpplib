@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: export/template-prototype.cpp
+    title: export/template-prototype.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/0558-Cheese.test.cpp
@@ -26,7 +29,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: Util/makeVec.hpp
-  requiredBy: []
+  requiredBy:
+  - export/template-prototype.cpp
   timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

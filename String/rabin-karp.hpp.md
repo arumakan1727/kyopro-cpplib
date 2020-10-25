@@ -30,15 +30,15 @@ data:
     \            powArray().emplace_back(1);\n        }\n        growPowArray(m_hash.size());\n\
     \n        size_t i;\n        InputIter itr;\n        for (itr = begin, i = 0;\
     \ itr != end; ++itr, ++i) {\n            m_hash[i + 1] = add(mul(m_hash[i], BASE),\
-    \ *itr);\n        }\n    }\n\n    // \u6587\u5B57\u5217\u5168\u4F53\u306E\u30CF\
+    \ *itr);\n        }\n    }\n\n    //! \u6587\u5B57\u5217\u5168\u4F53\u306E\u30CF\
     \u30C3\u30B7\u30E5\u5024\n    u64 hash() const { return m_hash.back(); }\n\n \
-    \   // \u534A\u958B\u533A\u9593 [l, r) \u306E\u30CF\u30C3\u30B7\u30E5\u5024\n\
+    \   //! \u534A\u958B\u533A\u9593 [l, r) \u306E\u30CF\u30C3\u30B7\u30E5\u5024\n\
     \    u64 rangeHash(size_t l, size_t r) const {\n        assert(l < r && r < m_hash.size());\n\
     \        return add(m_hash[r], MOD - mul(m_hash[l], powArray()[r - l]));\n   \
-    \ }\n\n    // rangeHash(begin, begin + length) \u3068\u7B49\u4FA1\n    u64 substr(size_t\
+    \ }\n\n    //! rangeHash(begin, begin + length) \u3068\u7B49\u4FA1\n    u64 substr(size_t\
     \ begin, size_t length) const { return rangeHash(begin, begin + length); }\n\n\
-    \    // \u3082\u3068\u306E\u6587\u5B57\u5217\u306E\u9577\u3055\n    size_t size()\
-    \ const { return m_hash.size() - 1; }\n\n    // \u9023\u7D50\u3057\u305F\u6587\
+    \    //! \u3082\u3068\u306E\u6587\u5B57\u5217\u306E\u9577\u3055\n    size_t size()\
+    \ const { return m_hash.size() - 1; }\n\n    //! \u9023\u7D50\u3057\u305F\u6587\
     \u5B57\u5217 (leftStr + rightStr) \u306E\u30CF\u30C3\u30B7\u30E5\u5024\n    static\
     \ u64 concat(u64 leftHash, u64 rightHash, size_t rightLength) {\n        growPowArray(rightLength);\n\
     \        return add(mul(leftHash, powArray()[rightLength]), rightHash);\n    }\n\
@@ -78,7 +78,7 @@ data:
   isVerificationFile: false
   path: String/rabin-karp.hpp
   requiredBy: []
-  timestamp: '2020-09-26 18:37:05+09:00'
+  timestamp: '2020-10-25 20:18:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/ALDS1_14_B-String-Search.test.cpp

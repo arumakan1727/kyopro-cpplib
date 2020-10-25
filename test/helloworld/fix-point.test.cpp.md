@@ -16,11 +16,11 @@ data:
   bundledCode: "#line 1 \"test/helloworld/fix-point.test.cpp\"\n#define PROBLEM \"\
     http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\n#include\
     \ <iostream>\n#include <cassert>\n\n#line 2 \"Util/fix-point.hpp\"\n#include <functional>\n\
-    \n/**\n * @brief FixPoint (\u30E9\u30E0\u30C0\u5F0F\u306E\u518D\u5E30)\n */\n\
-    // Ex) FixPoint([&](auto func, int n) -> int {...})(10);\ntemplate <class F>\n\
-    struct FixPoint : F {\n    FixPoint(F&& f)\n        : F(std::forward<F>(f)) {}\n\
-    \n    template <class... Args>\n    decltype(auto) operator()(Args&&... args)\
-    \ const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
+    \n/**\n * @brief FixPoint (\u30E9\u30E0\u30C0\u5F0F\u306E\u518D\u5E30)\n *\n *\
+    \ (Ex) FixPoint([&](auto func, int n) -> int {...})(10);\n */\ntemplate <class\
+    \ F>\nstruct FixPoint : F {\n    FixPoint(F&& f)\n        : F(std::forward<F>(f))\
+    \ {}\n\n    template <class... Args>\n    decltype(auto) operator()(Args&&...\
+    \ args) const {\n        return F::operator()(*this, std::forward<Args>(args)...);\n\
     \    }\n};\n#line 6 \"test/helloworld/fix-point.test.cpp\"\n\nvoid FixPoint_test()\
     \ {\n    const auto factorial = FixPoint([](auto f, int n) -> int {\n        if\
     \ (n <= 1) return 1;\n        return n * f(n - 1);\n    });\n\n    assert(factorial(5)\
@@ -39,7 +39,7 @@ data:
   isVerificationFile: true
   path: test/helloworld/fix-point.test.cpp
   requiredBy: []
-  timestamp: '2020-09-25 14:35:17+09:00'
+  timestamp: '2020-10-25 20:18:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/helloworld/fix-point.test.cpp

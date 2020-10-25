@@ -24,17 +24,17 @@ data:
   bundledCode: "#line 2 \"Graph/Shortest-Path/dijkstra.hpp\"\n#include <cassert>\n\
     #include <functional>\n#include <queue>\n#include <type_traits>\n#include <utility>\n\
     #include <vector>\n\n#line 2 \"Util/at.hpp\"\n#include <tuple>\n#line 5 \"Util/at.hpp\"\
-    \n\n/**\n * @brief at() ()\n */\nnamespace arumakan {\n\n// at(a, i) returns a[i]\n\
-    template <class Array, class Integer, std::enable_if_t<std::is_integral<Integer>::value,\
+    \n\n/**\n * @brief at() ()\n */\nnamespace arumakan {\n\n//! at(a, i) returns\
+    \ a[i]\ntemplate <class Array, class Integer, std::enable_if_t<std::is_integral<Integer>::value,\
     \ std::nullptr_t> = nullptr>\ninline auto at(Array&& a, Integer i) -> decltype(a[0])&\
-    \ {\n    return a[i];\n}\n\n// at(a, Tuple{i}) returns a[i]\ntemplate <class Array,\
-    \ class Tuple, std::enable_if_t<std::tuple_size<Tuple>::value == 1, std::nullptr_t>\
+    \ {\n    return a[i];\n}\n\n//! at(a, Tuple{i}) returns a[i]\ntemplate <class\
+    \ Array, class Tuple, std::enable_if_t<std::tuple_size<Tuple>::value == 1, std::nullptr_t>\
     \ = nullptr>\ninline auto at(Array&& a, Tuple index) -> decltype(a[0])& {\n  \
-    \  return a[std::get<0>(index)];\n}\n\n// at(mat, Tuple{y, x}) returns mat[y][x]\n\
+    \  return a[std::get<0>(index)];\n}\n\n//! at(mat, Tuple{y, x}) returns mat[y][x]\n\
     template <class Matrix, class Tuple, std::enable_if_t<std::tuple_size<Tuple>::value\
     \ == 2, std::nullptr_t> = nullptr>\ninline auto at(Matrix&& mat, Tuple index)\
     \ -> decltype(mat[0][0])& {\n    return mat[std::get<0>(index)][std::get<1>(index)];\n\
-    }\n\n// at(cube, Tuple{z, y, x}) returns cube[z][y][x]\ntemplate <class Cube,\
+    }\n\n//! at(cube, Tuple{z, y, x}) returns cube[z][y][x]\ntemplate <class Cube,\
     \ class Tuple, std::enable_if_t<std::tuple_size<Tuple>::value == 3, std::nullptr_t>\
     \ = nullptr>\ninline auto at(Cube&& cube, Tuple index) -> decltype(cube[0][0][0])&\
     \ {\n    return cube[std::get<0>(index)][std::get<1>(index)][std::get<2>(index)];\n\
@@ -123,7 +123,7 @@ data:
   isVerificationFile: false
   path: Graph/Shortest-Path/dijkstra.hpp
   requiredBy: []
-  timestamp: '2020-09-26 18:37:05+09:00'
+  timestamp: '2020-10-25 20:18:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp

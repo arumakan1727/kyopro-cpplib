@@ -41,15 +41,15 @@ data:
     \            powArray().emplace_back(1);\n        }\n        growPowArray(m_hash.size());\n\
     \n        size_t i;\n        InputIter itr;\n        for (itr = begin, i = 0;\
     \ itr != end; ++itr, ++i) {\n            m_hash[i + 1] = add(mul(m_hash[i], BASE),\
-    \ *itr);\n        }\n    }\n\n    // \u6587\u5B57\u5217\u5168\u4F53\u306E\u30CF\
+    \ *itr);\n        }\n    }\n\n    //! \u6587\u5B57\u5217\u5168\u4F53\u306E\u30CF\
     \u30C3\u30B7\u30E5\u5024\n    u64 hash() const { return m_hash.back(); }\n\n \
-    \   // \u534A\u958B\u533A\u9593 [l, r) \u306E\u30CF\u30C3\u30B7\u30E5\u5024\n\
+    \   //! \u534A\u958B\u533A\u9593 [l, r) \u306E\u30CF\u30C3\u30B7\u30E5\u5024\n\
     \    u64 rangeHash(size_t l, size_t r) const {\n        assert(l < r && r < m_hash.size());\n\
     \        return add(m_hash[r], MOD - mul(m_hash[l], powArray()[r - l]));\n   \
-    \ }\n\n    // rangeHash(begin, begin + length) \u3068\u7B49\u4FA1\n    u64 substr(size_t\
+    \ }\n\n    //! rangeHash(begin, begin + length) \u3068\u7B49\u4FA1\n    u64 substr(size_t\
     \ begin, size_t length) const { return rangeHash(begin, begin + length); }\n\n\
-    \    // \u3082\u3068\u306E\u6587\u5B57\u5217\u306E\u9577\u3055\n    size_t size()\
-    \ const { return m_hash.size() - 1; }\n\n    // \u9023\u7D50\u3057\u305F\u6587\
+    \    //! \u3082\u3068\u306E\u6587\u5B57\u5217\u306E\u9577\u3055\n    size_t size()\
+    \ const { return m_hash.size() - 1; }\n\n    //! \u9023\u7D50\u3057\u305F\u6587\
     \u5B57\u5217 (leftStr + rightStr) \u306E\u30CF\u30C3\u30B7\u30E5\u5024\n    static\
     \ u64 concat(u64 leftHash, u64 rightHash, size_t rightLength) {\n        growPowArray(rightLength);\n\
     \        return add(mul(leftHash, powArray()[rightLength]), rightHash);\n    }\n\
@@ -63,20 +63,20 @@ data:
     \ BASE));\n        }\n    }\n};\n#line 5 \"test/helloworld/rolling-hash.test.cpp\"\
     \n\n#line 2 \"Util/randoms.hpp\"\n\n#line 5 \"Util/randoms.hpp\"\n\n/**\n * @brief\
     \ randoms (randint()\u3068\u304Bchoice()\u3068\u304B)\n */\nnamespace arumakan::random\
-    \ {\n\nstd::mt19937 mt(std::random_device{}());\n\n// \u9589\u533A\u9593[min,\
+    \ {\n\nstd::mt19937 mt(std::random_device{}());\n\n//! \u9589\u533A\u9593[min,\
     \ max] \u306E\u4E71\u6570\u3092\u4E00\u69D8\u5206\u5E03\u3067\u751F\u6210\u3059\
     \u308B\ntemplate <class Integer>\nInteger randint(Integer min, Integer max) {\n\
-    \    return std::uniform_int_distribution<Integer>(min, max)(mt);\n}\n\n// dest\
+    \    return std::uniform_int_distribution<Integer>(min, max)(mt);\n}\n\n//! dest\
     \ \u306B randint(sizeMin, sizeMax) \u56DE randint(valueMin, valueMax) \u3092\u683C\
     \u7D0D\u3059\u308B\ntemplate <class OutputIter, class Integer>\nOutputIter randomValueContainer(OutputIter\
     \ dest, Integer valueMin, Integer valueMax, size_t sizeMin, size_t sizeMax) {\n\
     \    auto size = randint(sizeMin, sizeMax);\n    while (size--) {\n        *dest\
     \ = randint(valueMin, valueMax);\n        ++dest;\n    }\n    return dest;\n}\n\
-    \n// \u8981\u7D20\u6570\u304C randint(sizeMin, sizeMax) \u306E randint(valueMin,\
+    \n//! \u8981\u7D20\u6570\u304C randint(sizeMin, sizeMax) \u306E randint(valueMin,\
     \ valueMax) \u3092\u751F\u6210\u3059\u308B\ntemplate <class Container, class Integer>\n\
     Container randomValueContainer(Integer valueMin, Integer valueMax, size_t sizeMin,\
     \ size_t sizeMax) {\n    Container ret;\n    randomValueContainer(std::back_inserter(ret),\
-    \ valueMin, valueMax, sizeMin, sizeMax);\n    return ret;\n}\n\n// [begin, end)\
+    \ valueMin, valueMax, sizeMin, sizeMax);\n    return ret;\n}\n\n//! [begin, end)\
     \ \u306E\u7BC4\u56F2\u306E\u3046\u3061\u3072\u3068\u3064\u3092\u30E9\u30F3\u30C0\
     \u30E0\u306B\u9078\u3093\u3067\u8FD4\u3059\ntemplate <class RandomAccessIter>\n\
     auto choice(RandomAccessIter begin, RandomAccessIter end) {\n    const auto i\
@@ -164,7 +164,7 @@ data:
   isVerificationFile: true
   path: test/helloworld/rolling-hash.test.cpp
   requiredBy: []
-  timestamp: '2020-09-26 18:37:05+09:00'
+  timestamp: '2020-10-25 20:18:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/helloworld/rolling-hash.test.cpp

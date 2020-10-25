@@ -12,19 +12,16 @@ data:
     \ basedir=basedir).decode()\n  File \"/opt/hostedtoolcache/Python/3.9.0/x64/lib/python3.9/site-packages/onlinejudge_verify/languages/python.py\"\
     , line 85, in bundle\n    raise NotImplementedError\nNotImplementedError\n"
   code: "def linesBelowDoc(progPath: str) -> list:\n    with open(progPath, 'r') as\
-    \ f:\n        lines = f.readlines()\n\n    docBegin = '/**'\n    docLast = '*/'\n\
-    \n    docBeginFound = False\n    docLastIndex = -1\n\n    for i, line in enumerate(lines):\n\
-    \        if docBegin in line:\n            docBeginFound = True\n        elif\
-    \ (docBeginFound is True) and (docLast in line):\n            docLastIndex = i\n\
-    \            break\n\n    if docLastIndex == -1:\n        raise Exception(progPath\
-    \ + \": Doc comment not found\")\n    else:\n        return lines[docLastIndex\
-    \ + 1:]\n\n\ndef allLines(progPath: str) -> list:\n    with open(progPath, 'r')\
-    \ as f:\n        lines = f.readlines()\n    return lines\n"
+    \ f:\n        lines = f.readlines()\n\n    DOC_BEGIN_MARKER = '/**'\n\n    for\
+    \ i, line in enumerate(lines):\n        if DOC_BEGIN_MARKER in line:\n       \
+    \     return lines[i:]\n\n    raise Exception(progPath + \": Doc comment not found\"\
+    )\n\n\ndef allLines(progPath: str) -> list:\n    with open(progPath, 'r') as f:\n\
+    \        lines = f.readlines()\n    return lines\n"
   dependsOn: []
   isVerificationFile: false
   path: tool/progReader.py
   requiredBy: []
-  timestamp: '2020-09-17 11:52:26+09:00'
+  timestamp: '2020-10-25 20:18:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: tool/progReader.py

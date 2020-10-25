@@ -18,7 +18,7 @@ data:
   bundledCode: "#line 2 \"Util/IO/read-directed-graph.hpp\"\n#include <cstdint>\n\
     #include <iostream>\n\n#line 3 \"Graph/graph-template.hpp\"\n#include <vector>\n\
     #line 5 \"Graph/graph-template.hpp\"\n\n/**\n * @brief graph-template (Edge, Graph,\
-    \ MatrixGraph)\n */\n// \u30B0\u30E9\u30D5\u306E\u8FBA (\u91CD\u307F\u4ED8\u304D\
+    \ MatrixGraph)\n */\n//! \u30B0\u30E9\u30D5\u306E\u8FBA (\u91CD\u307F\u4ED8\u304D\
     )\ntemplate <class T>\nstruct Edge {\n    int from, to;\n    T weight;\n    int\
     \ id;\n\n    Edge() = default;\n\n    constexpr explicit Edge(int to_, const T&\
     \ weight_)\n        : Edge(-1, to_, weight_, -1) {}\n\n    constexpr Edge(int\
@@ -28,8 +28,8 @@ data:
     \ <class Int, std::enable_if_t<std::is_integral<Int>::value, std::nullptr_t> =\
     \ nullptr>\n    constexpr operator Int() const {\n        return static_cast<Int>(to);\n\
     \    }\n\n    friend std::istream& operator>>(std::istream& is, Edge& e) { return\
-    \ is >> e.from >> e.to >> e.weight; }\n};\n\n// \u30B0\u30E9\u30D5\u306E\u8FBA\
-    \ (\u91CD\u307F\u30CA\u30B7)\ntemplate <>\nstruct Edge<void> {\n    int from,\
+    \ is >> e.from >> e.to >> e.weight; }\n};\n\n//! \u30B0\u30E9\u30D5\u306E\u8FBA\
+    \ (\u91CD\u307F\u306A\u3057)\ntemplate <>\nstruct Edge<void> {\n    int from,\
     \ to;\n    int id;\n\n    Edge() = default;\n\n    constexpr explicit Edge(int\
     \ to_)\n        : Edge(-1, to_, -1) {}\n\n    constexpr Edge(int from_, int to_,\
     \ int id_ = -1)\n        : from(from_)\n        , to(to_)\n        , id(id_) {}\n\
@@ -37,8 +37,7 @@ data:
     \ <class Int, std::enable_if_t<std::is_integral<Int>::value, std::nullptr_t> =\
     \ nullptr>\n    constexpr operator Int() const {\n        return static_cast<Int>(to);\n\
     \    }\n\n    friend std::istream& operator>>(std::istream& is, Edge& e) { return\
-    \ is >> e.from >> e.to; }\n};\n\n// \u30B0\u30E9\u30D5 (\u96A3\u63A5\u30EA\u30B9\
-    \u30C8\u5B9F\u88C5)\ntemplate <class T>\nusing Graph = std::vector<std::vector<Edge<T>>>;\n\
+    \ is >> e.from >> e.to; }\n};\n\ntemplate <class T>\nusing Graph = std::vector<std::vector<Edge<T>>>;\n\
     #line 6 \"Util/IO/read-directed-graph.hpp\"\n\n/**\n * @brief readDirectedGraph()\
     \ (\u6709\u5411\u30B0\u30E9\u30D5\u306E\u5165\u529B)\n */\ntemplate <class T>\n\
     Graph<T> readDirectedGraph(size_t V, size_t E, int padding = -1, std::istream&\
@@ -58,7 +57,7 @@ data:
   isVerificationFile: false
   path: Util/IO/read-directed-graph.hpp
   requiredBy: []
-  timestamp: '2020-09-26 18:37:05+09:00'
+  timestamp: '2020-10-25 20:18:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp

@@ -33,7 +33,7 @@ data:
     links: []
   bundledCode: "#line 2 \"Graph/graph-template.hpp\"\n#include <cstdint>\n#include\
     \ <vector>\n#include <iostream>\n\n/**\n * @brief graph-template (Edge, Graph,\
-    \ MatrixGraph)\n */\n// \u30B0\u30E9\u30D5\u306E\u8FBA (\u91CD\u307F\u4ED8\u304D\
+    \ MatrixGraph)\n */\n//! \u30B0\u30E9\u30D5\u306E\u8FBA (\u91CD\u307F\u4ED8\u304D\
     )\ntemplate <class T>\nstruct Edge {\n    int from, to;\n    T weight;\n    int\
     \ id;\n\n    Edge() = default;\n\n    constexpr explicit Edge(int to_, const T&\
     \ weight_)\n        : Edge(-1, to_, weight_, -1) {}\n\n    constexpr Edge(int\
@@ -43,8 +43,8 @@ data:
     \ <class Int, std::enable_if_t<std::is_integral<Int>::value, std::nullptr_t> =\
     \ nullptr>\n    constexpr operator Int() const {\n        return static_cast<Int>(to);\n\
     \    }\n\n    friend std::istream& operator>>(std::istream& is, Edge& e) { return\
-    \ is >> e.from >> e.to >> e.weight; }\n};\n\n// \u30B0\u30E9\u30D5\u306E\u8FBA\
-    \ (\u91CD\u307F\u30CA\u30B7)\ntemplate <>\nstruct Edge<void> {\n    int from,\
+    \ is >> e.from >> e.to >> e.weight; }\n};\n\n//! \u30B0\u30E9\u30D5\u306E\u8FBA\
+    \ (\u91CD\u307F\u306A\u3057)\ntemplate <>\nstruct Edge<void> {\n    int from,\
     \ to;\n    int id;\n\n    Edge() = default;\n\n    constexpr explicit Edge(int\
     \ to_)\n        : Edge(-1, to_, -1) {}\n\n    constexpr Edge(int from_, int to_,\
     \ int id_ = -1)\n        : from(from_)\n        , to(to_)\n        , id(id_) {}\n\
@@ -52,10 +52,9 @@ data:
     \ <class Int, std::enable_if_t<std::is_integral<Int>::value, std::nullptr_t> =\
     \ nullptr>\n    constexpr operator Int() const {\n        return static_cast<Int>(to);\n\
     \    }\n\n    friend std::istream& operator>>(std::istream& is, Edge& e) { return\
-    \ is >> e.from >> e.to; }\n};\n\n// \u30B0\u30E9\u30D5 (\u96A3\u63A5\u30EA\u30B9\
-    \u30C8\u5B9F\u88C5)\ntemplate <class T>\nusing Graph = std::vector<std::vector<Edge<T>>>;\n"
+    \ is >> e.from >> e.to; }\n};\n\ntemplate <class T>\nusing Graph = std::vector<std::vector<Edge<T>>>;\n"
   code: "#pragma once\n#include <cstdint>\n#include <vector>\n#include <iostream>\n\
-    \n/**\n * @brief graph-template (Edge, Graph, MatrixGraph)\n */\n// \u30B0\u30E9\
+    \n/**\n * @brief graph-template (Edge, Graph, MatrixGraph)\n */\n//! \u30B0\u30E9\
     \u30D5\u306E\u8FBA (\u91CD\u307F\u4ED8\u304D)\ntemplate <class T>\nstruct Edge\
     \ {\n    int from, to;\n    T weight;\n    int id;\n\n    Edge() = default;\n\n\
     \    constexpr explicit Edge(int to_, const T& weight_)\n        : Edge(-1, to_,\
@@ -65,8 +64,8 @@ data:
     \ from, weight, id); }\n\n    template <class Int, std::enable_if_t<std::is_integral<Int>::value,\
     \ std::nullptr_t> = nullptr>\n    constexpr operator Int() const {\n        return\
     \ static_cast<Int>(to);\n    }\n\n    friend std::istream& operator>>(std::istream&\
-    \ is, Edge& e) { return is >> e.from >> e.to >> e.weight; }\n};\n\n// \u30B0\u30E9\
-    \u30D5\u306E\u8FBA (\u91CD\u307F\u30CA\u30B7)\ntemplate <>\nstruct Edge<void>\
+    \ is, Edge& e) { return is >> e.from >> e.to >> e.weight; }\n};\n\n//! \u30B0\u30E9\
+    \u30D5\u306E\u8FBA (\u91CD\u307F\u306A\u3057)\ntemplate <>\nstruct Edge<void>\
     \ {\n    int from, to;\n    int id;\n\n    Edge() = default;\n\n    constexpr\
     \ explicit Edge(int to_)\n        : Edge(-1, to_, -1) {}\n\n    constexpr Edge(int\
     \ from_, int to_, int id_ = -1)\n        : from(from_)\n        , to(to_)\n  \
@@ -74,8 +73,8 @@ data:
     \ from, id); }\n\n    template <class Int, std::enable_if_t<std::is_integral<Int>::value,\
     \ std::nullptr_t> = nullptr>\n    constexpr operator Int() const {\n        return\
     \ static_cast<Int>(to);\n    }\n\n    friend std::istream& operator>>(std::istream&\
-    \ is, Edge& e) { return is >> e.from >> e.to; }\n};\n\n// \u30B0\u30E9\u30D5 (\u96A3\
-    \u63A5\u30EA\u30B9\u30C8\u5B9F\u88C5)\ntemplate <class T>\nusing Graph = std::vector<std::vector<Edge<T>>>;\n"
+    \ is, Edge& e) { return is >> e.from >> e.to; }\n};\n\ntemplate <class T>\nusing\
+    \ Graph = std::vector<std::vector<Edge<T>>>;\n"
   dependsOn: []
   isVerificationFile: false
   path: Graph/graph-template.hpp
@@ -84,7 +83,7 @@ data:
   - Util/IO/read-directed-graph.hpp
   - Util/IO/read-undirected-graph.hpp
   - Graph/Minimum-Spanning-Tree/kruskal.hpp
-  timestamp: '2020-09-25 22:23:19+09:00'
+  timestamp: '2020-10-25 20:18:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/ALDS1_11_C-Breadth-First-Search.test.cpp

@@ -23,7 +23,7 @@ data:
     \ PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_2_A&lang=jp\"\
     \n#include <iostream>\n\n#line 2 \"Graph/graph-template.hpp\"\n#include <cstdint>\n\
     #include <vector>\n#line 5 \"Graph/graph-template.hpp\"\n\n/**\n * @brief graph-template\
-    \ (Edge, Graph, MatrixGraph)\n */\n// \u30B0\u30E9\u30D5\u306E\u8FBA (\u91CD\u307F\
+    \ (Edge, Graph, MatrixGraph)\n */\n//! \u30B0\u30E9\u30D5\u306E\u8FBA (\u91CD\u307F\
     \u4ED8\u304D)\ntemplate <class T>\nstruct Edge {\n    int from, to;\n    T weight;\n\
     \    int id;\n\n    Edge() = default;\n\n    constexpr explicit Edge(int to_,\
     \ const T& weight_)\n        : Edge(-1, to_, weight_, -1) {}\n\n    constexpr\
@@ -33,8 +33,8 @@ data:
     \ <class Int, std::enable_if_t<std::is_integral<Int>::value, std::nullptr_t> =\
     \ nullptr>\n    constexpr operator Int() const {\n        return static_cast<Int>(to);\n\
     \    }\n\n    friend std::istream& operator>>(std::istream& is, Edge& e) { return\
-    \ is >> e.from >> e.to >> e.weight; }\n};\n\n// \u30B0\u30E9\u30D5\u306E\u8FBA\
-    \ (\u91CD\u307F\u30CA\u30B7)\ntemplate <>\nstruct Edge<void> {\n    int from,\
+    \ is >> e.from >> e.to >> e.weight; }\n};\n\n//! \u30B0\u30E9\u30D5\u306E\u8FBA\
+    \ (\u91CD\u307F\u306A\u3057)\ntemplate <>\nstruct Edge<void> {\n    int from,\
     \ to;\n    int id;\n\n    Edge() = default;\n\n    constexpr explicit Edge(int\
     \ to_)\n        : Edge(-1, to_, -1) {}\n\n    constexpr Edge(int from_, int to_,\
     \ int id_ = -1)\n        : from(from_)\n        , to(to_)\n        , id(id_) {}\n\
@@ -42,8 +42,7 @@ data:
     \ <class Int, std::enable_if_t<std::is_integral<Int>::value, std::nullptr_t> =\
     \ nullptr>\n    constexpr operator Int() const {\n        return static_cast<Int>(to);\n\
     \    }\n\n    friend std::istream& operator>>(std::istream& is, Edge& e) { return\
-    \ is >> e.from >> e.to; }\n};\n\n// \u30B0\u30E9\u30D5 (\u96A3\u63A5\u30EA\u30B9\
-    \u30C8\u5B9F\u88C5)\ntemplate <class T>\nusing Graph = std::vector<std::vector<Edge<T>>>;\n\
+    \ is >> e.from >> e.to; }\n};\n\ntemplate <class T>\nusing Graph = std::vector<std::vector<Edge<T>>>;\n\
     #line 2 \"Graph/Minimum-Spanning-Tree/kruskal.hpp\"\n#include <algorithm>\n#line\
     \ 4 \"Graph/Minimum-Spanning-Tree/kruskal.hpp\"\n\n#line 2 \"Data-Structure/Disjoint-Set/union-find.hpp\"\
     \n#include <cassert>\n#line 5 \"Data-Structure/Disjoint-Set/union-find.hpp\"\n\
@@ -90,7 +89,7 @@ data:
   isVerificationFile: true
   path: test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
   requiredBy: []
-  timestamp: '2020-10-10 05:19:14+09:00'
+  timestamp: '2020-10-25 20:18:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp

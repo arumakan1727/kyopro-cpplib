@@ -32,6 +32,9 @@ data:
     path: Util/int-infinity.hpp
     title: "int-infinity (\u6574\u6570\u306E\u30C7\u30AB\u30A4\u5024)"
   - icon: ':heavy_check_mark:'
+    path: Util/makeVec.hpp
+    title: "makeVec() (\u591A\u6B21\u5143std::vector\u306E\u751F\u6210)"
+  - icon: ':heavy_check_mark:'
     path: Util/rep-macro.hpp
     title: "rep()\u30DE\u30AF\u30ED"
   _extendedRequiredBy: []
@@ -82,15 +85,20 @@ data:
     \n\n/**\n * @brief chmin(), chmax()\n */\ntemplate <class T, class U>\ninline\
     \ bool chmin(T& a, const U& b) {\n    return b < a && (a = b, true);\n}\n\ntemplate\
     \ <class T, class U>\ninline bool chmax(T& a, const U& b) {\n    return b > a\
-    \ && (a = b, true);\n}\n#line 18 \"export/template-prototype.cpp\"\n// }}}\n\n\
-    // debug {{{\n#line 5 \"Util/Debug/debug.hpp\"\n\n#line 7 \"Util/Debug/debug.hpp\"\
-    \n\n/**\n * @brief Debug\n */\n#ifdef LOCAL_DEBUG\n\nnamespace dbg {\n\nint w_\
-    \ = 4;\nbool negativeValAsNull_ = true;\nstd::ostream* os = &std::cerr;\n\ntemplate\
-    \ <class T, std::enable_if_t<!std::is_arithmetic<T>::value, std::nullptr_t> =\
-    \ nullptr>\nvoid put(const T& x) {\n    *os << std::setw(w_) << x;\n}\ntemplate\
-    \ <class T, std::enable_if_t<std::is_signed<T>::value, std::nullptr_t> = nullptr>\n\
-    void put(const T& x) {\n    if (x <= -INF)\n        *os << std::setw(w_) << \"\
-    -INF\";\n    else if (negativeValAsNull_ && x < 0)\n        *os << std::setw(w_)\
+    \ && (a = b, true);\n}\n#line 18 \"export/template-prototype.cpp\"\n\n#line 3\
+    \ \"Util/makeVec.hpp\"\n\n/**\n * @brief makeVec() (\u591A\u6B21\u5143std::vector\u306E\
+    \u751F\u6210)\n */\ntemplate <class T>\ninline std::vector<T> makeVec(size_t sz,\
+    \ const T& initValue) {\n    return std::vector<T>(sz, initValue);\n}\ntemplate\
+    \ <class T, class... Args>\ninline auto makeVec(size_t sz, Args... args) {\n \
+    \   return std::vector<decltype(makeVec<T>(args...))>(sz, makeVec<T>(args...));\n\
+    }\n#line 20 \"export/template-prototype.cpp\"\n// }}}\n\n// debug {{{\n#line 5\
+    \ \"Util/Debug/debug.hpp\"\n\n#line 7 \"Util/Debug/debug.hpp\"\n\n/**\n * @brief\
+    \ Debug\n */\n#ifdef LOCAL_DEBUG\n\nnamespace dbg {\n\nint w_ = 4;\nbool negativeValAsNull_\
+    \ = true;\nstd::ostream* os = &std::cerr;\n\ntemplate <class T, std::enable_if_t<!std::is_arithmetic<T>::value,\
+    \ std::nullptr_t> = nullptr>\nvoid put(const T& x) {\n    *os << std::setw(w_)\
+    \ << x;\n}\ntemplate <class T, std::enable_if_t<std::is_signed<T>::value, std::nullptr_t>\
+    \ = nullptr>\nvoid put(const T& x) {\n    if (x <= -INF)\n        *os << std::setw(w_)\
+    \ << \"-INF\";\n    else if (negativeValAsNull_ && x < 0)\n        *os << std::setw(w_)\
     \ << \" - \";\n    else if (x >= INF)\n        *os << std::setw(w_) << \"INF\"\
     ;\n    else\n        *os << std::setw(w_) << x;\n}\ntemplate <class T, std::enable_if_t<std::is_unsigned<T>::value,\
     \ std::nullptr_t> = nullptr>\nvoid put(const T& x) {\n    if (static_cast<int64_t>(x)\
@@ -142,7 +150,7 @@ data:
     #define debug_negativeValAsNull(...) ((void)0)\n#define debug_setOstream(...)\
     \ ((void)0)\n#define debug_hr(...) ((void)0)\n#define debug_println(...) ((void)0)\n\
     #define showArrayH(...) ((void)0)\n#define showArrayV(...) ((void)0)\n#define\
-    \ showTable(...) ((void)0)\n#define dump(...) ((void)0)\n\n#endif\n#line 22 \"\
+    \ showTable(...) ((void)0)\n#define dump(...) ((void)0)\n\n#endif\n#line 24 \"\
     export/template-prototype.cpp\"\n// }}}\n\nusing namespace std;\n\nint main()\
     \ {\n    cin.tie(nullptr);\n    ios_base::sync_with_stdio(false);\n\n    return\
     \ 0;\n}\n"
@@ -151,8 +159,8 @@ data:
     \n#include \"../Util/int-infinity.hpp\"\n\n#include \"../Util/IO/read.hpp\"\n\n\
     #include \"../Util/IO/container-output.hpp\"\n\n#include \"../Util/IO/var-declaration-with-input.hpp\"\
     \n\n#include \"../Util/IO/println.hpp\"\n\n#include \"../Util/chminmax.hpp\"\n\
-    // }}}\n\n// debug {{{\n#include \"../Util/Debug/debug.hpp\"\n// }}}\n\nusing\
-    \ namespace std;\n\nint main() {\n    cin.tie(nullptr);\n    ios_base::sync_with_stdio(false);\n\
+    \n#include \"../Util/makeVec.hpp\"\n// }}}\n\n// debug {{{\n#include \"../Util/Debug/debug.hpp\"\
+    \n// }}}\n\nusing namespace std;\n\nint main() {\n    cin.tie(nullptr);\n    ios_base::sync_with_stdio(false);\n\
     \n    return 0;\n}\n"
   dependsOn:
   - Util/all-macro.hpp
@@ -164,11 +172,12 @@ data:
   - Util/IO/var-declaration-with-input.hpp
   - Util/IO/println.hpp
   - Util/chminmax.hpp
+  - Util/makeVec.hpp
   - Util/Debug/debug.hpp
   isVerificationFile: false
   path: export/template-prototype.cpp
   requiredBy: []
-  timestamp: '2020-10-04 14:26:43+09:00'
+  timestamp: '2020-10-25 20:18:22+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: export/template-prototype.cpp

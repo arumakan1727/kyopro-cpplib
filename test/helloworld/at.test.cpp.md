@@ -16,16 +16,16 @@ data:
   bundledCode: "#line 1 \"test/helloworld/at.test.cpp\"\n#define PROBLEM \"http://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_1_A\"\
     \n#include <cassert>\n#include <iostream>\n\n#line 2 \"Util/at.hpp\"\n#include\
     \ <tuple>\n#include <functional>\n#include <type_traits>\n\n/**\n * @brief at()\
-    \ ()\n */\nnamespace arumakan {\n\n// at(a, i) returns a[i]\ntemplate <class Array,\
-    \ class Integer, std::enable_if_t<std::is_integral<Integer>::value, std::nullptr_t>\
+    \ ()\n */\nnamespace arumakan {\n\n//! at(a, i) returns a[i]\ntemplate <class\
+    \ Array, class Integer, std::enable_if_t<std::is_integral<Integer>::value, std::nullptr_t>\
     \ = nullptr>\ninline auto at(Array&& a, Integer i) -> decltype(a[0])& {\n    return\
-    \ a[i];\n}\n\n// at(a, Tuple{i}) returns a[i]\ntemplate <class Array, class Tuple,\
+    \ a[i];\n}\n\n//! at(a, Tuple{i}) returns a[i]\ntemplate <class Array, class Tuple,\
     \ std::enable_if_t<std::tuple_size<Tuple>::value == 1, std::nullptr_t> = nullptr>\n\
     inline auto at(Array&& a, Tuple index) -> decltype(a[0])& {\n    return a[std::get<0>(index)];\n\
-    }\n\n// at(mat, Tuple{y, x}) returns mat[y][x]\ntemplate <class Matrix, class\
+    }\n\n//! at(mat, Tuple{y, x}) returns mat[y][x]\ntemplate <class Matrix, class\
     \ Tuple, std::enable_if_t<std::tuple_size<Tuple>::value == 2, std::nullptr_t>\
     \ = nullptr>\ninline auto at(Matrix&& mat, Tuple index) -> decltype(mat[0][0])&\
-    \ {\n    return mat[std::get<0>(index)][std::get<1>(index)];\n}\n\n// at(cube,\
+    \ {\n    return mat[std::get<0>(index)][std::get<1>(index)];\n}\n\n//! at(cube,\
     \ Tuple{z, y, x}) returns cube[z][y][x]\ntemplate <class Cube, class Tuple, std::enable_if_t<std::tuple_size<Tuple>::value\
     \ == 3, std::nullptr_t> = nullptr>\ninline auto at(Cube&& cube, Tuple index) ->\
     \ decltype(cube[0][0][0])& {\n    return cube[std::get<0>(index)][std::get<1>(index)][std::get<2>(index)];\n\
@@ -93,7 +93,7 @@ data:
   isVerificationFile: true
   path: test/helloworld/at.test.cpp
   requiredBy: []
-  timestamp: '2020-09-25 15:02:57+09:00'
+  timestamp: '2020-10-25 20:18:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/helloworld/at.test.cpp
