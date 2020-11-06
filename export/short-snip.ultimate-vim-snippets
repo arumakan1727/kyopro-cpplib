@@ -11,14 +11,6 @@ std::cin.tie(nullptr);
 std::ios_base::sync_with_stdio(false);
 endsnippet
 
-snippet mod1 "short-snip/mod1.cpp"
-constexpr int MOD = int(1e9) + 7;
-endsnippet
-
-snippet mod2 "short-snip/mod2.cpp"
-constexpr int MOD = 998244353;
-endsnippet
-
 snippet possible "short-snip/possible.cpp"
 [[maybe_unused]] const auto possible = [](bool cond) { std::cout << (cond ? "possible" : "impossible") << '\n'; };
 [[maybe_unused]] const auto Possible = [](bool cond) { std::cout << (cond ? "Possible" : "Impossible") << '\n'; };
@@ -32,11 +24,11 @@ endsnippet
 
 snippet sigma "short-snip/sigma.cpp"
 //! sum of [s, t]
-const auto sigma = [](const auto s, const auto t) { return (t * (t + 1) / 2) - ((s - 1) * s / 2); };
+const auto sigma = [](const auto s_, const auto t_) { return (s_ + t_) * (t_ - s_ + 1) / 2; };
 endsnippet
 
 snippet sqr "short-snip/sqr.cpp"
-const auto sqr = [](const auto x) { return x * x; };
+const auto sqr = [](const auto x_) { return x_ * x_; };
 endsnippet
 
 snippet uniq "short-snip/uniq.cpp"
