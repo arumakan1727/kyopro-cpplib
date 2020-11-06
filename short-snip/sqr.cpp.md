@@ -9,17 +9,17 @@ data:
     links: []
   bundledCode: '#line 1 "short-snip/sqr.cpp"
 
-    const auto sqr = [](const auto x) { return x * x; };
+    const auto sqr = [](const auto x_) { return x_ * x_; };
 
     '
-  code: 'const auto sqr = [](const auto x) { return x * x; };
+  code: 'const auto sqr = [](const auto x_) { return x_ * x_; };
 
     '
   dependsOn: []
   isVerificationFile: false
   path: short-snip/sqr.cpp
   requiredBy: []
-  timestamp: '2020-10-24 12:55:26+09:00'
+  timestamp: '2020-11-02 01:55:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: short-snip/sqr.cpp

@@ -239,12 +239,6 @@ data:
       path: short-snip/io-setup.cpp
       title: short-snip/io-setup.cpp
     - icon: ':warning:'
-      path: short-snip/mod1.cpp
-      title: short-snip/mod1.cpp
-    - icon: ':warning:'
-      path: short-snip/mod2.cpp
-      title: short-snip/mod2.cpp
-    - icon: ':warning:'
       path: short-snip/possible.cpp
       title: short-snip/possible.cpp
     - icon: ':warning:'

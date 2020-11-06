@@ -11,21 +11,21 @@ data:
 
     //! sum of [s, t]
 
-    const auto sigma = [](const auto s, const auto t) { return (t * (t + 1) / 2) -
-    ((s - 1) * s / 2); };
+    const auto sigma = [](const auto s_, const auto t_) { return (s_ + t_) * (t_ -
+    s_ + 1) / 2; };
 
     '
   code: '//! sum of [s, t]
 
-    const auto sigma = [](const auto s, const auto t) { return (t * (t + 1) / 2) -
-    ((s - 1) * s / 2); };
+    const auto sigma = [](const auto s_, const auto t_) { return (s_ + t_) * (t_ -
+    s_ + 1) / 2; };
 
     '
   dependsOn: []
   isVerificationFile: false
   path: short-snip/sigma.cpp
   requiredBy: []
-  timestamp: '2020-10-25 20:18:22+09:00'
+  timestamp: '2020-11-02 01:55:48+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: short-snip/sigma.cpp
