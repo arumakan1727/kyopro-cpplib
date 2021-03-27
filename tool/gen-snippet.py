@@ -3,13 +3,14 @@ import os.path as path
 import sys
 import progReader
 import glob
+from typing import List
 
 rootDir = path.join(os.path.dirname(__file__), "../")
 longSnippetsFileGlob = path.join(rootDir, "[A-Z]*/**/*.hpp")
 shortSnippetsFileGlob = path.join(rootDir, "short-snip/*.[ch]pp")
 
 
-def genSnippet(srcFiles, useAllLines, addFoldMarker):
+def genSnippet(srcFiles: List[str], useAllLines: bool, addFoldMarker: bool):
     srcFiles.sort()
 
     for fpath in srcFiles:
@@ -39,9 +40,7 @@ def genSnippet(srcFiles, useAllLines, addFoldMarker):
         else:
             sys.stdout.write(snipBody)
 
-        sys.stdout.write("endsnippet\n\n")
-
-    pass
+        sys.stdout.write("\n")
 
 
 if __name__ == '__main__':
