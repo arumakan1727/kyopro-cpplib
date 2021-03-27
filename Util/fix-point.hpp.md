@@ -6,6 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/helloworld/fix-point.test.cpp
     title: test/helloworld/fix-point.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

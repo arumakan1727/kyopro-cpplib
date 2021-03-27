@@ -39,6 +39,7 @@ data:
     title: "rep()\u30DE\u30AF\u30ED"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
@@ -47,11 +48,10 @@ data:
     // header {{{\n#line 2 \"Util/all-macro.hpp\"\n\n/**\n * @brief all()\u30DE\u30AF\
     \u30ED\n */\n#define all(x) std::begin(x), std::end(x)\n#define rall(x) std::rbegin(x),\
     \ std::rend(x)\n#line 2 \"Util/rep-macro.hpp\"\n\n/**\n * @brief rep()\u30DE\u30AF\
-    \u30ED\n */\n#define rep(i, begin, end) for (std::make_signed_t<std::remove_cv_t<decltype(end)>>\
-    \ i = (begin), i##_end = (end); i < i##_end; ++i)\n#define repc(i, begin, last)\
-    \ for (std::make_signed_t<std::remove_cv_t<decltype(last)>> i = (begin), i##_last\
-    \ = (last); i <= i##_last; ++i)\n#define repr(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(begin)>>\
-    \ i = (begin), i##_last = (last); i >= i##_last; --i)\n#line 5 \"export/template-prototype.cpp\"\
+    \u30ED\n */\n#define rep(i, begin, end) for (int64_t i = (begin), i##_end = (end);\
+    \ i < i##_end; ++i)\n#define repc(i, begin, last) for (int64_t i = (begin), i##_last\
+    \ = (last); i <= i##_last; ++i)\n#define repr(i, begin, last) for (int64_t i =\
+    \ (begin), i##_last = (last); i >= i##_last; --i)\n#line 5 \"export/template-prototype.cpp\"\
     \n#define let const auto\n#line 3 \"Util/int-alias.hpp\"\n\n/**\n * @brief int-alias\
     \ (\u6574\u6570\u578B\u306E\u30A8\u30A4\u30EA\u30A2\u30B9)\n */\nusing i64 = int64_t;\n\
     using u64 = uint64_t;\n#line 3 \"Util/int-infinity.hpp\"\n\n/**\n * @brief int-infinity\
@@ -177,7 +177,7 @@ data:
   isVerificationFile: false
   path: export/template-prototype.cpp
   requiredBy: []
-  timestamp: '2020-10-25 20:18:22+09:00'
+  timestamp: '2021-03-27 22:16:01+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: export/template-prototype.cpp

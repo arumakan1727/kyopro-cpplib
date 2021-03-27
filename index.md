@@ -262,6 +262,9 @@ data:
   - name: tool
     pages:
     - icon: ':warning:'
+      path: tool/gen-codesnippet.py
+      title: tool/gen-codesnippet.py
+    - icon: ':warning:'
       path: tool/gen-snippet.py
       title: tool/gen-snippet.py
     - icon: ':warning:'

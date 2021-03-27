@@ -10,6 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/1501-Grid.test.cpp
     title: test/AOJ/1501-Grid.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

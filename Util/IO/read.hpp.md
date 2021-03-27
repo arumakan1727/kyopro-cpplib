@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/static-range-sum.test.cpp
     title: test/yosupo/static-range-sum.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

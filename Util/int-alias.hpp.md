@@ -24,6 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/static-range-sum.test.cpp
     title: test/yosupo/static-range-sum.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -40,13 +41,13 @@ data:
   isVerificationFile: false
   path: Util/int-alias.hpp
   requiredBy:
-  - Algorithm/doubling-pow.hpp
   - export/template-prototype.cpp
+  - Algorithm/doubling-pow.hpp
   timestamp: '2020-09-26 18:37:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/AOJ/DPL_5_A.test.cpp
   - test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
+  - test/AOJ/DPL_5_A.test.cpp
   - test/AOJ/NTL_1_B-Power.test.cpp
   - test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
   - test/yosupo/static-range-sum.test.cpp

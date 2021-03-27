@@ -6,6 +6,7 @@ data:
     title: "FixPoint (\u30E9\u30E0\u30C0\u5F0F\u306E\u518D\u5E30)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

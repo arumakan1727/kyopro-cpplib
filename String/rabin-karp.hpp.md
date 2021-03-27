@@ -10,6 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/ALDS1_14_B-String-Search.test.cpp
     title: test/AOJ/ALDS1_14_B-String-Search.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

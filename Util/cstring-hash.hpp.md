@@ -6,6 +6,7 @@ data:
     path: Util/constexpr-randint.hpp
     title: "constexprRandint() (\u30B3\u30F3\u30D1\u30A4\u30EB\u6642\u4E71\u6570)"
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:

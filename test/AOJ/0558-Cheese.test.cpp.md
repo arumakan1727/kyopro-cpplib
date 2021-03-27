@@ -30,6 +30,7 @@ data:
     title: "rep()\u30DE\u30AF\u30ED"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -101,11 +102,10 @@ data:
     \            const auto nx = x + dy[q ^ 1];\n            if (0 <= ny && ny < H\
     \ && 0 <= nx && nx < W) handlerFunc(P{y, x}, P{ny, nx}, func);\n        }\n  \
     \  };\n}\n#line 2 \"Util/rep-macro.hpp\"\n\n/**\n * @brief rep()\u30DE\u30AF\u30ED\
-    \n */\n#define rep(i, begin, end) for (std::make_signed_t<std::remove_cv_t<decltype(end)>>\
-    \ i = (begin), i##_end = (end); i < i##_end; ++i)\n#define repc(i, begin, last)\
-    \ for (std::make_signed_t<std::remove_cv_t<decltype(last)>> i = (begin), i##_last\
-    \ = (last); i <= i##_last; ++i)\n#define repr(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(begin)>>\
-    \ i = (begin), i##_last = (last); i >= i##_last; --i)\n#line 3 \"Util/makeVec.hpp\"\
+    \n */\n#define rep(i, begin, end) for (int64_t i = (begin), i##_end = (end); i\
+    \ < i##_end; ++i)\n#define repc(i, begin, last) for (int64_t i = (begin), i##_last\
+    \ = (last); i <= i##_last; ++i)\n#define repr(i, begin, last) for (int64_t i =\
+    \ (begin), i##_last = (last); i >= i##_last; --i)\n#line 3 \"Util/makeVec.hpp\"\
     \n\n/**\n * @brief makeVec() (\u591A\u6B21\u5143std::vector\u306E\u751F\u6210\
     )\n */\ntemplate <class T>\ninline std::vector<T> makeVec(size_t sz, const T&\
     \ initValue) {\n    return std::vector<T>(sz, initValue);\n}\ntemplate <class\
@@ -167,7 +167,7 @@ data:
   isVerificationFile: true
   path: test/AOJ/0558-Cheese.test.cpp
   requiredBy: []
-  timestamp: '2020-10-25 20:18:22+09:00'
+  timestamp: '2021-03-27 22:16:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/AOJ/0558-Cheese.test.cpp

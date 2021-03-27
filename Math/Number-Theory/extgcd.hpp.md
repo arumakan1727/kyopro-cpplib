@@ -6,6 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
     title: test/AOJ/NTL_1_E-Extended-Euclid-Algorithm.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

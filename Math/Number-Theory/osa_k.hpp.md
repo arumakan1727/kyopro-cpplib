@@ -13,6 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/helloworld/osa_k.test.cpp
     title: test/helloworld/osa_k.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -55,8 +56,8 @@ data:
   timestamp: '2020-10-25 20:18:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/helloworld/osa_k.test.cpp
   - test/helloworld/divisor-count-table.test.cpp
+  - test/helloworld/osa_k.test.cpp
 documentation_of: Math/Number-Theory/osa_k.hpp
 layout: document
 redirect_from:

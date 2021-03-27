@@ -20,6 +20,7 @@ data:
     title: "rep()\u30DE\u30AF\u30ED"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -84,16 +85,15 @@ data:
     }  // namespace rand\n#line 2 \"Util/all-macro.hpp\"\n\n/**\n * @brief all()\u30DE\
     \u30AF\u30ED\n */\n#define all(x) std::begin(x), std::end(x)\n#define rall(x)\
     \ std::rbegin(x), std::rend(x)\n#line 2 \"Util/rep-macro.hpp\"\n\n/**\n * @brief\
-    \ rep()\u30DE\u30AF\u30ED\n */\n#define rep(i, begin, end) for (std::make_signed_t<std::remove_cv_t<decltype(end)>>\
-    \ i = (begin), i##_end = (end); i < i##_end; ++i)\n#define repc(i, begin, last)\
-    \ for (std::make_signed_t<std::remove_cv_t<decltype(last)>> i = (begin), i##_last\
-    \ = (last); i <= i##_last; ++i)\n#define repr(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(begin)>>\
-    \ i = (begin), i##_last = (last); i >= i##_last; --i)\n#line 2 \"Util/Debug/errln.hpp\"\
-    \n\n#line 4 \"Util/Debug/errln.hpp\"\n\n/**\n * @brief errln() (println()\u306E\
-    stderr\u7248, \u30C7\u30D0\u30C3\u30B0\u6642\u306E\u307F\u6709\u52B9)\n */\ninline\
-    \ void eprintln() {\n    std::clog << std::endl;\n}\ntemplate <class Head, class...\
-    \ Tail>\ninline void eprintln(Head&& head, Tail&&... tail) {\n    std::clog <<\
-    \ head << &\" \"[!sizeof...(tail)];\n    eprintln(std::forward<Tail>(tail)...);\n\
+    \ rep()\u30DE\u30AF\u30ED\n */\n#define rep(i, begin, end) for (int64_t i = (begin),\
+    \ i##_end = (end); i < i##_end; ++i)\n#define repc(i, begin, last) for (int64_t\
+    \ i = (begin), i##_last = (last); i <= i##_last; ++i)\n#define repr(i, begin,\
+    \ last) for (int64_t i = (begin), i##_last = (last); i >= i##_last; --i)\n#line\
+    \ 2 \"Util/Debug/errln.hpp\"\n\n#line 4 \"Util/Debug/errln.hpp\"\n\n/**\n * @brief\
+    \ errln() (println()\u306Estderr\u7248, \u30C7\u30D0\u30C3\u30B0\u6642\u306E\u307F\
+    \u6709\u52B9)\n */\ninline void eprintln() {\n    std::clog << std::endl;\n}\n\
+    template <class Head, class... Tail>\ninline void eprintln(Head&& head, Tail&&...\
+    \ tail) {\n    std::clog << head << &\" \"[!sizeof...(tail)];\n    eprintln(std::forward<Tail>(tail)...);\n\
     }\n\n#ifdef LOCAL_DEBUG\n#define errln(...) std::clog << __FILE__ << \"(\" <<\
     \ __LINE__ << \")[\" << __func__ << \"()]: \", eprintln(__VA_ARGS__)\n#else\n\
     #define errln(...) ((void)0)\n#endif\n#line 10 \"test/helloworld/rolling-hash.test.cpp\"\
@@ -164,7 +164,7 @@ data:
   isVerificationFile: true
   path: test/helloworld/rolling-hash.test.cpp
   requiredBy: []
-  timestamp: '2020-10-25 20:18:22+09:00'
+  timestamp: '2021-03-27 22:16:01+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/helloworld/rolling-hash.test.cpp

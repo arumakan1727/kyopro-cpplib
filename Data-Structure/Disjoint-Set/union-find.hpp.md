@@ -12,6 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
     title: test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -61,8 +62,8 @@ data:
   timestamp: '2020-09-13 19:39:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/AOJ/DSL_1_A.test.cpp
   - test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
+  - test/AOJ/DSL_1_A.test.cpp
 documentation_of: Data-Structure/Disjoint-Set/union-find.hpp
 layout: document
 redirect_from:

@@ -18,6 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/NTL_1_B-Power.test.cpp
     title: test/AOJ/NTL_1_B-Power.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -146,8 +147,8 @@ data:
   verifiedWith:
   - test/AOJ/DPL_5_A.test.cpp
   - test/AOJ/1501-Grid.test.cpp
-  - test/AOJ/0264-Finite-Field-Calculator.test.cpp
   - test/AOJ/NTL_1_B-Power.test.cpp
+  - test/AOJ/0264-Finite-Field-Calculator.test.cpp
 documentation_of: Math/Modulo/mod-int.hpp
 layout: document
 redirect_from:

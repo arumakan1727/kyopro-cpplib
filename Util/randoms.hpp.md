@@ -6,6 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/helloworld/rolling-hash.test.cpp
     title: test/helloworld/rolling-hash.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

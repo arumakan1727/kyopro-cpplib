@@ -10,6 +10,7 @@ data:
     title: "isPrime() (\u7D20\u6570\u5224\u5B9A $O(\\sqrt n)$)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

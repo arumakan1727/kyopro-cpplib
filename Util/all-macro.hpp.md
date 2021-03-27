@@ -15,6 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yosupo/static-range-sum.test.cpp
     title: test/yosupo/static-range-sum.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
@@ -34,8 +35,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/ALDS1_14_B-String-Search.test.cpp
-  - test/helloworld/rolling-hash.test.cpp
   - test/yosupo/static-range-sum.test.cpp
+  - test/helloworld/rolling-hash.test.cpp
 documentation_of: Util/all-macro.hpp
 layout: document
 redirect_from:

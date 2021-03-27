@@ -12,6 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
     title: test/AOJ/GRL_2_A-Minimum-Spanning-Tree.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

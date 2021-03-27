@@ -12,29 +12,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/helloworld/rolling-hash.test.cpp
     title: test/helloworld/rolling-hash.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     document_title: "rep()\u30DE\u30AF\u30ED"
     links: []
   bundledCode: "#line 2 \"Util/rep-macro.hpp\"\n\n/**\n * @brief rep()\u30DE\u30AF\
-    \u30ED\n */\n#define rep(i, begin, end) for (std::make_signed_t<std::remove_cv_t<decltype(end)>>\
-    \ i = (begin), i##_end = (end); i < i##_end; ++i)\n#define repc(i, begin, last)\
-    \ for (std::make_signed_t<std::remove_cv_t<decltype(last)>> i = (begin), i##_last\
-    \ = (last); i <= i##_last; ++i)\n#define repr(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(begin)>>\
-    \ i = (begin), i##_last = (last); i >= i##_last; --i)\n"
+    \u30ED\n */\n#define rep(i, begin, end) for (int64_t i = (begin), i##_end = (end);\
+    \ i < i##_end; ++i)\n#define repc(i, begin, last) for (int64_t i = (begin), i##_last\
+    \ = (last); i <= i##_last; ++i)\n#define repr(i, begin, last) for (int64_t i =\
+    \ (begin), i##_last = (last); i >= i##_last; --i)\n"
   code: "#pragma once\n\n/**\n * @brief rep()\u30DE\u30AF\u30ED\n */\n#define rep(i,\
-    \ begin, end) for (std::make_signed_t<std::remove_cv_t<decltype(end)>> i = (begin),\
-    \ i##_end = (end); i < i##_end; ++i)\n#define repc(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(last)>>\
-    \ i = (begin), i##_last = (last); i <= i##_last; ++i)\n#define repr(i, begin,\
-    \ last) for (std::make_signed_t<std::remove_cv_t<decltype(begin)>> i = (begin),\
-    \ i##_last = (last); i >= i##_last; --i)\n"
+    \ begin, end) for (int64_t i = (begin), i##_end = (end); i < i##_end; ++i)\n#define\
+    \ repc(i, begin, last) for (int64_t i = (begin), i##_last = (last); i <= i##_last;\
+    \ ++i)\n#define repr(i, begin, last) for (int64_t i = (begin), i##_last = (last);\
+    \ i >= i##_last; --i)\n"
   dependsOn: []
   isVerificationFile: false
   path: Util/rep-macro.hpp
   requiredBy:
   - export/template-prototype.cpp
-  timestamp: '2020-09-20 14:50:23+09:00'
+  timestamp: '2021-03-27 22:16:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/AOJ/0558-Cheese.test.cpp

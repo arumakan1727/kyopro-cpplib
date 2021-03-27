@@ -7,6 +7,7 @@ data:
       \u306Evector\u3092\u751F\u6210\u3059\u308B)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

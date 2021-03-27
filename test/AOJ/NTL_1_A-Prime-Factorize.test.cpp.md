@@ -6,6 +6,7 @@ data:
     title: "primeFactorize() (\u7D20\u56E0\u6570\u5206\u89E3 $O(\\sqrt n)$)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

@@ -24,6 +24,7 @@ data:
     title: "int-infinity (\u6574\u6570\u306E\u30C7\u30AB\u30A4\u5024)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

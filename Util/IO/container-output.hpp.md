@@ -6,6 +6,7 @@ data:
     path: export/template-prototype.cpp
     title: export/template-prototype.cpp
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:

@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/helloworld/eratosthenes-sieve.test.cpp
     title: test/helloworld/eratosthenes-sieve.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

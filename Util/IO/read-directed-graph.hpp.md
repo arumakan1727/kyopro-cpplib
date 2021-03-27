@@ -9,6 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
     title: test/AOJ/GRL_1_A-Single-Source-Shortest-Path.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

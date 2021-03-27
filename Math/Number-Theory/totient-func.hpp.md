@@ -6,6 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/AOJ/NTL_1_D-Eulers-Phi-Function.test.cpp
     title: test/AOJ/NTL_1_D-Eulers-Phi-Function.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:

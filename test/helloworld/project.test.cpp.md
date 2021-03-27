@@ -7,6 +7,7 @@ data:
       \ I \u8981\u7D20\u3092\u62BD\u51FA\u3057\u305Fvector\u3092\u8FD4\u3059)"
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: cpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
