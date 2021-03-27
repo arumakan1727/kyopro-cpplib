@@ -13,7 +13,6 @@ constexpr Integer doublingPow(const Integer& n, const i64 expv) {
     return (expv < 0) ? (1 / ret) : ret;
 }
 // }}}
-endsnippet
 
 snippet union-find "Disjoint-Set/union-find.hpp"
 // union-find {{{
@@ -60,7 +59,6 @@ public:
     }
 };
 // }}}
-endsnippet
 
 snippet FenwicTree "Range-Accumulate/FenwicTree.hpp"
 // FenwicTree {{{
@@ -121,7 +119,6 @@ private:
     }
 };
 // }}}
-endsnippet
 
 snippet cumulative-sum "Range-Accumulate/cumulative-sum.hpp"
 // cumulative-sum {{{
@@ -155,7 +152,6 @@ struct CumulativeSum {
     const T sum(size_t l, size_t r) const { return prefixSum(r) - prefixSum(l); }
 };
 // }}}
-endsnippet
 
 snippet foldLR "Range-Accumulate/foldLR.hpp"
 // foldLR {{{
@@ -210,7 +206,6 @@ public:
     const T e() const { return m_e; }
 };
 // }}}
-endsnippet
 
 snippet kruskal "Minimum-Spanning-Tree/kruskal.hpp"
 // kruskal {{{
@@ -232,7 +227,6 @@ ResultType kruskal(int V, std::vector<Edge<WeightType>>& edges) {
     return weightSum;
 }
 // }}}
-endsnippet
 
 snippet bfs "Shortest-Path/bfs.hpp"
 // bfs {{{
@@ -279,7 +273,6 @@ DistArray bfs(DistArray&& dist, Vertex start, NextVertexEnumerator enumerateNext
     return dist;
 }
 // }}}
-endsnippet
 
 snippet dijkstra "Shortest-Path/dijkstra.hpp"
 // dijkstra {{{
@@ -329,7 +322,6 @@ DistArray dijkstra(DistArray&& dist, Vertex start, NextVertexEnumerator enumerat
 }
 
 // }}}
-endsnippet
 
 snippet graph-template "Graph/graph-template.hpp"
 // graph-template {{{
@@ -393,7 +385,6 @@ struct Edge<void> {
 template <class T>
 using Graph = std::vector<std::vector<Edge<T>>>;
 // }}}
-endsnippet
 
 snippet factorials "Combinatorics/factorials.hpp"
 // factorials {{{
@@ -447,7 +438,6 @@ public:
     }
 };
 // }}}
-endsnippet
 
 snippet mersenne-prime-number-mod-int "Modulo/mersenne-prime-number-mod-int.hpp"
 // mersenne-prime-number-mod-int {{{
@@ -601,7 +591,6 @@ using MersennePrimeNumberModInt = internal::ModInt<internal::MersennePrimeNumber
 
 using ModInt_2pow61_1 = MersennePrimeNumberModInt<(1ull << 61) - 1>;
 // }}}
-endsnippet
 
 snippet mod-int "Modulo/mod-int.hpp"
 // mod-int {{{
@@ -734,7 +723,6 @@ using ModInt998244353 = StaticModInt<998244353>;
 template <int ID>
 using DynamicModInt = internal::ModInt<internal::DynamicModHolder<ID>>;
 // }}}
-endsnippet
 
 snippet divisor-count-table "Number-Theory/divisor-count-table.hpp"
 // divisor-count-table {{{
@@ -750,7 +738,6 @@ std::vector<int> divisorCountTable(int N) {
     return cnt;
 }
 // }}}
-endsnippet
 
 snippet enumerate-divisors "Number-Theory/enumerate-divisors.hpp"
 // enumerate-divisors {{{
@@ -769,7 +756,6 @@ std::vector<Integer> enumerateDivisors(Integer n) {
     return divisors;
 }
 // }}}
-endsnippet
 
 snippet eratosthenes-sieve "Number-Theory/eratosthenes-sieve.hpp"
 // eratosthenes-sieve {{{
@@ -811,7 +797,6 @@ public:
     }
 };
 // }}}
-endsnippet
 
 snippet extgcd "Number-Theory/extgcd.hpp"
 // extgcd {{{
@@ -832,7 +817,6 @@ T extgcd(T a, T b, T& x, T& y) {
     return g;
 }
 // }}}
-endsnippet
 
 snippet is-prime "Number-Theory/is-prime.hpp"
 // is-prime {{{
@@ -848,7 +832,6 @@ constexpr bool isPrime(int64_t n) {
     return true;
 }
 // }}}
-endsnippet
 
 snippet osa_k "Number-Theory/osa_k.hpp"
 // osa_k {{{
@@ -865,7 +848,6 @@ std::map<int, int> osa_k(int n, const EratosthenesSieve& es) {
     return ret;
 }
 // }}}
-endsnippet
 
 snippet prime-factorize "Number-Theory/prime-factorize.hpp"
 // prime-factorize {{{
@@ -885,7 +867,6 @@ std::map<Integer, int> primeFactorize(Integer n) {
     return res;
 }
 // }}}
-endsnippet
 
 snippet totient-func "Number-Theory/totient-func.hpp"
 // totient-func {{{
@@ -905,7 +886,6 @@ constexpr Integer totient(Integer n) {
     return ret;
 }
 // }}}
-endsnippet
 
 snippet rabin-karp "String/rabin-karp.hpp"
 // rabin-karp {{{
@@ -929,7 +909,6 @@ std::vector<size_t> rabinKarp(const RollingHash<Base>& s, const RollingHash<Base
     return foundIndexes;
 }
 // }}}
-endsnippet
 
 snippet rolling-hash "String/rolling-hash.hpp"
 // rolling-hash {{{
@@ -1012,7 +991,6 @@ private:
     }
 };
 // }}}
-endsnippet
 
 snippet debug "Debug/debug.hpp"
 // debug {{{
@@ -1136,7 +1114,6 @@ void debug_println(const Head& head, const Tail&... tail) {
 
 #endif
 // }}}
-endsnippet
 
 snippet errln "Debug/errln.hpp"
 // errln {{{
@@ -1158,7 +1135,6 @@ inline void eprintln(Head&& head, Tail&&... tail) {
 #define errln(...) ((void)0)
 #endif
 // }}}
-endsnippet
 
 snippet graph-debug "Debug/graph-debug.hpp"
 // graph-debug {{{
@@ -1181,7 +1157,6 @@ std::ostream& operator<<(std::ostream& os, const Edge<void>& e) {
     return os;
 }
 // }}}
-endsnippet
 
 snippet container-input "IO/container-input.hpp"
 // container-input {{{
@@ -1194,7 +1169,6 @@ std::istream& operator>>(std::istream& is, Container& v) {
     return is;
 }
 // }}}
-endsnippet
 
 snippet container-output "IO/container-output.hpp"
 // container-output {{{
@@ -1207,7 +1181,6 @@ std::ostream& operator<<(std::ostream& os, const Container& v) {
     return os;
 }
 // }}}
-endsnippet
 
 snippet join-into-ostream "IO/join-into-ostream.hpp"
 // join-into-ostream {{{
@@ -1221,7 +1194,6 @@ void join(std::ostream& os, InputItr begin, InputItr end, const char* delim, con
     os << last;
 }
 // }}}
-endsnippet
 
 snippet println "IO/println.hpp"
 // println {{{
@@ -1237,7 +1209,6 @@ inline void println(Head&& head, Tail&&... tail) {
     println(std::forward<Tail>(tail)...);
 }
 // }}}
-endsnippet
 
 snippet read-directed-graph "IO/read-directed-graph.hpp"
 // read-directed-graph {{{
@@ -1258,7 +1229,6 @@ Graph<T> readDirectedGraph(size_t V, size_t E, int padding = -1, std::istream& i
 }
 
 // }}}
-endsnippet
 
 snippet read-undirected-graph "IO/read-undirected-graph.hpp"
 // read-undirected-graph {{{
@@ -1279,7 +1249,6 @@ Graph<T> readUndirectedGraph(size_t V, size_t E, int padding = -1, std::istream&
     return G;
 }
 // }}}
-endsnippet
 
 snippet read "IO/read.hpp"
 // read {{{
@@ -1293,7 +1262,6 @@ Container<T> read(size_t n) {
     return ret;
 }
 // }}}
-endsnippet
 
 snippet var-declaration-with-input "IO/var-declaration-with-input.hpp"
 // var-declaration-with-input {{{
@@ -1309,7 +1277,6 @@ std::istream& operator,(std::istream& is, T& rhs) {
     type __VA_ARGS__;  \
     std::cin >> __VA_ARGS__
 // }}}
-endsnippet
 
 snippet all-macro "Util/all-macro.hpp"
 // all-macro {{{
@@ -1319,7 +1286,6 @@ snippet all-macro "Util/all-macro.hpp"
 #define all(x) std::begin(x), std::end(x)
 #define rall(x) std::rbegin(x), std::rend(x)
 // }}}
-endsnippet
 
 snippet at "Util/at.hpp"
 // at {{{
@@ -1354,7 +1320,6 @@ inline auto at(Cube&& cube, Tuple index) -> decltype(cube[0][0][0])& {
 
 }  // namespace arumakan
 // }}}
-endsnippet
 
 snippet chminmax "Util/chminmax.hpp"
 // chminmax {{{
@@ -1371,7 +1336,6 @@ inline bool chmax(T& a, const U& b) {
     return b > a && (a = b, true);
 }
 // }}}
-endsnippet
 
 snippet constexpr-randint "Util/constexpr-randint.hpp"
 // constexpr-randint {{{
@@ -1388,7 +1352,6 @@ constexpr uint32_t constexprRandint(uint32_t min, uint32_t max) {
     return cstringHash(UNIQUE_STRING) % m + min;
 }
 // }}}
-endsnippet
 
 snippet cstring-hash "Util/cstring-hash.hpp"
 // cstring-hash {{{
@@ -1409,7 +1372,6 @@ constexpr uint32_t cstringHash(const char* s) {
     return hashv;
 }
 // }}}
-endsnippet
 
 snippet fillContainer "Util/fillContainer.hpp"
 // fillContainer {{{
@@ -1426,7 +1388,6 @@ inline void fillContainer(Container& container, ConstructorArgs&&... constructor
     for (auto& e: container) fillContainer<T>(e, std::forward<ConstructorArgs>(constructorArgs)...);
 }
 // }}}
-endsnippet
 
 snippet fix-point "Util/fix-point.hpp"
 // fix-point {{{
@@ -1446,7 +1407,6 @@ struct FixPoint : F {
     }
 };
 // }}}
-endsnippet
 
 snippet indexing-wrapper "Util/indexing-wrapper.hpp"
 // indexing-wrapper {{{
@@ -1484,7 +1444,6 @@ struct IndexingWrapper {
     }
 };
 // }}}
-endsnippet
 
 snippet int-alias "Util/int-alias.hpp"
 // int-alias {{{
@@ -1494,7 +1453,6 @@ snippet int-alias "Util/int-alias.hpp"
 using i64 = int64_t;
 using u64 = uint64_t;
 // }}}
-endsnippet
 
 snippet int-infinity "Util/int-infinity.hpp"
 // int-infinity {{{
@@ -1505,7 +1463,6 @@ snippet int-infinity "Util/int-infinity.hpp"
 constexpr int32_t INF = 0x3f3f3f3f;
 constexpr int64_t LINF = 0x3f3f3f3f3f3f3f3fLL;
 // }}}
-endsnippet
 
 snippet is-within-range "Util/is-within-range.hpp"
 // is-within-range {{{
@@ -1517,7 +1474,6 @@ inline bool within(const Value& v, const ValueBegin& begin, const ValueEnd& end)
     return begin <= v && v < end;
 }
 // }}}
-endsnippet
 
 snippet make-four-neighbor-enumerator "Util/make-four-neighbor-enumerator.hpp"
 // make-four-neighbor-enumerator {{{
@@ -1542,7 +1498,6 @@ auto makeFourNeighborEnumerator(int H, int W, HandlerFunc handlerFunc) {
     };
 }
 // }}}
-endsnippet
 
 snippet makeVec "Util/makeVec.hpp"
 // makeVec {{{
@@ -1558,7 +1513,6 @@ inline auto makeVec(size_t sz, Args... args) {
     return std::vector<decltype(makeVec<T>(args...))>(sz, makeVec<T>(args...));
 }
 // }}}
-endsnippet
 
 snippet project "Util/project.hpp"
 // project {{{
@@ -1572,7 +1526,6 @@ std::vector<Value> project(const Container& v) {
     return ret;
 }
 // }}}
-endsnippet
 
 snippet randoms "Util/randoms.hpp"
 // randoms {{{
@@ -1617,18 +1570,16 @@ auto choice(RandomAccessIter begin, RandomAccessIter end) {
 
 }  // namespace rand
 // }}}
-endsnippet
 
 snippet rep-macro "Util/rep-macro.hpp"
 // rep-macro {{{
 /**
  * @brief rep()マクロ
  */
-#define rep(i, begin, end) for (std::make_signed_t<std::remove_cv_t<decltype(end)>> i = (begin), i##_end = (end); i < i##_end; ++i)
-#define repc(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(last)>> i = (begin), i##_last = (last); i <= i##_last; ++i)
-#define repr(i, begin, last) for (std::make_signed_t<std::remove_cv_t<decltype(begin)>> i = (begin), i##_last = (last); i >= i##_last; --i)
+#define rep(i, begin, end) for (int64_t i = (begin), i##_end = (end); i < i##_end; ++i)
+#define repc(i, begin, last) for (int64_t i = (begin), i##_last = (last); i <= i##_last; ++i)
+#define repr(i, begin, last) for (int64_t i = (begin), i##_last = (last); i >= i##_last; --i)
 // }}}
-endsnippet
 
 snippet runlength "Util/runlength.hpp"
 // runlength {{{
@@ -1652,7 +1603,6 @@ auto runlength(Iterator const begin, Iterator const end) {
     return ret;
 }
 // }}}
-endsnippet
 
 snippet timer "Util/timer.hpp"
 // timer {{{
@@ -1676,7 +1626,6 @@ public:
     }
 };
 // }}}
-endsnippet
 
 snippet zip "Util/zip.hpp"
 // zip {{{
@@ -1699,5 +1648,4 @@ std::vector<std::tuple<T1, T2, T3>> zip(const std::vector<T1>& v1, const std::ve
     return ret;
 }
 // }}}
-endsnippet
 
