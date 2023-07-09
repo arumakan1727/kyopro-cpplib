@@ -1,0 +1,8 @@
+Language: Cpp
+BasedOnStyle: Chromium
+ColumnLimit: 100
+
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortLambdasOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: WithoutElse
+AllowShortLoopsOnASingleLine: true

@@ -1,0 +1,12 @@
+-std=c++17
+-Wall
+-Wextra
+
+-Wfloat-equal
+-Winit-self
+-Winvalid-pch
+-Wmissing-include-dirs
+-Wshadow
+-Wswitch-enum
+
+-Wno-char-subscripts
