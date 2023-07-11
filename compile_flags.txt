@@ -2,6 +2,7 @@
 -Wall
 -Wextra
 
+-Wconversion
 -Wfloat-equal
 -Winit-self
 -Winvalid-pch
@@ -10,3 +11,4 @@
 -Wswitch-enum
 
 -Wno-char-subscripts
+-Wno-sign-conversion
