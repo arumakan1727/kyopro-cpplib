@@ -7,18 +7,16 @@ struct Printer {
   const char* _end = "\n";
 
   inline Printer() = default;
-  inline Printer(std::ostream& out, const char* sep, const char* end)
-      : _out(out), _sep(sep), _end(end) {}
 
-  template <class T>
-  inline void operator()(T&& x) {
-    _out << x << _end;
+  inline void operator()() {
+    _out << _end;
   }
 
-  template <class T1, class T2, class... Rest>
-  inline void operator()(T1&& a, T2&& b, Rest&&... rest) {
-    _out << a << _sep;
-    operator()(std::forward<T2>(b), std::forward<Rest>(rest)...);
+  template <class T, class... Rest>
+  inline void operator()(T&& a, Rest&&... rest) {
+    _out << a;
+    if constexpr (sizeof...(rest)) _out << _sep;
+    operator()(std::forward<Rest>(rest)...);
   }
 
 #define EMIT_YES_NO_METHOD(yes, no)   \
@@ -44,19 +42,17 @@ struct Printer {
 
   template <class InputItr>
   inline void each(InputItr begin, InputItr end) const {
-    for (begin != end && _out << *begin++; begin != end; ++begin) {
-      _out << _sep << *begin;
-    }
+    for (begin != end && _out << *begin++; begin != end; ++begin) _out << _sep << *begin;
     _out << _end;
   }
 
   inline Printer to(std::ostream& o) const {
-    return Printer(o, _sep, _end);
+    return Printer{o, _sep, _end};
   }
   inline Printer sep(const char* sep) const {
-    return Printer(_out, sep, _end);
+    return Printer{_out, sep, _end};
   }
   inline Printer ends(const char* end) const {
-    return Printer(_out, _sep, end);
+    return Printer{_out, _sep, end};
   }
 } print;
