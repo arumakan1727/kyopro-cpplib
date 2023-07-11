@@ -1,4 +1,5 @@
 #pragma once
+#include <cassert>
 #include <vector>
 
 inline std::vector<bool> eratosthenes_sieve(int n) {

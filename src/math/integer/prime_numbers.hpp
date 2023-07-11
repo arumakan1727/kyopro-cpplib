@@ -1,4 +1,5 @@
 #pragma once
+#include <cassert>
 #include <vector>
 #include "eratosthenes_sieve.hpp"
 

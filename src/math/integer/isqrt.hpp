@@ -1,6 +1,7 @@
 #pragma once
-
+#include <cassert>
 #include <type_traits>
+
 template <class Integer, class = std::enable_if_t<std::is_integral_v<Integer>>>
 constexpr Integer isqrt(Integer x) {
   assert(x >= 0);
