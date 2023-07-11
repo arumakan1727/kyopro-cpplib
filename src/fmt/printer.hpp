@@ -10,15 +10,15 @@ struct Printer {
   inline Printer(std::ostream& out, const char* sep, const char* end)
       : _out(out), _sep(sep), _end(end) {}
 
-  template <class T1, class T2, class... Rest>
-  inline void operator()(const T1& a, const T2& b, Rest&&... rest) const {
-    _out << a << _sep;
-    print(b, std::forward(rest...));
+  template <class T>
+  inline void operator()(T&& x) {
+    _out << x << _end;
   }
 
-  template <class T>
-  inline void operator()(const T& x) const {
-    _out << x << _end;
+  template <class T1, class T2, class... Rest>
+  inline void operator()(T1&& a, T2&& b, Rest&&... rest) {
+    _out << a << _sep;
+    operator()(std::forward<T2>(b), std::forward<Rest>(rest)...);
   }
 
 #define EMIT_YES_NO_METHOD(yes, no)   \
