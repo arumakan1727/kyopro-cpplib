@@ -10,6 +10,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_subdirectory(lib/Catch2)
 
 add_executable(tests
+  armkn/fmt/printer.cpp
   armkn/util/fn/sigma.cpp
 )
 target_include_directories(tests PRIVATE
