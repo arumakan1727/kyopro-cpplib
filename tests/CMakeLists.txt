@@ -16,6 +16,7 @@ add_executable(tests
   armkn/math/integer/eratosthenes_sieve.cpp
   armkn/math/integer/ext_gcd.cpp
   armkn/math/integer/is_prime.cpp
+  armkn/math/integer/ilog2.cpp
   armkn/math/integer/isqrt.cpp
   armkn/math/integer/osa_k.cpp
   armkn/math/integer/prime_factorize.cpp
