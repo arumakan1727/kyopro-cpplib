@@ -17,6 +17,7 @@ add_executable(tests
   armkn/math/integer/ext_gcd.cpp
   armkn/math/integer/is_prime.cpp
   armkn/math/integer/isqrt.cpp
+  armkn/math/integer/osa_k.cpp
   armkn/fmt/printer.cpp
   armkn/util/alias/heapq.cpp
   armkn/util/fn/sigma.cpp
