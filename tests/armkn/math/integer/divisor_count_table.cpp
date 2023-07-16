@@ -1,6 +1,5 @@
 #include <armkn/math/integer/divisor_count_table.hpp>
 #include <catch2/catch_test_macros.hpp>
-#include <catch2/generators/catch_generators.hpp>
 
 TEST_CASE("divisor_count_table", "[math][math/integer]") {
   auto table = divisor_count_table(16);
