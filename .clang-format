@@ -2,6 +2,10 @@ Language: Cpp
 BasedOnStyle: Chromium
 ColumnLimit: 100
 
+AlignAfterOpenBracket: BlockIndent
+AllowAllArgumentsOnNextLine: false
+BinPackArguments: false
+
 AllowShortFunctionsOnASingleLine: Empty
 AllowShortLambdasOnASingleLine: All
 AllowShortIfStatementsOnASingleLine: WithoutElse

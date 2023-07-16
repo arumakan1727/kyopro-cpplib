@@ -4,8 +4,10 @@
 
 template <class SignedInt>
 constexpr SignedInt isqrt(SignedInt x) {
-  static_assert(std::is_integral_v<SignedInt> && std::is_signed_v<SignedInt>,
-                "Argument type must be signed integer!!!");
+  static_assert(
+      std::is_integral_v<SignedInt> && std::is_signed_v<SignedInt>,
+      "Argument type must be signed integer!!!"
+  );
   assert(x >= 0);
   SignedInt q = 1;
   while (q <= x) q <<= 2;
