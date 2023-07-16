@@ -15,6 +15,7 @@ add_executable(tests
   armkn/math/comb/factorials.cpp
   armkn/math/comb/binom_fn.cpp
   armkn/math/comb/binom_table.cpp
+  armkn/math/comb/binom_table_const_n.cpp
   armkn/math/integer/divisor_count_table.cpp
   armkn/math/integer/divisors.cpp
   armkn/math/integer/eratosthenes_sieve.cpp
