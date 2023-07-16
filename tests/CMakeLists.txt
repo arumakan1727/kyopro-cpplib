@@ -12,10 +12,11 @@ add_subdirectory(lib/Catch2)
 add_executable(tests
   armkn/dsu/union_find.cpp
   armkn/fmt/printer.cpp
-  armkn/math/comb/factorials.cpp
   armkn/math/comb/binom_fn.cpp
   armkn/math/comb/binom_table.cpp
   armkn/math/comb/binom_table_const_n.cpp
+  armkn/math/comb/factorials.cpp
+  armkn/math/comb/lucas_binom.cpp
   armkn/math/integer/divisor_count_table.cpp
   armkn/math/integer/divisors.cpp
   armkn/math/integer/eratosthenes_sieve.cpp
@@ -37,5 +38,7 @@ target_compile_options(tests PRIVATE
   -Wall -Wextra -Wconversion
   -Werror
   -Wno-sign-conversion
+  -g
+  -fno-omit-frame-pointer
 )
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
