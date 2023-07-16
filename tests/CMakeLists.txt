@@ -11,17 +11,18 @@ add_subdirectory(lib/Catch2)
 
 add_executable(tests
   armkn/dsu/union_find.cpp
+  armkn/fmt/printer.cpp
+  armkn/math/comb/factorials.cpp
   armkn/math/integer/divisor_count_table.cpp
   armkn/math/integer/divisors.cpp
   armkn/math/integer/eratosthenes_sieve.cpp
   armkn/math/integer/ext_gcd.cpp
-  armkn/math/integer/is_prime.cpp
   armkn/math/integer/ilog2.cpp
+  armkn/math/integer/is_prime.cpp
   armkn/math/integer/isqrt.cpp
   armkn/math/integer/osa_k.cpp
   armkn/math/integer/prime_factorize.cpp
   armkn/math/integer/prime_numbers.cpp
-  armkn/fmt/printer.cpp
   armkn/util/alias/heapq.cpp
   armkn/util/fn/sigma.cpp
 )
