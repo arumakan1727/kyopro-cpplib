@@ -2,16 +2,18 @@
 #include <cassert>
 #include <type_traits>
 
-template <class Integer, class = std::enable_if_t<std::is_integral_v<Integer>>>
-constexpr Integer isqrt(Integer x) {
+template <class SignedInt>
+constexpr SignedInt isqrt(SignedInt x) {
+  static_assert(std::is_integral_v<SignedInt> && std::is_signed_v<SignedInt>,
+                "Argument type must be signed integer!!!");
   assert(x >= 0);
-  Integer q = 1;
+  SignedInt q = 1;
   while (q <= x) q <<= 2;
 
-  Integer r = 0;
+  SignedInt r = 0;
   while (q > 1) {
     q >>= 2;
-    Integer t = x - r - q;
+    SignedInt t = x - r - q;
     r >>= 1;
     if (t >= 0) {
       x = t;
