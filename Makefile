@@ -26,6 +26,7 @@ fmt-check:
 .PHONY:	lint
 lint:
 	@echo "--- linting ---"
+	$(SRC_C_CXX_FILES) | xargs ./scripts/mylint.py
 	$(SRC_C_CXX_FILES) | xargs clang++ -Werror -fsyntax-only $$KPR_CXX_COMMON_FLAGS
 
 .PHONY:	test
