@@ -15,6 +15,7 @@ add_executable(tests
   armkn/math/integer/divisors.cpp
   armkn/math/integer/eratosthenes_sieve.cpp
   armkn/math/integer/ext_gcd.cpp
+  armkn/math/integer/is_prime.cpp
   armkn/math/integer/isqrt.cpp
   armkn/fmt/printer.cpp
   armkn/util/alias/heapq.cpp
