@@ -1,4 +1,4 @@
-.DEFAULT_GOAL := run/test
+.DEFAULT_GOAL := build/tests
 TESTS_BIN := build/tests
 LIB_CATCH2_VER := 3.4.0
 
@@ -22,13 +22,13 @@ download/Catch2:
 	curl -sSL https://github.com/catchorg/Catch2/archive/refs/tags/v$(LIB_CATCH2_VER).tar.gz | tar zx && mv Catch2-$(LIB_CATCH2_VER) lib/Catch2
 
 
-.PHONY:	run/test
-run/test:	build/tests
+.PHONY:	run
+run:	build/tests
 	$(TESTS_BIN)
 
 
-.PHONY:	run/test/verbose
-run/test/verbose:	build/tests
+.PHONY:	run/verbose
+run/verbose:	build/tests
 	$(TESTS_BIN) -s
 
 
