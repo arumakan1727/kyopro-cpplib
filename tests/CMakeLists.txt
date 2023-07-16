@@ -11,6 +11,7 @@ add_subdirectory(lib/Catch2)
 
 add_executable(tests
   armkn/dsu/union_find.cpp
+  armkn/math/integer/divisor_count_table.cpp
   armkn/fmt/printer.cpp
   armkn/util/alias/heapq.cpp
   armkn/util/fn/sigma.cpp
