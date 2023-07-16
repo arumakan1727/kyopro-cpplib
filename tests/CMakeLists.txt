@@ -19,6 +19,7 @@ add_executable(tests
   armkn/math/integer/isqrt.cpp
   armkn/math/integer/osa_k.cpp
   armkn/math/integer/prime_factorize.cpp
+  armkn/math/integer/prime_numbers.cpp
   armkn/fmt/printer.cpp
   armkn/util/alias/heapq.cpp
   armkn/util/fn/sigma.cpp
