@@ -2,10 +2,10 @@
 #include <catch2/catch_test_macros.hpp>
 
 TEST_CASE("LucasBinomial", "[math][math/comb]") {
-  SECTION("MOD=97") {
+  SECTION("MOD=127") {
     constexpr uint32_t MOD = 127;
     const auto f = LucasBinomial(MOD);
-    CHECK(f.MOD == 97);
+    CHECK(f.MOD == 127);
 
     CHECK(f.C(3, -1) == 0);
     CHECK(f.C(3, 0) == 1);
