@@ -2,7 +2,7 @@
 #include <cassert>
 #include <type_traits>
 #include <vector>
-#include "isqrt.hpp"
+#include "../../util/fn/isqrt.hpp"
 
 /// Calc sorted divisors of `n`; $O(\sqrt(N))$
 template <class Integer>

@@ -1,7 +1,7 @@
-#include <armkn/math/integer/ilog2.hpp>
+#include <armkn/util/fn/ilog2.hpp>
 #include <catch2/catch_test_macros.hpp>
 
-TEST_CASE("ilog2", "[math][math/integer]") {
+TEST_CASE("ilog2", "[util]") {
   CHECK(ilog2(1) == 0);
   CHECK(ilog2(2) == 1);
   CHECK(ilog2(3) == 1);

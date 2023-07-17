@@ -1,7 +1,7 @@
-#include <armkn/math/integer/isqrt.hpp>
+#include <armkn/util/fn/isqrt.hpp>
 #include <catch2/catch_test_macros.hpp>
 
-TEST_CASE("isqrt", "[math][math/integer]") {
+TEST_CASE("isqrt", "[util]") {
   CHECK(isqrt(0) == 0);
   CHECK(isqrt(1) == 1);
   CHECK(isqrt(2) == 1);

@@ -21,15 +21,15 @@ add_executable(tests
   armkn/math/integer/divisors.cpp
   armkn/math/integer/eratosthenes_sieve.cpp
   armkn/math/integer/ext_gcd.cpp
-  armkn/math/integer/ilog2.cpp
   armkn/math/integer/is_prime.cpp
-  armkn/math/integer/isqrt.cpp
   armkn/math/integer/osa_k.cpp
   armkn/math/integer/prime_factorize.cpp
   armkn/math/integer/prime_numbers.cpp
   armkn/rangequery/fenwick_tree.cpp
   armkn/util/alias/heapq.cpp
   armkn/util/fn/floor_pow2.cpp
+  armkn/util/fn/ilog2.cpp
+  armkn/util/fn/isqrt.cpp
   armkn/util/fn/sigma.cpp
 )
 target_include_directories(tests PRIVATE
