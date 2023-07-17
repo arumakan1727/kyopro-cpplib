@@ -1,7 +1,7 @@
-#include <armkn/rangequery/fenwick_tree.hpp>
+#include <armkn/rangefold/fenwick_tree.hpp>
 #include <catch2/catch_test_macros.hpp>
 
-TEST_CASE("FenwickTree", "[rangequery]") {
+TEST_CASE("FenwickTree", "[rangefold]") {
   SECTION("size=4 & contains negative value") {
     auto ft = FenwickTree<int>(4);
     REQUIRE(ft.size() == 4);

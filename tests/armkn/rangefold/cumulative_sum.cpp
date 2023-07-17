@@ -1,8 +1,8 @@
-#include <armkn/rangequery/cumulative_sum.hpp>
+#include <armkn/rangefold/cumulative_sum.hpp>
 #include <catch2/catch_test_macros.hpp>
 #include <vector>
 
-TEST_CASE("CumulativeSum", "[rangequery]") {
+TEST_CASE("CumulativeSum", "[rangefold]") {
   using vec = std::vector<int>;
 
   vec a{3, 1, 4, -7};

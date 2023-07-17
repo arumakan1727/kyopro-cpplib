@@ -25,8 +25,8 @@ add_executable(tests
   armkn/math/integer/osa_k.cpp
   armkn/math/integer/prime_factorize.cpp
   armkn/math/integer/prime_numbers.cpp
-  armkn/rangequery/cumulative_sum.cpp
-  armkn/rangequery/fenwick_tree.cpp
+  armkn/rangefold/cumulative_sum.cpp
+  armkn/rangefold/fenwick_tree.cpp
   armkn/util/alias/heapq.cpp
   armkn/util/fn/floor_pow2.cpp
   armkn/util/fn/ilog2.cpp
