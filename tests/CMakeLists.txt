@@ -27,6 +27,7 @@ add_executable(tests
   armkn/math/integer/osa_k.cpp
   armkn/math/integer/prime_factorize.cpp
   armkn/math/integer/prime_numbers.cpp
+  armkn/rangequery/fenwick_tree.cpp
   armkn/util/alias/heapq.cpp
   armkn/util/fn/floor_pow2.cpp
   armkn/util/fn/sigma.cpp
