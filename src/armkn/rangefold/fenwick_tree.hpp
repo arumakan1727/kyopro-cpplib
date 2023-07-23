@@ -7,7 +7,7 @@
 template <class Abel>
 class FenwickTree {
   std::vector<Abel> data;
-  const uint32_t n_floor_pow2;
+  uint32_t n_floor_pow2;
 
  public:
   FenwickTree() : n_floor_pow2(0) {}
@@ -24,32 +24,32 @@ class FenwickTree {
   }
 
   /// 0-indexed
-  void add(int i, const Abel& value) {
+  void add(size_t i, const Abel& value) {
     ++i;
-    assert(0 < i && i < (int)data.size());
-    for (; i < (int)data.size(); i += i & -i) data[i] += value;
+    assert(i < data.size());
+    for (; i < data.size(); i += i & -i) data[i] += value;
   }
 
   /// 0-indexed
-  void set(int i, const Abel& value) {
+  void set(size_t i, const Abel& value) {
     add(i, value - (*this)[i]);
   }
 
   /// Ragne sum [0, i); 0-indexed
-  const Abel sum(int i) const {
-    assert(0 <= i && i < (int)data.size());
+  const Abel sum(size_t i) const {
+    assert(i < data.size());
     Abel acc{};
     while (i > 0) acc += data[i], i -= i & -i;
     return acc;
   }
 
   /// Range sum [l, r); 0-indexed
-  const Abel sum(int l, int r) const {
+  const Abel sum(size_t l, size_t r) const {
     assert(l <= r);
     return sum(r) - sum(l);
   }
 
-  const Abel operator[](int i) const {
+  const Abel operator[](size_t i) const {
     return sum(i + 1) - sum(i);
   }
 
