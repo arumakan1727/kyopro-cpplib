@@ -2,8 +2,7 @@
 #include <cassert>
 #include <cstdint>
 #include <vector>
-#include "../../util/alias/i32_i64.hpp"
-#include "../../util/alias/u32_u64.hpp"
+#include "../../util/alias/stdint.hpp"
 #include "../integer/is_prime.hpp"
 
 /// リュカの定理に基づいて nCk % MOD を計算する; MODが小さい素数の場合に有効

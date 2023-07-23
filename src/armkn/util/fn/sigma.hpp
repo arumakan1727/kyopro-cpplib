@@ -1,6 +1,6 @@
 #pragma once
-#include "../alias/ll.hpp"
+#include "../alias/stdint.hpp"
 
-inline ll sigma(ll a, ll b) {
+inline i64 sigma(i64 a, i64 b) {
   return (a + b) * (b - a + 1) >> 1;
 }
