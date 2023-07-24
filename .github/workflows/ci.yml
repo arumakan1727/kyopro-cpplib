@@ -33,7 +33,7 @@ jobs:
       run: pip3 install -r requirements.txt
 
     - name: My simple lint
-      run: find src/armkn test/armkn -type f -name '*.[ch]pp' -o -name '*.[ch]' | xargs poetry run ./scripts/mylint.py
+      run: find src/armkn test/armkn -type f -name '*.[ch]pp' -o -name '*.[ch]' | xargs ./scripts/mylint.py
 
     - name: Check format
       run: find src/armkn test/armkn -type f -name '*.[ch]pp' -o -name '*.[ch]' | xargs clang-format --dry-run -Werror
