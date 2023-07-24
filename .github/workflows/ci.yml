@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Python ${{ env.PYTHON_VERSION }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: poetry
+
+    - name: Inspect tool versions
+      run: |
+        python3 --version
+        poetry --version
+        g++ --version
+        clang++ --version
+        which python3 poetry g++ clang++
+
+    - name: Install python dependencies
+      run: poetry install --no-dev
+
+    - name: My simple lint
+      run: find src/armkn test/armkn -type f -name '*.[ch]pp' -o -name '*.[ch]' | xargs poetry run ./scripts/mylint.py
+
+    - name: Check format
+      run: find src/armkn test/armkn -type f -name '*.[ch]pp' -o -name '*.[ch]' | xargs clang-format --dry-run -Werror
