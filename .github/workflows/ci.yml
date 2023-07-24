@@ -21,19 +21,33 @@ jobs:
         python-version: ${{ env.PYTHON_VERSION }}
         cache: pip
 
-    - name: Inspect tool versions
+    - name: Inspect
       run: |
+        echo "Current dir: $PWD"
         python3 --version
         pip3 --version
+        echo '------------------'
         g++ --version
+        echo '------------------'
         clang++ --version
+        echo '------------------'
         which python3 pip3 g++ clang++
+        echo '------------------'
+        echo "$CTX_JSON_GITHUB"
+        echo '------------------'
+        echo "$CTX_JSON_JOB"
+        echo '------------------'
+        echo "$CTX_JSON_STEPS"
+        env:
+          CTX_JSON_GITHUB: ${{ toJson(github) }}
+          CTX_JSON_JOB: ${{ toJson(job) }}
+          CTX_JSON_STEP: ${{ toJson(steps) }}
 
     - name: Install python dependencies
       run: pip3 install -r requirements.txt
 
     - name: My simple lint
-      run: find src/armkn test/armkn -type f -name '*.[ch]pp' -o -name '*.[ch]' | xargs ./scripts/mylint.py
+      run: find src/armkn tests/armkn -type f -name '*.[ch]pp' -o -name '*.[ch]' | xargs ./scripts/mylint.py
 
     - name: Check format
-      run: find src/armkn test/armkn -type f -name '*.[ch]pp' -o -name '*.[ch]' | xargs clang-format --dry-run -Werror
+      run: find src/armkn tests/armkn -type f -name '*.[ch]pp' -o -name '*.[ch]' | xargs clang-format --dry-run -Werror
