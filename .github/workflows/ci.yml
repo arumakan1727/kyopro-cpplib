@@ -19,18 +19,18 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: ${{ env.PYTHON_VERSION }}
-        cache: poetry
+        cache: pip
 
     - name: Inspect tool versions
       run: |
         python3 --version
-        poetry --version
+        pip3 --version
         g++ --version
         clang++ --version
-        which python3 poetry g++ clang++
+        which python3 pip3 g++ clang++
 
     - name: Install python dependencies
-      run: poetry install --no-dev
+      run: pip3 install -r requirements.txt
 
     - name: My simple lint
       run: find src/armkn test/armkn -type f -name '*.[ch]pp' -o -name '*.[ch]' | xargs poetry run ./scripts/mylint.py
