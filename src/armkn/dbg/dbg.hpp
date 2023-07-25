@@ -3,6 +3,8 @@
 #include <cstring>
 #include <iostream>
 #include <string>
+#include <tuple>
+#include <utility>
 #include <vector>
 
 #ifdef ARMKN_DEBUG
@@ -63,6 +65,28 @@ using namespace ::armkn::dbg::color;
 template <class T1, class T2>
 std::ostream& operator<<(std::ostream& o, const std::pair<T1, T2>& p) {
   return o << '(' << p.first << ", " << p.second << ')';
+}
+
+template <class Tuple>
+void write_tuple_elements(std::ostream& o, Tuple&&, std::index_sequence<>) {
+  o << ')';
+}
+
+template <class Tuple, std::size_t Index, std::size_t... RestIndexes>
+void write_tuple_elements(std::ostream& o, Tuple&& t, std::index_sequence<Index, RestIndexes...>) {
+  if constexpr (Index == 0) {
+    o << '(';
+  } else {
+    o << ", ";
+  }
+  o << std::get<Index>(t);
+  write_tuple_elements(o, t, std::index_sequence<RestIndexes...>{});
+}
+
+template <class... T>
+std::ostream& operator<<(std::ostream& o, const std::tuple<T...>& t) {
+  write_tuple_elements(o, t, std::index_sequence_for<T...>{});
+  return o;
 }
 
 std::ostream* out = &std::clog;

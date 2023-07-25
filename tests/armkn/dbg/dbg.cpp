@@ -96,7 +96,16 @@ TEST_CASE("dbg", "[dbg]") {
     CHECK(ss.str() == "CATCH2_INTERNAL_TEST_0():95: std::pair{-1,s}=(-1, hello)\n");
   }
 
-  SECTION("tuple") {}
+  SECTION("tuple") {
+    ss.clear();
+    const char* s = "hello";
+    const auto t = std::tuple{s, std::pair{7, 4}, 3.14};
+    DBG(std::tuple{-5}, t);
+    CHECK(
+        ss.str() == "CATCH2_INTERNAL_TEST_0():103: std::tuple{-5}=(-5), t=(hello, (7, 4), 3.14)\n"
+    );
+  }
+
   SECTION("1D vector") {}
   SECTION("2D vector") {}
   SECTION("deque") {}
