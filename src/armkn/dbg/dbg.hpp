@@ -60,6 +60,11 @@ namespace internal {
 
 using namespace ::armkn::dbg::color;
 
+template <class T1, class T2>
+std::ostream& operator<<(std::ostream& o, const std::pair<T1, T2>& p) {
+  return o << '(' << p.first << ", " << p.second << ')';
+}
+
 std::ostream* out = &std::clog;
 
 class DebugPrinter {

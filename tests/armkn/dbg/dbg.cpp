@@ -14,17 +14,34 @@ TEST_CASE("dbg", "[dbg]") {
   using namespace std::string_literals;
   using std::string;
 
-  DBG_SET_OUTPUT(&std::clog);
-  DBG("hello");
+  // Check initial value
+  static bool is_first_test = true;
+  if (is_first_test) {
+    REQUIRE(::armkn::dbg::internal::out == &std::clog);
 
-  SECTION("without color") {
     std::stringstream ss;
-    DBG_DISABLE_COLOR();
     DBG_SET_OUTPUT(&ss);
 
-    const std::string line_chk0 = "30";
-    const std::string line_chk1 = "35";
-    const std::string line_chk2 = "41";
+    using namespace ::armkn::dbg::color;
+    DBG(5);
+    CHECK(
+        ss.str() == ""s + BLUE + "CATCH2_INTERNAL_TEST_0()" + NOCOLOR + ':' + MAGENTA + "26" +
+                        NOCOLOR + ": " + CYAN + "5" + WHITE + DIM + "=" + NOCOLOR + YELLOW + "5" +
+                        NOCOLOR + "\n"
+    );
+    is_first_test = false;
+  }
+
+  std::stringstream ss;
+  DBG_SET_OUTPUT(&ss);
+
+  SECTION("DBG_DISABLE_COLOR") {
+    ss.clear();
+    DBG_DISABLE_COLOR();
+
+    const std::string line_chk0 = "47";
+    const std::string line_chk1 = "52";
+    const std::string line_chk2 = "58";
 
     int a = 5, b = 3;
     DBG(a + b);
@@ -46,20 +63,43 @@ TEST_CASE("dbg", "[dbg]") {
     );
   }
 
-  SECTION("with color") {
+  SECTION("DBG_ENABLE_COLOR") {
     using namespace ::armkn::dbg::color;
-    std::stringstream ss;
+    ss.clear();
     DBG_ENABLE_COLOR();
     DBG_ENABLE_COLOR();  // Check idempotence
-    DBG_SET_OUTPUT(&ss);
 
     int a = 5;
-
     DBG(a);
     CHECK(
-        ss.str() == ""s + BLUE + "CATCH2_INTERNAL_TEST_0()" + NOCOLOR + ':' + MAGENTA + "58" +
+        ss.str() == ""s + BLUE + "CATCH2_INTERNAL_TEST_0()" + NOCOLOR + ':' + MAGENTA + "73" +
                         NOCOLOR + ": " + CYAN + "a" + WHITE + DIM + "=" + NOCOLOR + YELLOW + "5" +
                         NOCOLOR + "\n"
     );
   }
+
+  SECTION("DBGV") {
+    ss.clear();
+    auto x = DBGV(3.14, "str", false, -1 * 100);
+    CHECK(x == -100);
+
+    auto y = DBGV(x);
+    CHECK(y == x);
+  }
+
+  DBG_DISABLE_COLOR();
+
+  SECTION("pair") {
+    ss.clear();
+    const char* s = "hello";
+    DBG(std::pair{-1, s});
+    CHECK(ss.str() == "CATCH2_INTERNAL_TEST_0():95: std::pair{-1,s}=(-1, hello)\n");
+  }
+
+  SECTION("tuple") {}
+  SECTION("1D vector") {}
+  SECTION("2D vector") {}
+  SECTION("deque") {}
+  SECTION("set") {}
+  SECTION("map") {}
 }
