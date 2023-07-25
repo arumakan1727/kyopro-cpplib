@@ -1,6 +1,8 @@
 #pragma once
 #include <algorithm>
 #include <cassert>
+#include <cstddef>
+#include <cstdint>
 #include <vector>
 #include "../util/macro/iter_all.hpp"
 

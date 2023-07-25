@@ -1,0 +1,92 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      PYTHON_VERSION: "3.11"
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup Python ${{ env.PYTHON_VERSION }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        cache: pip
+
+    - name: Inspect
+      run: |
+        echo "Current dir: $PWD"
+        python3 --version
+        pip3 --version
+        echo '------------------'
+        g++ --version
+        echo '------------------'
+        clang++ --version
+        echo '------------------'
+        which python3 pip3 g++ clang++
+        echo '------------------'
+        echo "$CTX_JSON_GITHUB"
+      env:
+        CTX_JSON_GITHUB: ${{ toJson(github) }}
+
+    - name: Install python dependencies
+      run: pip3 install -r requirements.txt
+
+    - name: My simple lint
+      run: find src/armkn tests/armkn -type f -name '*.[ch]pp' -o -name '*.[ch]' | xargs ./scripts/mylint.py
+
+    - name: Check format
+      run: find src/armkn tests/armkn -type f -name '*.[ch]pp' -o -name '*.[ch]' | xargs clang-format --dry-run -Werror
+
+  test:
+    name: "test@${{ matrix.cxx }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        cxx: [g++-12, clang++-14]
+    env:
+      CXX: "${{ matrix.cxx }}"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: "Cache external library"
+        id: cache-extlib
+        uses: actions/cache@v3
+        with:
+          path: |
+            tests/lib/
+            tests/build/lib/
+          key: ${{ runner.os }}.${{ matrix.cxx }}.extlib
+
+      - name: "Download external library"
+        if: steps.cache-extlib.cache-hit != 'true'
+        run: make -C tests download/Catch2
+
+      - name: Inspect
+        run: |
+          pwd
+          which g++ clang++ ${{ matrix.cxx }} || true
+          echo "---------------"
+          ls -la tests/lib/Catch2 || true
+          echo "---------------"
+          ls -la tests/build/lib/Catch2 || true
+          echo "---------------"
+          ls -l /bin/*++* || true
+          echo "---------------"
+          ls -l /usr/bin/*++* || true
+
+      - name: "Build tests"
+        run: make -C tests build/tests
+
+      - name: "Run tests"
+        run: make -C tests run

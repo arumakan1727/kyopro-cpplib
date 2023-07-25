@@ -32,3 +32,7 @@ lint:
 .PHONY:	test
 test:
 	make -C tests run
+
+requirements.txt:	poetry.lock
+	poetry export > $@
+
