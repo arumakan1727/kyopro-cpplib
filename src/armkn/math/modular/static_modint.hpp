@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <iostream>
 #include <limits>
+#include <type_traits>
 
 template <uint32_t M>
 class StaticModInt {
@@ -14,14 +15,12 @@ class StaticModInt {
 
   constexpr StaticModInt() : value(0) {}
 
-  constexpr StaticModInt(int64_t n)
-      : value(n >= 0 ? uint32_t(uint64_t(n) % M) : uint32_t(M - uint64_t(-n) % M)) {}
+  template <typename T, std::enable_if_t<std::is_signed_v<T>>* = nullptr>
+  constexpr StaticModInt(T n)
+      : value(static_cast<value_type>((n %= static_cast<int64_t>(M)) < 0 ? n + M : n)) {}
 
-  constexpr StaticModInt(int32_t n) : value(n >= 0 ? uint32_t(n) % M : (M - uint32_t(-n) % M)) {}
-
-  constexpr StaticModInt(uint64_t n) : value(n % M) {}
-
-  constexpr StaticModInt(uint32_t n) : value(n % M) {}
+  template <typename T, std::enable_if_t<std::is_unsigned_v<T>>* = nullptr>
+  constexpr StaticModInt(T n) : value(static_cast<value_type>(n % M)) {}
 
   template <typename T>
   constexpr static StaticModInt<M> raw(T n) {
@@ -31,6 +30,7 @@ class StaticModInt {
   }
 
   inline static constexpr auto MOD = M;
+
   static const StaticModInt<M> NIL;
 
   inline constexpr bool is_nil() {
