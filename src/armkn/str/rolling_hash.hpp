@@ -1,5 +1,6 @@
 #pragma once
 #include <cassert>
+#include <cstddef>
 #include <vector>
 
 /// ローリングハッシュ; mod値 $2^{61} - 1$ 固定

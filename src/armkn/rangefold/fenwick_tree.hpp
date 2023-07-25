@@ -2,6 +2,7 @@
 #include <cassert>
 #include <cstdint>
 #include <vector>
+#include <cstddef>
 #include "../util/fn/floor_pow2.hpp"
 
 template <class Abel>

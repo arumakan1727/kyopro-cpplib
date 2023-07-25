@@ -1,5 +1,6 @@
 #pragma once
 #include <algorithm>
+#include <cstddef>
 #include <numeric>
 #include <vector>
 #include "../../dsu/union_find.hpp"
