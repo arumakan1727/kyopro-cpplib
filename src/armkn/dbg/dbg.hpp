@@ -10,15 +10,21 @@
 #define DBG(...) \
   ((void         \
   )::armkn::dbg::internal::DebugPrinter(__LINE__, __PRETTY_FUNCTION__, #__VA_ARGS__)(__VA_ARGS__))
+
 #define DBGV(...) \
   ::armkn::dbg::internal::DebugPrinter(__LINE__, __PRETTY_FUNCTION__, #__VA_ARGS__)(__VA_ARGS__)
-#define DBG_SET_OUTPUT(ostream) ::armkn::dbg::internal::out = (ostream)
-#define DBG_ENABLE_COLOR() ::armkn::dbg::internal::enable_color()
-#define DBG_DISABLE_COLOR() ::armkn::dbg::internal::disable_color()
 
-namespace armkn::dbg::internal {
+#define DBG_SET_OUTPUT(ostream_ptr) ::armkn::dbg::internal::out = (ostream_ptr)
+
+#define DBG_ENABLE_COLOR() ::armkn::dbg::color::enable_color()
+
+#define DBG_DISABLE_COLOR() ::armkn::dbg::color::disable_color()
+
+namespace armkn::dbg {
 using ::std::string;
 using ::std::vector;
+
+namespace color {
 
 const char *BLACK, *RED, *GREEN, *YELLOW, *BLUE, *MAGENTA, *CYAN, *WHITE, *DIM, *NOCOLOR;
 
@@ -48,7 +54,13 @@ void disable_color() {
   NOCOLOR = "";
 }
 
-std::ostream& out = std::clog;
+}  // namespace color
+
+namespace internal {
+
+using namespace ::armkn::dbg::color;
+
+std::ostream* out = &std::clog;
 
 class DebugPrinter {
   const unsigned line_no;
@@ -68,13 +80,13 @@ class DebugPrinter {
 
   template <class... T>
   auto operator()(T&&... xs) {
-    out << BLUE << pretty_func_name << NOCOLOR << ':' << MAGENTA << line_no << NOCOLOR << ": ";
+    *out << BLUE << pretty_func_name << NOCOLOR << ':' << MAGENTA << line_no << NOCOLOR << ": ";
     return print(std::forward<T>(xs)...);
   }
 
  private:
   void print() const {
-    out << std::endl;
+    *out << std::endl;
   }
 
   template <class Head, class... Tail>
@@ -82,7 +94,7 @@ class DebugPrinter {
     put(std::forward<Head>(x));
     ++itr;
     if constexpr (sizeof...(tail)) {
-      out << ", ";
+      *out << ", ";
       return print(std::forward<Tail>(tail)...);
     } else {
       print();
@@ -90,13 +102,14 @@ class DebugPrinter {
     }
   }
 
-  void put(const char* s) const {
-    out << '"' << GREEN << s << NOCOLOR << '"';
-  }
-
   template <class T>
   void put(T&& x) const {
-    out << CYAN << *itr << WHITE << DIM << '=' << NOCOLOR << YELLOW << x << NOCOLOR;
+    // if string literal, show just value
+    if ((*itr)[0] == '"') {
+      *out << '"' << GREEN << x << NOCOLOR << '"';
+    } else {
+      *out << CYAN << *itr << WHITE << DIM << '=' << NOCOLOR << YELLOW << x << NOCOLOR;
+    }
   }
 
   auto split_and_remove_whitespace(const char* s) -> vector<string> {
@@ -134,7 +147,9 @@ class DebugPrinter {
   }
 };
 
-}  // namespace armkn::dbg::internal
+}  // namespace internal
+
+}  // namespace armkn::dbg
 
 #else
 
