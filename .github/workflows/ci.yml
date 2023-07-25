@@ -63,7 +63,9 @@ jobs:
         id: cache-extlib
         uses: actions/cache@v3
         with:
-          path: tests/lib/
+          path: |
+            tests/lib/
+            tests/build/lib/
           key: ${{ runner.os }}.${{ matrix.cxx }}.extlib
 
       - name: "Download external library"
