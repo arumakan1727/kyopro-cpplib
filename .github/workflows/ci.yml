@@ -52,7 +52,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        cxx: [g++12, clang++14]
+        cxx: [g++-12, clang++-14]
     env:
       CXX: "${{ matrix.cxx }}"
 
@@ -74,6 +74,13 @@ jobs:
         run: |
           pwd
           ls -la
+          which g++ clang++
+          echo "---------------"
+          ls -l /bin/*++*
+          echo "---------------"
+          ls -l /usr/bin/*++*
+          echo "---------------"
+          ls -l /usr/local/bin/*++*
 
       - name: "Build tests"
         run: make -C tests build/tests
