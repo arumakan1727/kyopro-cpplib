@@ -10,6 +10,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_subdirectory(lib/Catch2)
 
 add_executable(tests
+  armkn/dbg/dbg.cpp
   armkn/dsu/union_find.cpp
   armkn/fmt/printer.cpp
   armkn/graph/mst/kruskal.cpp
@@ -41,6 +42,7 @@ target_include_directories(tests PRIVATE
   lib/Catch2/src
 )
 target_compile_options(tests PRIVATE
+  -DARMKN_DEBUG
   -Wall -Wextra -Wconversion
   -Werror
   -Wno-sign-conversion

@@ -11,6 +11,7 @@ cat <<EOT
 -I${repoRoot}/tests/build/lib/Catch2/generated-includes
 -Wall
 -Wextra
+-DARMKN_DEBUG
 
 -Wconversion
 -Wfloat-equal
