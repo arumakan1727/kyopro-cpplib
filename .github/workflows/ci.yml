@@ -73,14 +73,15 @@ jobs:
       - name: Inspect
         run: |
           pwd
-          ls -la
-          which g++ clang++
+          which g++ clang++ ${{ matrix.cxx }} || true
           echo "---------------"
-          ls -l /bin/*++*
+          ls -la tests/lib/Catch2 || true
           echo "---------------"
-          ls -l /usr/bin/*++*
+          ls -la tests/build/lib/Catch2 || true
           echo "---------------"
-          ls -l /usr/local/bin/*++*
+          ls -l /bin/*++* || true
+          echo "---------------"
+          ls -l /usr/bin/*++* || true
 
       - name: "Build tests"
         run: make -C tests build/tests
