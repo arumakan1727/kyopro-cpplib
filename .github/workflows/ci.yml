@@ -6,12 +6,12 @@ on:
   pull_request:
     branches: ["main"]
 
-env:
-  PYTHON_VERSION: "3.11"
-
 jobs:
   lint:
     runs-on: ubuntu-latest
+    env:
+      PYTHON_VERSION: "3.11"
+
     steps:
     - uses: actions/checkout@v3
 
@@ -34,14 +34,8 @@ jobs:
         which python3 pip3 g++ clang++
         echo '------------------'
         echo "$CTX_JSON_GITHUB"
-        echo '------------------'
-        echo "$CTX_JSON_JOB"
-        echo '------------------'
-        echo "$CTX_JSON_STEPS"
-        env:
-          CTX_JSON_GITHUB: ${{ toJson(github) }}
-          CTX_JSON_JOB: ${{ toJson(job) }}
-          CTX_JSON_STEP: ${{ toJson(steps) }}
+      env:
+        CTX_JSON_GITHUB: ${{ toJson(github) }}
 
     - name: Install python dependencies
       run: pip3 install -r requirements.txt
@@ -51,3 +45,38 @@ jobs:
 
     - name: Check format
       run: find src/armkn tests/armkn -type f -name '*.[ch]pp' -o -name '*.[ch]' | xargs clang-format --dry-run -Werror
+
+  test:
+    name: "test@${{ matrix.cxx }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        cxx: [g++12, clang++14]
+    env:
+      CXX: "${{ matrix.cxx }}"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: "Cache external library"
+        id: cache-extlib
+        uses: actions/cache@v3
+        with:
+          path: tests/lib/
+          key: ${{ runner.os }}.${{ matrix.cxx }}.extlib
+
+      - name: "Download external library"
+        if: steps.cache-extlib.cache-hit != 'true'
+        run: make -C tests download/Catch2
+
+      - name: Inspect
+        run: |
+          pwd
+          ls -la
+
+      - name: "Build tests"
+        run: make -C tests build/tests
+
+      - name: "Run tests"
+        run: make -C tests run
