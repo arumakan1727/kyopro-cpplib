@@ -43,10 +43,25 @@ target_include_directories(tests PRIVATE
 )
 target_compile_options(tests PRIVATE
   -DARMKN_DEBUG
-  -Wall -Wextra -Wconversion
-  -Werror
+  -Wall
+  -Wextra
+
+  -Wconversion
+  -Wdelete-non-virtual-dtor
+  -Wfloat-equal
+  -Winit-self
+  -Winvalid-pch
+  -Wmissing-include-dirs
+  -Woverloaded-virtual
+  -Wreorder
+  -Wshadow
+  -Wsuggest-override
+  -Wswitch-enum
+  -Wwrite-strings
+
   -Wno-sign-conversion
+  -Werror
+
   -g
-  -fno-omit-frame-pointer
 )
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
