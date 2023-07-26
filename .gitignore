@@ -1,5 +1,6 @@
 /tests/build/
 /tests/compile_flags.txt
+.cache/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
