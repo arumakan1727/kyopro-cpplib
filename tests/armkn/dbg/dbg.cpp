@@ -10,6 +10,10 @@
 #include <utility>
 #include <vector>
 
+static int f(int a) {
+  return DBGV(a) * 100;
+}
+
 TEST_CASE("dbg", "[dbg]") {
   using namespace std::string_literals;
   using std::string;
@@ -25,7 +29,7 @@ TEST_CASE("dbg", "[dbg]") {
     using namespace ::armkn::dbg::color;
     DBG(5);
     CHECK(
-        ss.str() == ""s + BLUE + "CATCH2_INTERNAL_TEST_0()" + NOCOLOR + ':' + MAGENTA + "26" +
+        ss.str() == ""s + MAGENTA + "30" + NOCOLOR + ':' + BLUE + "CATCH2_INTERNAL_TEST_0()" +
                         NOCOLOR + ": " + CYAN + "5" + WHITE + DIM + "=" + NOCOLOR + YELLOW + "5" +
                         NOCOLOR + "\n"
     );
@@ -39,27 +43,27 @@ TEST_CASE("dbg", "[dbg]") {
     ss.clear();
     DBG_DISABLE_COLOR();
 
-    const std::string line_chk0 = "47";
-    const std::string line_chk1 = "52";
-    const std::string line_chk2 = "58";
+    const std::string line_chk0 = "51";
+    const std::string line_chk1 = "56";
+    const std::string line_chk2 = "62";
 
     int a = 5, b = 3;
     DBG(a + b);
-    CHECK(ss.str() == "CATCH2_INTERNAL_TEST_0():" + line_chk0 + ": a+b=8\n");
+    CHECK(ss.str() == line_chk0 + ":CATCH2_INTERNAL_TEST_0(): a+b=8\n");
 
     DBG_DISABLE_COLOR();  // Check idempotence
 
     DBG(a, b, a * (a / b));
     CHECK(
-        ss.str() == "CATCH2_INTERNAL_TEST_0():" + line_chk0 + ": a+b=8\n" +
-                        "CATCH2_INTERNAL_TEST_0():" + line_chk1 + ": a=5, b=3, a*(a/b)=5\n"
+        ss.str() == line_chk0 + ":CATCH2_INTERNAL_TEST_0(): a+b=8\n" +  //
+                        line_chk1 + ":CATCH2_INTERNAL_TEST_0(): a=5, b=3, a*(a/b)=5\n"
     );
 
     [[maybe_unused]] int c = DBGV("hoge", a / b, a * b);
     CHECK(
-        ss.str() == "CATCH2_INTERNAL_TEST_0():" + line_chk0 + ": a+b=8\n" +
-                        "CATCH2_INTERNAL_TEST_0():" + line_chk1 + ": a=5, b=3, a*(a/b)=5\n" +
-                        "CATCH2_INTERNAL_TEST_0():" + line_chk2 + ": \"hoge\", a/b=1, a*b=15\n"
+        ss.str() == line_chk0 + ":CATCH2_INTERNAL_TEST_0(): a+b=8\n" +                    //
+                        line_chk1 + ":CATCH2_INTERNAL_TEST_0(): a=5, b=3, a*(a/b)=5\n" +  //
+                        line_chk2 + ":CATCH2_INTERNAL_TEST_0(): \"hoge\", a/b=1, a*b=15\n"
     );
   }
 
@@ -72,10 +76,24 @@ TEST_CASE("dbg", "[dbg]") {
     int a = 5;
     DBG(a);
     CHECK(
-        ss.str() == ""s + BLUE + "CATCH2_INTERNAL_TEST_0()" + NOCOLOR + ':' + MAGENTA + "73" +
+        ss.str() == ""s + MAGENTA + "77" + NOCOLOR + ':' + BLUE + "CATCH2_INTERNAL_TEST_0()" +
                         NOCOLOR + ": " + CYAN + "a" + WHITE + DIM + "=" + NOCOLOR + YELLOW + "5" +
                         NOCOLOR + "\n"
     );
+  }
+
+  DBG_DISABLE_COLOR();
+
+  SECTION("case of the func has argument") {
+    ss.clear();
+    f(5);
+    CHECK(ss.str() == "14:f(): a=5\n");
+  }
+
+  SECTION("case of the func is lambda func") {
+    ss.clear();
+    [](int x) { DBG(x + 1); }(777);
+    CHECK(ss.str() == "95:<lambda>(): x+1=778\n");
   }
 
   SECTION("DBGV") {
@@ -87,13 +105,11 @@ TEST_CASE("dbg", "[dbg]") {
     CHECK(y == x);
   }
 
-  DBG_DISABLE_COLOR();
-
   SECTION("pair") {
     ss.clear();
     const char* s = "hello";
     DBG(std::pair{-1, s});
-    CHECK(ss.str() == "CATCH2_INTERNAL_TEST_0():95: std::pair{-1,s}=(-1, hello)\n");
+    CHECK(ss.str() == "111:CATCH2_INTERNAL_TEST_0(): std::pair{-1,s}=(-1, hello)\n");
   }
 
   SECTION("tuple") {
@@ -102,7 +118,7 @@ TEST_CASE("dbg", "[dbg]") {
     const auto t = std::tuple{s, std::pair{7, 4}, 3.14};
     DBG(std::tuple{-5}, t);
     CHECK(
-        ss.str() == "CATCH2_INTERNAL_TEST_0():103: std::tuple{-5}=(-5), t=(hello, (7, 4), 3.14)\n"
+        ss.str() == "119:CATCH2_INTERNAL_TEST_0(): std::tuple{-5}=(-5), t=(hello, (7, 4), 3.14)\n"
     );
   }
 

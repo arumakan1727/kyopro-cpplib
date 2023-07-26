@@ -17,12 +17,14 @@
 
 #else
 
-#define DBG(...) \
-  ((void         \
-  )::armkn::dbg::internal::DebugPrinter(__LINE__, __PRETTY_FUNCTION__, #__VA_ARGS__)(__VA_ARGS__))
+#define DBG(...)                  \
+  ((void)::armkn::dbg::internal:: \
+       DebugPrinter(__LINE__, __func__, __PRETTY_FUNCTION__, #__VA_ARGS__)(__VA_ARGS__))
 
-#define DBGV(...) \
-  ::armkn::dbg::internal::DebugPrinter(__LINE__, __PRETTY_FUNCTION__, #__VA_ARGS__)(__VA_ARGS__)
+#define DBGV(...)                                                                              \
+  ::armkn::dbg::internal::DebugPrinter(__LINE__, __func__, __PRETTY_FUNCTION__, #__VA_ARGS__)( \
+      __VA_ARGS__                                                                              \
+  )
 
 #define DBG_SET_OUTPUT(ostream_ptr) ::armkn::dbg::internal::out = (ostream_ptr)
 
@@ -106,18 +108,25 @@ class DebugPrinter {
   vector<string>::const_iterator itr;
 
  public:
-  DebugPrinter(unsigned line_no, const char* pretty_func, const char* args_str)
+  DebugPrinter(
+      unsigned line_no,
+      const char* simple_fn_name,
+      const char* pretty_fn_name,
+      const char* args_str
+  )
       : line_no(line_no),
         pretty_func_name(
-            // remove prefix (e.g. "int main()" => "main()")
-            std::strchr(pretty_func, ' ') + 1
+            std::strstr(pretty_fn_name, "::(anonymous class)::operator()") == nullptr
+                ? simple_fn_name
+                : "<lambda>"
         ),
         args(split_and_remove_whitespace(args_str)),
         itr(args.cbegin()) {}
 
   template <class... T>
   auto operator()(T&&... xs) {
-    *out << BLUE << pretty_func_name << NOCOLOR << ':' << MAGENTA << line_no << NOCOLOR << ": ";
+    *out << MAGENTA << line_no << NOCOLOR << ':';
+    *out << BLUE << pretty_func_name << "()" << NOCOLOR << ": ";
     return print(std::forward<T>(xs)...);
   }
 
