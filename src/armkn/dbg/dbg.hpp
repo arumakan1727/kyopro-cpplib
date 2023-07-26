@@ -7,7 +7,15 @@
 #include <utility>
 #include <vector>
 
-#ifdef ARMKN_DEBUG
+#ifndef ARMKN_DEBUG
+
+#define DBG(...) ((void)0)
+#define DBGV(...) (__VA_ARGS__)
+#define DBG_SET_OUTPUT(ostream) ((void)0)
+#define DBG_ENABLE_COLOR() ((void)0)
+#define DBG_DISABLE_COLOR() ((void)0)
+
+#else
 
 #define DBG(...) \
   ((void         \
@@ -179,13 +187,5 @@ class DebugPrinter {
 }  // namespace internal
 
 }  // namespace armkn::dbg
-
-#else
-
-#define DBG(...) ((void)0)
-#define DBGV(...) (__VA_ARGS__)
-#define DBG_SET_OUTPUT(ostream) ((void)0)
-#define DBG_ENABLE_COLOR() ((void)0)
-#define DBG_DISABLE_COLOR() ((void)0)
 
 #endif
