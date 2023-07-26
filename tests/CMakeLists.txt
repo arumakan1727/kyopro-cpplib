@@ -36,6 +36,9 @@ add_executable(tests
   armkn/util/fn/isqrt.cpp
   armkn/util/fn/runlength.cpp
   armkn/util/fn/sigma.cpp
+  armkn/util/type_traits/is_iterable.cpp
+  armkn/util/type_traits/is_random_accessible.cpp
+  armkn/util/type_traits/is_string_like.cpp
 )
 target_include_directories(tests PRIVATE
   ../src
