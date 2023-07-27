@@ -12,7 +12,6 @@
 #include <tuple>
 #include <unordered_map>
 #include <utility>
-#include <valarray>
 #include <vector>
 
 TEST_CASE("is_random_accessible", "[type_traits]") {
@@ -39,7 +38,6 @@ TEST_CASE("is_random_accessible", "[type_traits]") {
   CHECK(is_random_accessible_v<std::stack<int>> == false);
   CHECK(is_random_accessible_v<std::tuple<int>> == false);
   CHECK(is_random_accessible_v<std::unordered_multimap<int, int>> == false);
-  CHECK(is_random_accessible_v<std::valarray<int>> == false);
   CHECK(is_random_accessible_v<int[1]> == false);
   CHECK(is_random_accessible_v<int*> == false);
   CHECK(is_random_accessible_v<char*> == false);

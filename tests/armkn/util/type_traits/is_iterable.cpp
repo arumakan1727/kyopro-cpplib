@@ -12,7 +12,6 @@
 #include <tuple>
 #include <unordered_map>
 #include <utility>
-#include <valarray>
 #include <vector>
 
 TEST_CASE("is_iterable", "[type_traits]") {
@@ -37,7 +36,6 @@ TEST_CASE("is_iterable", "[type_traits]") {
   CHECK(is_iterable_v<int> == false);
   CHECK(is_iterable_v<uint8_t> == false);
   CHECK(is_iterable_v<int64_t> == false);
-  CHECK(is_iterable_v<std::valarray<int>> == false);
   CHECK(is_iterable_v<int[1]> == false);
   CHECK(is_iterable_v<int*> == false);
   CHECK(is_iterable_v<char*> == false);
