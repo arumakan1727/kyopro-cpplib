@@ -76,7 +76,7 @@ jobs:
 
       - name: "Download external library"
         if: steps.cache-extlib.cache-hit != 'true'
-        run: make -C tests download/Catch2
+        run: make -C tests lib/Catch2
 
       - name: Inspect
         run: |
