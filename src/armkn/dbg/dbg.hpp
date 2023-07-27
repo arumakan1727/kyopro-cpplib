@@ -120,7 +120,7 @@ inline std::size_t nchars(const T& x) {
   return ss.str().length();
 }
 
-void indent(std::ostream& o, int level) {
+inline void indent(std::ostream& o, int level) {
   int w = level << 1;
   while (w-- > 0) o.put(' ');
 }
@@ -334,12 +334,12 @@ class DebugPrinter {
 
  public:
   DebugPrinter(
-      unsigned line_no,
+      unsigned line_no_,
       const char* simple_fn_name,
       const char* pretty_fn_name,
       const char* args_str
   )
-      : line_no(line_no),
+      : line_no(line_no_),
         pretty_func_name(
             std::strstr(pretty_fn_name, "::(anonymous class)::operator()") == nullptr
                 ? simple_fn_name
