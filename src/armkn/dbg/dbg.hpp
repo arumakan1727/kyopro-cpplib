@@ -1,4 +1,15 @@
 #pragma once
+
+#ifndef ARMKN_DEBUG
+
+#define DBG(...) ((void)0)
+#define DBGV(...) (__VA_ARGS__)
+#define DBG_SET_OUTPUT(ostream) ((void)0)
+#define DBG_ENABLE_COLOR() ((void)0)
+#define DBG_DISABLE_COLOR() ((void)0)
+
+#else
+
 #include <algorithm>
 #include <cctype>
 #include <cstddef>
@@ -14,17 +25,8 @@
 #include <utility>
 #include <vector>
 
-#ifndef ARMKN_DEBUG
-
-#define DBG(...) ((void)0)
-#define DBGV(...) (__VA_ARGS__)
-#define DBG_SET_OUTPUT(ostream) ((void)0)
-#define DBG_ENABLE_COLOR() ((void)0)
-#define DBG_DISABLE_COLOR() ((void)0)
-
-#else
-
 #include "../util/type_traits/is_iterable.hpp"
+#include "../util/type_traits/is_key_value_map.hpp"
 #include "../util/type_traits/is_random_accessible.hpp"
 #include "../util/type_traits/is_string_like.hpp"
 
@@ -125,7 +127,17 @@ void indent(std::ostream& o, int level) {
 
 template <
     class Iterable,
-    std::enable_if_t<armkn::is_random_accessible_v<Iterable>, std::nullptr_t> = nullptr>
+    std::enable_if_t<armkn::is_string_like_v<Iterable>, std::nullptr_t> = nullptr>
+void write_iterable(std::ostream& o, const Iterable& xs, [[maybe_unused]] int nest = 0) {
+  o << GREEN << xs << NOCOLOR;
+}
+
+// For random accessible container
+template <
+    class Iterable,
+    std::enable_if_t<
+        not armkn::is_string_like_v<Iterable> && armkn::is_random_accessible_v<Iterable>,
+        std::nullptr_t> = nullptr>
 void write_iterable(std::ostream& o, const Iterable& xs, int nest = 0) {
   using elem_type = std::decay_t<decltype(*std::begin(xs))>;
   constexpr bool should_nest =
@@ -164,6 +176,132 @@ void write_iterable(std::ostream& o, const Iterable& xs, int nest = 0) {
 
     if (i + 1 < n) o << NOCOLOR << (should_nest ? "," : ", ");
     ++i;
+  }
+
+  o << NOCOLOR;
+  if constexpr (should_nest) {
+    if (n) {
+      o.put('\n');
+      indent(o, nest);
+    }
+  }
+  o << '}';
+}
+
+// For non-random-accessible & non-map container
+template <
+    class Iterable,
+    std::enable_if_t<
+        armkn::is_iterable_v<Iterable> && not armkn::is_random_accessible_v<Iterable> &&
+            not armkn::is_key_value_map_v<Iterable>,
+        std::nullptr_t> = nullptr>
+void write_iterable(std::ostream& o, const Iterable& xs, int nest = 0) {
+  using elem_type = std::decay_t<decltype(*std::begin(xs))>;
+  constexpr bool should_nest =
+      not armkn::is_string_like_v<elem_type> && armkn::is_iterable_v<elem_type>;
+
+  constexpr unsigned OMISSION_N = should_nest ? 30 : 120;
+  constexpr unsigned OMMSSION_TAIL_SHOW_N = should_nest ? 5 : 20;
+
+  const size_t n = std::size(xs);
+  const size_t limitted_n = (n > OMISSION_N + OMMSSION_TAIL_SHOW_N) ? OMISSION_N : n;
+  const auto idx_nchars = (int)nchars(n - 1);
+
+  o << NOCOLOR << '{';
+
+  size_t i = 0;
+  auto itr = std::begin(xs);
+
+  while (i < n) {
+    if (i == limitted_n) {
+      o << RED << "..., " << NOCOLOR;
+      i = n - 5;
+      itr = std::prev(std::end(xs), 5);
+      continue;
+    }
+
+    if constexpr (should_nest) {
+      o << "\n";
+      indent(o, nest + 1);
+      o << DIM << CYAN << std::setw(idx_nchars) << i << WHITE << ": " << NOCOLOR;
+      write_iterable(o, *itr, nest + 1);
+    } else {
+      if (i % 5 == 0) {
+        o << DIM << CYAN << i << WHITE << ":" << NOCOLOR;
+      }
+      o << YELLOW << *itr;
+    }
+
+    if (i + 1 < n) o << NOCOLOR << (should_nest ? "," : ", ");
+    ++i;
+    ++itr;
+  }
+
+  o << NOCOLOR;
+  if constexpr (should_nest) {
+    if (n) {
+      o.put('\n');
+      indent(o, nest);
+    }
+  }
+  o << '}';
+}
+
+// For key-value map
+template <
+    class Iterable,
+    std::enable_if_t<armkn::is_key_value_map_v<Iterable>, std::nullptr_t> = nullptr>
+void write_iterable(std::ostream& o, const Iterable& xs, int nest = 0) {
+  using key_type = std::decay_t<typename Iterable::key_type>;
+  using mapped_type = std::decay_t<typename Iterable::mapped_type>;
+  constexpr bool should_nest =
+      (armkn::is_iterable_v<key_type>) ||
+      (not armkn::is_string_like_v<mapped_type> && armkn::is_iterable_v<mapped_type>);
+
+  constexpr unsigned OMISSION_N = should_nest ? 30 : 120;
+  constexpr unsigned OMMSSION_TAIL_SHOW_N = should_nest ? 5 : 20;
+
+  const size_t n = std::size(xs);
+  const size_t limitted_n = (n > OMISSION_N + OMMSSION_TAIL_SHOW_N) ? OMISSION_N : n;
+
+  o << NOCOLOR << '{';
+
+  std::size_t cnt = 0;
+  auto itr = std::begin(xs);
+  const auto end = std::end(xs);
+
+  while (itr != end) {
+    if (cnt == limitted_n) {
+      o << RED << "..., " << NOCOLOR;
+      cnt = n - 5;
+      itr = std::prev(std::end(xs), 5);
+      continue;
+    }
+
+    const auto& [key, value] = *itr;
+
+    if constexpr (should_nest) {
+      o << "\n";
+      indent(o, nest + 1);
+    }
+
+    o << DIM << WHITE << '[' << CYAN;
+    if constexpr (armkn::is_iterable_v<key_type>) {
+      write_iterable(o, key);
+    } else {
+      o << key;
+    }
+    o << DIM << WHITE << "]=" << NOCOLOR;
+
+    if constexpr (armkn::is_iterable_v<mapped_type>) {
+      write_iterable(o, value, nest + 1);
+    } else {
+      o << YELLOW << value;
+    }
+
+    if (std::next(itr) != end) o << NOCOLOR << (should_nest ? "," : ", ");
+    ++cnt;
+    ++itr;
   }
 
   o << NOCOLOR;
