@@ -25,10 +25,14 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-value"
+#pragma GCC diagnostic ignored "-Wunused-variable"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wunused"
 #pragma clang diagnostic ignored "-Wunused-parameter"
+#pragma clang diagnostic ignored "-Wunused-value"
+#pragma clang diagnostic ignored "-Wunused-variable"
 
 #undef CHECK
 #define CHECK(...) ((void)0)
@@ -392,7 +396,7 @@ CATCH_REGISTER_LISTENER(TestStartHook)
 
 #ifndef ARMKN_DEBUG
 
-#pragma GCC diagnostic pop
 #pragma clang diagnostic pop
+#pragma GCC diagnostic pop
 
 #endif
