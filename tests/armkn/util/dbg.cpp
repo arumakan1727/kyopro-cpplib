@@ -24,6 +24,7 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #pragma GCC diagnostic ignored "-Wunused-value"
 #pragma GCC diagnostic ignored "-Wunused-variable"
@@ -98,7 +99,7 @@ TEST_CASE("dbg", "[dbg]") {
       DBG_SET_OUTPUT(&ss);
       DBG(5);
       CHECK(
-          ss.str() == ""s + MAGENTA + "95" + RESET + ':' + BLUE + "CATCH2_INTERNAL_TEST_0()" +
+          ss.str() == ""s + MAGENTA + "100" + RESET + ':' + BLUE + "CATCH2_INTERNAL_TEST_0()" +
                           RESET + ": " + CYAN + "5" + WHITE + DIM + "=" + RESET + YELLOW + "5" +
                           RESET + "\n"
       );
