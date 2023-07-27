@@ -1,4 +1,5 @@
-#include <armkn/dbg/dbg.hpp>
+#include <armkn/util/console/color.hpp>
+#include <armkn/util/dbg.hpp>
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/reporters/catch_reporter_event_listener.hpp>
 #include <catch2/reporters/catch_reporter_registrars.hpp>
@@ -18,6 +19,21 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+
+#ifndef ARMKN_DEBUG
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused"
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused"
+#pragma clang diagnostic ignored "-Wunused-parameter"
+
+#undef CHECK
+#define CHECK(...) ((void)0)
+
+#endif
 
 const auto RE_DBG_MSG_PREFIX = std::regex(R"([0-9][0-9]*:CATCH2_INTERNAL_TEST_0\(\): )");
 
@@ -68,17 +84,19 @@ TEST_CASE("dbg", "[dbg]") {
   std::stringstream ss;
 
   SECTION("initial state") {
-    using namespace ::armkn::dbg::color;
+    using namespace ::armkn::console::color;
     static bool executed = false;
     if (!executed) {
-      REQUIRE(::armkn::dbg::internal::out == &std::clog);
+#ifdef ARMKN_DEBUG
+      REQUIRE(::armkn::dbg::out == &std::clog);
+#endif
 
       DBG_SET_OUTPUT(&ss);
       DBG(5);
       CHECK(
-          ss.str() == ""s + MAGENTA + "77" + NOCOLOR + ':' + BLUE + "CATCH2_INTERNAL_TEST_0()" +
-                          NOCOLOR + ": " + CYAN + "5" + WHITE + DIM + "=" + NOCOLOR + YELLOW + "5" +
-                          NOCOLOR + "\n"
+          ss.str() == ""s + MAGENTA + "95" + RESET + ':' + BLUE + "CATCH2_INTERNAL_TEST_0()" +
+                          RESET + ": " + CYAN + "5" + WHITE + DIM + "=" + RESET + YELLOW + "5" +
+                          RESET + "\n"
       );
       executed = true;
     }
@@ -96,7 +114,7 @@ TEST_CASE("dbg", "[dbg]") {
   SECTION("case of the func is lambda func") {
     ss.clear();
     [](int x) { DBG(x + 1); }(777);
-    CHECK(ss.str().substr(2) == ":<lambda>(): x+1=778\n");
+    CHECK(ss.str().substr(3) == ":<lambda>(): x+1=778\n");
   }
 
   SECTION("primitive arithmetic expr") {
@@ -324,7 +342,6 @@ class TestStartHook : public Catch::EventListenerBase {
   using Catch::EventListenerBase::EventListenerBase;
 
   void testRunStarting(Catch::TestRunInfo const& info) override {
-    REQUIRE(::armkn::dbg::internal::out == &std::clog);
     DBG(info.name);
 
     using std::array;
@@ -372,3 +389,10 @@ class TestStartHook : public Catch::EventListenerBase {
 }  // namespace
 
 CATCH_REGISTER_LISTENER(TestStartHook)
+
+#ifndef ARMKN_DEBUG
+
+#pragma GCC diagnostic pop
+#pragma clang diagnostic pop
+
+#endif

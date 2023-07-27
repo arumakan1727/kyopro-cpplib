@@ -10,7 +10,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_subdirectory(lib/Catch2)
 
 add_executable(tests
-  armkn/dbg/dbg.cpp
   armkn/dsu/union_find.cpp
   armkn/fmt/printer.cpp
   armkn/graph/mst/kruskal.cpp
@@ -31,6 +30,7 @@ add_executable(tests
   armkn/rangefold/fenwick_tree.cpp
   armkn/str/rolling_hash.cpp
   armkn/util/alias/heapq.cpp
+  armkn/util/dbg.cpp
   armkn/util/fn/floor_pow2.cpp
   armkn/util/fn/ilog2.cpp
   armkn/util/fn/isqrt.cpp
