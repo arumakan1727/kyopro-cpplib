@@ -97,4 +97,4 @@ jobs:
         run: make -C tests build/${{ matrix.build_type }}/tests
 
       - name: "Run tests"
-        run: make -C tests run/${{ matrix.bulid_type }}
+        run: make -C tests run/${{ matrix.build_type }}
