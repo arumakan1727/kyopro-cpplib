@@ -75,7 +75,7 @@ TEST_CASE("UnionFind", "[dsu][dsu/UnionFind]") {
     }
   }
   SECTION("unite() with hook function") {
-    uint32_t parent, child;
+    uint32_t parent = 0, child = 0;
     auto hook = [&](uint32_t p, uint32_t c) {
       parent = p;
       child = c;
