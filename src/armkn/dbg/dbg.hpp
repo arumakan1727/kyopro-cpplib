@@ -341,7 +341,8 @@ class DebugPrinter {
   )
       : line_no(line_no_),
         pretty_func_name(
-            std::strstr(pretty_fn_name, "::(anonymous class)::operator()") == nullptr
+            std::strstr(pretty_fn_name, "(anonymous class)::operator()") == nullptr &&
+                    std::strstr(pretty_fn_name, "<lambda") == nullptr
                 ? simple_fn_name
                 : "<lambda>"
         ),
