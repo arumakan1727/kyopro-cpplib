@@ -25,83 +25,48 @@
 #include <utility>
 #include <vector>
 
-#include "../util/type_traits/is_iterable.hpp"
-#include "../util/type_traits/is_key_value_map.hpp"
-#include "../util/type_traits/is_random_accessible.hpp"
-#include "../util/type_traits/is_string_like.hpp"
+#include "console/color.hpp"
+#include "type_traits/is_iterable.hpp"
+#include "type_traits/is_key_value_map.hpp"
+#include "type_traits/is_random_accessible.hpp"
+#include "type_traits/is_string_like.hpp"
 
-#define DBG(...)                  \
-  ((void)::armkn::dbg::internal:: \
-       DebugPrinter(__LINE__, __func__, __PRETTY_FUNCTION__, #__VA_ARGS__)(__VA_ARGS__))
+#define DBG(...) \
+  ((void         \
+  )::armkn::dbg::DebugPrinter(__LINE__, __func__, __PRETTY_FUNCTION__, #__VA_ARGS__)(__VA_ARGS__))
 
-#define DBGV(...)                                                                              \
-  ::armkn::dbg::internal::DebugPrinter(__LINE__, __func__, __PRETTY_FUNCTION__, #__VA_ARGS__)( \
-      __VA_ARGS__                                                                              \
-  )
+#define DBGV(...) \
+  ::armkn::dbg::DebugPrinter(__LINE__, __func__, __PRETTY_FUNCTION__, #__VA_ARGS__)(__VA_ARGS__)
 
-#define DBG_SET_OUTPUT(ostream_ptr) ::armkn::dbg::internal::out = (ostream_ptr)
+#define DBG_SET_OUTPUT(ostream_ptr) ::armkn::dbg::out = (ostream_ptr)
 
-#define DBG_ENABLE_COLOR() ::armkn::dbg::color::enable_color()
+#define DBG_ENABLE_COLOR() ::armkn::dbg::enable_color()
 
-#define DBG_DISABLE_COLOR() ::armkn::dbg::color::disable_color()
+#define DBG_DISABLE_COLOR() ::armkn::dbg::disable_color()
 
 namespace armkn::dbg {
+
 using ::std::string;
 using ::std::vector;
-
-namespace color {
-
-const char *BLACK, *RED, *GREEN, *YELLOW, *BLUE, *MAGENTA, *CYAN, *WHITE, *DIM, *NOCOLOR;
-
-__attribute__((constructor)) void enable_color() {
-  BLACK = "\x1b[30;1m";
-  RED = "\x1b[31;1m";
-  GREEN = "\x1b[32;1m";
-  YELLOW = "\x1b[33;1m";
-  BLUE = "\x1b[34;1m";
-  MAGENTA = "\x1b[35;1m";
-  CYAN = "\x1b[36;1m";
-  WHITE = "\x1b[37;1m";
-  DIM = "\x1b[;2m";
-  NOCOLOR = "\x1b[;m";
-}
-
-void disable_color() {
-  BLACK = "";
-  RED = "";
-  GREEN = "";
-  YELLOW = "";
-  BLUE = "";
-  MAGENTA = "";
-  CYAN = "";
-  WHITE = "";
-  DIM = "";
-  NOCOLOR = "";
-}
-
-}  // namespace color
-
-namespace internal {
-
-using namespace ::armkn::dbg::color;
+using namespace ::armkn::console::color;
 
 template <class T1, class T2>
 std::ostream& operator<<(std::ostream& o, const std::pair<T1, T2>& p) {
-  return o << NOCOLOR << '(' << YELLOW << p.first << NOCOLOR << ", " << YELLOW << p.second
-           << NOCOLOR << ')';
+  return o << RESET << '(' << YELLOW << p.first << RESET << ", " << YELLOW << p.second << RESET
+           << ')';
 }
 
 template <class Tuple>
 void write_tuple_elements(std::ostream& o, Tuple&&, std::index_sequence<>) {
-  o << NOCOLOR << ')';
+  o << RESET << ')';
 }
 
 template <class Tuple, std::size_t Index, std::size_t... RestIndexes>
 void write_tuple_elements(std::ostream& o, Tuple&& t, std::index_sequence<Index, RestIndexes...>) {
   if constexpr (Index == 0) {
-    o << NOCOLOR << '(';
+    o << RESET << '(';
   } else {
-    o << NOCOLOR << ", ";
+    o << RESET << ", ";
   }
   o << YELLOW << std::get<Index>(t);
   write_tuple_elements(o, t, std::index_sequence<RestIndexes...>{});
@@ -129,7 +94,7 @@ template <
     class Iterable,
     std::enable_if_t<armkn::is_string_like_v<Iterable>, std::nullptr_t> = nullptr>
 void write_iterable(std::ostream& o, const Iterable& xs, [[maybe_unused]] int nest = 0) {
-  o << GREEN << xs << NOCOLOR;
+  o << GREEN << xs << RESET;
 }
 
 // For random accessible container
@@ -150,14 +115,14 @@ void write_iterable(std::ostream& o, const Iterable& xs, int nest = 0) {
   const size_t limitted_n = (n > OMISSION_N + OMMSSION_TAIL_SHOW_N) ? OMISSION_N : n;
   const auto idx_nchars = (int)nchars(n - 1);
 
-  o << NOCOLOR << '{';
+  o << RESET << '{';
 
   size_t i = 0;
   const auto begin = std::begin(xs);
 
   while (i < n) {
     if (i == limitted_n) {
-      o << RED << "..., " << NOCOLOR;
+      o << RED << "..., " << RESET;
       i = 5 * ((n - OMMSSION_TAIL_SHOW_N) / 5);
       continue;
     }
@@ -165,20 +130,20 @@ void write_iterable(std::ostream& o, const Iterable& xs, int nest = 0) {
     if constexpr (should_nest) {
       o << "\n";
       indent(o, nest + 1);
-      o << DIM << WHITE << '[' << CYAN << std::setw(idx_nchars) << i << WHITE << "] " << NOCOLOR;
+      o << DIM << WHITE << '[' << CYAN << std::setw(idx_nchars) << i << WHITE << "] " << RESET;
       write_iterable(o, begin[i], nest + 1);
     } else {
       if (i >= 5 && i % 5 == 0) {
-        o << DIM << WHITE << '[' << CYAN << i << WHITE << "]" << NOCOLOR;
+        o << DIM << WHITE << '[' << CYAN << i << WHITE << "]" << RESET;
       }
       o << YELLOW << begin[i];
     }
 
-    if (i + 1 < n) o << NOCOLOR << (should_nest ? "," : ", ");
+    if (i + 1 < n) o << RESET << (should_nest ? "," : ", ");
     ++i;
   }
 
-  o << NOCOLOR;
+  o << RESET;
   if constexpr (should_nest) {
     if (n) {
       o.put('\n');
@@ -207,14 +172,14 @@ void write_iterable(std::ostream& o, const Iterable& xs, int nest = 0) {
   const size_t limitted_n = (n > OMISSION_N + OMMSSION_TAIL_SHOW_N) ? OMISSION_N : n;
   const auto idx_nchars = (int)nchars(n - 1);
 
-  o << NOCOLOR << '{';
+  o << RESET << '{';
 
   size_t i = 0;
   auto itr = std::begin(xs);
 
   while (i < n) {
     if (i == limitted_n) {
-      o << RED << "..., " << NOCOLOR;
+      o << RED << "..., " << RESET;
       i = n - 5;
       itr = std::prev(std::end(xs), 5);
       continue;
@@ -223,21 +188,21 @@ void write_iterable(std::ostream& o, const Iterable& xs, int nest = 0) {
     if constexpr (should_nest) {
       o << "\n";
       indent(o, nest + 1);
-      o << DIM << CYAN << std::setw(idx_nchars) << i << WHITE << ": " << NOCOLOR;
+      o << DIM << CYAN << std::setw(idx_nchars) << i << WHITE << ": " << RESET;
       write_iterable(o, *itr, nest + 1);
     } else {
       if (i % 5 == 0) {
-        o << DIM << CYAN << i << WHITE << ":" << NOCOLOR;
+        o << DIM << CYAN << i << WHITE << ":" << RESET;
       }
       o << YELLOW << *itr;
     }
 
-    if (i + 1 < n) o << NOCOLOR << (should_nest ? "," : ", ");
+    if (i + 1 < n) o << RESET << (should_nest ? "," : ", ");
     ++i;
     ++itr;
   }
 
-  o << NOCOLOR;
+  o << RESET;
   if constexpr (should_nest) {
     if (n) {
       o.put('\n');
@@ -264,7 +229,7 @@ void write_iterable(std::ostream& o, const Iterable& xs, int nest = 0) {
   const size_t n = std::size(xs);
   const size_t limitted_n = (n > OMISSION_N + OMMSSION_TAIL_SHOW_N) ? OMISSION_N : n;
 
-  o << NOCOLOR << '{';
+  o << RESET << '{';
 
   std::size_t cnt = 0;
   auto itr = std::begin(xs);
@@ -272,7 +237,7 @@ void write_iterable(std::ostream& o, const Iterable& xs, int nest = 0) {
 
   while (itr != end) {
     if (cnt == limitted_n) {
-      o << RED << "..., " << NOCOLOR;
+      o << RED << "..., " << RESET;
       cnt = n - 5;
       itr = std::prev(std::end(xs), 5);
       continue;
@@ -291,7 +256,7 @@ void write_iterable(std::ostream& o, const Iterable& xs, int nest = 0) {
     } else {
       o << key;
     }
-    o << DIM << WHITE << "]=" << NOCOLOR;
+    o << DIM << WHITE << "]=" << RESET;
 
     if constexpr (armkn::is_iterable_v<mapped_type>) {
       write_iterable(o, value, nest + 1);
@@ -299,12 +264,12 @@ void write_iterable(std::ostream& o, const Iterable& xs, int nest = 0) {
       o << YELLOW << value;
     }
 
-    if (std::next(itr) != end) o << NOCOLOR << (should_nest ? "," : ", ");
+    if (std::next(itr) != end) o << RESET << (should_nest ? "," : ", ");
     ++cnt;
     ++itr;
   }
 
-  o << NOCOLOR;
+  o << RESET;
   if constexpr (should_nest) {
     if (n) {
       o.put('\n');
@@ -351,8 +316,8 @@ class DebugPrinter {
 
   template <class... T>
   auto operator()(T&&... xs) {
-    *out << MAGENTA << line_no << NOCOLOR << ':';
-    *out << BLUE << pretty_func_name << "()" << NOCOLOR << ": ";
+    *out << MAGENTA << line_no << RESET << ':';
+    *out << BLUE << pretty_func_name << "()" << RESET << ": ";
     return print(std::forward<T>(xs)...);
   }
 
@@ -378,9 +343,9 @@ class DebugPrinter {
   void put(T&& x) const {
     // if arg is string literal, show just value
     if ((*itr)[0] == '"') {
-      *out << '"' << GREEN << x << NOCOLOR << '"';
+      *out << '"' << GREEN << x << RESET << '"';
     } else {
-      *out << CYAN << *itr << WHITE << DIM << '=' << NOCOLOR << YELLOW << x << NOCOLOR;
+      *out << CYAN << *itr << WHITE << DIM << '=' << RESET << YELLOW << x << RESET;
     }
   }
 
@@ -422,8 +387,6 @@ class DebugPrinter {
     return res;
   }
 };
-
-}  // namespace internal
 
 }  // namespace armkn::dbg
 
