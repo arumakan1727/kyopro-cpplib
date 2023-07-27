@@ -34,7 +34,7 @@ async def lint(filepath: Path) -> LintResult:
             line = line.strip()
             i += 1
 
-            if "using namespace std" in line:
+            if "using namespace std;" in line:
                 return LintResult(
                     filepath, [LintErr(i, "Do not use `using namespace std`.")]
                 )

@@ -10,6 +10,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_subdirectory(lib/Catch2)
 
 add_executable(tests
+  armkn/dbg/dbg.cpp
   armkn/dsu/union_find.cpp
   armkn/fmt/printer.cpp
   armkn/graph/mst/kruskal.cpp
@@ -35,16 +36,36 @@ add_executable(tests
   armkn/util/fn/isqrt.cpp
   armkn/util/fn/runlength.cpp
   armkn/util/fn/sigma.cpp
+  armkn/util/type_traits/is_iterable.cpp
+  armkn/util/type_traits/is_key_value_map.cpp
+  armkn/util/type_traits/is_random_accessible.cpp
+  armkn/util/type_traits/is_string_like.cpp
 )
 target_include_directories(tests PRIVATE
   ../src
   lib/Catch2/src
 )
 target_compile_options(tests PRIVATE
-  -Wall -Wextra -Wconversion
-  -Werror
+  -DARMKN_DEBUG
+  -Wall
+  -Wextra
+
+  -Wconversion
+  -Wdelete-non-virtual-dtor
+  -Wfloat-equal
+  -Winit-self
+  -Winvalid-pch
+  -Wmissing-include-dirs
+  -Woverloaded-virtual
+  -Wreorder
+  -Wshadow
+  -Wsuggest-override
+  -Wswitch-enum
+  -Wwrite-strings
+
   -Wno-sign-conversion
+  -Werror
+
   -g
-  -fno-omit-frame-pointer
 )
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)

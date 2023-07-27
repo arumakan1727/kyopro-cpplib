@@ -9,16 +9,22 @@ cat <<EOT
 -I${repoRoot}/src
 -I${repoRoot}/tests/lib/Catch2/src
 -I${repoRoot}/tests/build/lib/Catch2/generated-includes
+-DARMKN_DEBUG
 -Wall
 -Wextra
 
 -Wconversion
+-Wdelete-non-virtual-dtor
 -Wfloat-equal
 -Winit-self
 -Winvalid-pch
 -Wmissing-include-dirs
+-Woverloaded-virtual
+-Wreorder
 -Wshadow
+-Wsuggest-override
 -Wswitch-enum
+-Wwrite-strings
 
 -Wno-sign-conversion
 EOT

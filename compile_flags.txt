@@ -1,4 +1,5 @@
 -std=c++17
+-DARMKN_DEBUG
 -Wall
 -Wextra
 
