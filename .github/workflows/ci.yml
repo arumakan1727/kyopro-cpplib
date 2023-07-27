@@ -31,7 +31,7 @@ jobs:
         echo '------------------'
         clang++ --version
         echo '------------------'
-        clang-format --version 
+        clang-format --version
         echo '------------------'
         which python3 pip3 g++ clang++
         echo '------------------'
@@ -52,12 +52,13 @@ jobs:
         check-path: 'src'
 
   test:
-    name: "test@${{ matrix.cxx }}"
+    name: "test@${{ matrix.cxx }}.${{ matrix.build_type }}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         cxx: [g++-12, clang++-14]
+        build_type: [debug, release]
     env:
       CXX: "${{ matrix.cxx }}"
 
@@ -70,8 +71,8 @@ jobs:
         with:
           path: |
             tests/lib/
-            tests/build/lib/
-          key: ${{ runner.os }}.${{ matrix.cxx }}.extlib
+            tests/build/${{ matrix.build_type }}/lib
+          key: ${{ runner.os }}.${{ matrix.cxx }}.${{ matrix.build_type }}.extlib
 
       - name: "Download external library"
         if: steps.cache-extlib.cache-hit != 'true'
@@ -84,14 +85,16 @@ jobs:
           echo "---------------"
           ls -la tests/lib/Catch2 || true
           echo "---------------"
-          ls -la tests/build/lib/Catch2 || true
+          ls -la tests/build/debug/lib/Catch2 || true
+          echo "---------------"
+          ls -la tests/build/release/lib/Catch2 || true
           echo "---------------"
           ls -l /bin/*++* || true
           echo "---------------"
           ls -l /usr/bin/*++* || true
 
       - name: "Build tests"
-        run: make -C tests build/tests
+        run: make -C tests build/${{ matrix.build_type }}/tests
 
       - name: "Run tests"
-        run: make -C tests run
+        run: make -C tests run/${{ matrix.bulid_type }}

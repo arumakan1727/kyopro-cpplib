@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.21)
 project(kyopro-cpplib CXX)
 message("project name is automaically set as: ${PROJECT_NAME}")
+message("build type: ${CMAKE_BUILD_TYPE}")
+message("build tool: ${CMAKE_BUILD_TOOL}")
 
 set(PROJECT_VERSION 1.0.0)
 set(CMAKE_CXX_STANDARD 17)
@@ -41,31 +43,37 @@ add_executable(tests
   armkn/util/type_traits/is_random_accessible.cpp
   armkn/util/type_traits/is_string_like.cpp
 )
+
 target_include_directories(tests PRIVATE
   ../src
   lib/Catch2/src
 )
-target_compile_options(tests PRIVATE
-  -DARMKN_DEBUG
-  -Wall
-  -Wextra
 
-  -Wconversion
-  -Wdelete-non-virtual-dtor
-  -Wfloat-equal
-  -Winit-self
-  -Winvalid-pch
-  -Wmissing-include-dirs
-  -Woverloaded-virtual
-  -Wreorder
-  -Wshadow
-  -Wsuggest-override
-  -Wswitch-enum
-  -Wwrite-strings
-
-  -Wno-sign-conversion
-  -Werror
-
-  -g
+string(APPEND CMAKE_CXX_FLAGS
+  " -Wall -Wextra -Werror"
+  " -Wconversion"
+  " -Wdelete-non-virtual-dtor"
+  " -Wfloat-equal"
+  " -Winit-self"
+  " -Winvalid-pch"
+  " -Wmissing-include-dirs"
+  " -Woverloaded-virtual"
+  " -Wreorder"
+  " -Wshadow"
+  " -Wsuggest-override"
+  " -Wswitch-enum"
+  " -Wwrite-strings"
+  " -Wno-sign-conversion"
 )
+set(CMAKE_CXX_FLAGS_DEBUG "-g -DARMKN_DEBUG")
+set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG -mtune=native -march=native")
+
+if(UNIX AND NOT APPLE)
+  string(APPEND CMAKE_CXX_FLAGS_DEBUG " -fno-omit-frame-pointer -fsanitize=address,undefined")
+endif()
+
+message("CMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}")
+message("CMAKE_CXX_FLAGS_DEBUG=${CMAKE_CXX_FLAGS_DEBUG}")
+message("CMAKE_CXX_FLAGS_RELEASE=${CMAKE_CXX_FLAGS_RELEASE}")
+
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)

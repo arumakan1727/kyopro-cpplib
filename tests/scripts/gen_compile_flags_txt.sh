@@ -8,7 +8,7 @@ cat <<EOT
 -std=c++17
 -I${repoRoot}/src
 -I${repoRoot}/tests/lib/Catch2/src
--I${repoRoot}/tests/build/lib/Catch2/generated-includes
+-I${repoRoot}/tests/build/debug/lib/Catch2/generated-includes
 -DARMKN_DEBUG
 -Wall
 -Wextra
