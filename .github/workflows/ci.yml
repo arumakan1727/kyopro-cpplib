@@ -45,8 +45,9 @@ jobs:
     - name: My simple lint
       run: find src/armkn tests/armkn -type f -name '*.[ch]pp' | xargs ./scripts/mylint.py
 
-    - name: Verify config files
-      run: clang-tidy --verify-config
+    # clang-tidy's version on GitHub Action is so old that it doesn't support `--verify-config`
+    # - name: Verify config files
+    #   run: clang-tidy --verify-config
 
     - name: clang-tidy (lint)
       run: find src/armkn -type f -name '*.[ch]pp' | xargs clang-tidy
