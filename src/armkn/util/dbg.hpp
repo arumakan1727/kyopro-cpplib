@@ -380,7 +380,7 @@ class DebugPrinter {
       else if (*s == '<' && !std::isspace(s[-1]))
         ++angle;
       else if (*s == '>' && !std::isspace(s[-1]))
-        ++angle;
+        --angle;
     }
 
     res.emplace_back(buf, buf_end);
