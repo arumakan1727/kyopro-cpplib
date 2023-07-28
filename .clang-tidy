@@ -24,4 +24,3 @@ WarningsAsErrors: '*'
 HeaderFilterRegex: ''
 AnalyzeTemporaryDtors: false
 FormatStyle:     none
-CheckOptions: {}
