@@ -32,6 +32,7 @@ add_executable(tests
   armkn/rangefold/fenwick_tree.cpp
   armkn/str/rolling_hash.cpp
   armkn/util/alias/heapq.cpp
+  armkn/util/constants/infinity.cpp
   armkn/util/dbg.cpp
   armkn/util/fn/floor_pow2.cpp
   armkn/util/fn/ilog2.cpp
