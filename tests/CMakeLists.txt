@@ -14,6 +14,7 @@ add_subdirectory(lib/Catch2)
 add_executable(tests
   armkn/dsu/union_find.cpp
   armkn/fmt/printer.cpp
+  armkn/graph/adapter/edge_destination.cpp
   armkn/graph/mst/kruskal.cpp
   armkn/math/comb/binom_fn.cpp
   armkn/math/comb/binom_table.cpp
