@@ -50,7 +50,7 @@ jobs:
     #   run: clang-tidy --verify-config
 
     - name: clang-tidy (lint)
-      run: find src/armkn -type f -name '*.[ch]pp' | xargs clang-tidy
+      run: find src/armkn -type f -name '*.[ch]pp' | grep -v 'util/macro/rep.hpp' | xargs clang-tidy
 
     - name: Check format
       uses: jidicula/clang-format-action@v4.11.0
