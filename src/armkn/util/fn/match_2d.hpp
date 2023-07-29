@@ -9,7 +9,6 @@
 /// f の型は `(u32, u32, u32, u32) -> bool` を期待する。
 template <class Matrix, class PatternMatrix, class MatcherFn>
 bool match_2d(const Matrix& m, const PatternMatrix& pat, u32 top, u32 left, MatcherFn&& f) {
-  if (top < 0 || left < 0) return false;
   for (u32 i = 0; i < pat.size(); ++i) {
     for (u32 j = 0; j < pat[i].size(); ++j) {
       if (top + i >= m.size() || left + j >= m[top + i].size()) return false;

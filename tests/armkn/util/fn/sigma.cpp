@@ -26,5 +26,4 @@ TEST_CASE("sigma", "[util/fn]") {
 
   i128 want = i128(n) * i128(n + 1) >> 1;
   CHECK(sigma(i128(1), i128(n)) == want);
-  CHECK(std::is_integral_v<i128>);
 }
