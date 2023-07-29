@@ -19,7 +19,7 @@ auto dijkstra(uint32_t start_node, WeightedGraph<EdgeWeight> const& g) -> std::v
   while (pq.size()) {
     const auto [wsum, v] = pq.top();
     pq.pop();
-    if (dist[v] <= wsum) continue;
+    if (dist[v] < wsum) continue;
     for (const auto& e : g[v]) {
       if (chmin(dist[e.to], wsum + e.w)) {
         pq.emplace(wsum + e.w, e.to);
