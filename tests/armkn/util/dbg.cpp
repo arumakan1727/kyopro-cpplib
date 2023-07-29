@@ -4,6 +4,9 @@
 #include <catch2/reporters/catch_reporter_event_listener.hpp>
 #include <catch2/reporters/catch_reporter_registrars.hpp>
 
+#include <armkn/graph/model/Edge3.hpp>
+#include <armkn/graph/model/weighted_graph.hpp>
+
 #include <array>
 #include <deque>
 #include <iostream>
@@ -99,7 +102,7 @@ TEST_CASE("dbg", "[dbg]") {
       DBG_SET_OUTPUT(&ss);
       DBG(5);
       CHECK(
-          ss.str() == ""s + MAGENTA + "100" + RESET + ':' + BLUE + "CATCH2_INTERNAL_TEST_0()" +
+          ss.str() == ""s + MAGENTA + "103" + RESET + ':' + BLUE + "CATCH2_INTERNAL_TEST_0()" +
                           RESET + ": " + CYAN + "5" + WHITE + DIM + "=" + RESET + YELLOW + "5" +
                           RESET + "\n"
       );
@@ -388,6 +391,8 @@ class TestStartHook : public Catch::EventListenerBase {
     DBG(std::map<int, int>{{-1, 5}, {-2, 7}, {-4, 0x3f3f3f3f}});
     DBG(std::map<int, std::string_view>{{-1, "hoge"}, {-2, "foo"}, {-4, "bar"}});
     DBG(std::map<std::string_view, int>{{"hoge", 5}, {"foo", 3}, {"bar", 8}});
+    DBG(Edge<int>(3, -7));
+    DBG(Edge3<int>(0, 3, -1));
   }
 };
 

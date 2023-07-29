@@ -25,6 +25,8 @@
 #include <utility>
 #include <vector>
 
+#include "../graph/model/Edge3.hpp"
+#include "../graph/model/weighted_graph.hpp"
 #include "console/color.hpp"
 #include "type_traits/is_iterable.hpp"
 #include "type_traits/is_key_value_map.hpp"
@@ -76,6 +78,17 @@ template <class... T>
 std::ostream& operator<<(std::ostream& o, const std::tuple<T...>& t) {
   write_tuple_elements(o, t, std::index_sequence_for<T...>{});
   return o;
+}
+
+template <class Weight>
+std::ostream& operator<<(std::ostream& o, const Edge<Weight>& e) {
+  return o << RESET << '(' << YELLOW << e.to << RESET << ", " << YELLOW << e.w << RESET << ')';
+}
+
+template <class Weight>
+std::ostream& operator<<(std::ostream& o, const Edge3<Weight>& e) {
+  return o << RESET << '(' << YELLOW << e.from << RESET << ", " << YELLOW << e.to << RESET << ", "
+           << YELLOW << e.w << RESET << ')';
 }
 
 template <class T>
