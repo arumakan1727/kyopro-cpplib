@@ -2,7 +2,28 @@
 #include <cassert>
 #include <cstddef>
 #include <cstdint>
+#include <functional>
 #include <vector>
+
+template <uint64_t Base>
+struct SeqHash {
+  uint64_t hash;
+  uint64_t len;
+
+  inline bool operator==(const SeqHash& rhs) const noexcept {
+    return hash == rhs.hash && len == rhs.len;
+  }
+  inline bool operator!=(const SeqHash& rhs) const noexcept {
+    return !operator==(rhs);
+  }
+};
+
+template <uint64_t Base>
+struct std::hash<SeqHash<Base>> {
+  inline size_t operator()(const SeqHash<Base>& h) const {
+    return h.hash;
+  }
+};
 
 /// ローリングハッシュ; mod値 $2^{61} - 1$ 固定
 /// @see https://qiita.com/keymoon/items/11fac5627672a6d6a9f6
@@ -11,11 +32,9 @@ class RollingHash {
  public:
   using u64 = uint_fast64_t;
   using u128 = __uint128_t;
+  using Hash = SeqHash<Base>;
   static constexpr u64 MOD = (1uLL << 61) - 1;
   static constexpr u64 BASE = Base;
-
-  /// pair of (hash, strlen)
-  using Hash = std::pair<u64, u64>;
 
   RollingHash() = default;
 
@@ -55,9 +74,9 @@ class RollingHash {
 
   /// 連結文字列 (left_str + right_str) のハッシュ値
   static Hash concat(Hash left, Hash right) {
-    grow_pow_array(right.second);
-    const auto value = add(mul(left.first, pow_array[right.second]), right.first);
-    return {value, left.second + right.second};
+    grow_pow_array(right.len);
+    const auto value = add(mul(left.hash, pow_array[right.len]), right.hash);
+    return {value, left.len + right.len};
   }
 
  private:
