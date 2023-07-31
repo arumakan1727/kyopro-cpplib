@@ -1,4 +1,5 @@
 #pragma once
+#include <algorithm>
 #include <cassert>
 #include <vector>
 
@@ -26,5 +27,11 @@ struct CumulativeSum {
   inline const T sum(int l, int r) const {
     assert(0 <= l && l <= r && r < (int)data.size());
     return data[r] - data[l];
+  }
+
+  /// `sum(l, r) >= v` となる最小の r を求める
+  inline std::size_t lower_bound(const T& v, int l) const {
+    assert(0 <= l && l < (int)data.size());
+    return std::distance(data.begin(), std::lower_bound(data.begin(), data.end(), v + data[l]));
   }
 };
