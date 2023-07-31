@@ -17,6 +17,7 @@ add_executable(tests
   armkn/fmt/printer.cpp
   armkn/graph/adapter/edge_destination.cpp
   armkn/graph/mst/kruskal.cpp
+  armkn/graph/tree/rooted_tree.cpp
   armkn/math/comb/binom_fn.cpp
   armkn/math/comb/binom_table.cpp
   armkn/math/comb/binom_table_const_n.cpp
