@@ -3,7 +3,6 @@
 #include <cstdint>
 #include <vector>
 #include "../../util/alias/stdint.hpp"
-#include "../adapter/edge_destination.hpp"
 
 /// DFS により各ノードについて 親ノード、部分木のノード数、深さを求める。
 /// - 重みつき・なし両方OK (`vector<vector<int>>` も可)。
@@ -42,12 +41,11 @@ class RootedTree {
  private:
   template <class Edge>
   void dfs(std::vector<std::vector<Edge>> const& g, u32 v, u32 par, u32 dep) {
-    const auto dest = EdgeDestinationAdapter{};
     size[v] = 1;
     parent[v] = par;
     depth[v] = dep;
     for (const auto& e : g[v]) {
-      const auto to = dest(e);
+      const auto to = (u32)e;
       if (to != par) {
         dfs(g, to, v, dep + 1);
         size[v] += size[to];

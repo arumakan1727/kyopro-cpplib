@@ -15,7 +15,6 @@ add_executable(tests
   armkn/dp/k_choose_prod_sum.cpp
   armkn/dsu/union_find.cpp
   armkn/fmt/printer.cpp
-  armkn/graph/adapter/edge_destination.cpp
   armkn/graph/mst/kruskal.cpp
   armkn/graph/tree/rooted_tree.cpp
   armkn/math/comb/binom_fn.cpp
