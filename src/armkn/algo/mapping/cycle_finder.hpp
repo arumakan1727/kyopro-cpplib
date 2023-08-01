@@ -3,19 +3,20 @@
 #include <type_traits>
 #include <utility>
 #include <vector>
+#include "../../util/alias/stdint.hpp"
 
 /// Floyd's Tortoise and Hare Algorithm
 template <class T>
 class CycleFinder {
-  uint32_t _until_cycle_start;
-  uint32_t _cycle_len;
+  u32 _until_cycle_start;
+  u32 _cycle_len;
   std::vector<T> nf;  // nf[i] := `start` から `f` を `i` 回適用した結果
 
  public:
   CycleFinder() = default;
 
   template <class Fn, std::enable_if_t<std::is_invocable_r_v<T, Fn, T>, std::nullptr_t> = nullptr>
-  CycleFinder(T start, Fn&& f, std::size_t capacity = 512) : _until_cycle_start(0), _cycle_len(0) {
+  CycleFinder(T start, Fn&& f, size_t capacity = 512) : _until_cycle_start(0), _cycle_len(0) {
     T tortoise = start, hare = start;
     do {
       tortoise = f(tortoise);
@@ -50,16 +51,16 @@ class CycleFinder {
             mapping.size() + 1
         ) {}
 
-  inline uint32_t until_cycle_start() const {
+  inline u32 until_cycle_start() const {
     return _until_cycle_start;
   }
 
-  inline uint32_t cycle_len() const {
+  inline u32 cycle_len() const {
     return _cycle_len;
   }
 
   /// start に f を n 回適用した結果を O(1) で求める。
-  inline const T apply_repeat(uint64_t n) const {
+  inline const T apply_repeat(u64 n) const {
     if (n <= _until_cycle_start + _cycle_len) return nf[n];
     return nf[_until_cycle_start + (n - _until_cycle_start) % _cycle_len];
   }
