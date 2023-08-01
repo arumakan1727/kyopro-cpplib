@@ -13,16 +13,16 @@ std::vector<Row> rotate_matrix(const std::vector<Row>& m, int cycle) {
 
   if (cycle == 1) {
     auto res = std::vector(w, Row(h, T{}));
-    for (size_t y = 0; y < h; ++y) {
-      for (size_t x = 0; x < w; ++x) res[x][h - y - 1] = m[y][x];
+    for (unsigned y = 0; y < h; ++y) {
+      for (unsigned x = 0; x < w; ++x) res[x][h - y - 1] = m[y][x];
     }
     return res;
   }
 
   if (cycle == 2) {
     auto res = std::vector(h, Row(w, T{}));
-    for (size_t y = 0; y < h; ++y) {
-      for (size_t x = 0; x < w; ++x) res[h - y - 1][w - x - 1] = m[y][x];
+    for (unsigned y = 0; y < h; ++y) {
+      for (unsigned x = 0; x < w; ++x) res[h - y - 1][w - x - 1] = m[y][x];
     }
     return res;
   }
@@ -30,8 +30,8 @@ std::vector<Row> rotate_matrix(const std::vector<Row>& m, int cycle) {
   if (cycle == 3) {
     auto res = std::vector(w, Row(h, T{}));
     for (auto& row : res) row.resize(h);
-    for (size_t y = 0; y < h; ++y) {
-      for (size_t x = 0; x < w; ++x) res[w - x - 1][y] = m[y][x];
+    for (unsigned y = 0; y < h; ++y) {
+      for (unsigned x = 0; x < w; ++x) res[w - x - 1][y] = m[y][x];
     }
     return res;
   }
