@@ -21,7 +21,7 @@ struct CumulativeSum2D {
 
   /// Returns sum(a[y][x]) for y ∈ [sy, gy), x ∈ [sx, gx)
   /// 0 <= sy <= gy <= H;  0 <= sx <= gx <= W;
-  inline const T sum(size_t sy, size_t sx, size_t gy, size_t gx) const noexcept {
+  inline const T sum(unsigned sy, unsigned sx, unsigned gy, unsigned gx) const noexcept {
     assert(sy <= gy && gy <= data.size());
     assert(sx <= gx && gx <= data[0].size());
     return data[gy][gx] - data[sy][gx] - data[gy][sx] + data[sy][sx];
