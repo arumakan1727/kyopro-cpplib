@@ -41,6 +41,7 @@ add_executable(tests
   armkn/util/fn/ilog2.cpp
   armkn/util/fn/isqrt.cpp
   armkn/util/fn/match_2d.cpp
+  armkn/util/fn/rotate_matrix.cpp
   armkn/util/fn/runlength.cpp
   armkn/util/fn/sigma.cpp
   armkn/util/type_traits/is_iterable.cpp
