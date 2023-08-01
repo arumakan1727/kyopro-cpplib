@@ -12,6 +12,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_subdirectory(lib/Catch2)
 
 add_executable(tests
+  armkn/algo/mapping/cycle_finder.cpp
   armkn/dp/k_choose_prod_sum.cpp
   armkn/dsu/union_find.cpp
   armkn/fmt/printer.cpp
