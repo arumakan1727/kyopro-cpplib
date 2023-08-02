@@ -14,6 +14,7 @@ add_subdirectory(lib/Catch2)
 add_executable(tests
   armkn/algo/mapping/cycle_finder.cpp
   armkn/algo/mapping/doubling.cpp
+  armkn/algo/mapping/doubling_with_monoid.cpp
   armkn/dp/k_choose_prod_sum.cpp
   armkn/dsu/union_find.cpp
   armkn/fmt/printer.cpp
