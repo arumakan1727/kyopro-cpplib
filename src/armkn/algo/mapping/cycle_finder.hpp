@@ -6,11 +6,13 @@
 #include "../../util/alias/stdint.hpp"
 
 /// Floyd's Tortoise and Hare Algorithm
+/// 写像 f は (T → T) でなければならない
+/// サイクルが存在しない場合は無限ループする
 template <class T>
 class CycleFinder {
   u32 _until_cycle_start;
   u32 _cycle_len;
-  std::vector<T> nf;  // nf[i] := `start` から `f` を `i` 回適用した結果
+  std::vector<T> nf;  // nf[i] := `start` に `f` を `i` 回適用した結果
 
  public:
   CycleFinder() = default;
@@ -38,9 +40,10 @@ class CycleFinder {
       nf.push_back(tortoise);
       ++_cycle_len;
     } while (tortoise != hare);
+    nf.shrink_to_fit();
   }
 
-  /// mapping[x] を写像 f(x) とみなす
+  /// mapping[x] を写像の適用 f(x) とみなす
   template <
       class IndexAccessible,
       class = std::void_t<decltype(std::declval<IndexAccessible>()[0])>>
@@ -59,7 +62,7 @@ class CycleFinder {
     return _cycle_len;
   }
 
-  /// start に f を n 回適用した結果を O(1) で求める。
+  /// start に f を n 回適用した結果を O(1) で求める
   inline const T apply_repeat(u64 n) const {
     if (n <= _until_cycle_start + _cycle_len) return nf[n];
     return nf[_until_cycle_start + (n - _until_cycle_start) % _cycle_len];
