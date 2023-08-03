@@ -38,6 +38,7 @@ add_executable(tests
   armkn/rangefold/cumulative_sum_2d.cpp
   armkn/rangefold/fenwick_tree.cpp
   armkn/set/closed_range.cpp
+  armkn/set/closed_range_set.cpp
   armkn/str/rolling_hash.cpp
   armkn/util/alias/heapq.cpp
   armkn/util/constants/infinity.cpp
