@@ -44,6 +44,7 @@ add_executable(tests
   armkn/util/constants/infinity.cpp
   armkn/util/dbg.cpp
   armkn/util/fn/floor_pow2.cpp
+  armkn/util/fn/hamming_distance.cpp
   armkn/util/fn/ilog2.cpp
   armkn/util/fn/isqrt.cpp
   armkn/util/fn/match_2d.cpp
