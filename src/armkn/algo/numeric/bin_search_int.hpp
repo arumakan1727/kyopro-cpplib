@@ -13,7 +13,7 @@ template <
     class PredicateFn,
     class SignedInt = std::make_signed_t<Int>,
     std::enable_if_t<std::is_integral_v<Int>, std::nullptr_t> = nullptr>
-SignedInt bin_search_integer(const Int ok_, const Int ng_, PredicateFn&& p) {
+SignedInt bin_search_int(const Int ok_, const Int ng_, PredicateFn&& p) {
   SignedInt ng, ok;
   if (ng_ < ok_) {
     ng = ng_ - 1;
