@@ -16,6 +16,7 @@ add_executable(tests
   armkn/algo/mapping/doubling.cpp
   armkn/algo/mapping/doubling_with_monoid.cpp
   armkn/algo/numeric/bin_search_int.cpp
+  armkn/algo/numeric/optimize_convex_int.cpp
   armkn/dp/k_choose_prod_sum.cpp
   armkn/dsu/union_find.cpp
   armkn/fmt/printer.cpp
