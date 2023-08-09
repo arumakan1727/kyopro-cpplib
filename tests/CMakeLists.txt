@@ -55,6 +55,7 @@ add_executable(tests
   armkn/util/fn/runlength_returns_iter.cpp
   armkn/util/fn/shakutori.cpp
   armkn/util/fn/sigma.cpp
+  armkn/util/macro/fn.cpp
   armkn/util/type_traits/is_iterable.cpp
   armkn/util/type_traits/is_key_value_map.cpp
   armkn/util/type_traits/is_random_accessible.cpp
