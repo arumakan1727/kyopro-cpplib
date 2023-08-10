@@ -59,17 +59,6 @@ class StaticModInt {
     return *this *= rhs.inv();
   }
 
-  inline constexpr const StaticModInt inv() const {
-    value_type a = value, b = M;
-    int u = 1, v = 0;
-    while (b > 0) {
-      const auto t = a / b;
-      std::swap(a -= b * t, b);
-      std::swap(u -= v * (int)t, v);
-    }
-    return StaticModInt(u);
-  }
-
   constexpr const StaticModInt pow(int64_t p) const {
     StaticModInt ret = 1u, doubled = *this;
     if (p < 0) {
@@ -83,6 +72,21 @@ class StaticModInt {
     }
     return ret;
   }
+
+  inline constexpr const StaticModInt inv() const {
+    if constexpr (M == 998244353 || M == 1000'000'007) {
+      return pow(M - 2);
+    }
+    value_type a = value, b = M;
+    int u = 1, v = 0;
+    while (b > 0) {
+      const auto t = a / b;
+      std::swap(a -= b * t, b);
+      std::swap(u -= v * (int)t, v);
+    }
+    return StaticModInt(u);
+  }
+
   const StaticModInt operator+() const {
     return *this;
   }
