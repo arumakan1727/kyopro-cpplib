@@ -22,6 +22,7 @@ add_executable(tests
   armkn/dsu/union_find.cpp
   armkn/fmt/printer.cpp
   armkn/graph/mst/kruskal.cpp
+  armkn/graph/tree/doubling_lca.cpp
   armkn/graph/tree/rooted_tree.cpp
   armkn/math/comb/binom_fn.cpp
   armkn/math/comb/binom_table.cpp
