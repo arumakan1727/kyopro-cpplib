@@ -3,6 +3,8 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include <string>
+#include <tuple>
+#include <vector>
 
 TEST_CASE("DoublingLCA") {
   using std::vector;
