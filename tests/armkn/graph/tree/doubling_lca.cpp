@@ -253,4 +253,135 @@ TEST_CASE("DoublingLCA") {
     };
     CHECK(history == want);
   }
+
+  SECTION("perfect binary tree") {
+    /*-------------------------------------
+            31
+          15
+            30
+        7
+            29
+          14
+            28
+      3- - - - - -
+            27
+          13
+            26
+        6
+            25
+          12
+            24
+    1- - - - - - -              0
+            23
+          11
+            22
+        5
+            21
+          10
+            20
+      2- - - - - -
+            19
+          9
+            18
+        4
+            17
+          8
+            16
+    -------------------------------------*/
+    constexpr u32 K = 5;
+    vector<vector<u32>> g((1 << K));
+    for (u32 i = 1; i < (1 << (K - 1)); ++i) {
+      g[i].push_back((i << 1));
+      g[i].push_back((i << 1) | 1);
+      g[i << 1].push_back(i);
+      g[i << 1 | 1].push_back(i);
+    }
+    const auto h = DoublingLCA(g);
+    REQUIRE(h.size() == 32);
+    REQUIRE(h.size(0) == 1);
+    REQUIRE(h.size(1) == 31);
+    CHECK(h.depth(0) == 0);
+    CHECK(h.depth(1) == 0);
+    CHECK(h.depth(2) == 1);
+    CHECK(h.depth(3) == 1);
+    CHECK(h.depth(4) == 2);
+    CHECK(h.depth(7) == 2);
+    CHECK(h.depth(8) == 3);
+    CHECK(h.depth(15) == 3);
+    CHECK(h.depth(16) == 4);
+    CHECK(h.depth(31) == 4);
+
+    CHECK(h.parent(0) == 0);
+    CHECK(h.parent(1) == 1);
+    CHECK(h.parent(16) == 8);
+    CHECK(h.parent(17) == 8);
+    CHECK(h.parent(31) == 15);
+
+    CHECK(h.climb(31, 0) == 31);
+    CHECK(h.climb(31, 1) == 15);
+    CHECK(h.climb(31, 2) == 7);
+    CHECK(h.climb(31, 3) == 3);
+    CHECK(h.climb(31, 4) == 1);
+    CHECK(h.climb(31, 5) == 1);
+    CHECK(h.climb(31, 6) == 1);
+    CHECK(h.climb(31, 7) == 1);
+    CHECK(h.climb(31, 8) == 1);
+    CHECK(h.climb(31, 1000000000) == 1);
+
+    CHECK(h.climb(10, 0) == 10);
+    CHECK(h.climb(10, 1) == 5);
+    CHECK(h.climb(10, 2) == 2);
+    CHECK(h.climb(10, 3) == 1);
+    CHECK(h.climb(10, 4) == 1);
+
+    CHECK(h.climb(12, 0) == 12);
+    CHECK(h.climb(12, 1) == 6);
+    CHECK(h.climb(12, 2) == 3);
+    CHECK(h.climb(12, 3) == 1);
+    CHECK(h.climb(12, 4) == 1);
+
+    CHECK(h.lca(1, 1) == 1);
+    CHECK(h.lca(16, 31) == 1);
+    CHECK(h.lca(16, 9) == 4);
+    CHECK(h.lca(23, 16) == 2);
+    CHECK(h.lca(5, 16) == 2);
+    CHECK(h.lca(10, 1) == 1);
+    CHECK(h.lca(5, 10) == 5);
+    CHECK(h.lca(10, 9) == 2);
+
+    CHECK(h.lca(10, 8) == 2);
+    CHECK(h.lca(10, 9) == 2);
+    CHECK(h.lca(10, 10) == 10);
+    CHECK(h.lca(10, 11) == 5);
+    CHECK(h.lca(10, 12) == 1);
+    CHECK(h.lca(10, 13) == 1);
+    CHECK(h.lca(10, 14) == 1);
+    CHECK(h.lca(10, 15) == 1);
+
+    CHECK(h.lca(25, 8) == 1);
+    CHECK(h.lca(25, 9) == 1);
+    CHECK(h.lca(25, 10) == 1);
+    CHECK(h.lca(25, 11) == 1);
+    CHECK(h.lca(25, 12) == 12);
+    CHECK(h.lca(25, 13) == 6);
+    CHECK(h.lca(25, 14) == 3);
+    CHECK(h.lca(25, 15) == 3);
+
+    CHECK(h.lca(25, 16) == 1);
+    CHECK(h.lca(25, 17) == 1);
+    CHECK(h.lca(25, 18) == 1);
+    CHECK(h.lca(25, 19) == 1);
+    CHECK(h.lca(25, 20) == 1);
+    CHECK(h.lca(25, 21) == 1);
+    CHECK(h.lca(25, 22) == 1);
+    CHECK(h.lca(25, 23) == 1);
+    CHECK(h.lca(25, 24) == 12);
+    CHECK(h.lca(25, 25) == 25);
+    CHECK(h.lca(25, 26) == 6);
+    CHECK(h.lca(25, 27) == 6);
+    CHECK(h.lca(25, 28) == 3);
+    CHECK(h.lca(25, 29) == 3);
+    CHECK(h.lca(25, 30) == 3);
+    CHECK(h.lca(25, 31) == 3);
+  }
 }
