@@ -6,14 +6,8 @@
 #include <vector>
 
 /// マス(i, j) が到達不可能な場合は戻り値 `dist[i][j] = -1`
-template <class Directions>
-auto grid_bfs(
-    uint32_t sy,
-    uint32_t sx,
-    const std::vector<std::string>& grid,
-    const char wall,
-    Directions&& dirs = std::initializer_list<std::pair<int, int>>{{0, 1}, {0, -1}, {1, 0}, {-1, 0}}
-) -> std::vector<std::vector<int>> {
+auto grid_bfs(uint32_t sy, uint32_t sx, const std::vector<std::string>& grid, const char wall)
+    -> std::vector<std::vector<int>> {
   using u32 = uint32_t;
   const auto H = grid.size();
   const auto W = grid[0].size();
@@ -21,6 +15,8 @@ auto grid_bfs(
   auto que = std::queue<std::pair<u32, u32>>();
   dist[sy][sx] = 0;
   que.emplace(sy, sx);
+
+  constexpr std::pair<int, int> dirs[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
   while (que.size()) {
     const auto [y, x] = que.front();
